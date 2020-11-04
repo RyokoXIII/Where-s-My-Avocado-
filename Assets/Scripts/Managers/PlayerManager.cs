@@ -135,7 +135,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("level") <= StarHandler.Instance.levelIndex)
         {
-            if (StarHandler.Instance.levelIndex < 20)
+            if (StarHandler.Instance.levelIndex < 50)
             {
                 PlayerPrefs.SetInt("level", StarHandler.Instance.levelIndex + 1);
             }

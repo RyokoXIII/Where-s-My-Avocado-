@@ -70,12 +70,12 @@ public class GameOverAction : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("lv" + StarHandler.Instance.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {
-            if (StarHandler.Instance.levelIndex < 20)
+            if (StarHandler.Instance.levelIndex < 50)
             {
                 SoundManager.Instance.selectFX.Play();
                 SceneFader.Instance.FadeTo(SceneManager.GetActiveScene().buildIndex + 1);
             }
-            else if (StarHandler.Instance.levelIndex == 20)
+            else if (StarHandler.Instance.levelIndex == 50)
             {
                 // Game is finished
                 SoundManager.Instance.selectFX.Play();

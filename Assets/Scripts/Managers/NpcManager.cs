@@ -26,7 +26,6 @@ public class NpcManager : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _rb.constraints = RigidbodyConstraints2D.FreezeAll;
         _playerManager = player.GetComponent<PlayerManager>();
 
         _anim = GetComponent<Animator>();
@@ -38,6 +37,9 @@ public class NpcManager : MonoBehaviour
         // Start heart particle
         if (other.gameObject.CompareTag("Player"))
         {
+            gameObject.transform.rotation = Quaternion.identity;
+            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
             SoundManager.Instance.goalFX.Play();
             Vector2 _heartPrefabPos = new Vector2(xPos, yPos);
 
