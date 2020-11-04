@@ -11,6 +11,8 @@ public class PlayerManager : MonoBehaviour
     Rigidbody2D _rb;
     Vector2 _force;
     NpcManager _npcManager;
+    [SerializeField]
+    ParticleSystem _collideBoundParticle;
 
     public float magnitude = 5f;
 
@@ -78,6 +80,9 @@ public class PlayerManager : MonoBehaviour
 
         if (other.gameObject.CompareTag("Boundary"))
         {
+            // Particle effect
+            Instantiate(_collideBoundParticle, transform.position, Quaternion.identity);
+
             gameObject.transform.rotation = Quaternion.identity;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
