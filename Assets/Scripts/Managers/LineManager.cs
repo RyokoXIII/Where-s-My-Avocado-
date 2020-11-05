@@ -7,7 +7,7 @@ public class LineManager : MonoBehaviour
     #region GlobalVarable
 
     public GameObject linePrefab;
-    public GameObject player;
+    public GameObject player, bigWood;
     public LayerMask cantDrawOverLayer;
 
     int _cantDrawOverLayerIndex;
@@ -37,13 +37,20 @@ public class LineManager : MonoBehaviour
 
     private void Start()
     {
+        if (bigWood != null)
+        {
+            bigWood.GetComponent<Rigidbody2D>().isKinematic = true;
+        }
         player.GetComponent<Rigidbody2D>().isKinematic = true;
         _cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOverLayer");
 
-        _handAnim = _handTut.GetComponent<Animator>();
-        _lineAnim = _lineTut.GetComponent<Animator>();
-        _handAnim.SetBool("IsDrawing", false);
-        _lineAnim.SetBool("IsDrawing", false);
+        if ((_handAnim != null) && (_lineAnim != null))
+        {
+            _handAnim = _handTut.GetComponent<Animator>();
+            _lineAnim = _lineTut.GetComponent<Animator>();
+            _handAnim.SetBool("IsDrawing", false);
+            _lineAnim.SetBool("IsDrawing", false);
+        }
     }
 
     void Update()
@@ -70,8 +77,11 @@ public class LineManager : MonoBehaviour
         {
             BeginDraw();
 
-            _handAnim.SetBool("IsDrawing", true);
-            _lineAnim.SetBool("IsDrawing", true);
+            if ((_handAnim != null) && (_lineAnim != null))
+            {
+                _handAnim.SetBool("IsDrawing", true);
+                _lineAnim.SetBool("IsDrawing", true);
+            }
             tutorial.SetActive(false);
         }
 
@@ -122,6 +132,11 @@ public class LineManager : MonoBehaviour
             {
                 if (hasDraw == false)
                 {
+                    if (bigWood != null)
+                    {
+                        bigWood.GetComponent<Rigidbody2D>().isKinematic = true;
+                    }
+
                     player.GetComponent<Rigidbody2D>().isKinematic = true;
                 }
             }
@@ -129,6 +144,11 @@ public class LineManager : MonoBehaviour
             {
                 if (hasDraw == true)
                 {
+                    if (bigWood != null)
+                    {
+                        bigWood.GetComponent<Rigidbody2D>().isKinematic = false;
+                    }
+
                     player.GetComponent<Rigidbody2D>().isKinematic = false;
                 }
                 _currentLine.gameObject.layer = _cantDrawOverLayerIndex;

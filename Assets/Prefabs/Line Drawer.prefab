@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 8414326349067234759, guid: 7f4ab14ea4a9d6f4d98c3bd22392c393, type: 3}
   player: {fileID: 855178008043502141, guid: e92230b29abe72840bfc2b9465fc8aae, type: 3}
-  npc: {fileID: 1608629119353125486, guid: de6d75e256414db4b90ea2d9d9272ea0, type: 3}
+  bigWood: {fileID: 0}
   cantDrawOverLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -78,7 +78,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
-  linePointsMinDistance: 0.15
+  linePointsMinDistance: 0.2
   lineWidth: 0.15
   cam: {fileID: 0}
   gameOverMenu: {fileID: 0}
