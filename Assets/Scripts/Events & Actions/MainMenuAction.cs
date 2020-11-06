@@ -40,6 +40,7 @@ public class MainMenuAction : MonoBehaviour
 
         Debug.Log("Star number: " + sum.ToString());
     }
+
     public void OnStart()
     {
         // play level 1 for first time 

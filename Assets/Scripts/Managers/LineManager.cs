@@ -8,6 +8,7 @@ public class LineManager : MonoBehaviour
 
     public GameObject linePrefab;
     public GameObject player, bigWood;
+    public GameObject[] smallWoods;
     public LayerMask cantDrawOverLayer;
 
     int _cantDrawOverLayerIndex;
@@ -41,9 +42,18 @@ public class LineManager : MonoBehaviour
         {
             bigWood.GetComponent<Rigidbody2D>().isKinematic = true;
         }
+        if (smallWoods != null)
+        {
+            foreach (var smallWood in smallWoods)
+            {
+                smallWood.GetComponent<Rigidbody2D>().isKinematic = true;
+            }
+        }
+
         player.GetComponent<Rigidbody2D>().isKinematic = true;
         _cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOverLayer");
 
+        // Animation
         if ((_handAnim != null) && (_lineAnim != null))
         {
             _handAnim = _handTut.GetComponent<Animator>();
@@ -77,6 +87,7 @@ public class LineManager : MonoBehaviour
         {
             BeginDraw();
 
+            // Animation
             if ((_handAnim != null) && (_lineAnim != null))
             {
                 _handAnim.SetBool("IsDrawing", true);
@@ -136,7 +147,13 @@ public class LineManager : MonoBehaviour
                     {
                         bigWood.GetComponent<Rigidbody2D>().isKinematic = true;
                     }
-
+                    if (smallWoods != null)
+                    {
+                        foreach (var smallWood in smallWoods)
+                        {
+                            smallWood.GetComponent<Rigidbody2D>().isKinematic = true;
+                        }
+                    }
                     player.GetComponent<Rigidbody2D>().isKinematic = true;
                 }
             }
@@ -148,7 +165,13 @@ public class LineManager : MonoBehaviour
                     {
                         bigWood.GetComponent<Rigidbody2D>().isKinematic = false;
                     }
-
+                    if (smallWoods != null)
+                    {
+                        foreach (var smallWood in smallWoods)
+                        {
+                            smallWood.GetComponent<Rigidbody2D>().isKinematic = false;
+                        }
+                    }
                     player.GetComponent<Rigidbody2D>().isKinematic = false;
                 }
                 _currentLine.gameObject.layer = _cantDrawOverLayerIndex;

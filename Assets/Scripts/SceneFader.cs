@@ -38,12 +38,6 @@ public class SceneFader : MonoBehaviour
         StartCoroutine(FadeIn());
     }
 
-    // FadeTo after starting FadeIn
-    public void FadeTo(string scene)
-    {
-        StartCoroutine(FadeOut(scene));
-    }
-
     public void FadeTo(int scene)
     {
         StartCoroutine(FadeOut(scene));
@@ -61,22 +55,6 @@ public class SceneFader : MonoBehaviour
 
             yield return 0;
         }
-    }
-
-    IEnumerator FadeOut(string scene)
-    {
-        float t = 0f;
-
-        while (t < 1f)
-        {
-            t += Time.deltaTime;
-            float a = curve.Evaluate(t);
-            _img.color = new Color(0f, 0f, 0f, a);
-
-            yield return 0;
-        }
-
-        SceneManager.LoadScene(scene);
     }
 
     IEnumerator FadeOut(int scene)

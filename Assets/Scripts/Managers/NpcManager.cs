@@ -13,6 +13,7 @@ public class NpcManager : MonoBehaviour
 
     public Sprite happyImg, sadImg;
 
+    // Particle effect position
     public float xPos = 6.76f;
     public float yPos = -2.39f;
 
@@ -48,6 +49,7 @@ public class NpcManager : MonoBehaviour
             // Stop Animation after player touch npc
             _anim.SetBool("isTouch", true);
 
+            // Particle effect
             Instantiate(_heartFlowFXPrefab, _heartPrefabPos, Quaternion.identity);
             Debug.Log("HeartFX played!");
         }

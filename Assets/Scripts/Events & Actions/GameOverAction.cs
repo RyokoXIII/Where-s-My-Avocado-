@@ -38,9 +38,11 @@ public class GameOverAction : MonoBehaviour
 
         _playerManager = player.GetComponent<PlayerManager>();
 
+        // Image
         _playerImg = playerImg.GetComponent<Image>();
         _npcImg = npcImg.GetComponent<Image>();
 
+        // Animation
         _playerAnim = playerImg.GetComponent<Animator>();
         _npcAnim = npcImg.GetComponent<Animator>();
 
@@ -62,8 +64,10 @@ public class GameOverAction : MonoBehaviour
 
     public void OnBackToMainMenu()
     {
+        int scene = 0;
+
         SoundManager.Instance.selectFX.Play();
-        SceneFader.Instance.FadeTo("Main_Menu");
+        SceneFader.Instance.FadeTo(scene);
     }
 
     public void OnPlayNext()
@@ -95,14 +99,16 @@ public class GameOverAction : MonoBehaviour
         if (PlayerPrefs.GetInt("lv" + StarHandler.Instance.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {
             SoundManager.Instance.victoryFX.Play();
+
             _playerAnim.SetBool("IsWon", true);
             _npcAnim.SetBool("IsWon", true);
         }
         else
         {
-            // Sad face
             SoundManager.Instance.musicBackground.Stop();
             SoundManager.Instance.loseFX.Play();
+
+            // Sad face
             _playerImg.overrideSprite = playerSad;
             _npcImg.overrideSprite = npcSad;
         }

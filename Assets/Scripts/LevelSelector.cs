@@ -12,7 +12,10 @@ public class LevelSelector : MonoBehaviour
     public bool unlocked;
 
     [SerializeField]
-    GameObject _starContainer;
+    Sprite _lvImg;
+
+    [SerializeField]
+    GameObject _starContainer, _tinyNumText, _bigNumText;
     [SerializeField]
     Image[] _stars;
     [SerializeField]
@@ -52,15 +55,32 @@ public class LevelSelector : MonoBehaviour
         else
         {
             levelButton.interactable = true;
-           
+
+            UpdateLevelButtonImg();
+
             // Show collected stars
             _starContainer.SetActive(true);
 
+            // Update collected stars img
             for (int i = 0; i < PlayerPrefs.GetInt("lv" + gameObject.name); i++)
             {
                 _stars[i].sprite = _starFull;
             }
         }
+    }
+
+    private void UpdateLevelButtonImg()
+    {
+        // Hide big number text
+        _bigNumText.SetActive(false);
+
+        // Show level img
+        gameObject.GetComponent<Image>().overrideSprite = _lvImg;
+        gameObject.GetComponent<Image>().color = Color.white;
+
+        // Show tiny level number text
+        _tinyNumText.GetComponent<Text>().text = gameObject.name;
+        _tinyNumText.SetActive(true);
     }
 
     private void UpdateLevelStatus()
