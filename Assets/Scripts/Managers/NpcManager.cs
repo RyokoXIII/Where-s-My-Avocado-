@@ -8,18 +8,20 @@ public class NpcManager : MonoBehaviour
 
     [SerializeField]
     ParticleSystem _heartFlowFXPrefab = null;
+    [SerializeField]
+    GameObject player;
     Rigidbody2D _rb;
     Animator _anim;
 
-    public Sprite happyImg, sadImg;
+    [Header("Sprite")][Space(10f)]
+    public Sprite happyImg;
+    public Sprite sadImg;
 
-    // Particle effect position
+    [Header("Particle effect position")][Space(10f)]
     public float xPos = 6.76f;
     public float yPos = -2.39f;
 
     PlayerManager _playerManager;
-    [SerializeField]
-    GameObject player;
 
     #endregion
 
@@ -42,16 +44,13 @@ public class NpcManager : MonoBehaviour
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
             SoundManager.Instance.goalFX.Play();
-            Vector2 _heartPrefabPos = new Vector2(xPos, yPos);
 
             UpdateCharactersState();
+            CreateParticleEffect();
 
             // Stop Animation after player touch npc
             _anim.SetBool("isTouch", true);
 
-            // Particle effect
-            Instantiate(_heartFlowFXPrefab, _heartPrefabPos, Quaternion.identity);
-            Debug.Log("HeartFX played!");
         }
     }
 
@@ -67,5 +66,21 @@ public class NpcManager : MonoBehaviour
             // Happy face
             GetComponent<SpriteRenderer>().sprite = happyImg;
         }
+    }
+
+    void CreateParticleEffect()
+    {
+        Vector2 _heartPrefabPos = new Vector2(xPos, yPos);
+
+        for (int i = 0; i < PoolManager.Instance.goalParticleList.Count; i++)
+        {
+            if (PoolManager.Instance.goalParticleList[i].activeInHierarchy == false)
+            {
+                PoolManager.Instance.goalParticleList[i].SetActive(true);
+                PoolManager.Instance.goalParticleList[i].transform.position = _heartPrefabPos;
+                break;
+            }
+        }
+        Debug.Log("HeartFX played!");
     }
 }

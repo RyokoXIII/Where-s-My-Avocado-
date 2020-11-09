@@ -11,13 +11,16 @@ public class GameOverAction : MonoBehaviour
     // Image & Animation
     Image _playerImg, _npcImg;
     Animator _playerAnim, _npcAnim;
+
     [SerializeField]
     GameObject playerImg, npcImg;
-    [SerializeField]
-    Sprite playerSad, npcSad;
+
+    [Header("Sprite")] [Space(10f)] [SerializeField]
+    Sprite playerSad;
+    [SerializeField] Sprite npcSad;
 
     PlayerManager _playerManager;
-    [SerializeField]
+    [Space(20f)][SerializeField]
     GameObject player;
 
     [SerializeField]

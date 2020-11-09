@@ -12,14 +12,12 @@ public class CloudController : MonoBehaviour
     {
         transform.Translate(Vector2.left * moveSpeed * Time.deltaTime);
 
-        DestroyCloud();
+        if (transform.position.x < boundary)
+            DisableCloud();
     }
 
-    void DestroyCloud()
+    void DisableCloud()
     {
-        if(transform.position.x < boundary)
-        {
-            Destroy(this.gameObject);
-        }
+        this.gameObject.SetActive(false);
     }
 }

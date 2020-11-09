@@ -13,13 +13,15 @@ public class LevelSelector : MonoBehaviour
 
     [SerializeField]
     Sprite _lvImg;
-
-    [SerializeField]
-    GameObject _starContainer, _tinyNumText, _bigNumText;
-    [SerializeField]
-    Image[] _stars;
     [SerializeField]
     Sprite _starFull;
+    [SerializeField]
+    Image[] _stars;
+
+    [Space(20f)] [SerializeField]
+    GameObject _starContainer;
+    [SerializeField]
+    GameObject _tinyNumText, _bigNumText;
 
     #endregion
 

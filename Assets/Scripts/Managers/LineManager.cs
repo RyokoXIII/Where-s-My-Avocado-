@@ -6,10 +6,10 @@ public class LineManager : MonoBehaviour
 {
     #region GlobalVarable
 
+    public LayerMask cantDrawOverLayer;
     public GameObject linePrefab;
     public GameObject player, bigWood;
     public GameObject[] smallWoods;
-    public LayerMask cantDrawOverLayer;
 
     int _cantDrawOverLayerIndex;
 
@@ -20,8 +20,10 @@ public class LineManager : MonoBehaviour
 
     [SerializeField]
     Camera cam = null;
+    [Space(30f)] [SerializeField]
+    GameObject gameOverMenu;
     [SerializeField]
-    GameObject gameOverMenu, optionMenu, gameMenu, tutorial;
+    GameObject optionMenu, gameMenu, tutorial;
 
     Line _currentLine;
 
@@ -30,8 +32,11 @@ public class LineManager : MonoBehaviour
 
     // Line tutorial Animation
     Animator _handAnim, _lineAnim;
+
+    [Space(30f)][SerializeField]
+    GameObject _handTut;
     [SerializeField]
-    GameObject _handTut, _lineTut;
+    GameObject _lineTut;
 
     #endregion
 

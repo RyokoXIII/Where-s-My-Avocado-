@@ -6,22 +6,23 @@ public class PlayerManager : MonoBehaviour
 {
     #region Global Variables
 
-    [SerializeField]
-    Sprite happyImg, sadImg;
+    [Header("Sprite")][SerializeField]
+    Sprite happyImg;
+    [SerializeField] Sprite sadImg;
+
     Rigidbody2D _rb;
     Vector2 _force;
     NpcManager _npcManager;
-    [SerializeField]
-    ParticleSystem _collideBoundParticle;
 
     public float magnitude = 5f;
 
+    [Space(20f)]
     [SerializeField]
-    GameObject gameOverContainer;
+    ParticleSystem _collideBoundParticle;
+    [SerializeField]
+    GameObject gameOverContainer, npc;
     [SerializeField]
     SpriteRenderer npcSprite;
-    [SerializeField]
-    GameObject npc;
 
     Animator _anim;
 
@@ -80,8 +81,7 @@ public class PlayerManager : MonoBehaviour
 
         if (other.gameObject.CompareTag("Boundary"))
         {
-            // Particle effect
-            Instantiate(_collideBoundParticle, transform.position, Quaternion.identity);
+            CreateParticleEffect();
 
             gameObject.transform.rotation = Quaternion.identity;
             _rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -112,6 +112,19 @@ public class PlayerManager : MonoBehaviour
         {
             // Happy face
             GetComponent<SpriteRenderer>().sprite = happyImg;
+        }
+    }
+
+    void CreateParticleEffect()
+    {
+        for (int i = 0; i < PoolManager.Instance.boundaryParticleList.Count; i++)
+        {
+            if (PoolManager.Instance.boundaryParticleList[i].activeInHierarchy == false)
+            {
+                PoolManager.Instance.boundaryParticleList[i].SetActive(true);
+                PoolManager.Instance.boundaryParticleList[i].transform.position = transform.position;
+                break;
+            }
         }
     }
 
