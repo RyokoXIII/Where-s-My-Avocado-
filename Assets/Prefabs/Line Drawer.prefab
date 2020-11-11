@@ -43,12 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1b842dcb565bd4ba593cc7f367b5eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linePrefab: {fileID: 8414326349067234759, guid: 7f4ab14ea4a9d6f4d98c3bd22392c393, type: 3}
-  player: {fileID: 855178008043502141, guid: e92230b29abe72840bfc2b9465fc8aae, type: 3}
-  bigWood: {fileID: 0}
   cantDrawOverLayer:
     serializedVersion: 2
     m_Bits: 256
+  linePrefab: {fileID: 8414326349067234759, guid: 7f4ab14ea4a9d6f4d98c3bd22392c393, type: 3}
+  player: {fileID: 855178008043502141, guid: e92230b29abe72840bfc2b9465fc8aae, type: 3}
+  bigWood: {fileID: 0}
+  smallWoods: []
   lineColor:
     serializedVersion: 2
     key0: {r: 0.8666667, g: 0.10980392, b: 0.10980392, a: 1}
@@ -80,7 +81,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   linePointsMinDistance: 0.2
   lineWidth: 0.15
-  cam: {fileID: 0}
+  cam: {fileID: 8951557393605331990, guid: bd2ccd5b8558201448590ba4c8989ff6, type: 3}
   gameOverMenu: {fileID: 0}
   optionMenu: {fileID: 0}
   gameMenu: {fileID: 0}
