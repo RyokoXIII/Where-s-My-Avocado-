@@ -49,7 +49,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -104,7 +103,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: 3b6bd7fb29c7c7147855b2fd6484155e, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &855178008043502137
 CircleCollider2D:
@@ -136,11 +135,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   happyImg: {fileID: 21300000, guid: 20b4fd925347431439b73d99b92da3d4, type: 3}
   sadImg: {fileID: 21300000, guid: 07731b6eada8dcd4285ff76ef2e7141a, type: 3}
-  _collideBoundParticle: {fileID: 19800000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
   magnitude: 3
+  _collideBoundParticle: {fileID: 19800000, guid: f06e78284f831ae469c74624ab5d513b,
+    type: 3}
   gameOverContainer: {fileID: 0}
-  npcSprite: {fileID: 0}
   npc: {fileID: 0}
+  npcSprite: {fileID: 0}
   finalScore: 0
   touchBoundary: 0
   hasFirstStar: 0
