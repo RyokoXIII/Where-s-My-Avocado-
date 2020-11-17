@@ -50,7 +50,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -135,12 +134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b0f81db011c2e442a106038c5f16109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _heartFlowFXPrefab: {fileID: 19800004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
-  happyImg: {fileID: 21300000, guid: 018e97e7b4c993a4f98c584b839fa5b9, type: 3}
-  sadImg: {fileID: 21300000, guid: 674f9dfc13bccc24fb0229d5ec1b33be, type: 3}
+  _playerManager: {fileID: 0}
+  _npcRb: {fileID: 1608629119353125484}
+  _npcAnim: {fileID: 1608629119494492486}
+  _npcSprite: {fileID: 1608629119353125490}
+  npcHappySprite: {fileID: 21300000, guid: 018e97e7b4c993a4f98c584b839fa5b9, type: 3}
+  npcSadSprite: {fileID: 21300000, guid: 674f9dfc13bccc24fb0229d5ec1b33be, type: 3}
   xPos: 6.76
   yPos: -2.39
-  player: {fileID: 855178008043502141, guid: e92230b29abe72840bfc2b9465fc8aae, type: 3}
 --- !u!95 &1608629119494492486
 Animator:
   serializedVersion: 3

@@ -4,30 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 
-public class UIManager : MonoBehaviour
+public class UIManager : MonoSingleton<UIManager>
 {
-    #region Singleton
-
-    static UIManager _instance;
-    public static UIManager Instance
-    {
-        get
-        {
-            if (_instance == null)
-                Debug.LogError("UiManager does not exist!");
-
-            return _instance;
-        }
-    }
-
-    // Initialize instance to this class
-    private void Awake()
-    {
-        _instance = this;
-    }
-
-    #endregion
-
     #region Delegate
 
     public event Action OnClick;

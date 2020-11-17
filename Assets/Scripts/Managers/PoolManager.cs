@@ -3,134 +3,95 @@ using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 
-public class PoolManager : MonoBehaviour
+public class PoolManager : MonoSingleton<PoolManager>
 {
-    #region Singleton
-
-    static PoolManager _instance;
-    public static PoolManager Instance
+    [System.Serializable]
+    public class Pool
     {
-        get
-        {
-            if (_instance == null)
-                Debug.LogError("PoolManager does not exist!");
-
-            return _instance;
-        }
+        public string tag;
+        public GameObject prefab;
+        public int size;
     }
-
-    // Initialize instance to this class
-    private void Awake()
-    {
-        _instance = this;
-    }
-
-    #endregion
 
     #region Global Variables
 
-    public GameObject sunsetCloudSpawner, beachCloudSpawner;
+    public GameObject sunsetCloudSpawner, beachCloudSpawner, particles;
 
-    [Header("Object Prefab")]
-    [Space(30f)]
-    public GameObject sunsetCloudPrefab;
-    public GameObject beachCloudPrefab, pickUpParticlePrefab;
-    public GameObject goalParticlePrefab, boundaryParticlePrefab;
+    [Space(10f)]
+    public List<Pool> poolList;
+    public Dictionary<string, Queue<GameObject>> poolDict;
 
-    [Header("Number of Object to Spawn")]
-    [Space(30f)]
-    [Range(0, 50)]
-    public int sunsetCloud;
-    [Range(0, 50)]
-    public int beachCloud, pickUpParticle;
-    [Range(0, 50)]
-    public int goalParticle, boundaryParticle;
-
-    [Space(30f)]
-    public List<GameObject> sunsetCloudList = new List<GameObject>();
-    public List<GameObject> beachCloudList = new List<GameObject>();
-    public List<GameObject> pickUpParticleList = new List<GameObject>();
-    public List<GameObject> goalParticleList = new List<GameObject>();
-    public List<GameObject> boundaryParticleList = new List<GameObject>();
+    StarHandler _starHandler;
 
     #endregion
 
 
     void Start()
     {
-        if (StarHandler.Instance.levelIndex > 25)
+        _starHandler = StarHandler.Instance;
+
+        CreatePooledObj();
+
+        if (_starHandler.levelIndex > 25)
         {
-            beachCloudSpawner.SetActive(true);
-            CreateBeachCloudList();
+            beachCloudSpawner.SetActive(true);            
         }
         else
         {
-            sunsetCloudSpawner.SetActive(true);
-            CreateSunsetCloudList();
-        }
-
-        CreatePickUpParticleList();
-        CreateGoalParticleList();
-        CreateBoundaryParticleList();
-    }
-
-    void CreateSunsetCloudList()
-    {
-        for (int i = 0; i < sunsetCloud; i++)
-        {
-            GameObject cloud = Instantiate(sunsetCloudPrefab, sunsetCloudSpawner.transform.position, Quaternion.identity) as GameObject;
-
-            cloud.transform.parent = sunsetCloudSpawner.transform;
-            cloud.SetActive(false);
-            sunsetCloudList.Add(cloud);
+            sunsetCloudSpawner.SetActive(true);            
         }
     }
 
-    void CreateBeachCloudList()
+    void CreatePooledObj()
     {
-        for (int i = 0; i < beachCloud; i++)
-        {
-            GameObject cloud = Instantiate(beachCloudPrefab, beachCloudSpawner.transform.position, Quaternion.identity) as GameObject;
+        poolDict = new Dictionary<string, Queue<GameObject>>();
 
-            cloud.transform.parent = beachCloudSpawner.transform;
-            cloud.SetActive(false);
-            beachCloudList.Add(cloud);
+        foreach (Pool pool in poolList)
+        {
+            Queue<GameObject> objectPool = new Queue<GameObject>();
+
+            for (int i = 0; i < pool.size; i++)
+            {
+                GameObject obj = Instantiate(pool.prefab);
+
+                if (pool.tag == "SunsetCloud")
+                {
+                    obj.transform.parent = sunsetCloudSpawner.transform;
+                }
+                else if(pool.tag == "BeachCloud")
+                {
+                    obj.transform.parent = beachCloudSpawner.transform;
+                }
+                else
+                {
+                    obj.transform.parent = particles.transform;
+                }
+
+                obj.SetActive(false);
+                objectPool.Enqueue(obj);
+            }
+
+            poolDict.Add(pool.tag, objectPool);
         }
     }
 
-    void CreatePickUpParticleList()
+    public GameObject SpawnFromPool(string tag, Vector3 pos, Quaternion rot)
     {
-        for (int i = 0; i < pickUpParticle; i++)
+        if (!poolDict.ContainsKey(tag))
         {
-            GameObject particle = Instantiate(pickUpParticlePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
-
-            particle.transform.parent = gameObject.transform;
-            particle.SetActive(false);
-            pickUpParticleList.Add(particle);
+            Debug.LogWarning("Pool with tag " + tag + " does not exist");
+            return null;
         }
-    }
 
-    void CreateGoalParticleList()
-    {
-        for (int i = 0; i < goalParticle; i++)
-        {
-            GameObject particle = Instantiate(goalParticlePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
+        // Spawn obj from pool
+        GameObject objToSpawn = poolDict[tag].Dequeue();
 
-            particle.transform.parent = gameObject.transform;
-            particle.SetActive(false);
-            goalParticleList.Add(particle);
-        }
-    }
+        objToSpawn.SetActive(true);
+        objToSpawn.transform.position = pos;
+        objToSpawn.transform.rotation = rot;
 
-    void CreateBoundaryParticleList()
-    {
-        for (int i = 0; i < boundaryParticle; i++)
-        {
-            GameObject particle = Instantiate(boundaryParticlePrefab, gameObject.transform.position, Quaternion.identity) as GameObject;
-
-            particle.transform.parent = gameObject.transform;
-            particle.SetActive(false);
-            boundaryParticleList.Add(particle);
-        }
+        // Recycle obj
+        poolDict[tag].Enqueue(objToSpawn);
+        return objToSpawn;
     }
 }

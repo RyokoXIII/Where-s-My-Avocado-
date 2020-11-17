@@ -8,9 +8,13 @@ public class LevelSelector : MonoBehaviour
 {
     #region Global Variables
 
-    Button levelButton;
+    [SerializeField]
+    Button _levelButton;
     public bool unlocked;
 
+    [Space(20f)]
+    [SerializeField]
+    Image _levelButtonImg;
     [SerializeField]
     Sprite _lvImg;
     [SerializeField]
@@ -23,15 +27,20 @@ public class LevelSelector : MonoBehaviour
     [SerializeField]
     GameObject _tinyNumText, _bigNumText;
 
+    UIManager _uiManager;
+    SoundManager _soundManager;
+    SceneFader _sceneFader;
+
     #endregion
 
 
     void Start()
     {
-        levelButton = GetComponent<Button>();
-        UIManager.Instance.OnBack += OnBack;
+        _uiManager = UIManager.Instance;
+        _soundManager = SoundManager.Instance;
+        _sceneFader = SceneFader.Instance;
 
-        //PlayerPrefs.DeleteAll();
+        _uiManager.OnBack += OnBack;
     }
 
     private void Update()
@@ -42,8 +51,8 @@ public class LevelSelector : MonoBehaviour
 
     public void OnBack()
     {
-        SoundManager.Instance.backFX.Play();
-        SceneFader.Instance.FadeTo(0);
+        _soundManager.backFX.Play();
+        _sceneFader.FadeTo(0);
     }
 
     private void UpdateStarLevel()
@@ -51,12 +60,12 @@ public class LevelSelector : MonoBehaviour
         // Lock Level
         if (unlocked == false)
         {
-            levelButton.interactable = false;
+            _levelButton.interactable = false;
         }
         // Unlock Level
         else
         {
-            levelButton.interactable = true;
+            _levelButton.interactable = true;
 
             UpdateLevelButtonImg();
 
@@ -77,8 +86,8 @@ public class LevelSelector : MonoBehaviour
         _bigNumText.SetActive(false);
 
         // Show level img
-        gameObject.GetComponent<Image>().overrideSprite = _lvImg;
-        gameObject.GetComponent<Image>().color = Color.white;
+        _levelButtonImg.overrideSprite = _lvImg;
+        _levelButtonImg.color = Color.white;
 
         // Show tiny level number text
         _tinyNumText.GetComponent<Text>().text = gameObject.name;
@@ -100,7 +109,7 @@ public class LevelSelector : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        SoundManager.Instance.selectFX.Play();
-        SceneFader.Instance.FadeTo(levelIndex);
+        _soundManager.selectFX.Play();
+        _sceneFader.FadeTo(levelIndex);
     }
 }

@@ -8,9 +8,9 @@ public class LineManager : MonoBehaviour
 
     public LayerMask cantDrawOverLayer;
     public GameObject linePrefab;
-    public GameObject player, bigWood;
-    public GameObject[] smallWoods;
-
+    public Rigidbody2D _playerRb;
+    public Rigidbody2D bigWoodRb;
+    public Rigidbody2D[] smallWoodRbs;
     int _cantDrawOverLayerIndex;
 
     [Space(30f)]
@@ -20,7 +20,8 @@ public class LineManager : MonoBehaviour
 
     [SerializeField]
     Camera cam = null;
-    [Space(30f)] [SerializeField]
+    [Space(30f)]
+    [SerializeField]
     GameObject gameOverMenu;
     [SerializeField]
     GameObject optionMenu, gameMenu, tutorial;
@@ -31,38 +32,35 @@ public class LineManager : MonoBehaviour
     bool hasDraw;
 
     // Line tutorial Animation
-    Animator _handAnim, _lineAnim;
-
-    [Space(30f)][SerializeField]
-    GameObject _handTut;
+    [Space(30f)]
     [SerializeField]
-    GameObject _lineTut;
+    Animator _handAnim;
+    [SerializeField]
+    Animator _lineAnim;
 
     #endregion
 
 
     private void Start()
     {
-        if (bigWood != null)
+        if (bigWoodRb != null)
         {
-            bigWood.GetComponent<Rigidbody2D>().isKinematic = true;
+            bigWoodRb.isKinematic = true;
         }
-        if (smallWoods != null)
+        if (smallWoodRbs != null)
         {
-            foreach (var smallWood in smallWoods)
+            foreach (var smallWoodRb in smallWoodRbs)
             {
-                smallWood.GetComponent<Rigidbody2D>().isKinematic = true;
+                smallWoodRb.isKinematic = true;
             }
         }
 
-        player.GetComponent<Rigidbody2D>().isKinematic = true;
+        _playerRb.isKinematic = true;
         _cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOverLayer");
 
         // Animation
         if ((_handAnim != null) && (_lineAnim != null))
         {
-            _handAnim = _handTut.GetComponent<Animator>();
-            _lineAnim = _lineTut.GetComponent<Animator>();
             _handAnim.SetBool("IsDrawing", false);
             _lineAnim.SetBool("IsDrawing", false);
         }
@@ -148,36 +146,38 @@ public class LineManager : MonoBehaviour
             {
                 if (hasDraw == false)
                 {
-                    if (bigWood != null)
+                    if (bigWoodRb != null)
                     {
-                        bigWood.GetComponent<Rigidbody2D>().isKinematic = true;
+                        bigWoodRb.isKinematic = true;
                     }
-                    if (smallWoods != null)
+                    if (smallWoodRbs != null)
                     {
-                        foreach (var smallWood in smallWoods)
+                        foreach (var smallWoodRb in smallWoodRbs)
                         {
-                            smallWood.GetComponent<Rigidbody2D>().isKinematic = true;
+                            smallWoodRb.isKinematic = true;
                         }
                     }
-                    player.GetComponent<Rigidbody2D>().isKinematic = true;
+
+                    _playerRb.isKinematic = true;
                 }
             }
             else
             {
                 if (hasDraw == true)
                 {
-                    if (bigWood != null)
+                    if (bigWoodRb != null)
                     {
-                        bigWood.GetComponent<Rigidbody2D>().isKinematic = false;
+                        bigWoodRb.isKinematic = false;
                     }
-                    if (smallWoods != null)
+                    if (smallWoodRbs != null)
                     {
-                        foreach (var smallWood in smallWoods)
+                        foreach (var smallWoodRb in smallWoodRbs)
                         {
-                            smallWood.GetComponent<Rigidbody2D>().isKinematic = false;
+                            smallWoodRb.isKinematic = false;
                         }
                     }
-                    player.GetComponent<Rigidbody2D>().isKinematic = false;
+
+                    _playerRb.isKinematic = false;
                 }
                 _currentLine.gameObject.layer = _cantDrawOverLayerIndex;
                 _currentLine.UsePhysics(true);

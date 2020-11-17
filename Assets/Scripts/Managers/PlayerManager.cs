@@ -6,25 +6,29 @@ public class PlayerManager : MonoBehaviour
 {
     #region Global Variables
 
-    [Header("Sprite")][SerializeField]
-    Sprite happyImg;
-    [SerializeField] Sprite sadImg;
+    [Header("Sprite")]
 
-    Rigidbody2D _rb;
+    [SerializeField] SpriteRenderer _playerSprite;
+    [SerializeField] Sprite _playerHappySprite;
+    [SerializeField] Sprite _playerSadSprite;
+    [SerializeField] SpriteRenderer npcSprite;
+
+    PoolManager _pooler;
+    UIManager _uiManager;
+    StarHandler _starHandler;
+
     Vector2 _force;
-    NpcManager _npcManager;
-
     public float magnitude = 5f;
 
     [Space(20f)]
     [SerializeField]
-    ParticleSystem _collideBoundParticle;
+    Rigidbody2D _playerRb;
     [SerializeField]
-    GameObject gameOverContainer, npc;
+    GameObject gameOverContainer;
     [SerializeField]
-    SpriteRenderer npcSprite;
-
-    Animator _anim;
+    NpcManager _npcManager;
+    [SerializeField]
+    Animator _npcAnim;
 
     int _starCount = 0;
     [HideInInspector]
@@ -38,11 +42,9 @@ public class PlayerManager : MonoBehaviour
 
     void Start()
     {
-
-        _rb = GetComponent<Rigidbody2D>();
-        npcSprite = npc.GetComponent<SpriteRenderer>();
-        _npcManager = npc.GetComponent<NpcManager>();
-        _anim = npc.GetComponent<Animator>();
+        _pooler = PoolManager.Instance;
+        _uiManager = UIManager.Instance;
+        _starHandler = StarHandler.Instance;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -61,12 +63,12 @@ public class PlayerManager : MonoBehaviour
         if (other.gameObject.CompareTag("Npc"))
         {
             gameObject.transform.rotation = Quaternion.identity;
-            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
 
             UpdateCharactersState();
 
             // Game Over menu pop up Action callback
-            StartCoroutine(UIManager.Instance.GameOverRoutine(GameOverPopup));
+            StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
 
         if (other.gameObject.CompareTag("Line"))
@@ -76,7 +78,7 @@ public class PlayerManager : MonoBehaviour
             // normalize force vector to get direction only and trim magnitude
             _force.Normalize();
 
-            _rb.AddForce(_force.normalized * magnitude, ForceMode2D.Impulse);
+            _playerRb.AddForce(_force.normalized * magnitude, ForceMode2D.Impulse);
         }
 
         if (other.gameObject.CompareTag("Boundary"))
@@ -84,48 +86,39 @@ public class PlayerManager : MonoBehaviour
             CreateParticleEffect();
 
             gameObject.transform.rotation = Quaternion.identity;
-            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
 
             // Sad face
-            GetComponent<SpriteRenderer>().sprite = sadImg;
-            npcSprite.sprite = _npcManager.sadImg;
+            _playerSprite.sprite = _playerSadSprite;
+            npcSprite.sprite = _npcManager.npcSadSprite;
 
             // Stop Animation
-            _anim.SetBool("isTouch", true);
-
+            _npcAnim.SetBool("isTouch", true);
             touchBoundary = true;
 
             // Game Over menu pop up Action callback
-            StartCoroutine(UIManager.Instance.GameOverRoutine(GameOverPopup));
+            StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
     }
 
     void UpdateCharactersState()
     {
         // Check if collected star of this level = 0
-        if (hasFirstStar == false && (PlayerPrefs.GetInt("lv" + StarHandler.Instance.levelIndex) == 0))
+        if (hasFirstStar == false && (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) == 0))
         {
             // Sad face
-            GetComponent<SpriteRenderer>().sprite = sadImg;
+            _playerSprite.sprite = _playerSadSprite;
         }
         else
         {
             // Happy face
-            GetComponent<SpriteRenderer>().sprite = happyImg;
+            _playerSprite.sprite = _playerHappySprite;
         }
     }
 
     void CreateParticleEffect()
     {
-        for (int i = 0; i < PoolManager.Instance.boundaryParticleList.Count; i++)
-        {
-            if (PoolManager.Instance.boundaryParticleList[i].activeInHierarchy == false)
-            {
-                PoolManager.Instance.boundaryParticleList[i].SetActive(true);
-                PoolManager.Instance.boundaryParticleList[i].transform.position = transform.position;
-                break;
-            }
-        }
+        _pooler.SpawnFromPool("BoundaryParticle", transform.position, Quaternion.identity);
     }
 
     // Game over menu popup
@@ -140,22 +133,22 @@ public class PlayerManager : MonoBehaviour
     {
         StarHandler.Instance.StarAchieved(finalScore);
 
-        if (finalScore > PlayerPrefs.GetInt("lv" + StarHandler.Instance.levelIndex) && touchBoundary == false)
+        if (finalScore > PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) && touchBoundary == false)
         {
-            PlayerPrefs.SetInt("lv" + StarHandler.Instance.levelIndex, finalScore);
+            PlayerPrefs.SetInt("lv" + _starHandler.levelIndex, finalScore);
             SaveNextLevel();
         }
-        Debug.Log("Collected Stars: " + PlayerPrefs.GetInt("lv" + StarHandler.Instance.levelIndex));
+        Debug.Log("Collected Stars: " + PlayerPrefs.GetInt("lv" + _starHandler.levelIndex));
     }
 
     // Save newest unlocked level
     void SaveNextLevel()
     {
-        if (PlayerPrefs.GetInt("level") <= StarHandler.Instance.levelIndex)
+        if (PlayerPrefs.GetInt("level") <= _starHandler.levelIndex)
         {
-            if (StarHandler.Instance.levelIndex < 50)
+            if (_starHandler.levelIndex < 50)
             {
-                PlayerPrefs.SetInt("level", StarHandler.Instance.levelIndex + 1);
+                PlayerPrefs.SetInt("level", _starHandler.levelIndex + 1);
             }
         }
         Debug.Log("Next level: " + PlayerPrefs.GetInt("level"));

@@ -9,19 +9,17 @@ public class GameOverAction : MonoBehaviour
     #region Global Variables
 
     // Image & Animation
+    [SerializeField]
     Image _playerImg, _npcImg;
+    [SerializeField]
     Animator _playerAnim, _npcAnim;
 
-    [SerializeField]
-    GameObject playerImg, npcImg;
-
     [Header("Sprite")] [Space(10f)] [SerializeField]
-    Sprite playerSad;
-    [SerializeField] Sprite npcSad;
+    Sprite _playerSad;
+    [SerializeField] Sprite _npcSad;
 
-    PlayerManager _playerManager;
     [Space(20f)][SerializeField]
-    GameObject player;
+    PlayerManager _playerManager;
 
     [SerializeField]
     Text _stageNumText;
@@ -29,31 +27,31 @@ public class GameOverAction : MonoBehaviour
     [SerializeField]
     GameObject _replayMenu, _victoryMenu;
 
+    UIManager _uiManager;
+    StarHandler _starHandler;
+    SoundManager _soundManager;
+    SceneFader _sceneFader;
+
     #endregion
 
 
     void Start()
     {
+        _uiManager = UIManager.Instance;
+        _starHandler = StarHandler.Instance;
+        _soundManager = SoundManager.Instance;
+        _sceneFader = SceneFader.Instance;
+
         // Subcribe button to action event
-        UIManager.Instance.OnClick += OnReplay;
-        UIManager.Instance.OnBackToMainMenu += OnBackToMainMenu;
-        UIManager.Instance.OnPlayNext += OnPlayNext;
-
-        _playerManager = player.GetComponent<PlayerManager>();
-
-        // Image
-        _playerImg = playerImg.GetComponent<Image>();
-        _npcImg = npcImg.GetComponent<Image>();
-
-        // Animation
-        _playerAnim = playerImg.GetComponent<Animator>();
-        _npcAnim = npcImg.GetComponent<Animator>();
+        _uiManager.OnClick += OnReplay;
+        _uiManager.OnBackToMainMenu += OnBackToMainMenu;
+        _uiManager.OnPlayNext += OnPlayNext;
 
         // Update animation state for characters
         UpdateAnimationState();
 
         // Set Stage Number text
-        _stageNumText.text = StarHandler.Instance.levelIndex.ToString();
+        _stageNumText.text = _starHandler.levelIndex.ToString();
     }
 
     public void OnReplay()
@@ -61,37 +59,37 @@ public class GameOverAction : MonoBehaviour
         gameObject.SetActive(false);
 
         // Restart current game level
-        SoundManager.Instance.selectFX.Play();
-        SceneFader.Instance.FadeTo(SceneManager.GetActiveScene().buildIndex);
+        _soundManager.selectFX.Play();
+        _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void OnBackToMainMenu()
     {
         int scene = 0;
 
-        SoundManager.Instance.selectFX.Play();
-        SceneFader.Instance.FadeTo(scene);
+        _soundManager.selectFX.Play();
+        _sceneFader.FadeTo(scene);
     }
 
     public void OnPlayNext()
     {
-        if (PlayerPrefs.GetInt("lv" + StarHandler.Instance.levelIndex) > 0 && _playerManager.touchBoundary == false)
+        if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {
-            if (StarHandler.Instance.levelIndex < 50)
+            if (_starHandler.levelIndex < 50)
             {
-                SoundManager.Instance.selectFX.Play();
-                SceneFader.Instance.FadeTo(SceneManager.GetActiveScene().buildIndex + 1);
+                _soundManager.selectFX.Play();
+                _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex + 1);
             }
-            else if (StarHandler.Instance.levelIndex == 50)
+            else if (_starHandler.levelIndex == 50)
             {
                 // Game is finished
-                SoundManager.Instance.selectFX.Play();
+                _soundManager.selectFX.Play();
                 _victoryMenu.SetActive(true);
             }
         }
         else
         {
-            SoundManager.Instance.selectFX.Play();
+            _soundManager.selectFX.Play();
             _replayMenu.SetActive(true);
         }
     }
@@ -99,21 +97,21 @@ public class GameOverAction : MonoBehaviour
     void UpdateAnimationState()
     {
         // If win, animation play
-        if (PlayerPrefs.GetInt("lv" + StarHandler.Instance.levelIndex) > 0 && _playerManager.touchBoundary == false)
+        if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {
-            SoundManager.Instance.victoryFX.Play();
+            _soundManager.victoryFX.Play();
 
             _playerAnim.SetBool("IsWon", true);
             _npcAnim.SetBool("IsWon", true);
         }
         else
         {
-            SoundManager.Instance.musicBackground.Stop();
-            SoundManager.Instance.loseFX.Play();
+            _soundManager.musicBackground.Stop();
+            _soundManager.loseFX.Play();
 
             // Sad face
-            _playerImg.overrideSprite = playerSad;
-            _npcImg.overrideSprite = npcSad;
+            _playerImg.overrideSprite = _playerSad;
+            _npcImg.overrideSprite = _npcSad;
         }
     }
 }

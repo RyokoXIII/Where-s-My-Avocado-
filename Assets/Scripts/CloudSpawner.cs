@@ -6,6 +6,7 @@ public class CloudSpawner : MonoBehaviour
 {
     #region Global Variables
 
+    PoolManager _pooler;
     public float yPos1, yPos2;
 
     public float startSpawnTime = 5f;
@@ -18,6 +19,8 @@ public class CloudSpawner : MonoBehaviour
 
     void Start()
     {
+        _pooler = PoolManager.Instance;
+
         InvokeRepeating("SpawnRandomCloud", startSpawnTime, repeatRate);
     }
 
@@ -26,7 +29,7 @@ public class CloudSpawner : MonoBehaviour
         float randomYPos = Random.Range(yPos1, yPos2);
         _randomPos = new Vector2(transform.position.x, randomYPos);
 
-        if(PoolManager.Instance.sunsetCloudSpawner.activeInHierarchy == true)
+        if (_pooler.sunsetCloudSpawner.activeInHierarchy == true)
         {
             SpawnSunsetClouds();
         }
@@ -38,27 +41,11 @@ public class CloudSpawner : MonoBehaviour
 
     void SpawnSunsetClouds()
     {
-        for (int i = 0; i < PoolManager.Instance.sunsetCloudList.Count; i++)
-        {
-            if (PoolManager.Instance.sunsetCloudList[i].activeInHierarchy == false)
-            {
-                PoolManager.Instance.sunsetCloudList[i].SetActive(true);
-                PoolManager.Instance.sunsetCloudList[i].transform.position = _randomPos;
-                break;
-            }
-        }
+        _pooler.SpawnFromPool("SunsetCloud", _randomPos, Quaternion.identity);
     }
 
     void SpawnBeachClouds()
     {
-        for (int i = 0; i < PoolManager.Instance.beachCloudList.Count; i++)
-        {
-            if (PoolManager.Instance.beachCloudList[i].activeInHierarchy == false)
-            {
-                PoolManager.Instance.beachCloudList[i].SetActive(true);
-                PoolManager.Instance.beachCloudList[i].transform.position = _randomPos;
-                break;
-            }
-        }
+        _pooler.SpawnFromPool("BeachCloud", _randomPos, Quaternion.identity);
     }
 }

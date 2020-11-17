@@ -12,16 +12,24 @@ public class MainMenuAction : MonoBehaviour
     public GameObject optionMenu, exitMenu;
     public Text starNumText;
 
+    UIManager _uiManager;
+    SoundManager _soundManager;
+    SceneFader _sceneFader;
+
     #endregion
 
 
     void Start()
     {
-        UIManager.Instance.OnBack += OnBack;
-        UIManager.Instance.OnStart += OnStart;
-        UIManager.Instance.OnSelect += OnSelectLevel;
-        UIManager.Instance.OnOption += OnOption;
-        UIManager.Instance.OnExit += OnExitGame;
+        _uiManager = UIManager.Instance;
+        _soundManager = SoundManager.Instance;
+        _sceneFader = SceneFader.Instance;
+
+        _uiManager.OnBack += OnBack;
+        _uiManager.OnStart += OnStart;
+        _uiManager.OnSelect += OnSelectLevel;
+        _uiManager.OnOption += OnOption;
+        _uiManager.OnExit += OnExitGame;
 
         UpdateStarNumText();
     }
@@ -47,7 +55,7 @@ public class MainMenuAction : MonoBehaviour
         if ((PlayerPrefs.GetInt("level") + 1) == 1)
         {
             _scene = 2;
-            SceneFader.Instance.FadeTo(_scene);
+            _sceneFader.FadeTo(_scene);
         }
         else
         {
@@ -57,8 +65,8 @@ public class MainMenuAction : MonoBehaviour
 
             Debug.Log("Current lv: " + PlayerPrefs.GetInt("level").ToString());
 
-            SoundManager.Instance.selectFX.Play();
-            SceneFader.Instance.FadeTo(_scene);
+            _soundManager.selectFX.Play();
+            _sceneFader.FadeTo(_scene);
         }
     }
 
@@ -66,31 +74,31 @@ public class MainMenuAction : MonoBehaviour
     {
         if (optionMenu.activeInHierarchy == true)
         {
-            SoundManager.Instance.backFX.Play();
+            _soundManager.backFX.Play();
             optionMenu.SetActive(false);
         }
         else if (exitMenu.activeInHierarchy == true)
         {
-            SoundManager.Instance.backFX.Play();
+            _soundManager.backFX.Play();
             exitMenu.SetActive(false);
         }
     }
 
     public void OnSelectLevel()
     {
-        SoundManager.Instance.selectFX.Play();
-        SceneFader.Instance.FadeTo(1);
+        _soundManager.selectFX.Play();
+        _sceneFader.FadeTo(1);
     }
 
     public void OnOption()
     {
-        SoundManager.Instance.selectFX.Play();
+        _soundManager.selectFX.Play();
         optionMenu.SetActive(true);
     }
 
     public void OnExitGame()
     {
-        SoundManager.Instance.selectFX.Play();
+        _soundManager.selectFX.Play();
         Application.Quit();
         Debug.Log("Exit game!");
     }

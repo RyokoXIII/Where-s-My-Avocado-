@@ -6,16 +6,18 @@ using UnityEngine.UI;
 public class ToggleUI : MonoBehaviour
 {
     public GameObject onImg, offImg;
+    SoundManager _soundManager;
 
 
     private void Start()
     {
+        _soundManager = SoundManager.Instance;
         UpdateButtonState();
     }
 
     public void ToggleSoundButton()
     {
-        SoundManager.Instance.selectFX.Play();
+        _soundManager.selectFX.Play();
 
         if (PlayerPrefs.GetInt("muted", 0) == 0)
         {
@@ -35,7 +37,7 @@ public class ToggleUI : MonoBehaviour
         if (PlayerPrefs.GetInt("muted", 0) == 0)
         {
             AudioListener.volume = 1;
-            SoundManager.Instance.musicBackground.Play();
+            _soundManager.musicBackground.Play();
             onImg.SetActive(true);
             offImg.SetActive(false);
         }

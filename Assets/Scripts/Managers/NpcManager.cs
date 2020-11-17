@@ -7,32 +7,36 @@ public class NpcManager : MonoBehaviour
     #region Global Variables
 
     [SerializeField]
-    ParticleSystem _heartFlowFXPrefab = null;
+    PlayerManager _playerManager;
     [SerializeField]
-    GameObject player;
-    Rigidbody2D _rb;
-    Animator _anim;
+    Rigidbody2D _npcRb;
+    [SerializeField]
+    Animator _npcAnim;
 
     [Header("Sprite")][Space(10f)]
-    public Sprite happyImg;
-    public Sprite sadImg;
+    [SerializeField] SpriteRenderer _npcSprite;
+    public Sprite npcHappySprite;
+    public Sprite npcSadSprite;
 
     [Header("Particle effect position")][Space(10f)]
     public float xPos = 6.76f;
     public float yPos = -2.39f;
 
-    PlayerManager _playerManager;
+    PoolManager _pooler;
+    SoundManager _soundManager;
+    StarHandler _starHandler;
 
     #endregion
 
 
     private void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _playerManager = player.GetComponent<PlayerManager>();
+        _pooler = PoolManager.Instance;
+        _soundManager = SoundManager.Instance;
+        _starHandler = StarHandler.Instance;
 
-        _anim = GetComponent<Animator>();
-        _anim.SetBool("isTouch", false);
+        // Animation
+        _npcAnim.SetBool("isTouch", false);
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -41,46 +45,38 @@ public class NpcManager : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             gameObject.transform.rotation = Quaternion.identity;
-            _rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _npcRb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            SoundManager.Instance.goalFX.Play();
+            _soundManager.goalFX.Play();
 
             UpdateCharactersState();
             CreateParticleEffect();
 
             // Stop Animation after player touch npc
-            _anim.SetBool("isTouch", true);
+            _npcAnim.SetBool("isTouch", true);
 
         }
     }
 
     void UpdateCharactersState()
     {
-        if (_playerManager.hasFirstStar == false && (PlayerPrefs.GetInt("lv" + StarHandler.Instance.levelIndex) == 0))
+        if (_playerManager.hasFirstStar == false && (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) == 0))
         {
             // Sad face
-            GetComponent<SpriteRenderer>().sprite = sadImg;
+            _npcSprite.sprite = npcSadSprite;
         }
         else
         {
             // Happy face
-            GetComponent<SpriteRenderer>().sprite = happyImg;
+            _npcSprite.sprite = npcHappySprite;
         }
     }
 
     void CreateParticleEffect()
     {
         Vector2 _heartPrefabPos = new Vector2(xPos, yPos);
+        _pooler.SpawnFromPool("GoalParticle", _heartPrefabPos, Quaternion.identity);
 
-        for (int i = 0; i < PoolManager.Instance.goalParticleList.Count; i++)
-        {
-            if (PoolManager.Instance.goalParticleList[i].activeInHierarchy == false)
-            {
-                PoolManager.Instance.goalParticleList[i].SetActive(true);
-                PoolManager.Instance.goalParticleList[i].transform.position = _heartPrefabPos;
-                break;
-            }
-        }
         Debug.Log("HeartFX played!");
     }
 }

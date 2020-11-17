@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
+    PoolManager _pooler;
+    SoundManager _soundManager;
+
+
+    private void Start()
+    {
+        _pooler = PoolManager.Instance;
+        _soundManager = SoundManager.Instance;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            for (int i = 0; i < PoolManager.Instance.pickUpParticleList.Count; i++)
-            {
-                if (PoolManager.Instance.pickUpParticleList[i].activeInHierarchy == false)
-                {
-                    PoolManager.Instance.pickUpParticleList[i].SetActive(true);
-                    PoolManager.Instance.pickUpParticleList[i].transform.position = transform.position;
-                    break;
-                }
-            }
-            SoundManager.Instance.collectFX.Play();
+            _pooler.SpawnFromPool("PickUpParticle", transform.position, Quaternion.identity);
 
+            _soundManager.collectFX.Play();
             this.gameObject.SetActive(false);
         }
     }

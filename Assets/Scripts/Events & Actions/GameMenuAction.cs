@@ -5,17 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class GameMenuAction : MonoBehaviour
 {
+    UIManager _uiManager;
+    SoundManager _soundManager;
+
 
     private void Start()
     {
-        UIManager.Instance.OnBack += Resume;
+        _uiManager = UIManager.Instance;
+        _soundManager = SoundManager.Instance;
+
+        _uiManager.OnBack += Resume;
     }
 
     public void Resume()
     {
         if (gameObject.activeInHierarchy == true)
         {
-            SoundManager.Instance.backFX.Play();
+            _soundManager.backFX.Play();
             gameObject.SetActive(false);
 
             Time.timeScale = 1f;
