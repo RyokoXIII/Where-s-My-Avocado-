@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 855178008043502137}
   - component: {fileID: 855178008043502136}
   m_Layer: 8
-  m_Name: Player_normal
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 855178008043502141}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 2.57, z: 0}
+  m_LocalPosition: {x: -5.28, y: -0.89, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 0}
@@ -136,12 +136,15 @@ MonoBehaviour:
   _playerSprite: {fileID: 855178008043502142}
   _playerHappySprite: {fileID: 21300000, guid: 20b4fd925347431439b73d99b92da3d4, type: 3}
   _playerSadSprite: {fileID: 21300000, guid: 07731b6eada8dcd4285ff76ef2e7141a, type: 3}
-  npcSprite: {fileID: 0}
+  npcSprite: {fileID: 1608629119353125490, guid: de6d75e256414db4b90ea2d9d9272ea0,
+    type: 3}
   magnitude: 3
   _playerRb: {fileID: 855178008043502138}
   gameOverContainer: {fileID: 0}
-  _npcManager: {fileID: 0}
-  _npcAnim: {fileID: 0}
+  _npcManager: {fileID: 1608629119353125485, guid: de6d75e256414db4b90ea2d9d9272ea0,
+    type: 3}
+  _npcAnim: {fileID: 1608629119494492486, guid: de6d75e256414db4b90ea2d9d9272ea0,
+    type: 3}
   finalScore: 0
   touchBoundary: 0
   hasFirstStar: 0

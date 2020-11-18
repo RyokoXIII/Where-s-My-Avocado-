@@ -25,6 +25,7 @@ public class LineManager : MonoBehaviour
     GameObject gameOverMenu;
     [SerializeField]
     GameObject optionMenu, gameMenu, tutorial;
+    [SerializeField] LevelManager _levelManager;
 
     Line _currentLine;
 
@@ -37,6 +38,11 @@ public class LineManager : MonoBehaviour
     Animator _handAnim;
     [SerializeField]
     Animator _lineAnim;
+
+    [Space(10f)]
+    [SerializeField] Animator _handAnim1;
+    [SerializeField] Animator _handAnim2, _handAnim3;
+    [SerializeField] Animator _lineAnim1, _lineAnim2, _lineAnim3;
 
     #endregion
 
@@ -61,6 +67,8 @@ public class LineManager : MonoBehaviour
         // Animation
         if ((_handAnim != null) && (_lineAnim != null))
         {
+            AssignTutorial();
+
             _handAnim.SetBool("IsDrawing", false);
             _lineAnim.SetBool("IsDrawing", false);
         }
@@ -157,7 +165,6 @@ public class LineManager : MonoBehaviour
                             smallWoodRb.isKinematic = true;
                         }
                     }
-
                     _playerRb.isKinematic = true;
                 }
             }
@@ -176,13 +183,33 @@ public class LineManager : MonoBehaviour
                             smallWoodRb.isKinematic = false;
                         }
                     }
-
                     _playerRb.isKinematic = false;
                 }
                 _currentLine.gameObject.layer = _cantDrawOverLayerIndex;
                 _currentLine.UsePhysics(true);
                 _currentLine = null;
             }
+        }
+    }
+
+    void AssignTutorial()
+    {
+        if ((_levelManager._tutorialHand1.activeInHierarchy == true) &&
+                (_levelManager._lineTut1.activeInHierarchy == true))
+        {
+            _handAnim = _handAnim1;
+            _lineAnim = _lineAnim1;
+        }
+        else if ((_levelManager._tutorialHand2.activeInHierarchy == true) &&
+            (_levelManager._lineTut2.activeInHierarchy == true))
+        {
+            _handAnim = _handAnim2;
+            _lineAnim = _lineAnim2;
+        }
+        else
+        {
+            _handAnim = _handAnim3;
+            _lineAnim = _lineAnim3;
         }
     }
 }

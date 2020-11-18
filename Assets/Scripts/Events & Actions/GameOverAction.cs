@@ -26,6 +26,8 @@ public class GameOverAction : MonoBehaviour
 
     [SerializeField]
     GameObject _replayMenu, _victoryMenu;
+    [SerializeField]
+    GameObject _sunsetMusicBackground, _beachMusicBackground;
 
     UIManager _uiManager;
     StarHandler _starHandler;
@@ -106,7 +108,14 @@ public class GameOverAction : MonoBehaviour
         }
         else
         {
-            _soundManager.musicBackground.Stop();
+            if (_sunsetMusicBackground.activeInHierarchy == true)
+            {
+                _soundManager.sunsetMusicBackground.Stop();
+            }
+            else
+            {
+                _soundManager.beachMusicBackground.Stop();
+            }
             _soundManager.loseFX.Play();
 
             // Sad face

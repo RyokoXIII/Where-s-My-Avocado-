@@ -8,6 +8,9 @@ public class ToggleUI : MonoBehaviour
     public GameObject onImg, offImg;
     SoundManager _soundManager;
 
+    [SerializeField]
+    GameObject _sunsetMusicBackground, _beachMusicBackground;
+
 
     private void Start()
     {
@@ -37,7 +40,16 @@ public class ToggleUI : MonoBehaviour
         if (PlayerPrefs.GetInt("muted", 0) == 0)
         {
             AudioListener.volume = 1;
-            _soundManager.musicBackground.Play();
+
+            if (_sunsetMusicBackground.activeInHierarchy == true)
+            {
+                _soundManager.sunsetMusicBackground.Play();
+            }
+            else
+            {
+                _soundManager.beachMusicBackground.Play();
+            }
+
             onImg.SetActive(true);
             offImg.SetActive(false);
         }

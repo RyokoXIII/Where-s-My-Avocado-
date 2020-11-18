@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class SoundManager : MonoSingleton<SoundManager>
 {
-    public AudioSource musicBackground, selectFX, backFX, collectFX, goalFX, victoryFX, loseFX;
+    public AudioSource beachMusicBackground, sunsetMusicBackground, selectFX, backFX, collectFX, goalFX, victoryFX, loseFX;
 }
