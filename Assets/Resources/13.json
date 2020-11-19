@@ -1,0 +1,23 @@
+{
+  "levelID": "13",
+
+  "playerPosX": -6.86,
+  "playerPosY": 0.62,
+
+  "npcPosX": 6.7,
+  "npcPosY": -1.44,
+
+  "npcParticlePosX": 5.82,
+  "npcParticlePosY": -1.75,
+
+  "sunset_background": true,
+  "sunset_music": true,
+  "tutorial": false,
+
+  "starPosX_1": -4.43,
+  "starPosY_1": 0.76,
+  "starPosX_2": -0.62,
+  "starPosY_2": 0.34,
+  "starPosX_3": 2.76,
+  "starPosY_3": -1.32
+}

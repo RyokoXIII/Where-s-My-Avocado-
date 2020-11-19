@@ -105,11 +105,13 @@ public class LevelSelector : MonoBehaviour
     }
 
     // Select level
-    public void Select(int levelIndex)
+    public void Select()
     {
         Time.timeScale = 1f;
 
+        PlayerPrefs.SetInt("levelID", int.Parse(gameObject.name));
+
         _soundManager.selectFX.Play();
-        _sceneFader.FadeTo(levelIndex);
+        _sceneFader.FadeTo(52);
     }
 }

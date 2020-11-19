@@ -36,6 +36,11 @@ public class StarHandler : MonoBehaviour
 
     #endregion
 
+    private void Start()
+    {
+        levelIndex = PlayerPrefs.GetInt("levelID");
+    }
+
 
     public void StarAchieved(int starNumber)
     {

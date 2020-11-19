@@ -1,0 +1,51 @@
+{
+  "levelID": "23",
+
+  "playerPosX": 4.2,
+  "playerPosY": 0.54,
+
+  "npcPosX": -4.78,
+  "npcPosY": -2.49,
+
+  "npcParticlePosX": -4.4,
+  "npcParticlePosY": -2.73,
+
+  "roundLog": true,
+  "roundLogPosX": -6.12,
+  "roundLogPosY": 2.82,
+  "roundLogScaleX": 1,
+  "roundLogScaleY": 1,
+  "roundLogScaleZ": 1,
+
+  "wood": true,
+  "woodNum": 3,
+  "woodPosX1": -0.2,
+  "woodPosX2": 0.87,
+  "woodPosX3": 1.9,
+  "woodPosX4": -4.76,
+  "woodPosX5": -3.41,
+  "woodPosX6": -5.36,
+  "woodPosY1": 1.19,
+  "woodPosY2": 1.19,
+  "woodPosY3": 1.19,
+  "woodPosY4": 2.19,
+  "woodPosY5": -1.82,
+  "woodPosY6": -1.82,
+
+  "deadZone": true,
+  "deadZonePosX": 5.06,
+  "deadZonePosY": 3.1,
+  "deadZoneScaleX": 16.01,
+  "deadZoneScaleY": 7.45,
+
+  "sunset_background": true,
+  "sunset_music": true,
+  "tutorial": false,
+
+  "starPosX_1": 6.79,
+  "starPosY_1": -0.9,
+  "starPosX_2": 2.85,
+  "starPosY_2": -2.14,
+  "starPosX_3": -0.27,
+  "starPosY_3": -2.14
+}

@@ -80,7 +80,10 @@ public class GameOverAction : MonoBehaviour
             if (_starHandler.levelIndex < 50)
             {
                 _soundManager.selectFX.Play();
-                _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex + 1);
+
+                PlayerPrefs.SetInt("levelID", _starHandler.levelIndex + 1);
+
+                _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
             }
             else if (_starHandler.levelIndex == 50)
             {

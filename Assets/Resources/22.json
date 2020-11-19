@@ -1,0 +1,30 @@
+{
+  "levelID": "22",
+
+  "playerPosX": -8.04,
+  "playerPosY": 1.56,
+
+  "npcPosX": 7.41,
+  "npcPosY": -2.47,
+
+  "npcParticlePosX": 6.76,
+  "npcParticlePosY": -2.39,
+
+  "roundLog": true,
+  "roundLogPosX": -2.13,
+  "roundLogPosY": 2.99,
+  "roundLogScaleX": 1.22,
+  "roundLogScaleY": 1.22,
+  "roundLogScaleZ": 1.22,
+
+  "sunset_background": true,
+  "sunset_music": true,
+  "tutorial": false,
+
+  "starPosX_1": -3.72,
+  "starPosY_1": -1.17,
+  "starPosX_2": -0.17,
+  "starPosY_2": -2.12,
+  "starPosX_3": 3.46,
+  "starPosY_3": -2.12
+}

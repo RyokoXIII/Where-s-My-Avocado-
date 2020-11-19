@@ -1,0 +1,36 @@
+{
+  "levelID": "24",
+
+  "playerPosX": -8.63,
+  "playerPosY": 0.56,
+
+  "npcPosX": 7.41,
+  "npcPosY": -2.49,
+
+  "npcParticlePosX": 6.76,
+  "npcParticlePosY": -2.39,
+
+  "roundLog": true,
+  "roundLogPosX": -0.86,
+  "roundLogPosY": 2.99,
+  "roundLogScaleX": 1.2,
+  "roundLogScaleY": 1.2,
+  "roundLogScaleZ": 1.2,
+
+  "deadZone": true,
+  "deadZonePosX": -0.98,
+  "deadZonePosY": -2.7,
+  "deadZoneScaleX": 6.53,
+  "deadZoneScaleY": 5.49,
+
+  "sunset_background": true,
+  "sunset_music": true,
+  "tutorial": false,
+
+  "starPosX_1": 1.57,
+  "starPosY_1": -2.3,
+  "starPosX_2": 3.11,
+  "starPosY_2": -2.3,
+  "starPosX_3": 4.62,
+  "starPosY_3": -2.3
+}
