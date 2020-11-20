@@ -1,0 +1,52 @@
+{
+  "levelID": "35",
+
+  "playerPosX": 7.65,
+  "playerPosY": -3.44,
+
+  "npcPosX": -7.37,
+  "npcPosY": -3.43,
+
+  "npcParticlePosX": -6.97,
+  "npcParticlePosY": -3.7,
+
+  "wood": true,
+  "woodNum": 6,
+  "woodPosX1": -4.38,
+  "woodPosX2": -2.82,
+  "woodPosX3": -0.03,
+  "woodPosX4": 1.97,
+  "woodPosX5": 3.72,
+  "woodPosX6": 5.58,
+  "woodPosY1": 3.15,
+  "woodPosY2": 3.15,
+  "woodPosY3": 2.18,
+  "woodPosY4": 2.18,
+  "woodPosY5": 2.18,
+  "woodPosY6": 2.18,
+
+  "seesaw": true,
+  "seesawNum": 1,
+  "seesawPosX1": 7.17,
+  "seesawPosY1": -1.79,
+  "seesawScaleX": 1,
+  "seesawScaleY": 1,
+  "seesawRotateZ1": 0,
+
+  "deadZone": true,
+  "deadZonePosX": 9.06,
+  "deadZonePosY": 1.41,
+  "deadZoneScaleX": 7.98,
+  "deadZoneScaleY": 10.88,
+
+  "beach_background": true,
+  "beach_music": true,
+  "tutorial": false,
+
+  "starPosX_1": -0.3,
+  "starPosY_1": -3.21,
+  "starPosX_2": 1.56,
+  "starPosY_2": -3.21,
+  "starPosX_3": 3.68,
+  "starPosY_3": -3.21
+}

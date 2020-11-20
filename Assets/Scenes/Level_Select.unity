@@ -3231,6 +3231,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sound Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4870038877142676429, guid: afde7ed31e00f27449733ced3d27bd92,
+        type: 3}
+      propertyPath: beachMusicBackground
+      value: 
+      objectReference: {fileID: 545132695}
+    - target: {fileID: 4870038877142676429, guid: afde7ed31e00f27449733ced3d27bd92,
+        type: 3}
+      propertyPath: sunsetMusicBackground
+      value: 
+      objectReference: {fileID: 545132694}
     - target: {fileID: 5693626386683239241, guid: afde7ed31e00f27449733ced3d27bd92,
         type: 3}
       propertyPath: m_IsActive
@@ -3241,8 +3251,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8507098199023615300, guid: afde7ed31e00f27449733ced3d27bd92,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afde7ed31e00f27449733ced3d27bd92, type: 3}
+--- !u!82 &545132694 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1995175465321815704, guid: afde7ed31e00f27449733ced3d27bd92,
+    type: 3}
+  m_PrefabInstance: {fileID: 545132693}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &545132695 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4051585573791771938, guid: afde7ed31e00f27449733ced3d27bd92,
+    type: 3}
+  m_PrefabInstance: {fileID: 545132693}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &574634306 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4415711394698816839, guid: 88c5ccf3fa218314f80134a4e0dc7273,

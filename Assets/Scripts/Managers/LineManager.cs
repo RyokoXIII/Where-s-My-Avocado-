@@ -9,8 +9,8 @@ public class LineManager : MonoBehaviour
     public LayerMask cantDrawOverLayer;
     public GameObject linePrefab;
     public Rigidbody2D _playerRb;
-    public Rigidbody2D bigWoodRb;
-    public Rigidbody2D[] smallWoodRbs;
+    public List<Rigidbody2D> bigWoodRbs;
+    public List<Rigidbody2D> smallWoodRbs;
     int _cantDrawOverLayerIndex;
 
     [Space(30f)]
@@ -49,9 +49,12 @@ public class LineManager : MonoBehaviour
 
     private void Start()
     {
-        if (bigWoodRb != null)
+        if (bigWoodRbs != null)
         {
-            bigWoodRb.isKinematic = true;
+            foreach(var bigWoodRb in bigWoodRbs)
+            {
+                bigWoodRb.isKinematic = true;
+            }
         }
         if (smallWoodRbs != null)
         {
@@ -154,9 +157,12 @@ public class LineManager : MonoBehaviour
             {
                 if (hasDraw == false)
                 {
-                    if (bigWoodRb != null)
+                    if (bigWoodRbs != null)
                     {
-                        bigWoodRb.isKinematic = true;
+                        foreach (var bigWoodRb in bigWoodRbs)
+                        {
+                            bigWoodRb.isKinematic = true;
+                        }
                     }
                     if (smallWoodRbs != null)
                     {
@@ -172,9 +178,12 @@ public class LineManager : MonoBehaviour
             {
                 if (hasDraw == true)
                 {
-                    if (bigWoodRb != null)
+                    if (bigWoodRbs != null)
                     {
-                        bigWoodRb.isKinematic = false;
+                        foreach (var bigWoodRb in bigWoodRbs)
+                        {
+                            bigWoodRb.isKinematic = false;
+                        }
                     }
                     if (smallWoodRbs != null)
                     {

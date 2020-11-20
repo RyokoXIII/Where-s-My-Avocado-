@@ -24,10 +24,8 @@ public class LevelSelector : MonoBehaviour
 
     [Space(20f)] [SerializeField]
     GameObject _starContainer;
-    [SerializeField]
-    GameObject _tinyNumText, _bigNumText;
+    [SerializeField] GameObject _bigNumText;
 
-    UIManager _uiManager;
     SoundManager _soundManager;
     SceneFader _sceneFader;
 
@@ -36,11 +34,8 @@ public class LevelSelector : MonoBehaviour
 
     void Start()
     {
-        _uiManager = UIManager.Instance;
         _soundManager = SoundManager.Instance;
         _sceneFader = SceneFader.Instance;
-
-        _uiManager.OnBack += OnBack;
     }
 
     private void Update()
@@ -88,10 +83,6 @@ public class LevelSelector : MonoBehaviour
         // Show level img
         _levelButtonImg.overrideSprite = _lvImg;
         _levelButtonImg.color = Color.white;
-
-        // Show tiny level number text
-        _tinyNumText.GetComponent<Text>().text = gameObject.name;
-        _tinyNumText.SetActive(true);
     }
 
     private void UpdateLevelStatus()
@@ -107,11 +98,12 @@ public class LevelSelector : MonoBehaviour
     // Select level
     public void Select()
     {
+        int levelSceneIndex = 2;
         Time.timeScale = 1f;
 
         PlayerPrefs.SetInt("levelID", int.Parse(gameObject.name));
 
         _soundManager.selectFX.Play();
-        _sceneFader.FadeTo(52);
+        _sceneFader.FadeTo(levelSceneIndex);
     }
 }

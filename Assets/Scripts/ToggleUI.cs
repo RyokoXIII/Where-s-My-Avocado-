@@ -45,7 +45,7 @@ public class ToggleUI : MonoBehaviour
             {
                 _soundManager.sunsetMusicBackground.Play();
             }
-            else
+            else if(_beachMusicBackground.activeInHierarchy == true)
             {
                 _soundManager.beachMusicBackground.Play();
             }

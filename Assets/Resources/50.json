@@ -1,0 +1,40 @@
+{
+  "levelID": "50",
+
+  "playerPosX": -5.28,
+  "playerPosY": 2.52,
+
+  "npcPosX": 9,
+  "npcPosY": -1.47,
+
+  "npcParticlePosX": 8.08,
+  "npcParticlePosY": -1.82,
+
+  "seesaw": true,
+  "seesawNum": 4,
+  "seesawPosX1": -7.42,
+  "seesawPosY1": -1.44,
+  "seesawPosX2": -3.54,
+  "seesawPosY2": -1.44,
+  "seesawPosX3": 0.34,
+  "seesawPosY3": -1.44,
+  "seesawPosX4": 4.22,
+  "seesawPosY4": -1.44,
+  "seesawScaleX": 1,
+  "seesawScaleY": 1,
+  "seesawRotateZ1": 0,
+  "seesawRotateZ2": 0,
+  "seesawRotateZ3": 0,
+  "seesawRotateZ4": 0,
+
+  "beach_background": true,
+  "beach_music": true,
+  "tutorial": false,
+
+  "starPosX_1": -1.4,
+  "starPosY_1": -0.28,
+  "starPosX_2": 0.46,
+  "starPosY_2": -0.28,
+  "starPosX_3": 2.43,
+  "starPosY_3": -0.28
+}

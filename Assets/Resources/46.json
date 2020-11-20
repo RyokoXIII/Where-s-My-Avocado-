@@ -1,0 +1,31 @@
+{
+  "levelID": "46",
+
+  "playerPosX": 2.59,
+  "playerPosY": -2.45,
+
+  "npcPosX": -7.44,
+  "npcPosY": -2.43,
+
+  "npcParticlePosX": -7.14,
+  "npcParticlePosY": -2.75,
+
+  "bigWood": true,
+  "bigWoodNum": 1,
+  "bigWoodPosX1": 3.44,
+  "bigWoodPosY1": -1.21,
+  "bigWoodScaleX1": 1.3,
+  "bigWoodScaleY1": 4.5,
+  "bigWoodRotateZ1": -71,
+
+  "beach_background": true,
+  "beach_music": true,
+  "tutorial": false,
+
+  "starPosX_1": -5.3,
+  "starPosY_1": -2.2,
+  "starPosX_2": -3.44,
+  "starPosY_2": -2.2,
+  "starPosX_3": -1.66,
+  "starPosY_3": -2.2
+}

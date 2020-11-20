@@ -32,8 +32,9 @@ public class LevelManager : MonoBehaviour
     [Header("Obstacles")]
     [Space(10f)]
     [SerializeField] GameObject _obstaclesContainer;
+    [SerializeField] LineManager _bigWoodContainer;
     [SerializeField] GameObject _deadZonePrefab;
-    [SerializeField] GameObject _roundLogPrefab, _seeSawPrefab, _woodPrefab;
+    [SerializeField] GameObject _roundLogPrefab, _seeSawPrefab, _woodPrefab, _bigWoodPrefab;
 
     [Header("Musics")]
     [Space(10f)]
@@ -50,11 +51,19 @@ public class LevelManager : MonoBehaviour
     string _json;
     string _path;
 
+    // List of Obstacles
     List<float> woodPosXList;
     List<float> woodPosYList;
 
     List<float> seesawPosXList;
     List<float> seesawPosYList;
+    List<float> seesawRotateZList;
+
+    List<float> bigWoodPosXList;
+    List<float> bigWoodPosYList;
+    List<float> bigWoodScaleXList;
+    List<float> bigWoodScaleYList;
+    List<float> bigWoodRotateZList;
 
     #endregion
 
@@ -188,15 +197,16 @@ public class LevelManager : MonoBehaviour
         if (_loadLevelData.roundLog == true)
         {
             Vector2 newPos = new Vector2(_loadLevelData.roundLogPosX, _loadLevelData.roundLogPosY);
+            Vector3 newScale = new Vector3(_loadLevelData.roundLogScaleX, _loadLevelData.roundLogScaleY, _loadLevelData.roundLogScaleZ);
 
             GameObject obj = Instantiate(_roundLogPrefab, newPos, Quaternion.identity);
             obj.transform.parent = _obstaclesContainer.transform;
-            obj.transform.localScale = new Vector3(_loadLevelData.roundLogScaleX, _loadLevelData.roundLogScaleY, _loadLevelData.roundLogScaleZ);
+            obj.transform.localScale = newScale;
         }
 
         if (_loadLevelData.wood == true)
         {
-            LoadWoodPosData();
+            LoadWoodData();
 
             for (int i = 0; i < _loadLevelData.woodNum; i++)
             {
@@ -212,25 +222,74 @@ public class LevelManager : MonoBehaviour
             Vector2 newPos = new Vector2(_loadLevelData.deadZonePosX, _loadLevelData.deadZonePosY);
 
             GameObject obj = Instantiate(_deadZonePrefab, newPos, Quaternion.identity);
-            obj.transform.localScale = new Vector3(_loadLevelData.deadZoneScaleX, _loadLevelData.deadZoneScaleY, obj.transform.localScale.z);
+
+            Vector3 newScale = new Vector3(_loadLevelData.deadZoneScaleX, _loadLevelData.deadZoneScaleY, obj.transform.localScale.z);
+            obj.transform.localScale = newScale;
         }
 
         if (_loadLevelData.seesaw == true)
         {
-            LoadSeesawPosData();
+            LoadSeesawData();
 
             for (int i = 0; i < _loadLevelData.seesawNum; i++)
             {
                 Vector2 newPos = new Vector2(seesawPosXList[i], seesawPosYList[i]);
+                Quaternion newRotate = Quaternion.Euler(0, 0, seesawRotateZList[i]);
 
-                GameObject obj = Instantiate(_seeSawPrefab, newPos, Quaternion.identity);
+                GameObject obj = Instantiate(_seeSawPrefab, newPos, newRotate);
                 obj.transform.parent = _obstaclesContainer.transform;
-                obj.transform.localScale = new Vector3(_loadLevelData.seesawScaleX, _loadLevelData.seesawScaleY, obj.transform.localScale.z);
+
+                Vector3 newScale = new Vector3(_loadLevelData.seesawScaleX, _loadLevelData.seesawScaleY, obj.transform.localScale.z);
+                obj.transform.localScale = newScale;
+            }
+        }
+
+        if (_loadLevelData.bigWood == true)
+        {
+            LoadBigWoodData();
+
+            for (int i = 0; i < _loadLevelData.bigWoodNum; i++)
+            {
+                Vector2 newPos = new Vector2(bigWoodPosXList[i], bigWoodPosYList[i]);
+                Quaternion newRotate = Quaternion.Euler(0, 0, bigWoodRotateZList[i]);
+
+                GameObject obj = Instantiate(_bigWoodPrefab, newPos, newRotate);
+
+                // Add obj to bigWood list in LineManager
+                Rigidbody2D bigWoodRb = obj.GetComponent<Rigidbody2D>();
+                _bigWoodContainer.bigWoodRbs.Add(bigWoodRb);
+
+                obj.transform.parent = _obstaclesContainer.transform;
+
+                Vector3 newScale = new Vector3(bigWoodScaleXList[i], bigWoodScaleYList[i], obj.transform.localScale.z);
+                obj.transform.localScale = newScale;
+            }
+        }
+
+        if(_loadLevelData.woodNest == true)
+        {
+            LoadBigWoodData();
+
+            for (int i = 0; i < _loadLevelData.woodNestNum; i++)
+            {
+                Vector2 newPos = new Vector2(bigWoodPosXList[i], bigWoodPosYList[i]);
+                Quaternion newRotate = Quaternion.Euler(0, 0, bigWoodRotateZList[i]);
+
+                GameObject obj = Instantiate(_bigWoodPrefab, newPos, newRotate);
+
+                // Add obj to smallWood list in LineManager
+                Rigidbody2D smallWoodRb = obj.GetComponent<Rigidbody2D>();
+                _bigWoodContainer.smallWoodRbs.Add(smallWoodRb);
+
+                obj.transform.parent = _obstaclesContainer.transform;
+
+                Vector3 newScale = new Vector3(bigWoodScaleXList[i], bigWoodScaleYList[i], obj.transform.localScale.z);
+                obj.transform.localScale = newScale;
             }
         }
     }
 
-    void LoadWoodPosData()
+    void LoadWoodData()
     {
         woodPosXList = new List<float>();
         woodPosYList = new List<float>();
@@ -252,14 +311,79 @@ public class LevelManager : MonoBehaviour
         woodPosYList.Add(_loadLevelData.woodPosY6);
     }
 
-    void LoadSeesawPosData()
+    void LoadSeesawData()
     {
         seesawPosXList = new List<float>();
         seesawPosYList = new List<float>();
+        seesawRotateZList = new List<float>();
 
         seesawPosXList.Add(_loadLevelData.seesawPosX1);
         seesawPosXList.Add(_loadLevelData.seesawPosX2);
+        seesawPosXList.Add(_loadLevelData.seesawPosX3);
+        seesawPosXList.Add(_loadLevelData.seesawPosX4);
+
         seesawPosYList.Add(_loadLevelData.seesawPosY1);
         seesawPosYList.Add(_loadLevelData.seesawPosY2);
+        seesawPosYList.Add(_loadLevelData.seesawPosY3);
+        seesawPosYList.Add(_loadLevelData.seesawPosY4);
+
+        seesawRotateZList.Add(_loadLevelData.seesawRotateZ1);
+        seesawRotateZList.Add(_loadLevelData.seesawRotateZ2);
+        seesawRotateZList.Add(_loadLevelData.seesawRotateZ3);
+        seesawRotateZList.Add(_loadLevelData.seesawRotateZ4);
+    }
+
+    void LoadBigWoodData()
+    {
+        bigWoodPosXList = new List<float>();
+        bigWoodPosYList = new List<float>();
+        bigWoodScaleXList = new List<float>();
+        bigWoodScaleYList = new List<float>();
+        bigWoodRotateZList = new List<float>();
+
+        bigWoodPosXList.Add(_loadLevelData.bigWoodPosX1);
+        bigWoodPosXList.Add(_loadLevelData.bigWoodPosX2);
+        bigWoodPosXList.Add(_loadLevelData.bigWoodPosX3);
+        bigWoodPosXList.Add(_loadLevelData.bigWoodPosX4);
+        bigWoodPosXList.Add(_loadLevelData.bigWoodPosX5);
+        bigWoodPosXList.Add(_loadLevelData.bigWoodPosX6);
+        bigWoodPosXList.Add(_loadLevelData.bigWoodPosX7);
+        bigWoodPosXList.Add(_loadLevelData.bigWoodPosX8);
+
+        bigWoodPosYList.Add(_loadLevelData.bigWoodPosY1);
+        bigWoodPosYList.Add(_loadLevelData.bigWoodPosY2);
+        bigWoodPosYList.Add(_loadLevelData.bigWoodPosY3);
+        bigWoodPosYList.Add(_loadLevelData.bigWoodPosY4);
+        bigWoodPosYList.Add(_loadLevelData.bigWoodPosY5);
+        bigWoodPosYList.Add(_loadLevelData.bigWoodPosY6);
+        bigWoodPosYList.Add(_loadLevelData.bigWoodPosY7);
+        bigWoodPosYList.Add(_loadLevelData.bigWoodPosY8);
+
+        bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX1);
+        bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX2);
+        bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX3);
+        bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX4);
+        bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX5);
+        bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX6);
+        bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX7);
+        bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX8);
+
+        bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY1);
+        bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY2);
+        bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY3);
+        bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY4);
+        bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY5);
+        bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY6);
+        bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY7);
+        bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY8);
+
+        bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ1);
+        bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ2);
+        bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ3);
+        bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ4);
+        bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ5);
+        bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ6);
+        bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ7);
+        bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ8);
     }
 }

@@ -26,8 +26,8 @@ public class MainMenuAction : MonoBehaviour
         _sceneFader = SceneFader.Instance;
 
         _uiManager.OnBack += OnBack;
-        _uiManager.OnStart += OnStart;
-        _uiManager.OnSelect += OnSelectLevel;
+        //_uiManager.OnStart += OnStart;
+        //_uiManager.OnSelect += OnSelectLevel;
         _uiManager.OnOption += OnOption;
         _uiManager.OnExit += OnExitGame;
 
@@ -38,7 +38,7 @@ public class MainMenuAction : MonoBehaviour
     {
         int sum = 0;
 
-        for (int i = 1; i < 50; i++)
+        for (int i = 1; i <= 50; i++)
         {
             // Add level star numbers to starNum text
             sum += PlayerPrefs.GetInt("lv" + i.ToString());
@@ -49,26 +49,26 @@ public class MainMenuAction : MonoBehaviour
         Debug.Log("Star number: " + sum.ToString());
     }
 
-    public void OnStart()
-    {
-        // play level 1 for first time 
-        if ((PlayerPrefs.GetInt("level") + 1) == 1)
-        {
-            _scene = 2;
-            _sceneFader.FadeTo(_scene);
-        }
-        else
-        {
-            // Play next unlocked level
-            int prevlevelNum = PlayerPrefs.GetInt("level") + 1;
-            _scene = prevlevelNum;
+    //public void OnStart()
+    //{
+    //    // play level 1 for first time 
+    //    if ((PlayerPrefs.GetInt("level") + 1) == 1)
+    //    {
+    //        _scene = 2;
+    //        _sceneFader.FadeTo(_scene);
+    //    }
+    //    else
+    //    {
+    //        // Play next unlocked level
+    //        int prevlevelNum = PlayerPrefs.GetInt("level") + 1;
+    //        _scene = prevlevelNum;
 
-            Debug.Log("Current lv: " + PlayerPrefs.GetInt("level").ToString());
+    //        Debug.Log("Current lv: " + PlayerPrefs.GetInt("level").ToString());
 
-            _soundManager.selectFX.Play();
-            _sceneFader.FadeTo(_scene);
-        }
-    }
+    //        _soundManager.selectFX.Play();
+    //        _sceneFader.FadeTo(_scene);
+    //    }
+    //}
 
     public void OnBack()
     {

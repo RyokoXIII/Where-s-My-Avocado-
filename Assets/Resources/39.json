@@ -1,0 +1,23 @@
+{
+  "levelID": "39",
+
+  "playerPosX": -5.78,
+  "playerPosY": 4.14,
+
+  "npcPosX": -1.38,
+  "npcPosY": -2.43,
+
+  "npcParticlePosX": -0.99,
+  "npcParticlePosY": -2.61,
+
+  "beach_background": true,
+  "beach_music": true,
+  "tutorial": false,
+
+  "starPosX_1": -0.21,
+  "starPosY_1": 1.75,
+  "starPosX_2": 2.61,
+  "starPosY_2": 0.03,
+  "starPosX_3": 1.68,
+  "starPosY_3": -2.28
+}

@@ -25,14 +25,23 @@ public class LevelData
 
     public int seesawNum;
 
-    public float seesawPosX1, seesawPosX2;
-    public float seesawPosY1, seesawPosY2;
+    public float seesawPosX1, seesawPosX2, seesawPosX3, seesawPosX4;
+    public float seesawPosY1, seesawPosY2, seesawPosY3, seesawPosY4;
     public float seesawScaleX, seesawScaleY;
+    public float seesawRotateZ1, seesawRotateZ2, seesawRotateZ3, seesawRotateZ4;
+
+    public int bigWoodNum, woodNestNum;
+
+    public float bigWoodPosX1, bigWoodPosX2, bigWoodPosX3, bigWoodPosX4, bigWoodPosX5, bigWoodPosX6, bigWoodPosX7, bigWoodPosX8;
+    public float bigWoodPosY1, bigWoodPosY2, bigWoodPosY3, bigWoodPosY4, bigWoodPosY5, bigWoodPosY6, bigWoodPosY7, bigWoodPosY8;
+    public float bigWoodScaleX1, bigWoodScaleX2, bigWoodScaleX3, bigWoodScaleX4, bigWoodScaleX5, bigWoodScaleX6, bigWoodScaleX7, bigWoodScaleX8;
+    public float bigWoodScaleY1, bigWoodScaleY2, bigWoodScaleY3, bigWoodScaleY4, bigWoodScaleY5, bigWoodScaleY6, bigWoodScaleY7, bigWoodScaleY8;
+    public float bigWoodRotateZ1, bigWoodRotateZ2, bigWoodRotateZ3, bigWoodRotateZ4, bigWoodRotateZ5, bigWoodRotateZ6, bigWoodRotateZ7, bigWoodRotateZ8;
 
     public float deadZonePosX, deadZonePosY;
     public float deadZoneScaleX, deadZoneScaleY;
 
-    public bool roundLog, deadZone, wood, seesaw;
+    public bool roundLog, deadZone, wood, seesaw, bigWood, woodNest;
     public bool beach_background;
     public bool sunset_background;
     public bool sunset_music;
