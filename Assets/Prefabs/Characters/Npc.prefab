@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1608629119353125491}
   - component: {fileID: 1608629119353125484}
   - component: {fileID: 1608629119353125485}
-  - component: {fileID: 1608629119494492486}
   m_Layer: 8
   m_Name: Npc
   m_TagString: Npc
@@ -113,11 +112,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0.02
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 64f08e0b743c713428ab5fcc0c5d53a1, type: 2}
+  m_Material: {fileID: 6200000, guid: 3b6bd7fb29c7c7147855b2fd6484155e, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -137,28 +136,8 @@ MonoBehaviour:
   _playerManager: {fileID: 855178008043502136, guid: e92230b29abe72840bfc2b9465fc8aae,
     type: 3}
   _npcRb: {fileID: 1608629119353125484}
-  _npcAnim: {fileID: 1608629119494492486}
   _npcSprite: {fileID: 1608629119353125490}
   npcHappySprite: {fileID: 21300000, guid: 018e97e7b4c993a4f98c584b839fa5b9, type: 3}
   npcSadSprite: {fileID: 21300000, guid: 674f9dfc13bccc24fb0229d5ec1b33be, type: 3}
   xPos: 6.76
   yPos: -2.39
---- !u!95 &1608629119494492486
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1608629119353125486}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c4b665e831f4e05459f690e29f5fabf6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

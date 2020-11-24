@@ -8,7 +8,7 @@ public class LineManager : MonoBehaviour
 
     public LayerMask cantDrawOverLayer;
     public GameObject linePrefab;
-    public Rigidbody2D _playerRb;
+    public Rigidbody2D playerRb;
     public List<Rigidbody2D> bigWoodRbs;
     public List<Rigidbody2D> smallWoodRbs;
     int _cantDrawOverLayerIndex;
@@ -64,7 +64,7 @@ public class LineManager : MonoBehaviour
             }
         }
 
-        _playerRb.isKinematic = true;
+        playerRb.isKinematic = true;
         _cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOverLayer");
 
         // Animation
@@ -171,7 +171,7 @@ public class LineManager : MonoBehaviour
                             smallWoodRb.isKinematic = true;
                         }
                     }
-                    _playerRb.isKinematic = true;
+                    playerRb.isKinematic = true;
                 }
             }
             else
@@ -192,7 +192,7 @@ public class LineManager : MonoBehaviour
                             smallWoodRb.isKinematic = false;
                         }
                     }
-                    _playerRb.isKinematic = false;
+                    playerRb.isKinematic = false;
                 }
                 _currentLine.gameObject.layer = _cantDrawOverLayerIndex;
                 _currentLine.UsePhysics(true);

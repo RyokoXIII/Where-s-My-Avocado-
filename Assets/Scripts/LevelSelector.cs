@@ -22,9 +22,10 @@ public class LevelSelector : MonoBehaviour
     [SerializeField]
     Image[] _stars;
 
-    [Space(20f)] [SerializeField]
-    GameObject _starContainer;
-    [SerializeField] GameObject _bigNumText;
+    [Space(20f)]
+    public string levelPageID;
+    [SerializeField] GameObject _starContainer;
+    //[SerializeField] GameObject _bigNumText;
 
     SoundManager _soundManager;
     SceneFader _sceneFader;
@@ -78,7 +79,7 @@ public class LevelSelector : MonoBehaviour
     private void UpdateLevelButtonImg()
     {
         // Hide big number text
-        _bigNumText.SetActive(false);
+        //_bigNumText.SetActive(false);
 
         // Show level img
         _levelButtonImg.overrideSprite = _lvImg;

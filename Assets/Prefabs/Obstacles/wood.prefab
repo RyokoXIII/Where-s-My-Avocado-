@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7237220361612010612}
   m_Layer: 8
   m_Name: wood
-  m_TagString: Line
+  m_TagString: Push_line
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:

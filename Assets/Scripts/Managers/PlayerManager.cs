@@ -1,17 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviour, IAnimatable
 {
     #region Global Variables
-
-    [Header("Sprite")]
-
-    [SerializeField] SpriteRenderer _playerSprite;
-    [SerializeField] Sprite _playerHappySprite;
-    [SerializeField] Sprite _playerSadSprite;
-    [SerializeField] SpriteRenderer npcSprite;
 
     PoolManager _pooler;
     UIManager _uiManager;
@@ -20,22 +14,34 @@ public class PlayerManager : MonoBehaviour
     Vector2 _force;
     public float magnitude = 5f;
 
-    [Space(20f)]
+    [Space(10f)]
     [SerializeField]
     Rigidbody2D _playerRb;
     [SerializeField]
+    Transform _bossPos;
+    [SerializeField]
+    BoxCollider2D _playerBoxCollide;
+    [SerializeField]
     GameObject gameOverContainer;
     [SerializeField]
-    NpcManager _npcManager;
-    [SerializeField]
-    Animator _npcAnim;
+    BossManager _bossManager;
+    //[SerializeField]
+    //Animator _npcAnim;
+
+    [Space(20f)]
+    [SerializeField] SkeletonAnimation _skeletonAnimation;
+    [SerializeField] AnimationReferenceAsset _idle, _circle, _rollout;
+    [SerializeField] string _currentState;
+
+    float _currentPos;
+    string _currentAnimation;
 
     int _starCount = 0;
     [HideInInspector]
     public int finalScore;
 
     [HideInInspector]
-    public bool touchBoundary, hasFirstStar;
+    public bool touchBoundary, hasFirstStar, touchBoss;
 
     #endregion
 
@@ -45,33 +51,90 @@ public class PlayerManager : MonoBehaviour
         _pooler = PoolManager.Instance;
         _uiManager = UIManager.Instance;
         _starHandler = StarHandler.Instance;
+
+        _currentPos = transform.position.x;
+
+        // Animation
+        _currentState = "idle";
+        SetCharacterState(_currentState);
+
+        //StartCoroutine(CheckPlayerMovement());
     }
+
+    private void Update()
+    {
+        if ((_currentPos > transform.position.x) || (_currentPos < transform.position.x))
+        {
+            if (touchBoss == false)
+            {
+                SetCharacterState("circle");
+            }
+        }
+        _currentPos = transform.position.x;
+    }
+
+    //IEnumerator CheckPlayerMovement()
+    //{
+    //    Vector3 startPos = gameObject.transform.position;
+    //    yield return new WaitForSeconds(1f);
+
+    //    Vector3 finalPos = gameObject.transform.position;
+
+    //    if (startPos.x != finalPos.x || startPos.y != finalPos.y
+    //        || startPos.z != finalPos.z)
+    //    {
+    //        _playerIsMoving = true;
+    //        SetPlayerState("circle");
+    //    }
+    //    else
+    //    {
+    //        _playerIsMoving = false;
+    //        SetPlayerState("idle");
+    //    }
+    //}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Item"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             _starCount += 1;
             finalScore = _starCount;
 
             hasFirstStar = true;
         }
-    }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Npc"))
+        if (other.gameObject.CompareTag("Boss"))
         {
             gameObject.transform.rotation = Quaternion.identity;
+            Vector2 fixPos = new Vector2(_bossPos.position.x, _bossPos.position.y);
+            transform.position = fixPos;
             _playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            UpdateCharactersState();
+            touchBoss = true;
+            StartCoroutine(AnimationTransition());
 
             // Game Over menu pop up Action callback
             StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
+    }
 
+    IEnumerator AnimationTransition()
+    {
+        SetCharacterState("roll out");
+
+        yield return new WaitForSeconds(0.5f);
+
+        SetCharacterState("idle");
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         if (other.gameObject.CompareTag("Line"))
+        {
+            _playerBoxCollide.enabled = false;
+        }
+
+        if (other.gameObject.CompareTag("Push_line"))
         {
             // calculate force vector
             _force = transform.position - other.transform.position;
@@ -88,12 +151,6 @@ public class PlayerManager : MonoBehaviour
             gameObject.transform.rotation = Quaternion.identity;
             _playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            // Sad face
-            _playerSprite.sprite = _playerSadSprite;
-            npcSprite.sprite = _npcManager.npcSadSprite;
-
-            // Stop Animation
-            _npcAnim.SetBool("isTouch", true);
             touchBoundary = true;
 
             // Game Over menu pop up Action callback
@@ -101,18 +158,30 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    void UpdateCharactersState()
+    // Set player animation
+    public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
     {
-        // Check if collected star of this level = 0
-        if (hasFirstStar == false && (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) == 0))
+        if (animation.name.Equals(_currentAnimation))
+            return;
+
+        _skeletonAnimation.state.SetAnimation(0, animation, loop).TimeScale = timeScale;
+        _currentAnimation = animation.name;
+    }
+
+    // Check player state and set animation accordingly
+    public void SetCharacterState(string state)
+    {
+        if (state == "idle")
         {
-            // Sad face
-            _playerSprite.sprite = _playerSadSprite;
+            SetAnimation(_idle, true, 1f);
         }
-        else
+        else if (state == "circle")
         {
-            // Happy face
-            _playerSprite.sprite = _playerHappySprite;
+            SetAnimation(_circle, false, 1f);
+        }
+        else if(state == "roll out")
+        {
+            SetAnimation(_rollout, false, 1f);
         }
     }
 

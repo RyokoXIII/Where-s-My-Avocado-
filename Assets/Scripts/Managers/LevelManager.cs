@@ -14,8 +14,8 @@ public class LevelManager : MonoBehaviour
     [Header("Characters")]
     [Space(10f)]
     [SerializeField] Transform _playerPos;
-    [SerializeField] Transform _npcPos;
-    [SerializeField] NpcManager _npcManager;
+    [SerializeField] Transform _bossPos;
+    [SerializeField] BossManager _bossManager;
 
 
     [Header("Grounds")]
@@ -112,11 +112,11 @@ public class LevelManager : MonoBehaviour
 
         // Npc pos
         Vector3 newNpcPos = new Vector3(_loadLevelData.npcPosX, _loadLevelData.npcPosY, 0f);
-        _npcPos.transform.position = newNpcPos;
+        _bossPos.transform.position = newNpcPos;
 
         // Npc particle pos
-        _npcManager.xPos = _loadLevelData.npcParticlePosX;
-        _npcManager.yPos = _loadLevelData.npcParticlePosY;
+        _bossManager.xPos = _loadLevelData.npcParticlePosX;
+        _bossManager.yPos = _loadLevelData.npcParticlePosY;
     }
 
     void LoadBackgroundData()

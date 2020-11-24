@@ -2,10 +2,10 @@
   "levelID": "5",
 
   "playerPosX": -6,
-  "playerPosY": -2.46,
+  "playerPosY": -3.02,
 
-  "npcPosX": 7.41,
-  "npcPosY": -2.47,
+  "npcPosX": 8.05,
+  "npcPosY": -3.01,
 
   "npcParticlePosX": 6.76,
   "npcParticlePosY": -2.39,
@@ -15,9 +15,9 @@
   "tutorial": true,
 
   "starPosX_1": -0.98,
-  "starPosY_1": -2.17,
+  "starPosY_1": -3.04,
   "starPosX_2": 1.52,
-  "starPosY_2": -2.17,
+  "starPosY_2": -3.04,
   "starPosX_3": 4.02,
-  "starPosY_3": -2.17
+  "starPosY_3": -3.04
 }

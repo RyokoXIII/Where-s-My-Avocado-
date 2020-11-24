@@ -5,11 +5,13 @@ TagManager:
   serializedVersion: 2
   tags:
   - FxTemporaire
-  - Npc
   - Ground
   - Line
   - Item
   - Boundary
+  - Push_line
+  - Enemy
+  - Boss
   layers:
   - Default
   - TransparentFX

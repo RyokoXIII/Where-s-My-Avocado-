@@ -4,13 +4,28 @@ using UnityEngine;
 
 public class PageSwiper : MonoBehaviour
 {
+    [SerializeField] GameObject _page1;
     [SerializeField] GameObject[] pageList;
+    [SerializeField] GameObject[] levelButtonList;
     int _maxPage = 12;
     int _prevPage, _currentPage;
 
+
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("level") > 0)
+        {
+            LoadCurrentPage();
+        }
+        else
+        {
+            _page1.SetActive(true);
+        }
+    }
+
     public void NextPage()
     {
-        if(_currentPage < _maxPage)
+        if (_currentPage < _maxPage)
         {
             _prevPage = _currentPage;
             pageList[_prevPage].SetActive(false);
@@ -37,6 +52,26 @@ public class PageSwiper : MonoBehaviour
         else
         {
             _currentPage = 0;
+        }
+    }
+
+    void LoadCurrentPage()
+    {
+        for (int i = 0; i < levelButtonList.Length; i++)
+        {
+            int levelButtonName = int.Parse(levelButtonList[i].name);
+
+            if (PlayerPrefs.GetInt("level").Equals(levelButtonName))
+            {
+                for (int j = 0; j < pageList.Length; j++)
+                {
+                    if (levelButtonList[i].GetComponent<LevelSelector>().levelPageID == pageList[j].name)
+                    {
+                        pageList[j].SetActive(true);
+                        _currentPage = j;
+                    }
+                }
+            }
         }
     }
 }
