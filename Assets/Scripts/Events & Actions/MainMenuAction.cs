@@ -9,12 +9,11 @@ public class MainMenuAction : MonoBehaviour
     #region Global Variables
 
     int _scene;
-    public GameObject optionMenu, exitMenu;
+    public GameObject optionMenu, exitMenu, selectMenu;
     public Text starNumText;
 
     UIManager _uiManager;
     SoundManager _soundManager;
-    SceneFader _sceneFader;
 
     #endregion
 
@@ -23,11 +22,9 @@ public class MainMenuAction : MonoBehaviour
     {
         _uiManager = UIManager.Instance;
         _soundManager = SoundManager.Instance;
-        _sceneFader = SceneFader.Instance;
 
         _uiManager.OnBack += OnBack;
-        //_uiManager.OnStart += OnStart;
-        //_uiManager.OnSelect += OnSelectLevel;
+        _uiManager.OnSelect += OnSelectLevel;
         _uiManager.OnOption += OnOption;
         _uiManager.OnExit += OnExitGame;
 
@@ -44,31 +41,10 @@ public class MainMenuAction : MonoBehaviour
             sum += PlayerPrefs.GetInt("lv" + i.ToString());
         }
 
-        starNumText.text = sum + "/" + 150;
+        starNumText.text = sum.ToString();
 
         Debug.Log("Star number: " + sum.ToString());
     }
-
-    //public void OnStart()
-    //{
-    //    // play level 1 for first time 
-    //    if ((PlayerPrefs.GetInt("level") + 1) == 1)
-    //    {
-    //        _scene = 2;
-    //        _sceneFader.FadeTo(_scene);
-    //    }
-    //    else
-    //    {
-    //        // Play next unlocked level
-    //        int prevlevelNum = PlayerPrefs.GetInt("level") + 1;
-    //        _scene = prevlevelNum;
-
-    //        Debug.Log("Current lv: " + PlayerPrefs.GetInt("level").ToString());
-
-    //        _soundManager.selectFX.Play();
-    //        _sceneFader.FadeTo(_scene);
-    //    }
-    //}
 
     public void OnBack()
     {
@@ -82,12 +58,17 @@ public class MainMenuAction : MonoBehaviour
             _soundManager.backFX.Play();
             exitMenu.SetActive(false);
         }
+        else if (selectMenu.activeInHierarchy == true)
+        {
+            _soundManager.backFX.Play();
+            selectMenu.SetActive(false);
+        }
     }
 
     public void OnSelectLevel()
     {
         _soundManager.selectFX.Play();
-        _sceneFader.FadeTo(1);
+        selectMenu.SetActive(true);
     }
 
     public void OnOption()

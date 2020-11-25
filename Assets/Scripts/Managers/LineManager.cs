@@ -9,8 +9,11 @@ public class LineManager : MonoBehaviour
     public LayerMask cantDrawOverLayer;
     public GameObject linePrefab;
     public Rigidbody2D playerRb;
+    [SerializeField] PlayerManager _playerManager;
+
     public List<Rigidbody2D> bigWoodRbs;
     public List<Rigidbody2D> smallWoodRbs;
+
     int _cantDrawOverLayerIndex;
 
     [Space(30f)]
@@ -24,7 +27,7 @@ public class LineManager : MonoBehaviour
     [SerializeField]
     GameObject gameOverMenu;
     [SerializeField]
-    GameObject optionMenu, gameMenu, tutorial;
+    GameObject gameMenu, tutorial;
     [SerializeField] LevelManager _levelManager;
 
     Line _currentLine;
@@ -79,7 +82,7 @@ public class LineManager : MonoBehaviour
 
     void Update()
     {
-        if (gameOverMenu.activeInHierarchy == true || optionMenu.activeInHierarchy == true || gameMenu.activeInHierarchy == true)
+        if (gameOverMenu.activeInHierarchy == true || gameMenu.activeInHierarchy == true)
         {
             if (_currentLine != null)
             {
@@ -89,6 +92,7 @@ public class LineManager : MonoBehaviour
         else
         {
             Draw();
+
             hasDraw = true;
         }
     }
@@ -193,6 +197,7 @@ public class LineManager : MonoBehaviour
                         }
                     }
                     playerRb.isKinematic = false;
+                    _playerManager.SetCharacterState("circle");
                 }
                 _currentLine.gameObject.layer = _cantDrawOverLayerIndex;
                 _currentLine.UsePhysics(true);

@@ -55,10 +55,10 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         _currentPos = transform.position.x;
 
         // Animation
-        _currentState = "idle";
-        SetCharacterState(_currentState);
+        //_currentState = "idle";
+        //SetCharacterState(_currentState);
 
-        //StartCoroutine(CheckPlayerMovement());
+        StartCoroutine(StartAnimationTransition());
     }
 
     private void Update()
@@ -111,20 +111,29 @@ public class PlayerManager : MonoBehaviour, IAnimatable
             _playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
 
             touchBoss = true;
-            StartCoroutine(AnimationTransition());
+            StartCoroutine(WinAnimationTransition());
 
             // Game Over menu pop up Action callback
             StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
     }
 
-    IEnumerator AnimationTransition()
+    IEnumerator WinAnimationTransition()
     {
         SetCharacterState("roll out");
 
         yield return new WaitForSeconds(0.5f);
 
         SetCharacterState("idle");
+    }
+
+    IEnumerator StartAnimationTransition()
+    {
+        SetCharacterState("idle");
+
+        yield return new WaitForSeconds(1f);
+
+        SetCharacterState("circle");
     }
 
     private void OnCollisionEnter2D(Collision2D other)

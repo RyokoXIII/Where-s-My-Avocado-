@@ -38,8 +38,6 @@
   "deadZoneScaleX": 15.01,
   "deadZoneScaleY": 3.44,
 
-  "beach_background": true,
-  "beach_music": true,
   "tutorial": false,
 
   "starPosX_1": 1.24,

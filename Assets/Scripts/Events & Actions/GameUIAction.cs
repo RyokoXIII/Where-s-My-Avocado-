@@ -7,7 +7,7 @@ public class GameUIAction : MonoBehaviour
 {
     #region Global Variables
 
-    public GameObject optionMenu, gameMenu;
+    public GameObject gameMenu;
 
     UIManager _uiManager;
     SoundManager _soundManager;
@@ -23,19 +23,11 @@ public class GameUIAction : MonoBehaviour
         _sceneFader = SceneFader.Instance;
 
         _uiManager.OnClick += OnReplay;
-        _uiManager.OnOption += OnOption;
         _uiManager.OnMenu += OnMenu;
     }
 
     public void Resume()
     {
-        if (optionMenu.activeInHierarchy == true)
-        {
-            _soundManager.backFX.Play();
-            optionMenu.SetActive(false);
-
-            Time.timeScale = 1f; // continue scene
-        }
         if (gameMenu.activeInHierarchy == true)
         {
             _soundManager.backFX.Play();
@@ -56,13 +48,6 @@ public class GameUIAction : MonoBehaviour
     {
         _soundManager.selectFX.Play();
         gameMenu.SetActive(true);
-        Time.timeScale = 0f; // stop scene
-    }
-
-    public void OnOption()
-    {
-        _soundManager.selectFX.Play();
-        optionMenu.SetActive(true);
         Time.timeScale = 0f; // stop scene
     }
 }

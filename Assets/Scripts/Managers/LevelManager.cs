@@ -20,8 +20,6 @@ public class LevelManager : MonoBehaviour
 
     [Header("Grounds")]
     [Space(10f)]
-    [SerializeField] GameObject _beachBackground;
-    [SerializeField] GameObject _sunsetBackground, _nightBackground;
     [SerializeField] GameObject _foregroundContainer;
     [SerializeField] GameObject[] levelForegroundList;
 
@@ -36,10 +34,10 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject _deadZonePrefab;
     [SerializeField] GameObject _roundLogPrefab, _seeSawPrefab, _woodPrefab, _bigWoodPrefab;
 
-    [Header("Musics")]
-    [Space(10f)]
-    [SerializeField] GameObject _sunsetMusicBackground;
-    [SerializeField] GameObject _beachMusicBackground;
+    //[Header("Musics")]
+    //[Space(10f)]
+    //[SerializeField] GameObject _sunsetMusicBackground;
+    //[SerializeField] GameObject _beachMusicBackground;
 
     [Header("Tutorial")]
     [Space(10f)]
@@ -95,11 +93,9 @@ public class LevelManager : MonoBehaviour
 
         // Load Level data
         LoadCharacterData();
-        LoadBackgroundData();
         LoadForegroundData();
         LoadItemsData();
         LoadObstacles();
-        LoadBackgroundMusic();
         LoadTutorial();
 
     }
@@ -117,18 +113,6 @@ public class LevelManager : MonoBehaviour
         // Npc particle pos
         _bossManager.xPos = _loadLevelData.npcParticlePosX;
         _bossManager.yPos = _loadLevelData.npcParticlePosY;
-    }
-
-    void LoadBackgroundData()
-    {
-        if (_loadLevelData.beach_background == true)
-        {
-            _beachBackground.SetActive(true);
-        }
-        else
-        {
-            _sunsetBackground.SetActive(true);
-        }
     }
 
     void LoadForegroundData()
@@ -154,18 +138,6 @@ public class LevelManager : MonoBehaviour
         starPosList[0].transform.position = newStarPos_1;
         starPosList[1].transform.position = newStarPos_2;
         starPosList[2].transform.position = newStarPos_3;
-    }
-
-    void LoadBackgroundMusic()
-    {
-        if (_loadLevelData.sunset_music == true)
-        {
-            _beachMusicBackground.SetActive(false);
-        }
-        else
-        {
-            _sunsetMusicBackground.SetActive(true);
-        }
     }
 
     void LoadTutorial()

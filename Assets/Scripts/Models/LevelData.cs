@@ -41,11 +41,10 @@ public class LevelData
     public float deadZonePosX, deadZonePosY;
     public float deadZoneScaleX, deadZoneScaleY;
 
+    public bool rotatePlayer, rotateBoss, rotateEnemy;
     public bool roundLog, deadZone, wood, seesaw, bigWood, woodNest;
-    public bool beach_background;
-    public bool sunset_background;
-    public bool sunset_music;
-    public bool beach_music;
+    //public bool sunset_music;
+    //public bool beach_music;
 
     public bool tutorial;
 }

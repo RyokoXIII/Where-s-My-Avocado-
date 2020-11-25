@@ -1,33 +1,33 @@
-﻿using System.Collections;
+﻿using Spine.Unity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameOverAction : MonoBehaviour
+public class GameOverAction : MonoBehaviour, IAnimatable
 {
     #region Global Variables
 
     // Image & Animation
-    [SerializeField]
-    Image _playerImg, _npcImg;
-    [SerializeField]
-    Animator _playerAnim, _npcAnim;
+    [Header("Animation")]
+    [Space(10f)]
+    [SerializeField] SkeletonGraphic _skeletonGraphic;
+    [SerializeField] AnimationReferenceAsset _idle, _circle;
 
-    [Header("Sprite")] [Space(10f)] [SerializeField]
-    Sprite _playerSad;
-    [SerializeField] Sprite _npcSad;
+    string _currentAnimation;
 
-    [Space(20f)][SerializeField]
+    [Space(10f)]
+    [SerializeField]
     PlayerManager _playerManager;
 
     [SerializeField]
     Text _stageNumText;
 
-    [SerializeField]
-    GameObject _replayMenu, _victoryMenu;
-    [SerializeField]
-    GameObject _sunsetMusicBackground, _beachMusicBackground;
+    [Space(10f)]
+    [SerializeField] GameObject _playButton;
+    [SerializeField] RectTransform _homeButton, _replayButton;
+    [SerializeField] GameObject _beachMusicBackground;
 
     UIManager _uiManager;
     StarHandler _starHandler;
@@ -52,14 +52,15 @@ public class GameOverAction : MonoBehaviour
         // Update animation state for characters
         UpdateAnimationState();
 
+        // Update game over state
+        UpdateGameOverMenu();
+
         // Set Stage Number text
         _stageNumText.text = _starHandler.levelIndex.ToString();
     }
 
     public void OnReplay()
     {
-        gameObject.SetActive(false);
-
         // Restart current game level
         _soundManager.selectFX.Play();
         _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
@@ -75,55 +76,112 @@ public class GameOverAction : MonoBehaviour
 
     public void OnPlayNext()
     {
+        _soundManager.selectFX.Play();
+        PlayerPrefs.SetInt("levelID", _starHandler.levelIndex + 1);
+
+        _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
+
+        //if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
+        //{
+        //    if (_starHandler.levelIndex < 50)
+        //    {
+        //        _soundManager.selectFX.Play();
+
+        //        PlayerPrefs.SetInt("levelID", _starHandler.levelIndex + 1);
+
+        //        _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
+        //    }
+        //    else if (_starHandler.levelIndex == 50)
+        //    {
+        //        // Game is finished
+        //        _soundManager.selectFX.Play();
+
+        //        _playButton.SetActive(false);
+
+        //        Vector2 _newHomeBtnPos = new Vector2(0, 0);
+        //        _homeButton.transform.position = _newHomeBtnPos;
+        //    }
+        //}
+        //else
+        //{
+        //    _soundManager.selectFX.Play();
+
+        //    _playButton.SetActive(false);
+
+        //    Vector2 _newHomeBtnPos = new Vector2(0, 0);
+        //    _homeButton.transform.position = _newHomeBtnPos;
+        //}
+    }
+
+    void UpdateGameOverMenu()
+    {
+        Vector2 _newHomeBtnPos = new Vector2(119f, 15f);
+        Vector2 _newReplayBtnPos = new Vector2(-119f, 15f);
+
         if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {
             if (_starHandler.levelIndex < 50)
             {
-                _soundManager.selectFX.Play();
-
-                PlayerPrefs.SetInt("levelID", _starHandler.levelIndex + 1);
-
-                _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
+                return;
             }
             else if (_starHandler.levelIndex == 50)
             {
-                // Game is finished
-                _soundManager.selectFX.Play();
-                _victoryMenu.SetActive(true);
+                _playButton.SetActive(false);
+
+                _homeButton.anchoredPosition = _newHomeBtnPos;
+                _replayButton.anchoredPosition = _newReplayBtnPos;
             }
         }
         else
         {
-            _soundManager.selectFX.Play();
-            _replayMenu.SetActive(true);
+            _playButton.SetActive(false);
+
+            _homeButton.anchoredPosition = _newHomeBtnPos;
+            _replayButton.anchoredPosition = _newReplayBtnPos;
         }
     }
 
     void UpdateAnimationState()
     {
-        // If win, animation play
         if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {
             _soundManager.victoryFX.Play();
 
-            _playerAnim.SetBool("IsWon", true);
-            _npcAnim.SetBool("IsWon", true);
+            // Win state
+            SetCharacterState("idle");
         }
         else
         {
-            if (_sunsetMusicBackground.activeInHierarchy == true)
-            {
-                _soundManager.sunsetMusicBackground.Stop();
-            }
-            else
+            if (_beachMusicBackground.activeInHierarchy == true)
             {
                 _soundManager.beachMusicBackground.Stop();
             }
             _soundManager.loseFX.Play();
 
-            // Sad face
-            _playerImg.overrideSprite = _playerSad;
-            _npcImg.overrideSprite = _npcSad;
+            // Lose state
+            SetCharacterState("circle");
+        }
+    }
+
+    public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
+    {
+        if (animation.name.Equals(_currentAnimation))
+            return;
+
+        _skeletonGraphic.AnimationState.AddAnimation(0, animation.name, loop, 0).TimeScale = timeScale;
+
+        _currentAnimation = animation.name;
+    }
+
+    public void SetCharacterState(string state)
+    {
+        if (state == "idle")
+        {
+            SetAnimation(_idle, true, 1f);
+        }
+        else if (state == "circle")
+        {
+            SetAnimation(_circle, false, 1f);
         }
     }
 }

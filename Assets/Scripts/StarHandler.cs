@@ -31,8 +31,7 @@ public class StarHandler : MonoBehaviour
     public int levelIndex;
     [HideInInspector]
     public int currentStarNum;
-    public Image[] starScores;
-    [SerializeField] Sprite _star;
+    public GameObject[] starScores;
 
     #endregion
 
@@ -49,16 +48,16 @@ public class StarHandler : MonoBehaviour
         switch (currentStarNum)
         {
             case 1:
-                starScores[0].sprite = _star;
+                starScores[0].SetActive(true);
                 break;
             case 2:
-                starScores[0].sprite = _star;
-                starScores[1].sprite = _star;
+                starScores[0].SetActive(true);
+                starScores[1].SetActive(true);
                 break;
             case 3:
-                starScores[0].sprite = _star;
-                starScores[1].sprite = _star;
-                starScores[2].sprite = _star;
+                starScores[0].SetActive(true);
+                starScores[1].SetActive(true);
+                starScores[2].SetActive(true);
                 break;
             default:
                 Debug.Log("No star collected!");

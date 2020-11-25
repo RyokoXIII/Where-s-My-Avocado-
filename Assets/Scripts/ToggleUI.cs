@@ -7,14 +7,18 @@ public class ToggleUI : MonoBehaviour
 {
     public GameObject onImg, offImg;
     SoundManager _soundManager;
+    UIManager _uiManager;
 
     [SerializeField]
-    GameObject _sunsetMusicBackground, _beachMusicBackground;
+    GameObject _beachMusicBackground;
 
 
     private void Start()
     {
+        _uiManager = UIManager.Instance;
         _soundManager = SoundManager.Instance;
+
+        _uiManager.OnOption += ToggleSoundButton;
         UpdateButtonState();
     }
 
@@ -41,11 +45,7 @@ public class ToggleUI : MonoBehaviour
         {
             AudioListener.volume = 1;
 
-            if (_sunsetMusicBackground.activeInHierarchy == true)
-            {
-                _soundManager.sunsetMusicBackground.Play();
-            }
-            else if(_beachMusicBackground.activeInHierarchy == true)
+            if (_beachMusicBackground.activeInHierarchy == true)
             {
                 _soundManager.beachMusicBackground.Play();
             }

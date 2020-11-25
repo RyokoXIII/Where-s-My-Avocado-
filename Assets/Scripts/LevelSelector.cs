@@ -14,18 +14,18 @@ public class LevelSelector : MonoBehaviour
 
     [Space(20f)]
     [SerializeField]
-    Image _levelButtonImg;
+    Sprite _finishedBtn;
     [SerializeField]
-    Sprite _lvImg;
+    Sprite _unlockedBtn, _lockedBtn;
     [SerializeField]
-    Sprite _starFull;
-    [SerializeField]
-    Image[] _stars;
+    GameObject[] _starList;
 
     [Space(20f)]
     public string levelPageID;
+    [SerializeField] Image _levelBtnSprite;
+    [SerializeField] GameObject _unlockedTxt, _lockedTxt;
+    [SerializeField] Text _unlockedText, _lockedText;
     [SerializeField] GameObject _starContainer;
-    //[SerializeField] GameObject _bigNumText;
 
     SoundManager _soundManager;
     SceneFader _sceneFader;
@@ -37,12 +37,16 @@ public class LevelSelector : MonoBehaviour
     {
         _soundManager = SoundManager.Instance;
         _sceneFader = SceneFader.Instance;
+
+        // Set Button texts
+        _unlockedText.text = gameObject.name;
+        _lockedText.text = gameObject.name;
     }
 
     private void Update()
     {
-        UpdateLevelStatus(); // lock or unlock level
-        UpdateStarLevel(); // Collected stars number of a level
+        UpdateLevelStatus();
+        UpdateStarLevel();
     }
 
     public void OnBack()
@@ -57,6 +61,7 @@ public class LevelSelector : MonoBehaviour
         if (unlocked == false)
         {
             _levelButton.interactable = false;
+            //_lockedBtn.SetActive(true);
         }
         // Unlock Level
         else
@@ -65,25 +70,41 @@ public class LevelSelector : MonoBehaviour
 
             UpdateLevelButtonImg();
 
-            // Show collected stars
-            _starContainer.SetActive(true);
-
             // Update collected stars img
             for (int i = 0; i < PlayerPrefs.GetInt("lv" + gameObject.name); i++)
             {
-                _stars[i].sprite = _starFull;
+                _starList[i].SetActive(true);
             }
         }
     }
 
     private void UpdateLevelButtonImg()
     {
-        // Hide big number text
-        //_bigNumText.SetActive(false);
+        if (PlayerPrefs.GetInt("lv" + gameObject.name) > 0)
+        {
+            if (_lockedTxt.activeInHierarchy == true)
+            {
+                _lockedTxt.SetActive(false);
+            }
+            else if (_unlockedTxt.activeInHierarchy == true)
+            {
+                _unlockedTxt.SetActive(false);
+            }
 
-        // Show level img
-        _levelButtonImg.overrideSprite = _lvImg;
-        _levelButtonImg.color = Color.white;
+            _levelBtnSprite.overrideSprite = _finishedBtn;
+            _unlockedTxt.SetActive(true);
+            // Show collected stars
+            _starContainer.SetActive(true);
+        }
+        else if (PlayerPrefs.GetInt("lv" + gameObject.name) == 0)
+        {
+            //if (_lockedBtn.activeInHierarchy == true)
+            //{
+            //    _lockedBtn.SetActive(false);
+            //}
+            _levelBtnSprite.overrideSprite = _unlockedBtn;
+            _unlockedTxt.SetActive(true);
+        }
     }
 
     private void UpdateLevelStatus()
