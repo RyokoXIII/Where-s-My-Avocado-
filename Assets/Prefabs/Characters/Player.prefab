@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 5783493231461236965}
   - component: {fileID: 5783493231461236967}
   - component: {fileID: 5783493231461236966}
-  - component: {fileID: 5783493231461236961}
   - component: {fileID: 5783493231461236964}
   m_Layer: 8
   m_Name: Player
@@ -159,32 +158,6 @@ CircleCollider2D:
   m_Offset: {x: -0.02, y: 1.24}
   serializedVersion: 2
   m_Radius: 1.3711729
---- !u!61 &5783493231461236961
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5783493231461236953}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.3603332, y: 2.11536}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 3.9090972, y: 4.2868476}
-  m_EdgeRadius: 0
 --- !u!114 &5783493231461236964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -200,7 +173,6 @@ MonoBehaviour:
   magnitude: 0.5
   _playerRb: {fileID: 5783493231461236967}
   _bossPos: {fileID: 0}
-  _playerBoxCollide: {fileID: 5783493231461236961}
   gameOverContainer: {fileID: 0}
   _bossManager: {fileID: 0}
   _skeletonAnimation: {fileID: 5783493231461236965}

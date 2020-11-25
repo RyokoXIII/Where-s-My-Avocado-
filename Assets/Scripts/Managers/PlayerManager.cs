@@ -20,13 +20,9 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     [SerializeField]
     Transform _bossPos;
     [SerializeField]
-    BoxCollider2D _playerBoxCollide;
-    [SerializeField]
     GameObject gameOverContainer;
     [SerializeField]
     BossManager _bossManager;
-    //[SerializeField]
-    //Animator _npcAnim;
 
     [Space(20f)]
     [SerializeField] SkeletonAnimation _skeletonAnimation;
@@ -53,10 +49,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         _starHandler = StarHandler.Instance;
 
         _currentPos = transform.position.x;
-
-        // Animation
-        //_currentState = "idle";
-        //SetCharacterState(_currentState);
 
         StartCoroutine(StartAnimationTransition());
     }
@@ -140,7 +132,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     {
         if (other.gameObject.CompareTag("Line"))
         {
-            _playerBoxCollide.enabled = false;
         }
 
         if (other.gameObject.CompareTag("Push_line"))
