@@ -4,25 +4,22 @@
   "playerPosX": -6,
   "playerPosY": 1.68,
 
-  "npcPosX": 7.41,
-  "npcPosY": -3.14,
-
-  "npcParticlePosX": 6.76,
-  "npcParticlePosY": -2.39,
+  "bossPosX": 7.41,
+  "bossPosY": -3.14,
 
   "tutorial": true,
 
-  "seesaw": true,
-  "seesawNum": 1,
-  "seesawPosX1": -7.16,
-  "seesawPosY1": 1.41,
-  "seesawScaleX": 1,
-  "seesawScaleY": 1,
+  "cloud": true,
+  "cloudNum": 1,
+  "cloudPosX_1": -5.96,
+  "cloudPosY_1": 1.41,
 
-  "starPosX_1": -2.06,
-  "starPosY_1": -3.14,
-  "starPosX_2": 0.59,
-  "starPosY_2": -3.14,
-  "starPosX_3": 3.16,
-  "starPosY_3": -3.14
+  "hasGoblin": true,
+  "goblinNum": 3,
+  "goblinPosX_1": -2.06,
+  "goblinPosY_1": -3.14,
+  "goblinPosX_2": 0.59,
+  "goblinPosY_2": -3.14,
+  "goblinPosX_3": 3.16,
+  "goblinPosY_3": -3.14
 }

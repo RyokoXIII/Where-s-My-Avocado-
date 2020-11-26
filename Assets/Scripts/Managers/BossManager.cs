@@ -10,11 +10,6 @@ public class BossManager : MonoBehaviour, IAnimatable
     [SerializeField]
     PlayerManager _playerManager;
 
-    [Header("Particle effect position")]
-    [Space(10f)]
-    public float xPos = 6.76f;
-    public float yPos = -2.39f;
-
     PoolManager _pooler;
     SoundManager _soundManager;
 
@@ -52,10 +47,8 @@ public class BossManager : MonoBehaviour, IAnimatable
 
     void CreateParticleEffect()
     {
-        Vector2 _heartPrefabPos = new Vector2(xPos, yPos);
-        _pooler.SpawnFromPool("GoalParticle", _heartPrefabPos, Quaternion.identity);
-
-        Debug.Log("HeartFX played!");
+        Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
+        _pooler.SpawnFromPool("Big Slash Particle", pos, Quaternion.identity);
     }
 
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)

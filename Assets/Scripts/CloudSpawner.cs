@@ -21,7 +21,7 @@ public class CloudSpawner : MonoBehaviour
     {
         _pooler = PoolManager.Instance;
 
-        InvokeRepeating("SpawnRandomCloud", startSpawnTime, repeatRate);
+        //InvokeRepeating("SpawnRandomCloud", startSpawnTime, repeatRate);
     }
 
     void SpawnRandomCloud()
@@ -29,23 +29,11 @@ public class CloudSpawner : MonoBehaviour
         float randomYPos = Random.Range(yPos1, yPos2);
         _randomPos = new Vector2(transform.position.x, randomYPos);
 
-        if (_pooler.sunsetCloudSpawner.activeInHierarchy == true)
-        {
-            SpawnSunsetClouds();
-        }
-        else
-        {
-            SpawnBeachClouds();
-        }
-    }
-
-    void SpawnSunsetClouds()
-    {
-        _pooler.SpawnFromPool("SunsetCloud", _randomPos, Quaternion.identity);
-    }
-
-    void SpawnBeachClouds()
-    {
         _pooler.SpawnFromPool("BeachCloud", _randomPos, Quaternion.identity);
     }
+
+    //void SpawnBeachClouds()
+    //{
+    //    _pooler.SpawnFromPool("BeachCloud", _randomPos, Quaternion.identity);
+    //}
 }

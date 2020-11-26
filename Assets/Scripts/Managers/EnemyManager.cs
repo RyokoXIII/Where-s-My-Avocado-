@@ -29,7 +29,8 @@ public class EnemyManager : MonoBehaviour, IAnimatable
     {
         if (other.CompareTag("Player"))
         {
-            _pooler.SpawnFromPool("PickUpParticle", transform.position, Quaternion.identity);
+            Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.5f);
+            _pooler.SpawnFromPool("Slash Particle", pos, Quaternion.identity);
 
             _soundManager.collectFX.Play();
             SetCharacterState("2-dead");

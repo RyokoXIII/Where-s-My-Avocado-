@@ -37,8 +37,10 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     public int finalScore;
 
     [HideInInspector]
-    public bool touchBoundary, hasFirstStar, touchBoss;
+    public bool touchBoundary, hasFirstStar;
 
+    public bool hasTurnRight;
+    Vector3 _scaleChange;
     #endregion
 
 
@@ -50,40 +52,21 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
         _currentPos = transform.position.x;
 
+        // Start Animation callback
         StartCoroutine(StartAnimationTransition());
+
+        hasTurnRight = false;
+
+        _scaleChange = new Vector3(0.5f, 0.5f, 0.5f);
     }
 
     private void Update()
     {
-        if ((_currentPos > transform.position.x) || (_currentPos < transform.position.x))
+        if (transform.position.x > _currentPos)
         {
-            if (touchBoss == false)
-            {
-                SetCharacterState("circle");
-            }
+            transform.localScale = _scaleChange;
         }
-        _currentPos = transform.position.x;
     }
-
-    //IEnumerator CheckPlayerMovement()
-    //{
-    //    Vector3 startPos = gameObject.transform.position;
-    //    yield return new WaitForSeconds(1f);
-
-    //    Vector3 finalPos = gameObject.transform.position;
-
-    //    if (startPos.x != finalPos.x || startPos.y != finalPos.y
-    //        || startPos.z != finalPos.z)
-    //    {
-    //        _playerIsMoving = true;
-    //        SetPlayerState("circle");
-    //    }
-    //    else
-    //    {
-    //        _playerIsMoving = false;
-    //        SetPlayerState("idle");
-    //    }
-    //}
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -97,24 +80,40 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
         if (other.gameObject.CompareTag("Boss"))
         {
-            gameObject.transform.rotation = Quaternion.identity;
-            Vector2 fixPos = new Vector2(_bossPos.position.x, _bossPos.position.y);
-            transform.position = fixPos;
-            _playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
+            _playerRb.velocity = Vector3.zero;
+            _playerRb.angularVelocity = 0f;
+            StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, 1f));
 
-            touchBoss = true;
-            StartCoroutine(WinAnimationTransition());
+            // Win Animation Callback
+            if (_playerRb.velocity == Vector2.zero)
+            {
+                StartCoroutine(WinAnimationTransition());
+                // Game Over menu pop up Action callback
+                StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
+            }
 
-            // Game Over menu pop up Action callback
-            StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
+    }
+
+    IEnumerator AnimateRotationTowards(Transform target, Quaternion rot, float dur)
+    {
+        float time = 0f;
+        Quaternion start = target.rotation;
+        while (time < dur)
+        {
+            target.rotation = Quaternion.Slerp(start, rot, time / dur);
+            yield return null;
+            time += Time.deltaTime;
+        }
+        target.rotation = rot;
+        _playerRb.constraints = RigidbodyConstraints2D.FreezePositionX;
     }
 
     IEnumerator WinAnimationTransition()
     {
         SetCharacterState("roll out");
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
 
         SetCharacterState("idle");
     }
@@ -130,10 +129,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Line"))
-        {
-        }
-
         if (other.gameObject.CompareTag("Push_line"))
         {
             // calculate force vector
@@ -179,7 +174,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         {
             SetAnimation(_circle, false, 1f);
         }
-        else if(state == "roll out")
+        else if (state == "roll out")
         {
             SetAnimation(_rollout, false, 1f);
         }

@@ -1,8 +1,9 @@
-﻿using System.Collections;
+﻿using Spine.Unity;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LineManager : MonoBehaviour
+public class LineManager : MonoBehaviour, IAnimatable
 {
     #region GlobalVarable
 
@@ -16,14 +17,14 @@ public class LineManager : MonoBehaviour
 
     int _cantDrawOverLayerIndex;
 
-    [Space(30f)]
+    [Space(20f)]
     public Gradient lineColor;
     public float linePointsMinDistance; // distance between each points in line
     public float lineWidth;
 
     [SerializeField]
     Camera cam = null;
-    [Space(30f)]
+    [Space(20f)]
     [SerializeField]
     GameObject gameOverMenu;
     [SerializeField]
@@ -32,11 +33,18 @@ public class LineManager : MonoBehaviour
 
     Line _currentLine;
 
+    [Header("Animation")]
+    [Space(20f)]
+    public List<SkeletonAnimation> skeletonAnimationList;
+    [SerializeField] AnimationReferenceAsset _dissapeared;
+
+    string _currentAnimation;
+
     // Check if has draw for first time when start level
     bool hasDraw;
 
     // Line tutorial Animation
-    [Space(30f)]
+    [Space(20f)]
     [SerializeField]
     Animator _handAnim;
     [SerializeField]
@@ -54,7 +62,7 @@ public class LineManager : MonoBehaviour
     {
         if (bigWoodRbs != null)
         {
-            foreach(var bigWoodRb in bigWoodRbs)
+            foreach (var bigWoodRb in bigWoodRbs)
             {
                 bigWoodRb.isKinematic = true;
             }
@@ -198,6 +206,8 @@ public class LineManager : MonoBehaviour
                     }
                     playerRb.isKinematic = false;
                     _playerManager.SetCharacterState("circle");
+
+                    SetCharacterState("animation");
                 }
                 _currentLine.gameObject.layer = _cantDrawOverLayerIndex;
                 _currentLine.UsePhysics(true);
@@ -224,6 +234,26 @@ public class LineManager : MonoBehaviour
         {
             _handAnim = _handAnim3;
             _lineAnim = _lineAnim3;
+        }
+    }
+
+    public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
+    {
+        if (animation.name.Equals(_currentAnimation))
+            return;
+
+        for (int i = 0; i < skeletonAnimationList.Count; i++)
+        {
+            skeletonAnimationList[i].state.SetAnimation(0, animation, loop).TimeScale = timeScale;
+            _currentAnimation = animation.name;
+        }
+    }
+
+    public void SetCharacterState(string state)
+    {
+        if (state == "animation")
+        {
+            SetAnimation(_dissapeared, false, 1f);
         }
     }
 }

@@ -70,10 +70,17 @@ public class LevelSelector : MonoBehaviour
 
             UpdateLevelButtonImg();
 
-            // Update collected stars img
-            for (int i = 0; i < PlayerPrefs.GetInt("lv" + gameObject.name); i++)
+            if (_starContainer.activeInHierarchy == true)
             {
-                _starList[i].SetActive(true);
+                // Update collected stars img
+                for (int i = 0; i < PlayerPrefs.GetInt("lv" + gameObject.name); i++)
+                {
+                    if (_starList[i].activeInHierarchy == false)
+                    {
+                        _starList[i].SetActive(true);
+                        Debug.Log("Total collected stars: " + _starList.Length.ToString());
+                    }
+                }
             }
         }
     }

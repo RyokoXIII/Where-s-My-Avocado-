@@ -7,13 +7,29 @@ public class LevelData
 {
     public string levelID;
 
-    public float playerPosX, playerPosY;
-    public float npcPosX, npcPosY;
-    public float npcParticlePosX, npcParticlePosY;
+    #region Characters
 
-    public float starPosX_1, starPosY_1;
-    public float starPosX_2, starPosY_2;
-    public float starPosX_3, starPosY_3;
+    public float playerPosX, playerPosY;
+    public float bossPosX, bossPosY;
+
+    public int batNum;
+
+    public float batPosX_1, batPosY_1;
+    public float batPosX_2, batPosY_2;
+    public float batPosX_3, batPosY_3;
+
+    public int goblinNum;
+
+    public float goblinPosX_1, goblinPosY_1;
+    public float goblinPosX_2, goblinPosY_2;
+    public float goblinPosX_3, goblinPosY_3;
+
+    public bool hasBat, hasGoblin;
+    public bool rotatePlayer, rotateBoss, rotateBat, rotateGoblin;
+
+    #endregion
+
+    #region Game Objects
 
     public float roundLogPosX, roundLogPosY;
     public float roundLogScaleX, roundLogScaleY, roundLogScaleZ;
@@ -22,6 +38,11 @@ public class LevelData
 
     public float woodPosX1, woodPosX2, woodPosX3, woodPosX4, woodPosX5, woodPosX6;
     public float woodPosY1, woodPosY2, woodPosY3, woodPosY4, woodPosY5, woodPosY6;
+
+    public int cloudNum;
+
+    public float cloudPosX_1, cloudPosX_2, cloudPosX_3, cloudPosX_4, cloudPosX_5, cloudPosX_6;
+    public float cloudPosY_1, cloudPosY_2, cloudPosY_3, cloudPosY_4, cloudPosY_5, cloudPosY_6;
 
     public int seesawNum;
 
@@ -41,10 +62,9 @@ public class LevelData
     public float deadZonePosX, deadZonePosY;
     public float deadZoneScaleX, deadZoneScaleY;
 
-    public bool rotatePlayer, rotateBoss, rotateEnemy;
-    public bool roundLog, deadZone, wood, seesaw, bigWood, woodNest;
-    //public bool sunset_music;
-    //public bool beach_music;
+    public bool roundLog, deadZone, wood, seesaw, bigWood, woodNest, cloud;
 
     public bool tutorial;
+
+    #endregion
 }

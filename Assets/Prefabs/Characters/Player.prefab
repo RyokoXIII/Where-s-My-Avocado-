@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   magnitude: 0.5
   _playerRb: {fileID: 5783493231461236967}
+  _playerColl: {fileID: 0}
   _bossPos: {fileID: 0}
   gameOverContainer: {fileID: 0}
   _bossManager: {fileID: 0}
@@ -183,4 +184,3 @@ MonoBehaviour:
   finalScore: 0
   touchBoundary: 0
   hasFirstStar: 0
-  touchBoss: 0

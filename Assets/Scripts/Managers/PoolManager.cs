@@ -15,7 +15,7 @@ public class PoolManager : MonoSingleton<PoolManager>
 
     #region Global Variables
 
-    public GameObject sunsetCloudSpawner, beachCloudSpawner, particles;
+    public GameObject beachCloudSpawner, particles;
 
     [Space(10f)]
     public List<Pool> poolList;
@@ -31,15 +31,6 @@ public class PoolManager : MonoSingleton<PoolManager>
         _starHandler = StarHandler.Instance;
 
         CreatePooledObj();
-
-        if (_starHandler.levelIndex > 25)
-        {
-            beachCloudSpawner.SetActive(true);            
-        }
-        else
-        {
-            sunsetCloudSpawner.SetActive(true);            
-        }
     }
 
     void CreatePooledObj()
@@ -54,19 +45,11 @@ public class PoolManager : MonoSingleton<PoolManager>
             {
                 GameObject obj = Instantiate(pool.prefab);
 
-                if (pool.tag == "SunsetCloud")
-                {
-                    obj.transform.parent = sunsetCloudSpawner.transform;
-                }
-                else if(pool.tag == "BeachCloud")
-                {
-                    obj.transform.parent = beachCloudSpawner.transform;
-                }
-                else
-                {
-                    obj.transform.parent = particles.transform;
-                }
-
+                //if(pool.tag == "BeachCloud")
+                //{
+                //    obj.transform.parent = beachCloudSpawner.transform;
+                //}
+                obj.transform.parent = particles.transform;
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }

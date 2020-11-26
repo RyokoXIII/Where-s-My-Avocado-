@@ -28,8 +28,6 @@ public class UIManager : MonoSingleton<UIManager>
 
         if (onCallback != null)
             onCallback();
-
-        Debug.Log("Begin coroutine");
     }
 
     // Replay Button

@@ -1,0 +1,55 @@
+
+cloud.png
+size: 604,210
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+clound_1
+  rotate: true
+  xy: 533, 21
+  size: 187, 69
+  orig: 343, 134
+  offset: 78, 32
+  index: -1
+clound_2
+  rotate: true
+  xy: 439, 12
+  size: 196, 92
+  orig: 343, 134
+  offset: 73, 26
+  index: -1
+clound_3
+  rotate: true
+  xy: 334, 13
+  size: 195, 103
+  orig: 343, 134
+  offset: 74, 19
+  index: -1
+clound_4
+  rotate: true
+  xy: 116, 2
+  size: 206, 106
+  orig: 343, 134
+  offset: 65, 19
+  index: -1
+clound_5
+  rotate: true
+  xy: 2, 7
+  size: 201, 112
+  orig: 343, 134
+  offset: 68, 18
+  index: -1
+clound_6
+  rotate: true
+  xy: 224, 7
+  size: 201, 108
+  orig: 343, 134
+  offset: 71, 22
+  index: -1
+clound_7
+  rotate: false
+  xy: 2, 4
+  size: 1, 1
+  orig: 1, 1
+  offset: 0, 0
+  index: -1

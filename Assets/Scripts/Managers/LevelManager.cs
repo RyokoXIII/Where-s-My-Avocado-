@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Spine.Unity;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour
@@ -23,16 +24,17 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject _foregroundContainer;
     [SerializeField] GameObject[] levelForegroundList;
 
-    [Header("Items")]
+    [Header("Enemies")]
     [Space(10f)]
-    [SerializeField] Transform[] starPosList;
+    [SerializeField] GameObject[] goblinList;
+    [SerializeField] GameObject[] batList;
 
     [Header("Obstacles")]
     [Space(10f)]
     [SerializeField] GameObject _obstaclesContainer;
-    [SerializeField] LineManager _bigWoodContainer;
+    [SerializeField] LineManager _lineManager;
     [SerializeField] GameObject _deadZonePrefab;
-    [SerializeField] GameObject _roundLogPrefab, _seeSawPrefab, _woodPrefab, _bigWoodPrefab;
+    [SerializeField] GameObject _roundLogPrefab, _seeSawPrefab, _woodPrefab, _bigWoodPrefab, _cloudPrefab;
 
     //[Header("Musics")]
     //[Space(10f)]
@@ -49,7 +51,17 @@ public class LevelManager : MonoBehaviour
     string _json;
     string _path;
 
-    // List of Obstacles
+    // List of Enemy Positions
+    List<float> goblinPosXList;
+    List<float> goblinPosYList;
+
+    List<float> batPosXList;
+    List<float> batPosYList;
+
+    // List of Obstacle Positions
+    List<float> _cloudPosXList;
+    List<float> _cloudPosYList;
+
     List<float> woodPosXList;
     List<float> woodPosYList;
 
@@ -94,7 +106,7 @@ public class LevelManager : MonoBehaviour
         // Load Level data
         LoadCharacterData();
         LoadForegroundData();
-        LoadItemsData();
+        LoadEnemiesData();
         LoadObstacles();
         LoadTutorial();
 
@@ -106,13 +118,20 @@ public class LevelManager : MonoBehaviour
         Vector3 newPlayerPos = new Vector3(_loadLevelData.playerPosX, _loadLevelData.playerPosY, 0f);
         _playerPos.transform.position = newPlayerPos;
 
-        // Npc pos
-        Vector3 newNpcPos = new Vector3(_loadLevelData.npcPosX, _loadLevelData.npcPosY, 0f);
-        _bossPos.transform.position = newNpcPos;
+        // Boss pos
+        Vector3 newBossPos = new Vector3(_loadLevelData.bossPosX, _loadLevelData.bossPosY, 0f);
+        _bossPos.transform.position = newBossPos;
 
-        // Npc particle pos
-        _bossManager.xPos = _loadLevelData.npcParticlePosX;
-        _bossManager.yPos = _loadLevelData.npcParticlePosY;
+        if (_loadLevelData.rotatePlayer == true)
+        {
+            _playerPos.transform.localScale = new Vector3(-_playerPos.transform.localScale.x, _playerPos.transform.localScale.y,
+                _playerPos.transform.localScale.z);
+        }
+        if (_loadLevelData.rotateBoss == true)
+        {
+            _bossPos.transform.localScale = new Vector3(-_bossPos.transform.localScale.x, _bossPos.transform.localScale.y,
+                _bossPos.transform.localScale.z);
+        }
     }
 
     void LoadForegroundData()
@@ -128,16 +147,73 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    void LoadItemsData()
+    void LoadEnemiesData()
     {
-        Vector3 newStarPos_1 = new Vector3(_loadLevelData.starPosX_1, _loadLevelData.starPosY_1, 0f);
-        Vector3 newStarPos_2 = new Vector3(_loadLevelData.starPosX_2, _loadLevelData.starPosY_2, 0f);
-        Vector3 newStarPos_3 = new Vector3(_loadLevelData.starPosX_3, _loadLevelData.starPosY_3, 0f);
+        LoadEnemiesPosData();
 
-        // Assign new pos to each stars
-        starPosList[0].transform.position = newStarPos_1;
-        starPosList[1].transform.position = newStarPos_2;
-        starPosList[2].transform.position = newStarPos_3;
+        // Goblin Data
+        if (_loadLevelData.hasGoblin == true)
+        {
+            for (int i = 0; i < _loadLevelData.goblinNum; i++)
+            {
+                Vector2 newPos = new Vector2(goblinPosXList[i], goblinPosYList[i]);
+                goblinList[i].transform.position = newPos;
+                goblinList[i].SetActive(true);
+            }
+        }
+        // Bat data
+        if (_loadLevelData.hasBat == true)
+        {
+            for (int i = 0; i < _loadLevelData.batNum; i++)
+            {
+                Vector2 newPos = new Vector2(batPosXList[i], batPosYList[i]);
+                batList[i].transform.position = newPos;
+                batList[i].SetActive(true);
+            }
+        }
+
+        // Rotate Data
+        if (_loadLevelData.rotateBat == true)
+        {
+            for (int i = 0; i < _loadLevelData.batNum; i++)
+            {
+                batList[i].transform.localScale = new
+                   Vector3(-batList[i].transform.localScale.x, batList[i].transform.localScale.y, batList[i].transform.localScale.z);
+            }
+        }
+        if (_loadLevelData.rotateGoblin == true)
+        {
+            for (int i = 0; i < _loadLevelData.goblinNum; i++)
+            {
+                goblinList[i].transform.localScale = new
+                   Vector3(-goblinList[i].transform.localScale.x, goblinList[i].transform.localScale.y, goblinList[i].transform.localScale.z);
+            }
+        }
+    }
+
+    void LoadEnemiesPosData()
+    {
+        goblinPosXList = new List<float>();
+        goblinPosYList = new List<float>();
+
+        goblinPosXList.Add(_loadLevelData.goblinPosX_1);
+        goblinPosXList.Add(_loadLevelData.goblinPosX_2);
+        goblinPosXList.Add(_loadLevelData.goblinPosX_3);
+
+        goblinPosYList.Add(_loadLevelData.goblinPosY_1);
+        goblinPosYList.Add(_loadLevelData.goblinPosY_2);
+        goblinPosYList.Add(_loadLevelData.goblinPosY_3);
+
+        batPosXList = new List<float>();
+        batPosYList = new List<float>();
+
+        batPosXList.Add(_loadLevelData.batPosX_1);
+        batPosXList.Add(_loadLevelData.batPosX_2);
+        batPosXList.Add(_loadLevelData.batPosX_3);
+
+        batPosYList.Add(_loadLevelData.batPosY_1);
+        batPosYList.Add(_loadLevelData.batPosY_2);
+        batPosYList.Add(_loadLevelData.batPosY_3);
     }
 
     void LoadTutorial()
@@ -178,7 +254,7 @@ public class LevelManager : MonoBehaviour
 
         if (_loadLevelData.wood == true)
         {
-            LoadWoodData();
+            LoadWoodPosData();
 
             for (int i = 0; i < _loadLevelData.woodNum; i++)
             {
@@ -201,7 +277,7 @@ public class LevelManager : MonoBehaviour
 
         if (_loadLevelData.seesaw == true)
         {
-            LoadSeesawData();
+            LoadSeesawPosData();
 
             for (int i = 0; i < _loadLevelData.seesawNum; i++)
             {
@@ -218,7 +294,7 @@ public class LevelManager : MonoBehaviour
 
         if (_loadLevelData.bigWood == true)
         {
-            LoadBigWoodData();
+            LoadBigWoodPosData();
 
             for (int i = 0; i < _loadLevelData.bigWoodNum; i++)
             {
@@ -229,7 +305,7 @@ public class LevelManager : MonoBehaviour
 
                 // Add obj to bigWood list in LineManager
                 Rigidbody2D bigWoodRb = obj.GetComponent<Rigidbody2D>();
-                _bigWoodContainer.bigWoodRbs.Add(bigWoodRb);
+                _lineManager.bigWoodRbs.Add(bigWoodRb);
 
                 obj.transform.parent = _obstaclesContainer.transform;
 
@@ -238,9 +314,9 @@ public class LevelManager : MonoBehaviour
             }
         }
 
-        if(_loadLevelData.woodNest == true)
+        if (_loadLevelData.woodNest == true)
         {
-            LoadBigWoodData();
+            LoadBigWoodPosData();
 
             for (int i = 0; i < _loadLevelData.woodNestNum; i++)
             {
@@ -251,7 +327,7 @@ public class LevelManager : MonoBehaviour
 
                 // Add obj to smallWood list in LineManager
                 Rigidbody2D smallWoodRb = obj.GetComponent<Rigidbody2D>();
-                _bigWoodContainer.smallWoodRbs.Add(smallWoodRb);
+                _lineManager.smallWoodRbs.Add(smallWoodRb);
 
                 obj.transform.parent = _obstaclesContainer.transform;
 
@@ -259,9 +335,45 @@ public class LevelManager : MonoBehaviour
                 obj.transform.localScale = newScale;
             }
         }
+
+        if (_loadLevelData.cloud == true)
+        {
+            LoadCloudPosData();
+
+            for (int i = 0; i < _loadLevelData.cloudNum; i++)
+            {
+                Vector2 newPos = new Vector2(_cloudPosXList[i], _cloudPosYList[i]);
+
+                GameObject obj = Instantiate(_cloudPrefab, newPos, Quaternion.identity);
+                obj.transform.parent = _obstaclesContainer.transform;
+
+                SkeletonAnimation objAnim = obj.GetComponent<SkeletonAnimation>();
+                _lineManager.skeletonAnimationList.Add(objAnim);
+            }
+        }
     }
 
-    void LoadWoodData()
+    void LoadCloudPosData()
+    {
+        _cloudPosXList = new List<float>();
+        _cloudPosYList = new List<float>();
+
+        _cloudPosXList.Add(_loadLevelData.cloudPosX_1);
+        _cloudPosXList.Add(_loadLevelData.cloudPosX_2);
+        _cloudPosXList.Add(_loadLevelData.cloudPosX_3);
+        _cloudPosXList.Add(_loadLevelData.cloudPosX_4);
+        _cloudPosXList.Add(_loadLevelData.cloudPosX_5);
+        _cloudPosXList.Add(_loadLevelData.cloudPosX_6);
+
+        _cloudPosYList.Add(_loadLevelData.cloudPosY_1);
+        _cloudPosYList.Add(_loadLevelData.cloudPosY_2);
+        _cloudPosYList.Add(_loadLevelData.cloudPosY_3);
+        _cloudPosYList.Add(_loadLevelData.cloudPosY_4);
+        _cloudPosYList.Add(_loadLevelData.cloudPosY_5);
+        _cloudPosYList.Add(_loadLevelData.cloudPosY_6);
+    }
+
+    void LoadWoodPosData()
     {
         woodPosXList = new List<float>();
         woodPosYList = new List<float>();
@@ -283,7 +395,7 @@ public class LevelManager : MonoBehaviour
         woodPosYList.Add(_loadLevelData.woodPosY6);
     }
 
-    void LoadSeesawData()
+    void LoadSeesawPosData()
     {
         seesawPosXList = new List<float>();
         seesawPosYList = new List<float>();
@@ -305,7 +417,7 @@ public class LevelManager : MonoBehaviour
         seesawRotateZList.Add(_loadLevelData.seesawRotateZ4);
     }
 
-    void LoadBigWoodData()
+    void LoadBigWoodPosData()
     {
         bigWoodPosXList = new List<float>();
         bigWoodPosYList = new List<float>();
