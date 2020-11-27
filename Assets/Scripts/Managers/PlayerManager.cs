@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     [Space(20f)]
     [SerializeField] SkeletonAnimation _skeletonAnimation;
-    [SerializeField] AnimationReferenceAsset _idle, _circle, _rollout;
+    [SerializeField] AnimationReferenceAsset _idle, _circle, _rollout, _finished;
     [SerializeField] string _currentState;
 
     float _currentPos;
@@ -74,6 +74,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         {
             _starCount += 1;
             finalScore = _starCount;
+            Debug.Log("Enemy killed: " + _starCount.ToString());
 
             hasFirstStar = true;
         }
@@ -82,7 +83,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         {
             _playerRb.velocity = Vector3.zero;
             _playerRb.angularVelocity = 0f;
-            StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, 1f));
+            StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
 
             // Win Animation Callback
             if (_playerRb.velocity == Vector2.zero)
@@ -106,16 +107,18 @@ public class PlayerManager : MonoBehaviour, IAnimatable
             time += Time.deltaTime;
         }
         target.rotation = rot;
+        _playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
         _playerRb.constraints = RigidbodyConstraints2D.FreezePositionX;
     }
 
     IEnumerator WinAnimationTransition()
     {
-        SetCharacterState("roll out");
+        //SetCharacterState("roll out");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0f);
 
-        SetCharacterState("idle");
+        SetCharacterState("finisher");
+        //SetCharacterState("idle");
     }
 
     IEnumerator StartAnimationTransition()
@@ -176,7 +179,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         }
         else if (state == "roll out")
         {
-            SetAnimation(_rollout, false, 1f);
+            SetAnimation(_rollout, false, 1.5f);
+        }
+        else if(state == "finisher")
+        {
+            SetAnimation(_finished, false, 1.4f);
         }
     }
 

@@ -9,8 +9,11 @@ public class ToggleUI : MonoBehaviour
     SoundManager _soundManager;
     UIManager _uiManager;
 
-    [SerializeField]
-    GameObject _beachMusicBackground;
+    public bool firstMusicSourceIsPlaying;
+
+    [Space(10f)]
+    [SerializeField] GameObject _beachMusicBackground;
+    [SerializeField] GameObject _titleMusic;
 
 
     private void Start()
@@ -18,11 +21,11 @@ public class ToggleUI : MonoBehaviour
         _uiManager = UIManager.Instance;
         _soundManager = SoundManager.Instance;
 
-        _uiManager.OnOption += ToggleSoundButton;
+        _uiManager.OnOption += MusicButton;
         UpdateButtonState();
     }
 
-    public void ToggleSoundButton()
+    public void MusicButton()
     {
         _soundManager.selectFX.Play();
 
@@ -41,10 +44,14 @@ public class ToggleUI : MonoBehaviour
 
     public void UpdateButtonState()
     {
+        AudioSource activeSource = (firstMusicSourceIsPlaying) ? _soundManager.titleMusic : _soundManager.beachMusicBackground;
+
         if (PlayerPrefs.GetInt("muted", 0) == 0)
         {
             AudioListener.volume = 1;
 
+            //activeSource.volume = 0.4f;
+            //activeSource.Play();
             if (_beachMusicBackground.activeInHierarchy == true)
             {
                 _soundManager.beachMusicBackground.Play();
@@ -55,9 +62,12 @@ public class ToggleUI : MonoBehaviour
         }
         else
         {
+            //activeSource.volume = 0;
+
+            AudioListener.volume = 0;
+
             onImg.SetActive(false);
             offImg.SetActive(true);
-            AudioListener.volume = 0;
         }
     }
 }

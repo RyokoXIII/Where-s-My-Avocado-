@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: bf0dca365423b5241af887919d973b52, type: 2}
+  - {fileID: 2100000, guid: a6a3edf7c0ede2041acb87ed516f7b69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,7 +79,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1101411241
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 2
 --- !u!114 &4488265724137687725
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 009344a066d2aa44eb7e4e2450afc9de, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 67f702dbaf105c149b32d6aa1778eb3e, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -115,6 +115,6 @@ MonoBehaviour:
     materialsInsideMask: []
     materialsOutsideMask: []
   disableRenderingOnOverride: 1
-  _animationName: 
-  loop: 0
+  _animationName: idle
+  loop: 1
   timeScale: 1

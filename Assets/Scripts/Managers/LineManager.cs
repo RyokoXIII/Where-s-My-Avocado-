@@ -21,6 +21,7 @@ public class LineManager : MonoBehaviour, IAnimatable
     public Gradient lineColor;
     public float linePointsMinDistance; // distance between each points in line
     public float lineWidth;
+    [SerializeField] GameObject _trailBlue, _trailRed;
 
     [SerializeField]
     Camera cam = null;
@@ -42,6 +43,7 @@ public class LineManager : MonoBehaviour, IAnimatable
 
     // Check if has draw for first time when start level
     bool hasDraw;
+    bool cantDraw;
 
     // Line tutorial Animation
     [Space(20f)]
@@ -100,7 +102,7 @@ public class LineManager : MonoBehaviour, IAnimatable
         else
         {
             Draw();
-
+            TrailFollowMouse();
             hasDraw = true;
         }
     }
@@ -154,9 +156,11 @@ public class LineManager : MonoBehaviour, IAnimatable
         if (hit)
         {
             EndDraw();
+            cantDraw = true;
         }
         else
         {
+            cantDraw = false;
             _currentLine.AddPoint(beginMousePos);
         }
     }
@@ -209,7 +213,7 @@ public class LineManager : MonoBehaviour, IAnimatable
 
                     SetCharacterState("animation");
                 }
-                _currentLine.gameObject.layer = _cantDrawOverLayerIndex;
+                //_currentLine.gameObject.layer = _cantDrawOverLayerIndex;
                 _currentLine.UsePhysics(true);
                 _currentLine = null;
             }
@@ -254,6 +258,33 @@ public class LineManager : MonoBehaviour, IAnimatable
         if (state == "animation")
         {
             SetAnimation(_dissapeared, false, 1f);
+        }
+    }
+
+    void TrailFollowMouse()
+    {
+        if (cantDraw == false)
+        {
+            if (_trailBlue.activeInHierarchy == false)
+            {
+                _trailBlue.SetActive(true);
+            }
+
+            _trailRed.SetActive(false);
+            Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
+            _trailBlue.transform.position = pos;
+        }
+
+        if (cantDraw == true)
+        {
+            if (_trailRed.activeInHierarchy == false)
+            {
+                _trailRed.SetActive(true);
+            }
+
+            _trailBlue.SetActive(false);
+            Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
+            _trailRed.transform.position = pos;
         }
     }
 }

@@ -2040,7 +2040,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onImg: {fileID: 7984004000737816467}
   offImg: {fileID: 4362929710201912959}
+  firstMusicSourceIsPlaying: 0
   _beachMusicBackground: {fileID: 0}
+  _titleMusic: {fileID: 0}
 --- !u!1 &7793664995243361723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,8 +2261,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skeletonGraphic: {fileID: 201801209434697782}
-  _idle: {fileID: 11400000, guid: c5a7380372a3d104697dff524801fa47, type: 2}
-  _circle: {fileID: 11400000, guid: bd6bd1b13f8a8df46827c6ef8e8959c0, type: 2}
+  _idle: {fileID: 11400000, guid: 27372103611ebec4489983de118ed244, type: 2}
+  _circle: {fileID: 11400000, guid: 2e80bf756e3dbed4ca794e3936a2fb36, type: 2}
   _playerManager: {fileID: 0}
   _stageNumText: {fileID: 1617181930887104331}
   _playButton: {fileID: 7793664995243361723}

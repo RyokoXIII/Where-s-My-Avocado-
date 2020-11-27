@@ -31,6 +31,7 @@ public class EnemyManager : MonoBehaviour, IAnimatable
         {
             Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.5f);
             _pooler.SpawnFromPool("Slash Particle", pos, Quaternion.identity);
+            _pooler.SpawnFromPool("BloodSplatSmall Particle", pos, Quaternion.identity);
 
             _soundManager.collectFX.Play();
             SetCharacterState("2-dead");
@@ -41,7 +42,7 @@ public class EnemyManager : MonoBehaviour, IAnimatable
 
     IEnumerator LateCall()
     {
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1f);
         this.gameObject.SetActive(false);
     }
 

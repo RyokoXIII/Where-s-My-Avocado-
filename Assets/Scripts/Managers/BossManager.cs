@@ -38,17 +38,26 @@ public class BossManager : MonoBehaviour, IAnimatable
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SetCharacterState("2-dead");
+            StartCoroutine(AnimationLateCall());
             _soundManager.goalFX.Play();
 
-            CreateParticleEffect();
+            //CreateParticleEffect();
         }
+    }
+
+    IEnumerator AnimationLateCall()
+    {
+        yield return new WaitForSeconds(0.65f);
+
+        SetCharacterState("2-dead");
+        CreateParticleEffect();
     }
 
     void CreateParticleEffect()
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
         _pooler.SpawnFromPool("Big Slash Particle", pos, Quaternion.identity);
+        _pooler.SpawnFromPool("BloodSplatWide Particle", pos, Quaternion.identity);
     }
 
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
@@ -68,7 +77,7 @@ public class BossManager : MonoBehaviour, IAnimatable
         }
         else if (state == "2-dead")
         {
-            SetAnimation(_dead, false, 1f);
+            SetAnimation(_dead, false, 1.2f);
         }
     }
 }
