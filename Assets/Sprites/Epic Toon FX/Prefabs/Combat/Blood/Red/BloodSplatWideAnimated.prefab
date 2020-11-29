@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 431356}
   - component: {fileID: 19841786}
   - component: {fileID: 19952422}
+  - component: {fileID: 369672068000443057}
   m_Layer: 0
   m_Name: WideSplat
   m_TagString: Untagged
@@ -4740,6 +4741,17 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!210 &369672068000443057
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 140106}
+  m_Enabled: 1
+  m_SortingLayerID: 1101411241
+  m_SortingLayer: 2
+  m_SortingOrder: 2
 --- !u!1 &168136
 GameObject:
   m_ObjectHideFlags: 0
@@ -4990,8 +5002,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.07
-      minScalar: 0.029999997
+      scalar: 0.09
+      minScalar: 0.07
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5416,7 +5428,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.09
+      value: 0.03
       mode: 0
       spread: 0
       speed:
@@ -5873,7 +5885,7 @@ ParticleSystem:
     enabled: 1
     x:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 2
       scalar: 1
       minScalar: 0
       maxCurve:
@@ -5926,7 +5938,7 @@ ParticleSystem:
         m_RotationOrder: 4
     y:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 2
       scalar: 1
       minScalar: 0
       maxCurve:

@@ -10,7 +10,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 1101411241
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 3
 --- !u!1 &2682870558490410212
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
   tutorial: {fileID: 0}
   _levelManager: {fileID: 0}
   skeletonAnimationList: []
-  _dissapeared: {fileID: 11400000, guid: 978bae8a3c89ecd4cbd1c89f361a9ee8, type: 2}
+  _dissapeared: {fileID: 0}
   _handAnim: {fileID: 0}
   _lineAnim: {fileID: 0}
   _handAnim1: {fileID: 0}
@@ -275,6 +275,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4323389486234101714, guid: ce6d4fe6917ba754eb2ef456185e9560,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4323389486234186226, guid: ce6d4fe6917ba754eb2ef456185e9560,
         type: 3}

@@ -537,6 +537,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 734906152, guid: 8bc4a7fcde4c04547bc7115b97d9f96c, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2682870558490410010, guid: 8bc4a7fcde4c04547bc7115b97d9f96c,
         type: 3}
       propertyPath: playerRb
@@ -802,7 +806,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!20 &993046059
 Camera:
   m_ObjectHideFlags: 0
@@ -812,7 +816,7 @@ Camera:
   m_GameObject: {fileID: 993046057}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.13389999, g: 0.14419675, b: 0.16037738, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -829,12 +833,12 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
-  m_Depth: -2
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -854,7 +858,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 993046057}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 750.4277, y: 342.6361, z: -70.1875}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -874,71 +878,81 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
-      propertyPath: poolList.Array.data[1].prefab
+      propertyPath: poolList.Array.data[0].tag
+      value: Slash Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[0].prefab
       value: 
       objectReference: {fileID: 6849857482500291141, guid: ba6cfeff1aefc314d937944796e140c6,
         type: 3}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
-      propertyPath: poolList.Array.data[2].prefab
-      value: 
-      objectReference: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
-    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
-        type: 3}
-      propertyPath: poolList.Array.data[1].size
+      propertyPath: poolList.Array.data[0].size
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: poolList.Array.data[1].tag
-      value: Slash Particle
-      objectReference: {fileID: 0}
-    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
-        type: 3}
-      propertyPath: poolList.Array.data[2].tag
       value: BoundaryParticle
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
-      propertyPath: poolList.Array.data[3].tag
+      propertyPath: poolList.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[1].size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[2].tag
       value: Big Slash Particle
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
-      propertyPath: poolList.Array.data[3].prefab
+      propertyPath: poolList.Array.data[2].prefab
       value: 
       objectReference: {fileID: 4501442132028033311, guid: 651adc1e0b289fe42b06f3f0d4bf6f6c,
         type: 3}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
-      propertyPath: poolList.Array.data[4].tag
+      propertyPath: poolList.Array.data[3].tag
       value: BloodSplatWide Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[3].prefab
+      value: 
+      objectReference: {fileID: 121962, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[4].tag
+      value: BloodSplatSmall Particle
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: poolList.Array.data[4].prefab
       value: 
-      objectReference: {fileID: 121962, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
+      objectReference: {fileID: 168136, guid: 47c6eee70f9391f46a710b0592491a63, type: 3}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: poolList.Array.data[4].size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: poolList.Array.data[5].tag
-      value: BloodSplatSmall Particle
+      value: Star Particle
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: poolList.Array.data[5].prefab
       value: 
-      objectReference: {fileID: 168136, guid: 47c6eee70f9391f46a710b0592491a63, type: 3}
-    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
-        type: 3}
-      propertyPath: poolList.Array.data[5].size
-      value: 3
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 164832, guid: cc4edba986607ba48b17927b27d25e4e, type: 3}
     - target: {fileID: 8808048155689835131, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3437,6 +3451,16 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7793664994945079472, guid: 6061856959f59f447a17796f8e442003,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793664994945079472, guid: 6061856959f59f447a17796f8e442003,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 993046059}
     - target: {fileID: 7793664994945079473, guid: 6061856959f59f447a17796f8e442003,
         type: 3}
       propertyPath: m_LocalPosition.x

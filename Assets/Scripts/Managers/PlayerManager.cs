@@ -39,7 +39,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     [HideInInspector]
     public bool touchBoundary, hasFirstStar;
 
-    public bool hasTurnRight;
     Vector3 _scaleChange;
     #endregion
 
@@ -54,8 +53,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
         // Start Animation callback
         StartCoroutine(StartAnimationTransition());
-
-        hasTurnRight = false;
 
         _scaleChange = new Vector3(0.5f, 0.5f, 0.5f);
     }
@@ -83,6 +80,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         {
             _playerRb.velocity = Vector3.zero;
             _playerRb.angularVelocity = 0f;
+
             StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
 
             // Win Animation Callback
@@ -107,18 +105,16 @@ public class PlayerManager : MonoBehaviour, IAnimatable
             time += Time.deltaTime;
         }
         target.rotation = rot;
+
         _playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
         _playerRb.constraints = RigidbodyConstraints2D.FreezePositionX;
     }
 
     IEnumerator WinAnimationTransition()
     {
-        //SetCharacterState("roll out");
-
         yield return new WaitForSeconds(0f);
 
         SetCharacterState("finisher");
-        //SetCharacterState("idle");
     }
 
     IEnumerator StartAnimationTransition()

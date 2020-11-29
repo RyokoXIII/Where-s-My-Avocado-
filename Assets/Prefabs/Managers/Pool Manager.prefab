@@ -28,7 +28,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8808048155689835131}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8808048155689835141
 GameObject:
@@ -58,7 +58,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2475146551030352958}
   - {fileID: 1541792517451153888}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,101 +74,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7fe36e0bdd1df844873768300c38dfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beachCloudSpawner: {fileID: 2475146551030352959}
   particles: {fileID: 6672995321540277986}
   poolList:
   - tag: BeachCloud
     prefab: {fileID: 3264624762967581280, guid: 7a12e6789ba1c4b4eb26f1049462d237,
       type: 3}
     size: 20
-  - tag: PickUpParticle
-    prefab: {fileID: 1304720526756775227, guid: 1198eab17310ce646ab2ce5edd2ad179,
+  - tag: Slash Particle
+    prefab: {fileID: 6849857482500291141, guid: ba6cfeff1aefc314d937944796e140c6,
       type: 3}
     size: 3
-  - tag: GoalParticle
-    prefab: {fileID: 100004, guid: 3af6f68141914ca43ba39b2403757bd0, type: 3}
-    size: 1
   - tag: BoundaryParticle
     prefab: {fileID: 100000, guid: f06e78284f831ae469c74624ab5d513b, type: 3}
     size: 1
---- !u!1001 &3656534225379816384
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 8808048155689835131}
-    m_Modifications:
-    - target: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 12.98
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.91
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1218190909844291583, guid: ae3d1f3ecde2056479be7b038db95b1e,
-        type: 3}
-      propertyPath: m_Name
-      value: Cloud Spawner
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ae3d1f3ecde2056479be7b038db95b1e, type: 3}
---- !u!1 &2475146551030352959 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1218190909844291583, guid: ae3d1f3ecde2056479be7b038db95b1e,
-    type: 3}
-  m_PrefabInstance: {fileID: 3656534225379816384}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &2475146551030352958 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1218190909844291582, guid: ae3d1f3ecde2056479be7b038db95b1e,
-    type: 3}
-  m_PrefabInstance: {fileID: 3656534225379816384}
-  m_PrefabAsset: {fileID: 0}
+  - tag: Big Slash Particle
+    prefab: {fileID: 4501442132028033311, guid: 651adc1e0b289fe42b06f3f0d4bf6f6c,
+      type: 3}
+    size: 1
+  - tag: BloodSplatWide Particle
+    prefab: {fileID: 121962, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
+    size: 1
+  - tag: BloodSplatSmall Particle
+    prefab: {fileID: 168136, guid: 47c6eee70f9391f46a710b0592491a63, type: 3}
+    size: 3
+  - tag: Star Particle
+    prefab: {fileID: 164832, guid: cc4edba986607ba48b17927b27d25e4e, type: 3}
+    size: 3

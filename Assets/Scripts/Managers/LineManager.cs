@@ -1,4 +1,4 @@
-﻿using Spine.Unity;
+﻿ using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +10,6 @@ public class LineManager : MonoBehaviour, IAnimatable
     public LayerMask cantDrawOverLayer;
     public GameObject linePrefab;
     public Rigidbody2D playerRb;
-    [SerializeField] PlayerManager _playerManager;
 
     public List<Rigidbody2D> bigWoodRbs;
     public List<Rigidbody2D> smallWoodRbs;
@@ -209,7 +208,6 @@ public class LineManager : MonoBehaviour, IAnimatable
                         }
                     }
                     playerRb.isKinematic = false;
-                    _playerManager.SetCharacterState("circle");
 
                     SetCharacterState("animation");
                 }

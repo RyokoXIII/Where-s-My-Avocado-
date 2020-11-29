@@ -36,11 +36,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] GameObject _deadZonePrefab;
     [SerializeField] GameObject _roundLogPrefab, _seeSawPrefab, _woodPrefab, _bigWoodPrefab, _cloudPrefab;
 
-    //[Header("Musics")]
-    //[Space(10f)]
-    //[SerializeField] GameObject _sunsetMusicBackground;
-    //[SerializeField] GameObject _beachMusicBackground;
-
     [Header("Tutorial")]
     [Space(10f)]
     [SerializeField] GameObject _tutorial;

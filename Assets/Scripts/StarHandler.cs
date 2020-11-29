@@ -33,10 +33,14 @@ public class StarHandler : MonoBehaviour
     public int currentStarNum;
     public GameObject[] starScores;
 
+    PoolManager _pooler;
+
     #endregion
 
     private void Start()
     {
+        _pooler = PoolManager.Instance;
+
         levelIndex = PlayerPrefs.GetInt("levelID");
     }
 
@@ -45,19 +49,42 @@ public class StarHandler : MonoBehaviour
     {
         currentStarNum = starNumber;
 
+        StartCoroutine(ShowStarLateCall());
+    }
+
+    IEnumerator ShowStarLateCall()
+    {
         switch (currentStarNum)
         {
             case 1:
+                yield return new WaitForSeconds(0.5f);
+                _pooler.SpawnFromPool("Star Particle", starScores[0].transform.position, Quaternion.identity);
                 starScores[0].SetActive(true);
+
                 break;
             case 2:
+                yield return new WaitForSeconds(0.5f);
+                _pooler.SpawnFromPool("Star Particle", starScores[0].transform.position, Quaternion.identity);
                 starScores[0].SetActive(true);
+
+                yield return new WaitForSeconds(0.5f);
+                _pooler.SpawnFromPool("Star Particle", starScores[1].transform.position, Quaternion.identity);
                 starScores[1].SetActive(true);
+
                 break;
             case 3:
+                yield return new WaitForSeconds(0.5f);
+                _pooler.SpawnFromPool("Star Particle", starScores[0].transform.position, Quaternion.identity);
                 starScores[0].SetActive(true);
+
+                yield return new WaitForSeconds(0.5f);
+                _pooler.SpawnFromPool("Star Particle", starScores[1].transform.position, Quaternion.identity);
                 starScores[1].SetActive(true);
+
+                yield return new WaitForSeconds(0.5f);
+                _pooler.SpawnFromPool("Star Particle", starScores[2].transform.position, Quaternion.identity);
                 starScores[2].SetActive(true);
+
                 break;
             default:
                 Debug.Log("No star collected!");

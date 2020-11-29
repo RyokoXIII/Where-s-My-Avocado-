@@ -15,7 +15,7 @@ public class PoolManager : MonoSingleton<PoolManager>
 
     #region Global Variables
 
-    public GameObject beachCloudSpawner, particles;
+    public GameObject particles;
 
     [Space(10f)]
     public List<Pool> poolList;
@@ -45,10 +45,6 @@ public class PoolManager : MonoSingleton<PoolManager>
             {
                 GameObject obj = Instantiate(pool.prefab);
 
-                //if(pool.tag == "BeachCloud")
-                //{
-                //    obj.transform.parent = beachCloudSpawner.transform;
-                //}
                 obj.transform.parent = particles.transform;
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
