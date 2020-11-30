@@ -1,23 +1,22 @@
 {
   "levelID": "14",
 
-  "playerPosX": -6.64,
-  "playerPosY": 2.56,
+  "playerPosX": -6.75,
+  "playerPosY": 0.81,
 
-  "npcPosX": 7.41,
-  "npcPosY": -2.47,
+  "bossPosX": 7.74,
+  "bossPosY": -3.16,
 
-  "npcParticlePosX": 6.76,
-  "npcParticlePosY": -2.39,
+  "hasGoblin": true,
+  "goblinNum": 2,
+  "goblinPosX_1": -1.09,
+  "goblinPosY_1": -3.16,
+  "goblinPosX_2": 2.41,
+  "goblinPosY_2": -3.16,
 
-  "sunset_background": true,
-  "sunset_music": true,
-  "tutorial": false,
-
-  "starPosX_1": -3.82,
-  "starPosY_1": 0.3,
-  "starPosX_2": -5.09,
-  "starPosY_2": -2.18,
-  "starPosX_3": 0.43,
-  "starPosY_3": -2.18
+  "rotateBat": true,
+  "hasBat": true,
+  "batNum": 1,
+  "batPosX_1": -6.87,
+  "batPosY_1": -2.26
 }

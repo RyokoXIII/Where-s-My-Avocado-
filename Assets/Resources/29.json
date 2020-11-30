@@ -2,36 +2,31 @@
   "levelID": "29",
 
   "playerPosX": -7.4,
-  "playerPosY": -0.44,
+  "playerPosY": -1.15,
 
-  "npcPosX": 8.14,
-  "npcPosY": -0.45,
-
-  "npcParticlePosX": 7.23,
-  "npcParticlePosY": -0.76,
+  "bossPosX": 7.63,
+  "bossPosY": -1.14,
 
   "seesaw": true,
   "seesawNum": 3,
   "seesawPosX1": -4.1,
   "seesawPosX2": -0.48,
   "seesawPosX3": 3.14,
-  "seesawPosY1": -1.73,
-  "seesawPosY2": -2.03,
-  "seesawPosY3": -1.73,
+  "seesawPosY1": -1.92,
+  "seesawPosY2": -2.22,
+  "seesawPosY3": -1.92,
   "seesawScaleX": 0.95,
   "seesawScaleY": 0.95,
   "seesawRotateZ1": -10,
   "seesawRotateZ2": 0,
   "seesawRotateZ3": 10,
 
-  "beach_background": true,
-  "beach_music": true,
-  "tutorial": false,
-
-  "starPosX_1": -4.05,
-  "starPosY_1": -0.69,
-  "starPosX_2": -0.49,
-  "starPosY_2": -0.97,
-  "starPosX_3": 3.07,
-  "starPosY_3": -0.69
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -3.72,
+  "batPosY_1": -0.72,
+  "batPosX_2": -0.53,
+  "batPosY_2": -0.99,
+  "batPosX_3": 2.91,
+  "batPosY_3": -0.72
 }

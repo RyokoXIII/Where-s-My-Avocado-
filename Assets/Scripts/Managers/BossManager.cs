@@ -39,9 +39,6 @@ public class BossManager : MonoBehaviour, IAnimatable
         if (other.gameObject.CompareTag("Player"))
         {
             StartCoroutine(AnimationLateCall());
-            _soundManager.goalFX.Play();
-
-            //CreateParticleEffect();
         }
     }
 
@@ -51,6 +48,7 @@ public class BossManager : MonoBehaviour, IAnimatable
 
         SetCharacterState("2-dead");
         CreateParticleEffect();
+        _soundManager.bossSlashFX.Play();
     }
 
     void CreateParticleEffect()

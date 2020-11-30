@@ -1,21 +1,19 @@
 {
   "levelID": "25",
 
-  "playerPosX": -7.34,
-  "playerPosY": 1.56,
+  "playerPosX": -4.94,
+  "playerPosY": 1.03,
 
-  "npcPosX": -8.27,
-  "npcPosY": -2.47,
+  "rotateBoss": true,
+  "bossPosX": -7.65,
+  "bossPosY": -4.14,
 
-  "npcParticlePosX": -7.87,
-  "npcParticlePosY": -2.69,
-
-  "tutorial": false,
-
-  "starPosX_1": -4.56,
-  "starPosY_1": 0.86,
-  "starPosX_2": -3.05,
-  "starPosY_2": -1.1,
-  "starPosX_3": -4.64,
-  "starPosY_3": -2.12
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -2.28,
+  "batPosY_1": 0.91,
+  "batPosX_2": -0.04,
+  "batPosY_2": -0.94,
+  "batPosX_3": -1.13,
+  "batPosY_3": -3.08
 }

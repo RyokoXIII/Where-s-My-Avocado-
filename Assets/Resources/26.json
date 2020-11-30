@@ -1,14 +1,11 @@
 {
   "levelID": "26",
 
-  "playerPosX": -0.69,
-  "playerPosY": -2.43,
+  "playerPosX": -0.94,
+  "playerPosY": -3.16,
 
-  "npcPosX": 7.41,
-  "npcPosY": -2.47,
-
-  "npcParticlePosX": 6.76,
-  "npcParticlePosY": -2.39,
+  "bossPosX": 7.94,
+  "bossPosY": -3.13,
 
   "wood": true,
   "woodNum": 6,
@@ -33,17 +30,17 @@
   "seesawScaleY": 1,
 
   "deadZone": true,
-  "deadZonePosX": -5.51,
-  "deadZonePosY": -1.67,
-  "deadZoneScaleX": 15.01,
-  "deadZoneScaleY": 3.44,
+  "deadZonePosX": -10.47,
+  "deadZonePosY": -3.62,
+  "deadZoneScaleX": 0.8,
+  "deadZoneScaleY": 1,
 
-  "tutorial": false,
-
-  "starPosX_1": 1.24,
-  "starPosY_1": -2.2,
-  "starPosX_2": 3.03,
-  "starPosY_2": -2.2,
-  "starPosX_3": 4.82,
-  "starPosY_3": -2.2
+  "hasGoblin": true,
+  "goblinNum": 3,
+  "goblinPosX_1": 1.15,
+  "goblinPosY_1": -3.13,
+  "goblinPosX_2": 3.1,
+  "goblinPosY_2": -3.13,
+  "goblinPosX_3": 5.13,
+  "goblinPosY_3": -3.13
 }

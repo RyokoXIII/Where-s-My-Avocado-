@@ -39,7 +39,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     [HideInInspector]
     public bool touchBoundary, hasFirstStar;
 
-    Vector3 _scaleChange;
+    Vector3 _scaleChangeRight, _scaleChangeLeft;
+
     #endregion
 
 
@@ -54,14 +55,19 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         // Start Animation callback
         StartCoroutine(StartAnimationTransition());
 
-        _scaleChange = new Vector3(0.5f, 0.5f, 0.5f);
+        _scaleChangeRight = new Vector3(0.5f, 0.5f, 0.5f);
+        _scaleChangeLeft = new Vector3(-0.5f, 0.5f, 0.5f);
     }
 
     private void Update()
     {
         if (transform.position.x > _currentPos)
         {
-            transform.localScale = _scaleChange;
+            transform.localScale = _scaleChangeRight;
+        }
+        if(transform.position.x < _currentPos)
+        {
+            transform.localScale = _scaleChangeLeft;
         }
     }
 
@@ -179,7 +185,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         }
         else if(state == "finisher")
         {
-            SetAnimation(_finished, false, 1.4f);
+            SetAnimation(_finished, false, 1.5f);
         }
     }
 

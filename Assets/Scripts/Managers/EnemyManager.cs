@@ -13,7 +13,9 @@ public class EnemyManager : MonoBehaviour, IAnimatable
     [SerializeField] AnimationReferenceAsset _idle, _dead;
     [SerializeField] string _currentState;
 
+    bool particleSpawn;
     string _currentAnimation;
+
 
     private void Start()
     {
@@ -29,11 +31,16 @@ public class EnemyManager : MonoBehaviour, IAnimatable
     {
         if (other.CompareTag("Player"))
         {
-            Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.5f);
-            _pooler.SpawnFromPool("Slash Particle", pos, Quaternion.identity);
-            _pooler.SpawnFromPool("BloodSplatSmall Particle", pos, Quaternion.identity);
+            if(particleSpawn == false)
+            {
+                Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.5f);
 
-            _soundManager.collectFX.Play();
+                _pooler.SpawnFromPool("Slash Particle", pos, Quaternion.identity);
+                _pooler.SpawnFromPool("BloodSplatSmall Particle", pos, Quaternion.identity);
+
+                particleSpawn = true;
+            }
+            _soundManager.enemySlashFX.Play();
             SetCharacterState("2-dead");
 
             StartCoroutine(LateCall());

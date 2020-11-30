@@ -10,9 +10,13 @@ public class PageSwiper : MonoBehaviour
     int _maxPage = 12;
     int _prevPage, _currentPage;
 
+    SoundManager _soundManager;
+
 
     private void Start()
     {
+        _soundManager = SoundManager.Instance;
+
         if (PlayerPrefs.GetInt("level") > 0)
         {
             LoadCurrentPage();
@@ -25,6 +29,7 @@ public class PageSwiper : MonoBehaviour
 
     public void NextPage()
     {
+        _soundManager.selectFX.Play();
         if (_currentPage < _maxPage)
         {
             _prevPage = _currentPage;
@@ -41,6 +46,7 @@ public class PageSwiper : MonoBehaviour
 
     public void PreviousPage()
     {
+        _soundManager.selectFX.Play();
         if (_currentPage > 0)
         {
             _prevPage = _currentPage;

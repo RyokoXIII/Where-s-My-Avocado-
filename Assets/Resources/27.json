@@ -1,32 +1,27 @@
 {
   "levelID": "27",
 
-  "playerPosX": -5.25,
-  "playerPosY": -2.44,
+  "playerPosX": -5.36,
+  "playerPosY": -3.16,
 
-  "npcPosX": 8.14,
-  "npcPosY": -2.47,
-
-  "npcParticlePosX": 7.23,
-  "npcParticlePosY": -2.69,
+  "bossPosX": 8.05,
+  "bossPosY": -3.15,
 
   "seesaw": true,
   "seesawNum": 2,
   "seesawPosX1": -0.21,
   "seesawPosX2": 3.18,
-  "seesawPosY1": -3.27,
-  "seesawPosY2": -3.27,
+  "seesawPosY1": -3.52,
+  "seesawPosY2": -3.52,
   "seesawScaleX": 0.85,
   "seesawScaleY": 1,
 
-  "beach_background": true,
-  "beach_music": true,
-  "tutorial": false,
-
-  "starPosX_1": -1.5,
-  "starPosY_1": -2.19,
-  "starPosX_2": 1.61,
-  "starPosY_2": -2.19,
-  "starPosX_3": 4.37,
-  "starPosY_3": -2.19
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -1.43,
+  "batPosY_1": -2.04,
+  "batPosX_2": 1.45,
+  "batPosY_2": -2.04,
+  "batPosX_3": 4.26,
+  "batPosY_3": -2.04
 }

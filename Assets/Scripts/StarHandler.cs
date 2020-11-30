@@ -34,12 +34,14 @@ public class StarHandler : MonoBehaviour
     public GameObject[] starScores;
 
     PoolManager _pooler;
+    SoundManager _soundManager;
 
     #endregion
 
     private void Start()
     {
         _pooler = PoolManager.Instance;
+        _soundManager = SoundManager.Instance;
 
         levelIndex = PlayerPrefs.GetInt("levelID");
     }
@@ -59,30 +61,36 @@ public class StarHandler : MonoBehaviour
             case 1:
                 yield return new WaitForSeconds(0.5f);
                 _pooler.SpawnFromPool("Star Particle", starScores[0].transform.position, Quaternion.identity);
+                _soundManager.showStarFX.Play();
                 starScores[0].SetActive(true);
 
                 break;
             case 2:
                 yield return new WaitForSeconds(0.5f);
                 _pooler.SpawnFromPool("Star Particle", starScores[0].transform.position, Quaternion.identity);
+                _soundManager.showStarFX.Play();
                 starScores[0].SetActive(true);
 
                 yield return new WaitForSeconds(0.5f);
                 _pooler.SpawnFromPool("Star Particle", starScores[1].transform.position, Quaternion.identity);
+                _soundManager.showStarFX.Play();
                 starScores[1].SetActive(true);
 
                 break;
             case 3:
                 yield return new WaitForSeconds(0.5f);
                 _pooler.SpawnFromPool("Star Particle", starScores[0].transform.position, Quaternion.identity);
+                _soundManager.showStarFX.Play();
                 starScores[0].SetActive(true);
 
                 yield return new WaitForSeconds(0.5f);
                 _pooler.SpawnFromPool("Star Particle", starScores[1].transform.position, Quaternion.identity);
+                _soundManager.showStarFX.Play();
                 starScores[1].SetActive(true);
 
                 yield return new WaitForSeconds(0.5f);
                 _pooler.SpawnFromPool("Star Particle", starScores[2].transform.position, Quaternion.identity);
+                _soundManager.showStarFX.Play();
                 starScores[2].SetActive(true);
 
                 break;
