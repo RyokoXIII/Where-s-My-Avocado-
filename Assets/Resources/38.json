@@ -1,23 +1,22 @@
 {
   "levelID": "38",
 
-  "playerPosX": -2.36,
-  "playerPosY": 2.57,
+  "rotatePlayer": true,
+  "playerPosX": -2.11,
+  "playerPosY": 1.88,
 
-  "npcPosX": 7.05,
-  "npcPosY": -2.43,
+  "bossPosX": 7.5,
+  "bossPosY": -3.08,
 
-  "npcParticlePosX": 6.29,
-  "npcParticlePosY": -2.75,
+  "hasGoblin": true,
+  "goblinNum": 1,
+  "goblinPosX_1": 2.01,
+  "goblinPosY_1": -3.11,
 
-  "beach_background": true,
-  "beach_music": true,
-  "tutorial": false,
-
-  "starPosX_1": -3.6,
-  "starPosY_1": -0.74,
-  "starPosX_2": 0.3,
-  "starPosY_2": -2.2,
-  "starPosX_3": 2.14,
-  "starPosY_3": -2.2
+  "hasBat": true,
+  "batNum": 2,
+  "batPosX_1": -6.03,
+  "batPosY_1": -0.81,
+  "batPosX_2": -2.29,
+  "batPosY_2": -1.57
 }

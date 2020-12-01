@@ -31,10 +31,10 @@
   "woodPosY6": -1.82,
 
   "deadZone": true,
-  "deadZonePosX": 0.05,
-  "deadZonePosY": 3.1,
-  "deadZoneScaleX": 1,
-  "deadZoneScaleY": 1,
+  "deadZonePosX": 4.67,
+  "deadZonePosY": 3.91,
+  "deadZoneScaleX": 17,
+  "deadZoneScaleY": 8,
 
   "rotateGoblin": true,
   "hasGoblin": true,

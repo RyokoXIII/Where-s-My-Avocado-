@@ -61,11 +61,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     private void Update()
     {
-        if (transform.position.x > _currentPos)
+        if (_playerRb.velocity.x > 0)
         {
             transform.localScale = _scaleChangeRight;
         }
-        if(transform.position.x < _currentPos)
+        if (_playerRb.velocity.x < 0)
         {
             transform.localScale = _scaleChangeLeft;
         }
@@ -183,7 +183,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         {
             SetAnimation(_rollout, false, 1.5f);
         }
-        else if(state == "finisher")
+        else if (state == "finisher")
         {
             SetAnimation(_finished, false, 1.5f);
         }
@@ -204,6 +204,10 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     void SaveCollectedStarsNum()
     {
+        if (finalScore > 3)
+        {
+            finalScore = 3;
+        }
         StarHandler.Instance.StarAchieved(finalScore);
 
         if (finalScore > PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) && touchBoundary == false)
@@ -211,6 +215,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
             PlayerPrefs.SetInt("lv" + _starHandler.levelIndex, finalScore);
             SaveNextLevel();
         }
+
         Debug.Log("Collected Stars: " + PlayerPrefs.GetInt("lv" + _starHandler.levelIndex));
     }
 

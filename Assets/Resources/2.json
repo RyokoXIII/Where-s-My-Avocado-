@@ -1,11 +1,16 @@
 {
   "levelID": "2",
 
-  "playerPosX": -4.16,
+  "playerPosX": -3.73,
   "playerPosY": 2.57,
 
   "bossPosX": 7.41,
   "bossPosY": -3.1,
+
+  "cloud": true,
+  "cloudNum": 1,
+  "cloudPosX_1": -3.77,
+  "cloudPosY_1": 2.31,
 
   "tutorial": true,
 

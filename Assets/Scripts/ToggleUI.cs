@@ -48,7 +48,7 @@ public class ToggleUI : MonoBehaviour
 
         if (PlayerPrefs.GetInt("muted", 0) == 0)
         {
-            AudioListener.volume = 1;
+            AudioListener.volume = 0.6f;
 
             //activeSource.volume = 0.4f;
             //activeSource.Play();

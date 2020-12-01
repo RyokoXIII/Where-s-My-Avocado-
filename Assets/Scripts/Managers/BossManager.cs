@@ -9,6 +9,7 @@ public class BossManager : MonoBehaviour, IAnimatable
 
     [SerializeField]
     PlayerManager _playerManager;
+    [SerializeField] BoxCollider2D _bossColl;
 
     PoolManager _pooler;
     SoundManager _soundManager;
@@ -38,6 +39,7 @@ public class BossManager : MonoBehaviour, IAnimatable
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            _bossColl.enabled = false;
             StartCoroutine(AnimationLateCall());
         }
     }

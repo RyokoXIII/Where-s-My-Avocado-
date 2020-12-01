@@ -159,6 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerManager: {fileID: 0}
+  _bossColl: {fileID: 4547475957349720644}
   _skeletonAnimation: {fileID: 4547475957349720664}
   _idle: {fileID: 11400000, guid: cff475f601e2b80419adeaa18a5f0d1a, type: 2}
   _dead: {fileID: 11400000, guid: 19e6e4844145d0a49b6f688d5c4c0e35, type: 2}

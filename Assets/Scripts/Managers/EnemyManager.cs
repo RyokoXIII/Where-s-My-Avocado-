@@ -9,11 +9,12 @@ public class EnemyManager : MonoBehaviour, IAnimatable
     SoundManager _soundManager;
 
     [Space(10f)]
+    [SerializeField] BoxCollider2D _goblinColl;
+    [SerializeField] CircleCollider2D _batColl;
     [SerializeField] SkeletonAnimation _skeletonAnimation;
     [SerializeField] AnimationReferenceAsset _idle, _dead;
     [SerializeField] string _currentState;
 
-    bool particleSpawn;
     string _currentAnimation;
 
 
@@ -31,18 +32,26 @@ public class EnemyManager : MonoBehaviour, IAnimatable
     {
         if (other.CompareTag("Player"))
         {
-            if(particleSpawn == false)
+            // Disable collider
+            if (_goblinColl != null)
             {
-                Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.5f);
-
-                _pooler.SpawnFromPool("Slash Particle", pos, Quaternion.identity);
-                _pooler.SpawnFromPool("BloodSplatSmall Particle", pos, Quaternion.identity);
-
-                particleSpawn = true;
+                _goblinColl.enabled = false;
             }
+            else
+            {
+                _batColl.enabled = false;
+            }
+
+            // Partice spawn position
+            Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.5f);
+
+            _pooler.SpawnFromPool("Slash Particle", pos, Quaternion.identity);
+            _pooler.SpawnFromPool("BloodSplatSmall Particle", pos, Quaternion.identity);
+
             _soundManager.enemySlashFX.Play();
             SetCharacterState("2-dead");
 
+            // Disable enemy after delay time
             StartCoroutine(LateCall());
         }
     }

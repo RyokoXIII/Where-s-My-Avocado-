@@ -15,10 +15,10 @@
   "roundLogScaleZ": 1.2,
 
   "deadZone": true,
-  "deadZonePosX": -2.87,
-  "deadZonePosY": -3.18,
-  "deadZoneScaleX": 0.4,
-  "deadZoneScaleY": 0.8,
+  "deadZonePosX": -1.04,
+  "deadZonePosY": -3.96,
+  "deadZoneScaleX": 5,
+  "deadZoneScaleY": 8,
 
   "hasGoblin": true,
   "goblinNum": 3,

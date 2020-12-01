@@ -61,7 +61,6 @@ public class LevelSelector : MonoBehaviour
         if (unlocked == false)
         {
             _levelButton.interactable = false;
-            //_lockedBtn.SetActive(true);
         }
         // Unlock Level
         else
@@ -78,7 +77,6 @@ public class LevelSelector : MonoBehaviour
                     if (_starList[i].activeInHierarchy == false)
                     {
                         _starList[i].SetActive(true);
-                        Debug.Log("Total collected stars: " + _starList.Length.ToString());
                     }
                 }
             }
@@ -105,10 +103,6 @@ public class LevelSelector : MonoBehaviour
         }
         else if (PlayerPrefs.GetInt("lv" + gameObject.name) == 0)
         {
-            //if (_lockedBtn.activeInHierarchy == true)
-            //{
-            //    _lockedBtn.SetActive(false);
-            //}
             _levelBtnSprite.overrideSprite = _unlockedBtn;
             _unlockedTxt.SetActive(true);
         }

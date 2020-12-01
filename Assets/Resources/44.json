@@ -2,13 +2,19 @@
   "levelID": "44",
 
   "playerPosX": -5.91,
-  "playerPosY": 3.59,
+  "playerPosY": 3.26,
 
-  "npcPosX": 6.05,
-  "npcPosY": -2.43,
+  "bossPosX": 7.42,
+  "bossPosY": -3.13,
 
-  "npcParticlePosX": 5.26,
-  "npcParticlePosY": -2.75,
+  "cloud": true,
+  "cloudNum": 3,
+  "cloudPosX_1": -8.21,
+  "cloudPosY_1": 1.62,
+  "cloudPosX_2": -2.25,
+  "cloudPosY_2": 1.62,
+  "cloudPosX_3": -5.9,
+  "cloudPosY_3": 3.02,
 
   "bigWood": true,
   "bigWoodNum": 1,
@@ -18,14 +24,15 @@
   "bigWoodScaleY1": 4,
   "bigWoodRotateZ1": 90,
 
-  "beach_background": true,
-  "beach_music": true,
-  "tutorial": false,
+  "hasGoblin": true,
+  "goblinNum": 1,
+  "goblinPosX_1": 3.74,
+  "goblinPosY_1": -3.12,
 
-  "starPosX_1": -0.92,
-  "starPosY_1": 0.82,
-  "starPosX_2": 1.37,
-  "starPosY_2": -0.56,
-  "starPosX_3": 3.02,
-  "starPosY_3": -2.15
+  "hasBat": true,
+  "batNum": 2,
+  "batPosX_1": 0.15,
+  "batPosY_1": 1,
+  "batPosX_2": 2.26,
+  "batPosY_2": -0.28
 }

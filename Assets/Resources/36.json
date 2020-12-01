@@ -1,23 +1,21 @@
 {
   "levelID": "36",
 
-  "playerPosX": 6.97,
-  "playerPosY": 2.55,
+  "rotatePlayer": true,
+  "playerPosX": 6.37,
+  "playerPosY": 1.01,
 
-  "npcPosX": -6.96,
-  "npcPosY": -2.43,
+  "rotateBoss": true,
+  "bossPosX": -7.18,
+  "bossPosY": -3.12,
 
-  "npcParticlePosX": -6.59,
-  "npcParticlePosY": -2.75,
-
-  "beach_background": true,
-  "beach_music": true,
-  "tutorial": false,
-
-  "starPosX_1": -3.69,
-  "starPosY_1": -1.39,
-  "starPosX_2": -2.04,
-  "starPosY_2": -0.99,
-  "starPosX_3": -0.43,
-  "starPosY_3": -0.67
+  "rotateBat": true,
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -3.31,
+  "batPosY_1": -1.51,
+  "batPosX_2": -0.53,
+  "batPosY_2": -0.77,
+  "batPosX_3": 2.12,
+  "batPosY_3": -0.16
 }

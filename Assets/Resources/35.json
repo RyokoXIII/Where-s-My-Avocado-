@@ -1,14 +1,13 @@
 {
   "levelID": "35",
 
+  "rotatePlayer": true,
   "playerPosX": 7.65,
-  "playerPosY": -3.44,
+  "playerPosY": -4.14,
 
-  "npcPosX": -7.37,
-  "npcPosY": -3.43,
-
-  "npcParticlePosX": -6.97,
-  "npcParticlePosY": -3.7,
+  "rotateBoss": true,
+  "bossPosX": -6.66,
+  "bossPosY": -4.11,
 
   "wood": true,
   "woodNum": 6,
@@ -34,19 +33,18 @@
   "seesawRotateZ1": 0,
 
   "deadZone": true,
-  "deadZonePosX": 9.06,
-  "deadZonePosY": 1.41,
-  "deadZoneScaleX": 7.98,
-  "deadZoneScaleY": 10.88,
+  "deadZonePosX": 8.73,
+  "deadZonePosY": 0.52,
+  "deadZoneScaleX": 7,
+  "deadZoneScaleY": 15,
 
-  "beach_background": true,
-  "beach_music": true,
-  "tutorial": false,
-
-  "starPosX_1": -0.3,
-  "starPosY_1": -3.21,
-  "starPosX_2": 1.56,
-  "starPosY_2": -3.21,
-  "starPosX_3": 3.68,
-  "starPosY_3": -3.21
+  "rotateGoblin": true,
+  "hasGoblin": true,
+  "goblinNum": 3,
+  "goblinPosX_1": -2.9,
+  "goblinPosY_1": -4.12,
+  "goblinPosX_2": -0.4,
+  "goblinPosY_2": -4.12,
+  "goblinPosX_3": 1.96,
+  "goblinPosY_3": -4.12
 }

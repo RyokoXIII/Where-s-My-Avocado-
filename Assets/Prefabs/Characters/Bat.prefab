@@ -148,6 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c98dde5b5f83db45be0b586e86034c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _goblinColl: {fileID: 0}
+  _batColl: {fileID: 3606576876524481555}
   _skeletonAnimation: {fileID: 3606576876524481560}
   _idle: {fileID: 11400000, guid: 0c085616553c95c4c8a39502f94d5b82, type: 2}
   _dead: {fileID: 11400000, guid: 540ad3b116046e5478874b54a9afc40f, type: 2}

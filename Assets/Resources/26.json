@@ -30,10 +30,10 @@
   "seesawScaleY": 1,
 
   "deadZone": true,
-  "deadZonePosX": -10.47,
-  "deadZonePosY": -3.62,
-  "deadZoneScaleX": 0.8,
-  "deadZoneScaleY": 1,
+  "deadZonePosX": -6.99,
+  "deadZonePosY": -3.24,
+  "deadZoneScaleX": 14,
+  "deadZoneScaleY": 7,
 
   "hasGoblin": true,
   "goblinNum": 3,

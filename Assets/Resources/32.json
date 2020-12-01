@@ -1,14 +1,12 @@
 {
   "levelID": "32",
 
-  "playerPosX": -5.36,
-  "playerPosY": 2.55,
+  "playerPosX": -5.76,
+  "playerPosY": 2.02,
 
-  "npcPosX": -6.1,
-  "npcPosY": -2.43,
-
-  "npcParticlePosX": -5.8,
-  "npcParticlePosY": -2.75,
+  "rotateBoss": true,
+  "bossPosX": -6.98,
+  "bossPosY": -3.09,
 
   "seesaw": true,
   "seesawNum": 3,
@@ -18,20 +16,18 @@
   "seesawPosY2": 0.88,
   "seesawPosX3": 5.87,
   "seesawPosY3": 1.26,
-  "seesawScaleX": 0.9,
-  "seesawScaleY": 0.9,
+  "seesawScaleX": 0.8,
+  "seesawScaleY": 0.8,
   "seesawRotateZ1": -10,
   "seesawRotateZ2": 0,
   "seesawRotateZ3": 10,
 
-  "beach_background": true,
-  "beach_music": true,
-  "tutorial": false,
-
-  "starPosX_1": -1.71,
-  "starPosY_1": 2.17,
-  "starPosX_2": 1.97,
-  "starPosY_2": 1.82,
-  "starPosX_3": 5,
-  "starPosY_3": 2.1
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -1.74,
+  "batPosY_1": 2.2,
+  "batPosX_2": 1.91,
+  "batPosY_2": 1.82,
+  "batPosX_3": 5.07,
+  "batPosY_3": 2.2
 }
