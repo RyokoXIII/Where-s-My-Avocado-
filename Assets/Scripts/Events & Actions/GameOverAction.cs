@@ -32,7 +32,6 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     UIManager _uiManager;
     StarHandler _starHandler;
     SoundManager _soundManager;
-    SceneFader _sceneFader;
 
     #endregion
 
@@ -42,7 +41,6 @@ public class GameOverAction : MonoBehaviour, IAnimatable
         _uiManager = UIManager.Instance;
         _starHandler = StarHandler.Instance;
         _soundManager = SoundManager.Instance;
-        _sceneFader = SceneFader.Instance;
 
         // Subcribe button to action event
         _uiManager.OnClick += OnReplay;
@@ -63,15 +61,15 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     {
         // Restart current game level
         _soundManager.selectFX.Play();
-        _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
     }
 
     public void OnBackToMainMenu()
     {
-        int scene = 0;
-
         _soundManager.selectFX.Play();
-        _sceneFader.FadeTo(scene);
+        PlayerPrefs.SetInt("backtomenu", 1);
+
+        SceneManager.LoadScene(1);
     }
 
     public void OnPlayNext()
@@ -79,38 +77,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
         _soundManager.selectFX.Play();
         PlayerPrefs.SetInt("levelID", _starHandler.levelIndex + 1);
 
-        _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
-
-        //if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
-        //{
-        //    if (_starHandler.levelIndex < 50)
-        //    {
-        //        _soundManager.selectFX.Play();
-
-        //        PlayerPrefs.SetInt("levelID", _starHandler.levelIndex + 1);
-
-        //        _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
-        //    }
-        //    else if (_starHandler.levelIndex == 50)
-        //    {
-        //        // Game is finished
-        //        _soundManager.selectFX.Play();
-
-        //        _playButton.SetActive(false);
-
-        //        Vector2 _newHomeBtnPos = new Vector2(0, 0);
-        //        _homeButton.transform.position = _newHomeBtnPos;
-        //    }
-        //}
-        //else
-        //{
-        //    _soundManager.selectFX.Play();
-
-        //    _playButton.SetActive(false);
-
-        //    Vector2 _newHomeBtnPos = new Vector2(0, 0);
-        //    _homeButton.transform.position = _newHomeBtnPos;
-        //}
+        SceneManager.LoadScene(1);
     }
 
     void UpdateGameOverMenu()
@@ -120,11 +87,11 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
         if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {
-            if (_starHandler.levelIndex < 50)
+            if (_starHandler.levelIndex < 51)
             {
                 return;
             }
-            else if (_starHandler.levelIndex == 50)
+            else if (_starHandler.levelIndex == 51)
             {
                 _playButton.SetActive(false);
 

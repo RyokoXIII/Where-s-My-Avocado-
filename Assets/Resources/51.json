@@ -4,20 +4,20 @@
   "playerPosX": -4.06,
   "playerPosY": 2.24,
 
-  "npcPosX": 3.91,
-  "npcPosY": 2.24,
+  "bossPosX": 7.5,
+  "bossPosY": -3.11,
 
-  "npcParticlePosX": 3.91,
-  "npcParticlePosY": 2.24,
+  "cloud": true,
+  "cloudNum": 1,
+  "cloudPosX_1": -4.07,
+  "cloudPosY_1": 2.02,
 
-  "sunset_background": true,
-  "sunset_music": true,
-  "tutorial": false,
-
-  "starPosX_1": -4.05,
-  "starPosY_1": -0.13,
-  "starPosX_2": -2.76,
-  "starPosY_2": -1.09,
-  "starPosX_3": -1.04,
-  "starPosY_3": -1.09
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -1.77,
+  "batPosY_1": -1.03,
+  "batPosX_2": 0.76,
+  "batPosY_2": -1.03,
+  "batPosX_3": 3.26,
+  "batPosY_3": -1.03
 }

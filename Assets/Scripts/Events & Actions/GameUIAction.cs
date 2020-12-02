@@ -11,7 +11,6 @@ public class GameUIAction : MonoBehaviour
 
     UIManager _uiManager;
     SoundManager _soundManager;
-    SceneFader _sceneFader;
 
     #endregion
 
@@ -20,7 +19,6 @@ public class GameUIAction : MonoBehaviour
     {
         _uiManager = UIManager.Instance;
         _soundManager = SoundManager.Instance;
-        _sceneFader = SceneFader.Instance;
 
         _uiManager.OnClick += OnReplay;
         _uiManager.OnMenu += OnMenu;
@@ -41,7 +39,7 @@ public class GameUIAction : MonoBehaviour
     {
         // Restart current game level
         _soundManager.selectFX.Play();
-        _sceneFader.FadeTo(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
     }
 
     public void OnMenu()

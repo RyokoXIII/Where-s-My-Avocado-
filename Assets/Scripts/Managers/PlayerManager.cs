@@ -57,18 +57,25 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
         _scaleChangeRight = new Vector3(0.5f, 0.5f, 0.5f);
         _scaleChangeLeft = new Vector3(-0.5f, 0.5f, 0.5f);
+        check = true;
     }
-
+    bool check;
     private void Update()
     {
-        if (_playerRb.velocity.x > 0)
+        if (check && Vector2.Distance(transform.position, _bossPos.position) < 3f)
         {
-            transform.localScale = _scaleChangeRight;
+            if (/*_playerRb.velocity.x > 0*/ transform.localScale.x <0)
+            {
+                check = false;
+                transform.localScale = _scaleChangeRight;
+            }
+            //if (_playerRb.velocity.x < 0)
+            //{
+            //    check = false;
+            //    transform.localScale = _scaleChangeLeft;
+            //}
         }
-        if (_playerRb.velocity.x < 0)
-        {
-            transform.localScale = _scaleChangeLeft;
-        }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -224,7 +231,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     {
         if (PlayerPrefs.GetInt("level") <= _starHandler.levelIndex)
         {
-            if (_starHandler.levelIndex < 50)
+            if (_starHandler.levelIndex <= 50)
             {
                 PlayerPrefs.SetInt("level", _starHandler.levelIndex + 1);
             }

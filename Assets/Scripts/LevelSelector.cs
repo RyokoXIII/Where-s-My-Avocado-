@@ -28,7 +28,6 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] GameObject _starContainer;
 
     SoundManager _soundManager;
-    SceneFader _sceneFader;
 
     #endregion
 
@@ -36,7 +35,6 @@ public class LevelSelector : MonoBehaviour
     void Start()
     {
         _soundManager = SoundManager.Instance;
-        _sceneFader = SceneFader.Instance;
 
         // Set Button texts
         _unlockedText.text = gameObject.name;
@@ -47,12 +45,6 @@ public class LevelSelector : MonoBehaviour
     {
         UpdateLevelStatus();
         UpdateStarLevel();
-    }
-
-    public void OnBack()
-    {
-        _soundManager.backFX.Play();
-        _sceneFader.FadeTo(0);
     }
 
     private void UpdateStarLevel()
@@ -121,12 +113,12 @@ public class LevelSelector : MonoBehaviour
     // Select level
     public void Select()
     {
-        int levelSceneIndex = 2;
+        int levelSceneIndex = 1;
         Time.timeScale = 1f;
 
         PlayerPrefs.SetInt("levelID", int.Parse(gameObject.name));
 
         _soundManager.selectFX.Play();
-        _sceneFader.FadeTo(levelSceneIndex);
+        SceneManager.LoadScene(levelSceneIndex);
     }
 }
