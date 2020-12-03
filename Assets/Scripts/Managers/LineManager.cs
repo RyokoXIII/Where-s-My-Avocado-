@@ -1,4 +1,4 @@
-﻿ using Spine.Unity;
+﻿using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,6 +55,8 @@ public class LineManager : MonoBehaviour, IAnimatable
     [SerializeField] Animator _handAnim1;
     [SerializeField] Animator _handAnim2, _handAnim3;
     [SerializeField] Animator _lineAnim1, _lineAnim2, _lineAnim3;
+
+    RaycastHit2D hit;
 
     #endregion
 
@@ -138,8 +140,10 @@ public class LineManager : MonoBehaviour, IAnimatable
 
     void BeginDraw()
     {
-        _currentLine = Instantiate(linePrefab, this.transform).GetComponent<Line>();
+        _currentLine = Instantiate(linePrefab).GetComponent<Line>();
+        _currentLine.transform.parent = gameObject.transform;
 
+        _currentLine.edgeCollide.enabled = false;
         _currentLine.UsePhysics(false);
         _currentLine.SetLineColor(lineColor);
         _currentLine.SetPointsMinDistance(linePointsMinDistance);
@@ -150,7 +154,7 @@ public class LineManager : MonoBehaviour, IAnimatable
     {
         Vector2 beginMousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        RaycastHit2D hit = Physics2D.CircleCast(beginMousePos, lineWidth / 3f, Vector2.zero, 1f, cantDrawOverLayer);
+        hit = Physics2D.CircleCast(beginMousePos, lineWidth / 3f, Vector2.zero, 1f, cantDrawOverLayer);
 
         if (hit)
         {
@@ -170,6 +174,12 @@ public class LineManager : MonoBehaviour, IAnimatable
         {
             if (_currentLine.pointsCount < 2)
             {
+                // Destroy line if points < 2 and not hit cant draw layer
+                if (!hit)
+                {
+                    Destroy(_currentLine.gameObject);
+                }
+
                 if (hasDraw == false)
                 {
                     if (bigWoodRbs != null)
@@ -207,13 +217,15 @@ public class LineManager : MonoBehaviour, IAnimatable
                             smallWoodRb.isKinematic = false;
                         }
                     }
-                    playerRb.isKinematic = false;
+                    _currentLine.edgeCollide.enabled = true;
 
+                    playerRb.isKinematic = false;
                     SetCharacterState("animation");
+
+                    //_currentLine.gameObject.layer = _cantDrawOverLayerIndex;
+                    _currentLine.UsePhysics(true);
+                    _currentLine = null;
                 }
-                //_currentLine.gameObject.layer = _cantDrawOverLayerIndex;
-                _currentLine.UsePhysics(true);
-                _currentLine = null;
             }
         }
     }

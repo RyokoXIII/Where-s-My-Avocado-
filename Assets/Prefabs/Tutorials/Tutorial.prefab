@@ -48,6 +48,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial_hand
       objectReference: {fileID: 0}
+    - target: {fileID: 5539158283386121508, guid: 2a63e4eee1c55b74bbd609614e61c0a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5539158283386121514, guid: 2a63e4eee1c55b74bbd609614e61c0a7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -188,6 +193,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial_hand3
       objectReference: {fileID: 0}
+    - target: {fileID: 7916614887086341535, guid: 8b9aaf20ba317d94c93d0d21153efa65,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b9aaf20ba317d94c93d0d21153efa65, type: 3}
 --- !u!4 &6966147701668119184 stripped
@@ -207,6 +217,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Line_tut2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1867881452042101440, guid: ec6d2b8878fedea46a897f0d38cb7d4d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1867881452042101441, guid: ec6d2b8878fedea46a897f0d38cb7d4d,
         type: 3}
@@ -348,6 +363,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial_hand2
       objectReference: {fileID: 0}
+    - target: {fileID: 7805675950360251411, guid: 7e2008eff493f654e805505b6b309e2d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e2008eff493f654e805505b6b309e2d, type: 3}
 --- !u!4 &5558982463457190744 stripped
@@ -422,6 +442,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Line_tut1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5252397470906149870, guid: 9581cf44d74c4f34ab1a4c94d3acf78e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5252397470906149871, guid: 9581cf44d74c4f34ab1a4c94d3acf78e,
         type: 3}
@@ -507,6 +532,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Line_tut3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8185718588206533547, guid: b82727e1d19ecd744bf0af222af1d922,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b82727e1d19ecd744bf0af222af1d922, type: 3}

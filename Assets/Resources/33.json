@@ -9,15 +9,15 @@
 
   "seesaw": true,
   "seesawNum": 1,
-  "seesawPosX1": 0.22,
+  "seesawPosX1": 0.42,
   "seesawPosY1": -1.24,
   "seesawScaleX": 1.6,
-  "seesawScaleY": 1.3,
+  "seesawScaleY": 1,
   "seesawRotateZ1": 25,
 
   "hasGoblin": true,
   "goblinNum": 1,
-  "goblinPosX_1": 4.24,
+  "goblinPosX_1": 4.46,
   "goblinPosY_1": -2.14,
 
   "hasBat": true,

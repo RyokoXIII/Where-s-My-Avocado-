@@ -29,7 +29,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     [SerializeField] AnimationReferenceAsset _idle, _circle, _rollout, _finished;
     [SerializeField] string _currentState;
 
-    float _currentPos;
     string _currentAnimation;
 
     int _starCount = 0;
@@ -40,6 +39,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     public bool touchBoundary, hasFirstStar;
 
     Vector3 _scaleChangeRight, _scaleChangeLeft;
+    bool checkFlipPlayer;
+    bool bePushed;
 
     #endregion
 
@@ -50,32 +51,35 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         _uiManager = UIManager.Instance;
         _starHandler = StarHandler.Instance;
 
-        _currentPos = transform.position.x;
-
         // Start Animation callback
         StartCoroutine(StartAnimationTransition());
 
         _scaleChangeRight = new Vector3(0.5f, 0.5f, 0.5f);
         _scaleChangeLeft = new Vector3(-0.5f, 0.5f, 0.5f);
-        check = true;
+        checkFlipPlayer = true;
     }
-    bool check;
+
     private void Update()
     {
-        if (check && Vector2.Distance(transform.position, _bossPos.position) < 3f)
+        if (checkFlipPlayer && (Vector2.Distance(transform.position, _bossPos.position) < 4f))
         {
-            if (/*_playerRb.velocity.x > 0*/ transform.localScale.x <0)
+            if (_bossPos.transform.localScale.x > 0)
             {
-                check = false;
+                checkFlipPlayer = false;
                 transform.localScale = _scaleChangeRight;
             }
+            else
+            {
+                checkFlipPlayer = false;
+                transform.localScale = _scaleChangeLeft;
+            }
+
             //if (_playerRb.velocity.x < 0)
             //{
             //    check = false;
             //    transform.localScale = _scaleChangeLeft;
             //}
         }
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -134,21 +138,22 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     {
         SetCharacterState("idle");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         SetCharacterState("circle");
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Push_line"))
+        if (other.gameObject.CompareTag("Push_line") && (bePushed == false))
         {
             // calculate force vector
             _force = transform.position - other.transform.position;
             // normalize force vector to get direction only and trim magnitude
             _force.Normalize();
-
             _playerRb.AddForce(_force.normalized * magnitude, ForceMode2D.Impulse);
+
+            bePushed = true;
         }
 
         if (other.gameObject.CompareTag("Boundary"))
@@ -231,7 +236,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     {
         if (PlayerPrefs.GetInt("level") <= _starHandler.levelIndex)
         {
-            if (_starHandler.levelIndex <= 50)
+            if (_starHandler.levelIndex < 60)
             {
                 PlayerPrefs.SetInt("level", _starHandler.levelIndex + 1);
             }

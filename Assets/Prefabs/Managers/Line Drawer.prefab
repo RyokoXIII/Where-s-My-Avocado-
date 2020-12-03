@@ -62,13 +62,12 @@ MonoBehaviour:
   linePrefab: {fileID: 8414326349067234759, guid: 7f4ab14ea4a9d6f4d98c3bd22392c393,
     type: 3}
   playerRb: {fileID: 0}
-  _playerManager: {fileID: 0}
   bigWoodRbs: []
   smallWoodRbs: []
   lineColor:
     serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
+    key0: {r: 0, g: 0.72461605, b: 1, a: 1}
+    key1: {r: 0, g: 0.11764717, b: 1, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
@@ -95,7 +94,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   linePointsMinDistance: 0.2
-  lineWidth: 0.15
+  lineWidth: 0.25
   _trailBlue: {fileID: 1711886205}
   _trailRed: {fileID: 734793992}
   cam: {fileID: 0}
@@ -104,7 +103,7 @@ MonoBehaviour:
   tutorial: {fileID: 0}
   _levelManager: {fileID: 0}
   skeletonAnimationList: []
-  _dissapeared: {fileID: 0}
+  _dissapeared: {fileID: 11400000, guid: 1fa2b351a81d8fa48b52f3b6369a542e, type: 2}
   _handAnim: {fileID: 0}
   _lineAnim: {fileID: 0}
   _handAnim1: {fileID: 0}
@@ -130,11 +129,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 439160, guid: e75cf0dba269ca24e943482d44f3011f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.81
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 439160, guid: e75cf0dba269ca24e943482d44f3011f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.44
+      value: 2.36
       objectReference: {fileID: 0}
     - target: {fileID: 439160, guid: e75cf0dba269ca24e943482d44f3011f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -199,6 +198,18 @@ PrefabInstance:
     - target: {fileID: 19893186, guid: e75cf0dba269ca24e943482d44f3011f, type: 3}
       propertyPath: playOnAwake
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19893186, guid: e75cf0dba269ca24e943482d44f3011f, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.r
+      value: 0.09718761
+      objectReference: {fileID: 0}
+    - target: {fileID: 19893186, guid: e75cf0dba269ca24e943482d44f3011f, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.g
+      value: 0.9472175
+      objectReference: {fileID: 0}
+    - target: {fileID: 19893186, guid: e75cf0dba269ca24e943482d44f3011f, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key0.b
+      value: 0.9811321
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e75cf0dba269ca24e943482d44f3011f, type: 3}

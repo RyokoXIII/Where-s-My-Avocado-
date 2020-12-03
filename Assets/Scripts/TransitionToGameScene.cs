@@ -12,7 +12,7 @@ public class TransitionToGameScene : MonoBehaviour
 
     IEnumerator Transition()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(Random.Range(0.3f,1f));
 
         int levelSceneIndex;
 

@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 7468328132468012702}
   - component: {fileID: 7468328132468012703}
   - component: {fileID: 7468328132468012699}
-  - component: {fileID: 8845982652474106843}
   m_Layer: 8
   m_Name: see-saw
   m_TagString: Untagged
@@ -156,15 +155,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.76, y: 0.56}
   m_EdgeRadius: 0
---- !u!114 &8845982652474106843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7468328132468012700}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b4e8ca73d857ba408723acffad7cac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

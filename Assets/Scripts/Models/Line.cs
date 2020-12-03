@@ -9,6 +9,7 @@ public class Line : MonoBehaviour
     public LineRenderer lineRenderer;
     public Rigidbody2D rb;
     public EdgeCollider2D edgeCollide;
+    [SerializeField] PhysicsMaterial2D _circleBoost;
 
     [HideInInspector]
     public List<Vector2> points = new List<Vector2>();
@@ -34,6 +35,7 @@ public class Line : MonoBehaviour
         CircleCollider2D _circleCollider = this.gameObject.AddComponent<CircleCollider2D>();
         _circleCollider.offset = newPoint;
         _circleCollider.radius = _circleColliderRadius;
+        _circleCollider.sharedMaterial = _circleBoost;
 
         // Line Renderer
         lineRenderer.positionCount = pointsCount;

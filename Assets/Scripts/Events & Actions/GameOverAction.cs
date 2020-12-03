@@ -21,6 +21,8 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     [SerializeField]
     PlayerManager _playerManager;
 
+    int _maxLevels = 60;
+
     [SerializeField]
     Text _stageNumText;
 
@@ -87,11 +89,11 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
         if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {
-            if (_starHandler.levelIndex < 51)
+            if (_starHandler.levelIndex < _maxLevels)
             {
                 return;
             }
-            else if (_starHandler.levelIndex == 51)
+            else if (_starHandler.levelIndex == _maxLevels)
             {
                 _playButton.SetActive(false);
 

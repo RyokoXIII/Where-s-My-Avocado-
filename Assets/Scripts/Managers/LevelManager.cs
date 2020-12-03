@@ -283,7 +283,7 @@ public class LevelManager : MonoBehaviour
                 obj.transform.parent = _obstaclesContainer.transform;
 
                 Vector3 newScale = new Vector3(_loadLevelData.seesawScaleX, _loadLevelData.seesawScaleY, obj.transform.localScale.z);
-                obj.transform.localScale = newScale;
+                obj.GetComponentInChildren<Transform>().Find("see_saw").localScale = newScale;
             }
         }
 
