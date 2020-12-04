@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BackToExit : MonoBehaviour
 {
@@ -22,7 +23,17 @@ public class BackToExit : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-            _uiManager.ExitMenu();
+        {
+            if (_exitMenu != null)
+            {
+                _uiManager.ExitMenu();
+            }
+            else
+            {
+                PlayerPrefs.SetInt("backtomenu", 1);
+                SceneManager.LoadScene(1);
+            }
+        }
     }
 
     void ExitMenu()

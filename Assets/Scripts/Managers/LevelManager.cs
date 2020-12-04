@@ -84,16 +84,24 @@ public class LevelManager : MonoBehaviour
         {
             if (dataList[i].Equals(PlayerPrefs.GetInt("levelID")))
             {
-                _path = Application.dataPath + "/Resources/" + dataList[i].ToString() + ".json";
+                //_path = Application.dataPath + "/Resources/" + dataList[i].ToString() + ".json";
+                _path = dataList[i].ToString();
             }
         }
+        Debug.Log(_path);
 
         LoadLevelData(_path);
     }
 
     void LoadLevelData(string path)
     {
-        _json = File.ReadAllText(path);
+        //WWW reader = new WWW(path);
+        //_json = reader.text;
+        //_json = File.ReadAllText(path);
+
+        TextAsset file = Resources.Load(path) as TextAsset;
+        _json = file.text;
+
         Debug.Log(_json);
         // Get all data from json
         _loadLevelData = JsonUtility.FromJson<LevelData>(_json);

@@ -18,6 +18,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     [SerializeField]
     Rigidbody2D _playerRb;
     [SerializeField]
+    CircleCollider2D _playerColl;
+    [SerializeField]
     Transform _bossPos;
     [SerializeField]
     GameObject gameOverContainer;
@@ -32,11 +34,15 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     string _currentAnimation;
 
     int _starCount = 0;
+    int _cantDrawOverLayerIndex;
+
     [HideInInspector]
     public int finalScore;
 
     [HideInInspector]
-    public bool touchBoundary, hasFirstStar;
+    public bool touchBoundary, hasFirstStar, hasKillBoss;
+
+    public bool touchGround;
 
     Vector3 _scaleChangeRight, _scaleChangeLeft;
     bool checkFlipPlayer;
@@ -51,6 +57,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         _uiManager = UIManager.Instance;
         _starHandler = StarHandler.Instance;
 
+        _cantDrawOverLayerIndex = LayerMask.NameToLayer("End");
+
         // Start Animation callback
         StartCoroutine(StartAnimationTransition());
 
@@ -61,7 +69,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     private void Update()
     {
-        if (checkFlipPlayer && (Vector2.Distance(transform.position, _bossPos.position) < 4f))
+        if (checkFlipPlayer && (Vector2.Distance(transform.position, _bossPos.position) < 10f))
         {
             if (_bossPos.transform.localScale.x > 0)
             {
@@ -73,12 +81,29 @@ public class PlayerManager : MonoBehaviour, IAnimatable
                 checkFlipPlayer = false;
                 transform.localScale = _scaleChangeLeft;
             }
+        }
 
-            //if (_playerRb.velocity.x < 0)
-            //{
-            //    check = false;
-            //    transform.localScale = _scaleChangeLeft;
-            //}
+        if (touchGround == false)
+        {
+            if ((Vector2.Distance(transform.position, _bossPos.position) < 3f) && transform.position.y < -2.5f)
+            {
+                if (transform.position.x < _bossPos.position.x)
+                {
+                    transform.localScale = _scaleChangeRight;
+                }
+                else
+                {
+                    transform.localScale = _scaleChangeLeft;
+                }
+                touchGround = true;
+
+                // Rotate smoothly to 0
+                StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
+                StartCoroutine(WinAnimationTransition()); // Kill boss animation
+
+                // Game Over menu pop up Action callback
+                StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
+            }
         }
     }
 
@@ -95,18 +120,28 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
         if (other.gameObject.CompareTag("Boss"))
         {
-            _playerRb.velocity = Vector3.zero;
+            gameObject.layer = _cantDrawOverLayerIndex;
+            hasKillBoss = true;
+
+            // Stop moving
+            _playerRb.velocity = new Vector3(0, _playerRb.velocity.y, 0);
             _playerRb.angularVelocity = 0f;
 
-            StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
-
             // Win Animation Callback
-            if (_playerRb.velocity == Vector2.zero)
-            {
-                StartCoroutine(WinAnimationTransition());
-                // Game Over menu pop up Action callback
-                StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
-            }
+            //if (_playerRb.velocity == Vector2.zero)
+            //{
+
+            //if (transform.position.y > _bossPos.position.y && transform.position.y < -2f)
+            //{
+            //    StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
+            //    StartCoroutine(WinAnimationTransition());
+            //    //_playerRb.isKinematic = true;
+            //    _playerRb.constraints = RigidbodyConstraints2D.FreezePositionX;
+
+            //    // Game Over menu pop up Action callback
+            //    StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
+            //}
+            //}
 
         }
     }
@@ -236,7 +271,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     {
         if (PlayerPrefs.GetInt("level") <= _starHandler.levelIndex)
         {
-            if (_starHandler.levelIndex < 60)
+            if (_starHandler.levelIndex < 55)
             {
                 PlayerPrefs.SetInt("level", _starHandler.levelIndex + 1);
             }

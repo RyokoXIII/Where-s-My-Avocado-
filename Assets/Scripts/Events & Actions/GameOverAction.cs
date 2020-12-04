@@ -21,7 +21,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     [SerializeField]
     PlayerManager _playerManager;
 
-    int _maxLevels = 60;
+    int _maxLevels = 55;
 
     [SerializeField]
     Text _stageNumText;

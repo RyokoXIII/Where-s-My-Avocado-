@@ -35,7 +35,7 @@ public class MainMenuAction : MonoBehaviour
     {
         int sum = 0;
 
-        for (int i = 1; i <= 60; i++)
+        for (int i = 1; i <= 55; i++)
         {
             // Add level star numbers to starNum text
             sum += PlayerPrefs.GetInt("lv" + i.ToString());

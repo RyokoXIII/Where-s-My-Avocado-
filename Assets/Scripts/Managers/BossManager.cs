@@ -21,6 +21,7 @@ public class BossManager : MonoBehaviour, IAnimatable
     [SerializeField] string _currentState;
 
     string _currentAnimation;
+    bool _checkPlayAnim;
 
     #endregion
 
@@ -33,16 +34,32 @@ public class BossManager : MonoBehaviour, IAnimatable
         // Animation
         _currentState = "1-idle";
         SetCharacterState(_currentState);
+        _checkPlayAnim = false;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void Update()
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (_playerManager.touchGround == true && !_checkPlayAnim)
         {
-            _bossColl.enabled = false;
+            _checkPlayAnim = true;
+            //_bossColl.enabled = false;
             StartCoroutine(AnimationLateCall());
+            //_playerManager.touchGround = false;
         }
     }
+
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.gameObject.CompareTag("Player"))
+    //    {
+    //        if (_playerManager.touchGround == true)
+    //        {
+    //            _bossColl.enabled = false;
+    //            StartCoroutine(AnimationLateCall());
+
+    //        }
+    //    }
+    //}
 
     IEnumerator AnimationLateCall()
     {

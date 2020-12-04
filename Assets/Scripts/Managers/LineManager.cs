@@ -10,6 +10,7 @@ public class LineManager : MonoBehaviour, IAnimatable
     public LayerMask cantDrawOverLayer;
     public GameObject linePrefab;
     public Rigidbody2D playerRb;
+    [SerializeField] PlayerManager _playerManager;
 
     public List<Rigidbody2D> bigWoodRbs;
     public List<Rigidbody2D> smallWoodRbs;
@@ -43,6 +44,7 @@ public class LineManager : MonoBehaviour, IAnimatable
     // Check if has draw for first time when start level
     bool hasDraw;
     bool cantDraw;
+    bool stopTrail;
 
     // Line tutorial Animation
     [Space(20f)]
@@ -79,7 +81,7 @@ public class LineManager : MonoBehaviour, IAnimatable
         }
 
         playerRb.isKinematic = true;
-        _cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOverLayer");
+        //_cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOverLayer");
 
         // Animation
         if ((_handAnim != null) && (_lineAnim != null))
@@ -99,20 +101,22 @@ public class LineManager : MonoBehaviour, IAnimatable
             {
                 Destroy(_currentLine.gameObject);
             }
+            stopTrail = true;
         }
         else
         {
             Draw();
-            TrailFollowMouse();
             hasDraw = true;
+
+            TrailFollowMouse();
+            stopTrail = false;
         }
     }
 
     // Touch input
     void Draw()
     {
-        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
-       || Input.GetMouseButtonDown(0))
+        if (Input.touchCount > 0 && (Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
         {
             BeginDraw();
 
@@ -123,10 +127,10 @@ public class LineManager : MonoBehaviour, IAnimatable
                 _lineAnim.SetBool("IsDrawing", true);
             }
             tutorial.SetActive(false);
+
         }
 
-        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
-            || _currentLine != null)
+        if (Input.touchCount > 0 && (Input.GetTouch(0).phase == TouchPhase.Moved) || _currentLine != null)
         {
             Drawing();
         }
@@ -218,8 +222,17 @@ public class LineManager : MonoBehaviour, IAnimatable
                         }
                     }
                     _currentLine.edgeCollide.enabled = true;
+                    // Check if player has killed boss
+                    if (_playerManager.hasKillBoss == true)
+                    {
+                        playerRb.isKinematic = true;
+                    }
+                    else
+                    {
+                        playerRb.isKinematic = false;
 
-                    playerRb.isKinematic = false;
+                    }
+
                     SetCharacterState("animation");
 
                     //_currentLine.gameObject.layer = _cantDrawOverLayerIndex;
@@ -273,6 +286,15 @@ public class LineManager : MonoBehaviour, IAnimatable
 
     void TrailFollowMouse()
     {
+        //Vector3 touchPos = Input.GetTouch(0).position;
+        Vector2 _pos;
+
+        if (stopTrail == true)
+        {
+            _trailBlue.SetActive(false);
+            _trailRed.SetActive(false);
+        }
+
         if (cantDraw == false)
         {
             if (_trailBlue.activeInHierarchy == false)
@@ -281,8 +303,8 @@ public class LineManager : MonoBehaviour, IAnimatable
             }
 
             _trailRed.SetActive(false);
-            Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
-            _trailBlue.transform.position = pos;
+            _pos = cam.ScreenToWorldPoint(Input.mousePosition);
+            _trailBlue.transform.position = _pos;
         }
 
         if (cantDraw == true)
@@ -293,8 +315,8 @@ public class LineManager : MonoBehaviour, IAnimatable
             }
 
             _trailBlue.SetActive(false);
-            Vector2 pos = cam.ScreenToWorldPoint(Input.mousePosition);
-            _trailRed.transform.position = pos;
+            _pos = cam.ScreenToWorldPoint(Input.mousePosition);
+            _trailRed.transform.position = _pos;
         }
     }
 }
