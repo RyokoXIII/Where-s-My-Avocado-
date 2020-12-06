@@ -3,15 +3,15 @@
 
   "rotatePlayer": true,
   "playerPosX": -2.11,
-  "playerPosY": 1.88,
+  "playerPosY": 2.05,
 
   "bossPosX": 7.5,
-  "bossPosY": -3.08,
+  "bossPosY": -2.99,
 
   "hasGoblin": true,
   "goblinNum": 1,
   "goblinPosX_1": 2.01,
-  "goblinPosY_1": -3.11,
+  "goblinPosY_1": -3.02,
 
   "hasBat": true,
   "batNum": 2,

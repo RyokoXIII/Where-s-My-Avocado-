@@ -2,10 +2,10 @@
   "levelID": "43",
 
   "playerPosX": -0.46,
-  "playerPosY": 0.87,
+  "playerPosY": 1.03,
 
   "bossPosX": 4.29,
-  "bossPosY": -4.12,
+  "bossPosY": -3.99,
 
   "cloud": true,
   "cloudNum": 2,

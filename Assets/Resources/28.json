@@ -3,11 +3,11 @@
 
   "rotatePlayer": true,
   "playerPosX": 7.33,
-  "playerPosY": 0.84,
+  "playerPosY": 1.02,
 
   "rotateBoss": true,
   "bossPosX": -7.79,
-  "bossPosY": -3.15,
+  "bossPosY": -3.02,
 
   "seesaw": true,
   "seesawNum": 2,

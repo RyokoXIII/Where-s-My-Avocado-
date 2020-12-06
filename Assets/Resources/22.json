@@ -5,24 +5,24 @@
   "playerPosY": 0.01,
 
   "bossPosX": 8.01,
-  "bossPosY": -4.12,
+  "bossPosY": -3.99,
 
   "roundLog": true,
   "roundLogPosX": -2.13,
   "roundLogPosY": 2.99,
-  "roundLogScaleX": 1.22,
-  "roundLogScaleY": 1.22,
-  "roundLogScaleZ": 1.22,
+  "roundLogScaleX": 1.2,
+  "roundLogScaleY": 1.2,
+  "roundLogScaleZ": 1.2,
 
   "hasGoblin": true,
   "goblinNum": 2,
   "goblinPosX_1": -2.16,
-  "goblinPosY_1": -4.16,
+  "goblinPosY_1": -4,
   "goblinPosX_2": 5.05,
-  "goblinPosY_2": -4.16,
+  "goblinPosY_2": -4,
 
   "hasBat": true,
   "batNum": 1,
   "batPosX_1": 0.28,
-  "batPosY_1": -3.33
+  "batPosY_1": -3.17
 }

@@ -2,11 +2,11 @@
   "levelID": "32",
 
   "playerPosX": -5.76,
-  "playerPosY": 2.02,
+  "playerPosY": 2.04,
 
   "rotateBoss": true,
   "bossPosX": -6.98,
-  "bossPosY": -3.09,
+  "bossPosY": -3,
 
   "seesaw": true,
   "seesawNum": 3,

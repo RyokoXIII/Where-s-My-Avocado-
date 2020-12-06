@@ -2,10 +2,10 @@
   "levelID": "26",
 
   "playerPosX": -0.94,
-  "playerPosY": -3.16,
+  "playerPosY": -2.99,
 
   "bossPosX": 7.94,
-  "bossPosY": -3.13,
+  "bossPosY": -3.01,
 
   "wood": true,
   "woodNum": 6,
@@ -38,9 +38,9 @@
   "hasGoblin": true,
   "goblinNum": 3,
   "goblinPosX_1": 1.15,
-  "goblinPosY_1": -3.13,
+  "goblinPosY_1": -3,
   "goblinPosX_2": 3.1,
-  "goblinPosY_2": -3.13,
+  "goblinPosY_2": -3,
   "goblinPosX_3": 5.13,
-  "goblinPosY_3": -3.13
+  "goblinPosY_3": -3
 }

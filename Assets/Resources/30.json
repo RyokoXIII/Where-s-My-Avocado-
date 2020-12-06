@@ -6,7 +6,7 @@
   "playerPosY": 1.5,
 
   "bossPosX": -0.24,
-  "bossPosY": -4.12,
+  "bossPosY": -3.99,
 
   "seesaw": true,
   "seesawNum": 1,
@@ -25,7 +25,7 @@
   "hasGoblin": true,
   "goblinNum": 2,
   "goblinPosX_1": -5.51,
-  "goblinPosY_1": -4.12,
+  "goblinPosY_1": -4.01,
   "goblinPosX_2": -3.56,
-  "goblinPosY_2": -4.12
+  "goblinPosY_2": -4.01
 }

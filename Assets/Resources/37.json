@@ -3,10 +3,10 @@
 
   "rotatePlayer": true,
   "playerPosX": -2.44,
-  "playerPosY": 2.65,
+  "playerPosY": 2.7,
 
   "bossPosX": 7.59,
-  "bossPosY": -4.4,
+  "bossPosY": -4.31,
 
   "hasBat": true,
   "batNum": 3,

@@ -3,11 +3,11 @@
 
   "rotatePlayer": true,
   "playerPosX": 7.65,
-  "playerPosY": -4.14,
+  "playerPosY": -3.99,
 
   "rotateBoss": true,
   "bossPosX": -6.66,
-  "bossPosY": -4.11,
+  "bossPosY": -4,
 
   "wood": true,
   "woodNum": 6,
@@ -27,7 +27,7 @@
   "seesaw": true,
   "seesawNum": 1,
   "seesawPosX1": 7.17,
-  "seesawPosY1": -1.79,
+  "seesawPosY1": -1.61,
   "seesawScaleX": 1,
   "seesawScaleY": 1,
   "seesawRotateZ1": 0,
@@ -42,9 +42,9 @@
   "hasGoblin": true,
   "goblinNum": 3,
   "goblinPosX_1": -2.9,
-  "goblinPosY_1": -4.12,
+  "goblinPosY_1": -4.01,
   "goblinPosX_2": -0.4,
-  "goblinPosY_2": -4.12,
+  "goblinPosY_2": -4.01,
   "goblinPosX_3": 1.96,
-  "goblinPosY_3": -4.12
+  "goblinPosY_3": -4.01
 }

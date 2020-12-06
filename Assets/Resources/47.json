@@ -2,12 +2,12 @@
   "levelID": "47",
 
   "rotatePlayer": true,
-  "playerPosX": 3.74,
-  "playerPosY": -3.15,
+  "playerPosX": 3.58,
+  "playerPosY": -2.95,
 
   "rotateBoss": true,
   "bossPosX": -7.4,
-  "bossPosY": -3.13,
+  "bossPosY": -3.02,
 
   "cloud": true,
   "cloudNum": 2,
@@ -33,9 +33,9 @@
   "hasGoblin": true,
   "goblinNum": 3,
   "goblinPosX_1": -3.98,
-  "goblinPosY_1": -3.12,
+  "goblinPosY_1": -3.01,
   "goblinPosX_2": -1.73,
-  "goblinPosY_2": -3.12,
+  "goblinPosY_2": -3.01,
   "goblinPosX_3": 0.61,
-  "goblinPosY_3": -3.12
+  "goblinPosY_3": -3.01
 }

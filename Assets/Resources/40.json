@@ -6,7 +6,7 @@
 
   "rotateBoss": true,
   "bossPosX": -3.92,
-  "bossPosY": -4.15,
+  "bossPosY": -3.99,
 
   "cloud": true,
   "cloudNum": 1,
@@ -17,7 +17,7 @@
   "hasGoblin": true,
   "goblinNum": 1,
   "goblinPosX_1": 0.14,
-  "goblinPosY_1": -4.13,
+  "goblinPosY_1": -4.02,
 
   "hasBat": true,
   "batNum": 2,

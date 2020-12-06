@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     string _currentAnimation;
 
     int _starCount = 0;
-    int _cantDrawOverLayerIndex;
+    int _cantCollideLayerIndex;
 
     [HideInInspector]
     public int finalScore;
@@ -57,7 +57,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         _uiManager = UIManager.Instance;
         _starHandler = StarHandler.Instance;
 
-        _cantDrawOverLayerIndex = LayerMask.NameToLayer("End");
+        _cantCollideLayerIndex = LayerMask.NameToLayer("End");
 
         // Start Animation callback
         StartCoroutine(StartAnimationTransition());
@@ -69,7 +69,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     private void Update()
     {
-        if (checkFlipPlayer && (Vector2.Distance(transform.position, _bossPos.position) < 10f))
+        // Flip player sprite
+        if (checkFlipPlayer && (Vector2.Distance(transform.position, _bossPos.position) < 12f))
         {
             if (_bossPos.transform.localScale.x > 0)
             {
@@ -85,7 +86,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
         if (touchGround == false)
         {
-            if ((Vector2.Distance(transform.position, _bossPos.position) < 3f) && transform.position.y < -2.5f)
+            Debug.Log(Vector2.Distance(transform.position, _bossPos.position).ToString());
+            if ((Vector2.Distance(transform.position, _bossPos.position) < 3f) && transform.position.y < _bossPos.position.y + 2f) 
             {
                 if (transform.position.x < _bossPos.position.x)
                 {
@@ -95,7 +97,9 @@ public class PlayerManager : MonoBehaviour, IAnimatable
                 {
                     transform.localScale = _scaleChangeLeft;
                 }
+
                 touchGround = true;
+                gameObject.layer = _cantCollideLayerIndex; // change layer
 
                 // Rotate smoothly to 0
                 StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
@@ -118,32 +122,31 @@ public class PlayerManager : MonoBehaviour, IAnimatable
             hasFirstStar = true;
         }
 
-        if (other.gameObject.CompareTag("Boss"))
-        {
-            gameObject.layer = _cantDrawOverLayerIndex;
-            hasKillBoss = true;
+        //if (other.gameObject.CompareTag("Boss"))
+        //{
+        //    gameObject.layer = _cantCollideLayerIndex;
+        //    hasKillBoss = true;
 
-            // Stop moving
-            _playerRb.velocity = new Vector3(0, _playerRb.velocity.y, 0);
-            _playerRb.angularVelocity = 0f;
+        //    // Stop moving
+        //    _playerRb.velocity = new Vector3(0, _playerRb.velocity.y, 0);
+        //    _playerRb.angularVelocity = 0f;
 
-            // Win Animation Callback
-            //if (_playerRb.velocity == Vector2.zero)
-            //{
+        //    // Win Animation Callback
+        //    if (_playerRb.velocity == Vector2.zero)
+        //    {
 
-            //if (transform.position.y > _bossPos.position.y && transform.position.y < -2f)
-            //{
-            //    StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
-            //    StartCoroutine(WinAnimationTransition());
-            //    //_playerRb.isKinematic = true;
-            //    _playerRb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        //        if (transform.position.y > _bossPos.position.y && transform.position.y < -2f)
+        //        {
+        //            StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
+        //            StartCoroutine(WinAnimationTransition());
+        //            //_playerRb.isKinematic = true;
+        //            _playerRb.constraints = RigidbodyConstraints2D.FreezePositionX;
 
-            //    // Game Over menu pop up Action callback
-            //    StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
-            //}
-            //}
-
-        }
+        //            // Game Over menu pop up Action callback
+        //            StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
+        //        }
+        //    }
+        //}
     }
 
     IEnumerator AnimateRotationTowards(Transform target, Quaternion rot, float dur)

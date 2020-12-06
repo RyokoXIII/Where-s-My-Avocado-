@@ -2,10 +2,10 @@
   "levelID": "33",
 
   "playerPosX": -6.57,
-  "playerPosY": -2.11,
+  "playerPosY": -1.98,
 
   "bossPosX": 7.65,
-  "bossPosY": -2.08,
+  "bossPosY": -1.99,
 
   "seesaw": true,
   "seesawNum": 1,
@@ -18,7 +18,7 @@
   "hasGoblin": true,
   "goblinNum": 1,
   "goblinPosX_1": 4.46,
-  "goblinPosY_1": -2.14,
+  "goblinPosY_1": -2,
 
   "hasBat": true,
   "batNum": 2,
