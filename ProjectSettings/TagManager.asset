@@ -12,6 +12,7 @@ TagManager:
   - Push_line
   - Enemy
   - Boss
+  - Water
   layers:
   - Default
   - TransparentFX

@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     PoolManager _pooler;
     UIManager _uiManager;
     StarHandler _starHandler;
+    SoundManager _soundManager;
 
     Vector2 _force;
     public float magnitude = 5f;
@@ -41,12 +42,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     [HideInInspector]
     public bool touchBoundary, hasFirstStar, hasKillBoss;
-
     public bool touchGround;
 
     Vector3 _scaleChangeRight, _scaleChangeLeft;
     bool checkFlipPlayer;
-    bool bePushed;
+    bool bePushed, splash;
 
     #endregion
 
@@ -56,6 +56,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         _pooler = PoolManager.Instance;
         _uiManager = UIManager.Instance;
         _starHandler = StarHandler.Instance;
+        _soundManager = SoundManager.Instance;
 
         _cantCollideLayerIndex = LayerMask.NameToLayer("End");
 
@@ -125,6 +126,21 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
             hasFirstStar = true;
         }
+
+        if (other.gameObject.CompareTag("Water"))
+        {
+            if(splash == false)
+            {
+                // Particle
+                Vector2 Splashpos = new Vector2(transform.position.x, transform.position.y - 0.2f);
+                _pooler.SpawnFromPool("WaterSplash Particle", Splashpos, Quaternion.Euler(-90, 0, 0));
+
+                _soundManager.waterSplashFX.Play();
+                // Game Over menu pop up Action callback
+                StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
+                splash = true;
+            }
+        }
     }
 
     IEnumerator AnimateRotationTowards(Transform target, Quaternion rot, float dur)
@@ -174,7 +190,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
         if (other.gameObject.CompareTag("Boundary"))
         {
-            CreateParticleEffect();
+            // Particle
+            _pooler.SpawnFromPool("BoundaryParticle", transform.position, Quaternion.identity);
 
             gameObject.transform.rotation = Quaternion.identity;
             _playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -215,11 +232,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         {
             SetAnimation(_finished, false, 1.5f);
         }
-    }
-
-    void CreateParticleEffect()
-    {
-        _pooler.SpawnFromPool("BoundaryParticle", transform.position, Quaternion.identity);
     }
 
     // Game over menu popup
