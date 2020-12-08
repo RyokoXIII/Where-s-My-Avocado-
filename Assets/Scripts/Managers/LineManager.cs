@@ -59,6 +59,7 @@ public class LineManager : MonoBehaviour, IAnimatable
     [SerializeField] Animator _lineAnim1, _lineAnim2, _lineAnim3;
 
     RaycastHit2D hit;
+    Touch touch;
 
     #endregion
 
@@ -116,7 +117,23 @@ public class LineManager : MonoBehaviour, IAnimatable
     // Touch input
     void Draw()
     {
-        if (Input.touchCount > 0 && (Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
+        //for (int i = 0; i < Input.touchCount; i++)
+        //{
+        //    if (Input.touches[i].phase == TouchPhase.Began)
+        //    {
+        //        touch = Input.touches[i];
+        //    }
+        //    if (Input.touches[i].phase == TouchPhase.Moved)
+        //    {
+        //        touch = Input.touches[i];
+        //    }
+        //    if (Input.touches[i].phase == TouchPhase.Ended)
+        //    {
+        //        touch = Input.touches[i];
+        //    }
+        //}
+
+        if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
         {
             BeginDraw();
 
@@ -127,15 +144,14 @@ public class LineManager : MonoBehaviour, IAnimatable
                 _lineAnim.SetBool("IsDrawing", true);
             }
             tutorial.SetActive(false);
-
         }
 
-        if (Input.touchCount > 0 && (Input.GetTouch(0).phase == TouchPhase.Moved) || _currentLine != null)
+        if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Moved) || _currentLine != null)
         {
             Drawing();
         }
 
-        if ((Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Ended)
            || Input.GetMouseButtonUp(0))
         {
             EndDraw();

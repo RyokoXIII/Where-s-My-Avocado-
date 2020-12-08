@@ -2,20 +2,20 @@
   "levelID": "3",
 
   "rotatePlayer": true,
-  "playerPosX": -2.3,
+  "playerPosX": -2.19,
   "playerPosY": 3.25,
 
   "bossPosX": 7.41,
-  "bossPosY": -3.14,
+  "bossPosY": -2.99,
 
   "tutorial": false,
 
   "hasGoblin": true,
   "goblinNum": 2,
   "goblinPosX_1": -1.04,
-  "goblinPosY_1": -3.14,
+  "goblinPosY_1": -3.02,
   "goblinPosX_2": 1.77,
-  "goblinPosY_2": -3.14,
+  "goblinPosY_2": -3.02,
 
   "rotateBat": true,
   "hasBat": true,

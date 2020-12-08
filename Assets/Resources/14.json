@@ -2,17 +2,17 @@
   "levelID": "14",
 
   "playerPosX": -6.75,
-  "playerPosY": 0.81,
+  "playerPosY": 1.05,
 
   "bossPosX": 7.74,
-  "bossPosY": -3.16,
+  "bossPosY": -2.98,
 
   "hasGoblin": true,
   "goblinNum": 2,
   "goblinPosX_1": -1.09,
-  "goblinPosY_1": -3.16,
+  "goblinPosY_1": -3.02,
   "goblinPosX_2": 2.41,
-  "goblinPosY_2": -3.16,
+  "goblinPosY_2": -3.02,
 
   "rotateBat": true,
   "hasBat": true,

@@ -2,10 +2,10 @@
   "levelID": "1",
 
   "playerPosX": -6,
-  "playerPosY": 1.68,
+  "playerPosY": 1.65,
 
   "bossPosX": 7.41,
-  "bossPosY": -3.14,
+  "bossPosY": -2.98,
 
   "tutorial": true,
 
@@ -17,9 +17,9 @@
   "hasGoblin": true,
   "goblinNum": 3,
   "goblinPosX_1": -2.06,
-  "goblinPosY_1": -3.14,
+  "goblinPosY_1": -3,
   "goblinPosX_2": 0.59,
-  "goblinPosY_2": -3.14,
+  "goblinPosY_2": -3,
   "goblinPosX_3": 3.16,
-  "goblinPosY_3": -3.14
+  "goblinPosY_3": -3
 }

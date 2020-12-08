@@ -39,27 +39,17 @@ public class BossManager : MonoBehaviour, IAnimatable
 
     private void Update()
     {
+        CheckBossGetKilled();
+    }
+
+    void CheckBossGetKilled()
+    {
         if (_playerManager.touchGround == true && !_checkPlayAnim)
         {
             _checkPlayAnim = true;
-            //_bossColl.enabled = false;
             StartCoroutine(AnimationLateCall());
-            //_playerManager.touchGround = false;
         }
     }
-
-    //private void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.gameObject.CompareTag("Player"))
-    //    {
-    //        if (_playerManager.touchGround == true)
-    //        {
-    //            _bossColl.enabled = false;
-    //            StartCoroutine(AnimationLateCall());
-
-    //        }
-    //    }
-    //}
 
     IEnumerator AnimationLateCall()
     {

@@ -590,8 +590,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 719473900, guid: 8bc4a7fcde4c04547bc7115b97d9f96c, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 719473900, guid: 8bc4a7fcde4c04547bc7115b97d9f96c, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 734793992, guid: 8bc4a7fcde4c04547bc7115b97d9f96c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1711886205, guid: 8bc4a7fcde4c04547bc7115b97d9f96c, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712204323, guid: 8bc4a7fcde4c04547bc7115b97d9f96c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712204323, guid: 8bc4a7fcde4c04547bc7115b97d9f96c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -5.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730613913, guid: 8bc4a7fcde4c04547bc7115b97d9f96c, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1730613913, guid: 8bc4a7fcde4c04547bc7115b97d9f96c, type: 3}
+      propertyPath: prewarm
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2682870558490410010, guid: 8bc4a7fcde4c04547bc7115b97d9f96c,
@@ -1415,6 +1443,53 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 49892717093652022, guid: b80a5a70128c64f48b0d00f28851d32d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 39d3875d1330d8246b055192c90227e2,
+        type: 3}
+    - target: {fileID: 49892717093652022, guid: b80a5a70128c64f48b0d00f28851d32d,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 106960451832251616, guid: b80a5a70128c64f48b0d00f28851d32d,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 106960451832251616, guid: b80a5a70128c64f48b0d00f28851d32d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 106960451832251616, guid: b80a5a70128c64f48b0d00f28851d32d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 106960451832251617, guid: b80a5a70128c64f48b0d00f28851d32d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1137d35186f10684cb203c9751ce7682,
+        type: 3}
+    - target: {fileID: 106960451832251617, guid: b80a5a70128c64f48b0d00f28851d32d,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 5.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 106960451832251617, guid: b80a5a70128c64f48b0d00f28851d32d,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 106960451832251617, guid: b80a5a70128c64f48b0d00f28851d32d,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3400732180878093878, guid: b80a5a70128c64f48b0d00f28851d32d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1475,6 +1550,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tutorial
       objectReference: {fileID: 0}
+    - target: {fileID: 7722093501743403377, guid: b80a5a70128c64f48b0d00f28851d32d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ddbb5474dfe7a9540b132ec0c88c3d1b,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b80a5a70128c64f48b0d00f28851d32d, type: 3}
 --- !u!1 &1402280383 stripped

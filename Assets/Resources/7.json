@@ -5,7 +5,7 @@
   "playerPosY": 1.99,
 
   "bossPosX": 3.78,
-  "bossPosY": -2.15,
+  "bossPosY": -1.99,
 
   "cloud": true,
   "cloudNum": 1,
@@ -15,9 +15,9 @@
   "hasGoblin": true,
   "goblinNum": 2,
   "goblinPosX_1": -2.3,
-  "goblinPosY_1": -2.15,
+  "goblinPosY_1": -2,
   "goblinPosX_2": 0.32,
-  "goblinPosY_2": -2.15,
+  "goblinPosY_2": -2,
 
   "hasBat": true,
   "batNum": 1,
