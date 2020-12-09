@@ -5,18 +5,18 @@ using Spine.Unity;
 
 public class EnemyManager : MonoBehaviour, IAnimatable
 {
+    #region Global variables
     PoolManager _pooler;
     SoundManager _soundManager;
 
     [Space(10f)]
-    [SerializeField] BoxCollider2D _goblinColl;
-    [SerializeField] CircleCollider2D _batColl;
     [SerializeField] SkeletonAnimation _skeletonAnimation;
     [SerializeField] AnimationReferenceAsset _idle, _dead;
     [SerializeField] string _currentState;
 
     string _currentAnimation;
 
+    #endregion
 
     private void Start()
     {
@@ -28,20 +28,11 @@ public class EnemyManager : MonoBehaviour, IAnimatable
         SetCharacterState(_currentState);
     }
 
+    // Check trigger
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            // Disable collider
-            if (_goblinColl != null)
-            {
-                _goblinColl.enabled = false;
-            }
-            else
-            {
-                _batColl.enabled = false;
-            }
-
             // Partice spawn position
             Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.5f);
 
@@ -51,14 +42,15 @@ public class EnemyManager : MonoBehaviour, IAnimatable
             _soundManager.enemySlashFX.Play();
             SetCharacterState("2-dead");
 
+            //Debug.Log("Enemy killed!");
             // Disable enemy after delay time
-            StartCoroutine(LateCall());
+            StartCoroutine(DisabledObjectLateCall());
         }
     }
 
-    IEnumerator LateCall()
+    IEnumerator DisabledObjectLateCall()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
         this.gameObject.SetActive(false);
     }
 

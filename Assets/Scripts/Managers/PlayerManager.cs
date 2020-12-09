@@ -50,7 +50,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     #endregion
 
-
     void Start()
     {
         _pooler = PoolManager.Instance;
@@ -116,20 +115,27 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         }
     }
 
+    // Check trigger
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            _starCount += 1;
-            finalScore = _starCount;
-            Debug.Log("Enemy killed: " + _starCount.ToString());
+            if (other.enabled == true)
+            {
+                _starCount += 1;
+                finalScore = _starCount;
 
-            hasFirstStar = true;
+                hasFirstStar = true;
+                Debug.Log("Enemy killed: " + _starCount.ToString());
+
+                // Disabled trigger event
+                other.enabled = false;
+            }
         }
 
         if (other.gameObject.CompareTag("Water"))
         {
-            if(splash == false)
+            if (splash == false)
             {
                 // Particle
                 Vector2 Splashpos = new Vector2(transform.position.x, transform.position.y - 0.2f);
@@ -244,10 +250,10 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     void SaveCollectedStarsNum()
     {
-        if (finalScore > 3)
-        {
-            finalScore = 3;
-        }
+        //if (finalScore > 3)
+        //{
+        //    finalScore = 3;
+        //}
         StarHandler.Instance.StarAchieved(finalScore);
 
         if (finalScore > PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) && touchBoundary == false)

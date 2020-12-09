@@ -63,7 +63,6 @@ public class LineManager : MonoBehaviour, IAnimatable
 
     #endregion
 
-
     private void Start()
     {
         if (bigWoodRbs != null)
@@ -238,6 +237,7 @@ public class LineManager : MonoBehaviour, IAnimatable
                         }
                     }
                     _currentLine.edgeCollide.enabled = true;
+
                     // Check if player has killed boss
                     if (_playerManager.hasKillBoss == true)
                     {
