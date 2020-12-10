@@ -2758,11 +2758,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 904043751231223996, guid: 9a477500ddfa50f449b38e84a54190d3,
-        type: 3}
-      propertyPath: pageList.Array.size
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2245722811427873104, guid: 9a477500ddfa50f449b38e84a54190d3,
         type: 3}
       propertyPath: m_SizeDelta.x

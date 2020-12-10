@@ -1,0 +1,18 @@
+{
+  "levelID": "57",
+
+  "playerPosX": 3.65,
+  "playerPosY": 1.06,
+
+  "bossPosX": 7.29,
+  "bossPosY": -2.98,
+
+  "hasGoblin": true,
+  "goblinNum": 3,
+  "goblinPosX_1": -3.39,
+  "goblinPosY_1": -2.99,
+  "goblinPosX_2": -0.57,
+  "goblinPosY_2": -2.99,
+  "goblinPosX_3": 2.25,
+  "goblinPosY_3": -2.99
+}

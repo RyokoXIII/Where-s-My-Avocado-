@@ -1,0 +1,18 @@
+{
+  "levelID": "56",
+
+  "playerPosX": -6.51,
+  "playerPosY": 0.05,
+
+  "bossPosX": 7.29,
+  "bossPosY": -2.98,
+
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -3.15,
+  "batPosY_1": -0.31,
+  "batPosX_2": -0.34,
+  "batPosY_2": -1.18,
+  "batPosX_3": 2.66,
+  "batPosY_3": -2
+}

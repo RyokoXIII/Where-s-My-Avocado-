@@ -1,26 +1,26 @@
 {
   "levelID": "7",
 
-  "playerPosX": -5.16,
+  "playerPosX": -4.17,
   "playerPosY": 1.99,
 
-  "bossPosX": 3.78,
-  "bossPosY": -1.99,
+  "bossPosX": 7.34,
+  "bossPosY": -2.02,
 
   "cloud": true,
   "cloudNum": 1,
-  "cloudPosX_1": -5.14,
+  "cloudPosX_1": -4.2,
   "cloudPosY_1": 1.77,
 
   "hasGoblin": true,
   "goblinNum": 2,
-  "goblinPosX_1": -2.3,
+  "goblinPosX_1": 0.35,
   "goblinPosY_1": -2,
-  "goblinPosX_2": 0.32,
+  "goblinPosX_2": 3.15,
   "goblinPosY_2": -2,
 
   "hasBat": true,
   "batNum": 1,
-  "batPosX_1": -5.11,
-  "batPosY_1": 0.09
+  "batPosX_1": -1.89,
+  "batPosY_1": 0.57
 }

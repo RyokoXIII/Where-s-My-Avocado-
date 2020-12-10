@@ -1,0 +1,30 @@
+{
+  "levelID": "64",
+
+  "rotatePlayer": true,
+  "playerPosX": 7.26,
+  "playerPosY": 1.65,
+
+  "bossPosX": -0.39,
+  "bossPosY": -3.99,
+
+  "seesaw": true,
+  "seesawNum": 2,
+  "seesawPosX1": -1.46,
+  "seesawPosX2": 1.44,
+  "seesawPosY1": 0.51,
+  "seesawPosY2": 0.51,
+  "seesawScaleX": 0.6,
+  "seesawScaleY": 0.9,
+  "seesawRotateZ1": -10,
+  "seesawRotateZ2": 10,
+
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -0.03,
+  "batPosY_1": 1.72,
+  "batPosX_2": -4.71,
+  "batPosY_2": 0.12,
+  "batPosX_3": -3.04,
+  "batPosY_3": -1.23
+}

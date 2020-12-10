@@ -31,7 +31,6 @@ public class LevelSelector : MonoBehaviour
 
     #endregion
 
-
     void Start()
     {
         _soundManager = SoundManager.Instance;

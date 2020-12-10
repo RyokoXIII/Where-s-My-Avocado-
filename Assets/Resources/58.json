@@ -1,0 +1,24 @@
+{
+  "levelID": "58",
+
+  "rotatePlayer": true,
+  "playerPosX": 3.43,
+  "playerPosY": 1.06,
+
+  "rotateBoss": true,
+  "bossPosX": -7.27,
+  "bossPosY": -3,
+
+  "rotateGoblin": true,
+  "hasGoblin": true,
+  "goblinNum": 2,
+  "goblinPosX_1": -3.07,
+  "goblinPosY_1": -2.99,
+  "goblinPosX_2": 0.02,
+  "goblinPosY_2": -2.99,
+
+  "hasBat": true,
+  "batNum": 1,
+  "batPosX_1": 5.37,
+  "batPosY_1": -2.14
+}

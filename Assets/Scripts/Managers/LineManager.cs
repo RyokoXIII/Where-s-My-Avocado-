@@ -135,14 +135,6 @@ public class LineManager : MonoBehaviour, IAnimatable
         if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Began) || Input.GetMouseButtonDown(0))
         {
             BeginDraw();
-
-            // Animation
-            if ((_handAnim != null) && (_lineAnim != null))
-            {
-                _handAnim.SetBool("IsDrawing", true);
-                _lineAnim.SetBool("IsDrawing", true);
-            }
-            tutorial.SetActive(false);
         }
 
         if ((Input.touchCount > 0) && (Input.GetTouch(0).phase == TouchPhase.Moved) || _currentLine != null)
@@ -154,6 +146,14 @@ public class LineManager : MonoBehaviour, IAnimatable
            || Input.GetMouseButtonUp(0))
         {
             EndDraw();
+
+            // Animation
+            if ((_handAnim != null) && (_lineAnim != null))
+            {
+                _handAnim.SetBool("IsDrawing", true);
+                _lineAnim.SetBool("IsDrawing", true);
+            }
+            tutorial.SetActive(false);
         }
     }
 
