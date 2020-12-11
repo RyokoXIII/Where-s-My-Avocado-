@@ -7,9 +7,10 @@
   "bossPosX": 7.68,
   "bossPosY": -2.98,
 
+  "roundLogNum": 1,
   "roundLog": true,
-  "roundLogPosX": -0.86,
-  "roundLogPosY": 2.98,
+  "roundLogPosX_1": -0.86,
+  "roundLogPosY_1": 2.98,
   "roundLogScaleX": 1.2,
   "roundLogScaleY": 1.2,
   "roundLogScaleZ": 1.2,

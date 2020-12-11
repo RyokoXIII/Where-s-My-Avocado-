@@ -54,8 +54,11 @@ public class LevelManager : MonoBehaviour
     List<float> batPosYList;
 
     // List of Obstacle Positions
-    List<float> _cloudPosXList;
-    List<float> _cloudPosYList;
+    List<float> cloudPosXList;
+    List<float> cloudPosYList;
+
+    List<float> roundLogXList;
+    List<float> roundLogYList;
 
     List<float> woodPosXList;
     List<float> woodPosYList;
@@ -71,7 +74,6 @@ public class LevelManager : MonoBehaviour
     List<float> bigWoodRotateZList;
 
     #endregion
-
 
     private void Start()
     {
@@ -95,8 +97,6 @@ public class LevelManager : MonoBehaviour
 
     void LoadLevelData(string path)
     {
-        //WWW reader = new WWW(path);
-        //_json = reader.text;
         //_json = File.ReadAllText(path);
 
         TextAsset file = Resources.Load(path) as TextAsset;
@@ -247,12 +247,25 @@ public class LevelManager : MonoBehaviour
     {
         if (_loadLevelData.roundLog == true)
         {
-            Vector2 newPos = new Vector2(_loadLevelData.roundLogPosX, _loadLevelData.roundLogPosY);
-            Vector3 newScale = new Vector3(_loadLevelData.roundLogScaleX, _loadLevelData.roundLogScaleY, _loadLevelData.roundLogScaleZ);
+            LoadRoundLogPosData();
 
-            GameObject obj = Instantiate(_roundLogPrefab, newPos, Quaternion.identity);
-            obj.transform.parent = _obstaclesContainer.transform;
-            obj.transform.localScale = newScale;
+            for (int i = 0; i < _loadLevelData.roundLogNum; i++)
+            {
+                Vector2 newPos = new Vector2(roundLogXList[i], roundLogYList[i]);
+
+                GameObject obj = Instantiate(_roundLogPrefab, newPos, Quaternion.identity);
+
+                // Add obj to roundlog list in LineManager
+                Rigidbody2D roundLogRb = obj.GetComponent<Rigidbody2D>();
+                _lineManager.roundLogRbs.Add(roundLogRb);
+
+                obj.transform.parent = _obstaclesContainer.transform;
+
+                Vector3 newScale = new Vector3(_loadLevelData.roundLogScaleX, _loadLevelData.roundLogScaleY, _loadLevelData.roundLogScaleZ);
+                obj.transform.localScale = newScale;
+
+            }
+
         }
 
         if (_loadLevelData.wood == true)
@@ -345,7 +358,7 @@ public class LevelManager : MonoBehaviour
 
             for (int i = 0; i < _loadLevelData.cloudNum; i++)
             {
-                Vector2 newPos = new Vector2(_cloudPosXList[i], _cloudPosYList[i]);
+                Vector2 newPos = new Vector2(cloudPosXList[i], cloudPosYList[i]);
 
                 GameObject obj = Instantiate(_cloudPrefab, newPos, Quaternion.identity);
                 obj.transform.parent = _obstaclesContainer.transform;
@@ -358,22 +371,40 @@ public class LevelManager : MonoBehaviour
 
     void LoadCloudPosData()
     {
-        _cloudPosXList = new List<float>();
-        _cloudPosYList = new List<float>();
+        cloudPosXList = new List<float>();
+        cloudPosYList = new List<float>();
 
-        _cloudPosXList.Add(_loadLevelData.cloudPosX_1);
-        _cloudPosXList.Add(_loadLevelData.cloudPosX_2);
-        _cloudPosXList.Add(_loadLevelData.cloudPosX_3);
-        _cloudPosXList.Add(_loadLevelData.cloudPosX_4);
-        _cloudPosXList.Add(_loadLevelData.cloudPosX_5);
-        _cloudPosXList.Add(_loadLevelData.cloudPosX_6);
+        cloudPosXList.Add(_loadLevelData.cloudPosX_1);
+        cloudPosXList.Add(_loadLevelData.cloudPosX_2);
+        cloudPosXList.Add(_loadLevelData.cloudPosX_3);
+        cloudPosXList.Add(_loadLevelData.cloudPosX_4);
+        cloudPosXList.Add(_loadLevelData.cloudPosX_5);
+        cloudPosXList.Add(_loadLevelData.cloudPosX_6);
 
-        _cloudPosYList.Add(_loadLevelData.cloudPosY_1);
-        _cloudPosYList.Add(_loadLevelData.cloudPosY_2);
-        _cloudPosYList.Add(_loadLevelData.cloudPosY_3);
-        _cloudPosYList.Add(_loadLevelData.cloudPosY_4);
-        _cloudPosYList.Add(_loadLevelData.cloudPosY_5);
-        _cloudPosYList.Add(_loadLevelData.cloudPosY_6);
+        cloudPosYList.Add(_loadLevelData.cloudPosY_1);
+        cloudPosYList.Add(_loadLevelData.cloudPosY_2);
+        cloudPosYList.Add(_loadLevelData.cloudPosY_3);
+        cloudPosYList.Add(_loadLevelData.cloudPosY_4);
+        cloudPosYList.Add(_loadLevelData.cloudPosY_5);
+        cloudPosYList.Add(_loadLevelData.cloudPosY_6);
+    }
+
+    void LoadRoundLogPosData()
+    {
+        roundLogXList = new List<float>();
+        roundLogYList = new List<float>();
+
+        roundLogXList.Add(_loadLevelData.roundLogPosX_1);
+        roundLogXList.Add(_loadLevelData.roundLogPosX_2);
+        roundLogXList.Add(_loadLevelData.roundLogPosX_3);
+        roundLogXList.Add(_loadLevelData.roundLogPosX_4);
+        roundLogXList.Add(_loadLevelData.roundLogPosX_5);
+
+        roundLogYList.Add(_loadLevelData.roundLogPosY_1);
+        roundLogYList.Add(_loadLevelData.roundLogPosY_2);
+        roundLogYList.Add(_loadLevelData.roundLogPosY_3);
+        roundLogYList.Add(_loadLevelData.roundLogPosY_4);
+        roundLogYList.Add(_loadLevelData.roundLogPosY_5);
     }
 
     void LoadWoodPosData()
@@ -436,6 +467,8 @@ public class LevelManager : MonoBehaviour
         bigWoodPosXList.Add(_loadLevelData.bigWoodPosX6);
         bigWoodPosXList.Add(_loadLevelData.bigWoodPosX7);
         bigWoodPosXList.Add(_loadLevelData.bigWoodPosX8);
+        bigWoodPosXList.Add(_loadLevelData.bigWoodPosX9);
+        bigWoodPosXList.Add(_loadLevelData.bigWoodPosX10);
 
         bigWoodPosYList.Add(_loadLevelData.bigWoodPosY1);
         bigWoodPosYList.Add(_loadLevelData.bigWoodPosY2);
@@ -445,6 +478,8 @@ public class LevelManager : MonoBehaviour
         bigWoodPosYList.Add(_loadLevelData.bigWoodPosY6);
         bigWoodPosYList.Add(_loadLevelData.bigWoodPosY7);
         bigWoodPosYList.Add(_loadLevelData.bigWoodPosY8);
+        bigWoodPosYList.Add(_loadLevelData.bigWoodPosY9);
+        bigWoodPosYList.Add(_loadLevelData.bigWoodPosY10);
 
         bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX1);
         bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX2);
@@ -454,6 +489,8 @@ public class LevelManager : MonoBehaviour
         bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX6);
         bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX7);
         bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX8);
+        bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX9);
+        bigWoodScaleXList.Add(_loadLevelData.bigWoodScaleX10);
 
         bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY1);
         bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY2);
@@ -463,6 +500,8 @@ public class LevelManager : MonoBehaviour
         bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY6);
         bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY7);
         bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY8);
+        bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY9);
+        bigWoodScaleYList.Add(_loadLevelData.bigWoodScaleY10);
 
         bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ1);
         bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ2);
@@ -472,5 +511,7 @@ public class LevelManager : MonoBehaviour
         bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ6);
         bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ7);
         bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ8);
+        bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ9);
+        bigWoodRotateZList.Add(_loadLevelData.bigWoodRotateZ10);
     }
 }

@@ -1,0 +1,26 @@
+{
+  "levelID": "76",
+
+  "playerPosX": -7.12,
+  "playerPosY": -2.93,
+
+  "bossPosX": 7.68,
+  "bossPosY": -2.99,
+
+  "bigWood": true,
+  "bigWoodNum": 1,
+  "bigWoodPosX1": 3.51,
+  "bigWoodPosY1": -0.01,
+  "bigWoodScaleX1": 2,
+  "bigWoodScaleY1": 4,
+  "bigWoodRotateZ1": 0,
+
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -3.51,
+  "batPosY_1": -1.99,
+  "batPosX_2": -0.09,
+  "batPosY_2": -1.99,
+  "batPosX_3": 3.25,
+  "batPosY_3": -1.99
+}

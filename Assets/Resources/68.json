@@ -1,0 +1,41 @@
+{
+  "levelID": "68",
+
+  "playerPosX": -6.65,
+  "playerPosY": -0.89,
+
+  "bossPosX": 7.86,
+  "bossPosY": -3.01,
+
+  "woodNest": true,
+  "woodNestNum": 4,
+  "bigWoodPosX1": -2.81,
+  "bigWoodPosY1": -2.25,
+  "bigWoodPosX2": -1.47,
+  "bigWoodPosY2": -2.25,
+  "bigWoodPosX3": -0.14,
+  "bigWoodPosY3": -2.25,
+  "bigWoodPosX4": 1.21,
+  "bigWoodPosY4": -2.25,
+  "bigWoodScaleX1": 1,
+  "bigWoodScaleY1": 1.8,
+  "bigWoodScaleX2": 1,
+  "bigWoodScaleY2": 1.8,
+  "bigWoodScaleX3": 1,
+  "bigWoodScaleY3": 1.8,
+  "bigWoodScaleX4": 1,
+  "bigWoodScaleY4": 1.8,
+  "bigWoodRotateZ1": -15,
+  "bigWoodRotateZ2": 15,
+  "bigWoodRotateZ3": -15,
+  "bigWoodRotateZ4": 15,
+
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -1.96,
+  "batPosY_1": -1.79,
+  "batPosX_2": 0.93,
+  "batPosY_2": -1.79,
+  "batPosX_3": 3.56,
+  "batPosY_3": -1.79
+}

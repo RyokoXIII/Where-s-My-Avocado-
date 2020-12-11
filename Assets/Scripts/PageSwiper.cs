@@ -7,7 +7,7 @@ public class PageSwiper : MonoBehaviour
     [SerializeField] GameObject _page1;
     [SerializeField] GameObject[] pageList;
     [SerializeField] GameObject[] levelButtonList;
-    int _maxPage = 11;
+    int _maxPage = 13;
     int _prevPage, _currentPage;
 
     SoundManager _soundManager;

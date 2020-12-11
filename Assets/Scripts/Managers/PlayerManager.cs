@@ -41,7 +41,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     public int finalScore;
 
     [HideInInspector]
-    public bool touchBoundary, hasFirstStar, hasKillBoss;
+    public bool touchBoundary, hasFirstStar;
     public bool touchGround;
 
     Vector3 _scaleChangeRight, _scaleChangeLeft;
@@ -270,7 +270,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     {
         if (PlayerPrefs.GetInt("level") <= _starHandler.levelIndex)
         {
-            if (_starHandler.levelIndex < 72)
+            if (_starHandler.levelIndex < 84)
             {
                 PlayerPrefs.SetInt("level", _starHandler.levelIndex + 1);
             }

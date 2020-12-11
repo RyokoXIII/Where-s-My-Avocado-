@@ -30,7 +30,10 @@ public class LevelData
 
     #region Game Objects
 
-    public float roundLogPosX, roundLogPosY;
+    public int roundLogNum;
+
+    public float roundLogPosX_1, roundLogPosX_2, roundLogPosX_3, roundLogPosX_4, roundLogPosX_5;
+    public float roundLogPosY_1, roundLogPosY_2, roundLogPosY_3, roundLogPosY_4, roundLogPosY_5;
     public float roundLogScaleX, roundLogScaleY, roundLogScaleZ;
 
     public int woodNum;
@@ -52,11 +55,11 @@ public class LevelData
 
     public int bigWoodNum, woodNestNum;
 
-    public float bigWoodPosX1, bigWoodPosX2, bigWoodPosX3, bigWoodPosX4, bigWoodPosX5, bigWoodPosX6, bigWoodPosX7, bigWoodPosX8;
-    public float bigWoodPosY1, bigWoodPosY2, bigWoodPosY3, bigWoodPosY4, bigWoodPosY5, bigWoodPosY6, bigWoodPosY7, bigWoodPosY8;
-    public float bigWoodScaleX1, bigWoodScaleX2, bigWoodScaleX3, bigWoodScaleX4, bigWoodScaleX5, bigWoodScaleX6, bigWoodScaleX7, bigWoodScaleX8;
-    public float bigWoodScaleY1, bigWoodScaleY2, bigWoodScaleY3, bigWoodScaleY4, bigWoodScaleY5, bigWoodScaleY6, bigWoodScaleY7, bigWoodScaleY8;
-    public float bigWoodRotateZ1, bigWoodRotateZ2, bigWoodRotateZ3, bigWoodRotateZ4, bigWoodRotateZ5, bigWoodRotateZ6, bigWoodRotateZ7, bigWoodRotateZ8;
+    public float bigWoodPosX1, bigWoodPosX2, bigWoodPosX3, bigWoodPosX4, bigWoodPosX5, bigWoodPosX6, bigWoodPosX7, bigWoodPosX8, bigWoodPosX9, bigWoodPosX10;
+    public float bigWoodPosY1, bigWoodPosY2, bigWoodPosY3, bigWoodPosY4, bigWoodPosY5, bigWoodPosY6, bigWoodPosY7, bigWoodPosY8, bigWoodPosY9, bigWoodPosY10;
+    public float bigWoodScaleX1, bigWoodScaleX2, bigWoodScaleX3, bigWoodScaleX4, bigWoodScaleX5, bigWoodScaleX6, bigWoodScaleX7, bigWoodScaleX8, bigWoodScaleX9, bigWoodScaleX10;
+    public float bigWoodScaleY1, bigWoodScaleY2, bigWoodScaleY3, bigWoodScaleY4, bigWoodScaleY5, bigWoodScaleY6, bigWoodScaleY7, bigWoodScaleY8, bigWoodScaleY9, bigWoodScaleY10;
+    public float bigWoodRotateZ1, bigWoodRotateZ2, bigWoodRotateZ3, bigWoodRotateZ4, bigWoodRotateZ5, bigWoodRotateZ6, bigWoodRotateZ7, bigWoodRotateZ8, bigWoodRotateZ9, bigWoodRotateZ10;
 
     public float deadZonePosX, deadZonePosY;
     public float deadZoneScaleX, deadZoneScaleY;

@@ -14,6 +14,7 @@ public class LineManager : MonoBehaviour, IAnimatable
 
     public List<Rigidbody2D> bigWoodRbs;
     public List<Rigidbody2D> smallWoodRbs;
+    public List<Rigidbody2D> roundLogRbs;
 
     int _cantDrawOverLayerIndex;
 
@@ -65,20 +66,7 @@ public class LineManager : MonoBehaviour, IAnimatable
 
     private void Start()
     {
-        if (bigWoodRbs != null)
-        {
-            foreach (var bigWoodRb in bigWoodRbs)
-            {
-                bigWoodRb.isKinematic = true;
-            }
-        }
-        if (smallWoodRbs != null)
-        {
-            foreach (var smallWoodRb in smallWoodRbs)
-            {
-                smallWoodRb.isKinematic = true;
-            }
-        }
+        SetObjectIsKinematic();
 
         playerRb.isKinematic = true;
         //_cantDrawOverLayerIndex = LayerMask.NameToLayer("CantDrawOverLayer");
@@ -201,20 +189,7 @@ public class LineManager : MonoBehaviour, IAnimatable
 
                 if (hasDraw == false)
                 {
-                    if (bigWoodRbs != null)
-                    {
-                        foreach (var bigWoodRb in bigWoodRbs)
-                        {
-                            bigWoodRb.isKinematic = true;
-                        }
-                    }
-                    if (smallWoodRbs != null)
-                    {
-                        foreach (var smallWoodRb in smallWoodRbs)
-                        {
-                            smallWoodRb.isKinematic = true;
-                        }
-                    }
+                    SetObjectIsKinematic();
                     playerRb.isKinematic = true;
                 }
             }
@@ -222,39 +197,66 @@ public class LineManager : MonoBehaviour, IAnimatable
             {
                 if (hasDraw == true)
                 {
-                    if (bigWoodRbs != null)
-                    {
-                        foreach (var bigWoodRb in bigWoodRbs)
-                        {
-                            bigWoodRb.isKinematic = false;
-                        }
-                    }
-                    if (smallWoodRbs != null)
-                    {
-                        foreach (var smallWoodRb in smallWoodRbs)
-                        {
-                            smallWoodRb.isKinematic = false;
-                        }
-                    }
-                    _currentLine.edgeCollide.enabled = true;
-
-                    // Check if player has killed boss
-                    if (_playerManager.hasKillBoss == true)
-                    {
-                        playerRb.isKinematic = true;
-                    }
-                    else
-                    {
-                        playerRb.isKinematic = false;
-
-                    }
+                    SetObjectIsNotKinematic();
+                    playerRb.isKinematic = false;
 
                     SetCharacterState("animation");
 
                     //_currentLine.gameObject.layer = _cantDrawOverLayerIndex;
+                    _currentLine.edgeCollide.enabled = true;
                     _currentLine.UsePhysics(true);
                     _currentLine = null;
                 }
+            }
+        }
+    }
+
+    void SetObjectIsKinematic()
+    {
+        if (bigWoodRbs != null)
+        {
+            foreach (var bigWoodRb in bigWoodRbs)
+            {
+                bigWoodRb.isKinematic = true;
+            }
+        }
+        if (smallWoodRbs != null)
+        {
+            foreach (var smallWoodRb in smallWoodRbs)
+            {
+                smallWoodRb.isKinematic = true;
+            }
+        }
+        if (roundLogRbs != null)
+        {
+            foreach (var roundLogRb in roundLogRbs)
+            {
+                roundLogRb.isKinematic = true;
+            }
+        }
+    }
+
+    void SetObjectIsNotKinematic()
+    {
+        if (bigWoodRbs != null)
+        {
+            foreach (var bigWoodRb in bigWoodRbs)
+            {
+                bigWoodRb.isKinematic = false;
+            }
+        }
+        if (smallWoodRbs != null)
+        {
+            foreach (var smallWoodRb in smallWoodRbs)
+            {
+                smallWoodRb.isKinematic = false;
+            }
+        }
+        if (roundLogRbs != null)
+        {
+            foreach (var roundLogRb in roundLogRbs)
+            {
+                roundLogRb.isKinematic = false;
             }
         }
     }
