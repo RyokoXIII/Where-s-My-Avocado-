@@ -1,0 +1,23 @@
+{
+  "levelID": "88",
+
+  "playerPosX": -5.82,
+  "playerPosY": 1.61,
+
+  "bossPosX": 7.55,
+  "bossPosY": -2.98,
+
+  "cloud": true,
+  "cloudNum": 1,
+  "cloudPosX_1": -5.96,
+  "cloudPosY_1": 1.41,
+
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -3.26,
+  "batPosY_1": 1.1,
+  "batPosX_2": -0.68,
+  "batPosY_2": -0.02,
+  "batPosX_3": 3.13,
+  "batPosY_3": -0.02
+}

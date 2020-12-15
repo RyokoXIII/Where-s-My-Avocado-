@@ -1,0 +1,24 @@
+{
+  "levelID": "95",
+
+  "playerPosX": -3.27,
+  "playerPosY": -0.82,
+
+  "bossPosX": 7.78,
+  "bossPosY": -2.88,
+
+  "deadZone": true,
+  "deadZonePosX": 0.22,
+  "deadZonePosY": -3.59,
+  "deadZoneScaleX": 25,
+  "deadZoneScaleY": 10,
+
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -0.72,
+  "batPosY_1": -0.19,
+  "batPosX_2": 1.13,
+  "batPosY_2": -1.24,
+  "batPosX_3": 3.46,
+  "batPosY_3": -2.01
+}

@@ -1,0 +1,30 @@
+{
+  "levelID": "87",
+
+  "playerPosX": 0.9,
+  "playerPosY": 3.37,
+
+  "bossPosX": 4.06,
+  "bossPosY": -2.98,
+
+  "seesaw": true,
+  "seesawNum": 2,
+  "seesawPosX1": -3.34,
+  "seesawPosY1": 0.79,
+  "seesawPosX2": -3.34,
+  "seesawPosY2": -3.34,
+  "seesawScaleX": 1,
+  "seesawScaleY": 1,
+  "seesawRotateZ1": -15,
+  "seesawRotateZ2": 0,
+
+  "rotateBat": true,
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -2.49,
+  "batPosY_1": 1.84,
+  "batPosX_2": -2.05,
+  "batPosY_2": -0.79,
+  "batPosX_3": 0.06,
+  "batPosY_3": -2.16
+}

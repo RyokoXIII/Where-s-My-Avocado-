@@ -1,0 +1,34 @@
+{
+  "levelID": "93",
+
+  "playerPosX": -6.55,
+  "playerPosY": -2.89,
+
+  "bossPosX": 7.78,
+  "bossPosY": -3,
+
+  "roundLogNum": 2,
+  "roundLog": true,
+  "roundLogPosX_1": -3.89,
+  "roundLogPosY_1": 2.16,
+  "roundLogPosX_2": 0,
+  "roundLogPosY_2": -1.93,
+  "roundLogScaleX": 1.2,
+  "roundLogScaleY": 1.2,
+  "roundLogScaleZ": 1.2,
+
+  "deadZone": true,
+  "deadZonePosX": 0.77,
+  "deadZonePosY": -2.03,
+  "deadZoneScaleX": 8,
+  "deadZoneScaleY": 6,
+
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -3.94,
+  "batPosY_1": -2,
+  "batPosX_2": 1.85,
+  "batPosY_2": -2,
+  "batPosX_3": 4.04,
+  "batPosY_3": -2
+}

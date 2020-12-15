@@ -270,7 +270,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     {
         if (PlayerPrefs.GetInt("level") <= _starHandler.levelIndex)
         {
-            if (_starHandler.levelIndex < 84)
+            if (_starHandler.levelIndex < 100)
             {
                 PlayerPrefs.SetInt("level", _starHandler.levelIndex + 1);
             }

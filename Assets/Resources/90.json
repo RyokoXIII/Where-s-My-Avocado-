@@ -1,0 +1,26 @@
+{
+  "levelID": "90",
+
+  "playerPosX": -4.57,
+  "playerPosY": 3.02,
+
+  "bossPosX": 7.32,
+  "bossPosY": -3.04,
+
+  "cloud": true,
+  "cloudNum": 1,
+  "cloudPosX_1": -4.71,
+  "cloudPosY_1": 2.82,
+
+  "hasGoblin": true,
+  "goblinNum": 1,
+  "goblinPosX_1": 2.06,
+  "goblinPosY_1": 0.01,
+
+  "hasBat": true,
+  "batNum": 2,
+  "batPosX_1": -0.92,
+  "batPosY_1": 1.13,
+  "batPosX_2": 4.49,
+  "batPosY_2": 0.2
+}

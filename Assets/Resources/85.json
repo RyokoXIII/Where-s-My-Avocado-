@@ -1,0 +1,27 @@
+{
+  "levelID": "85",
+
+  "playerPosX": -5.25,
+  "playerPosY": 2.07,
+
+  "bossPosX": 7.93,
+  "bossPosY": -2.98,
+
+  "deadZone": true,
+  "deadZonePosX": -5.02,
+  "deadZonePosY": -1.67,
+  "deadZoneScaleX": 3,
+  "deadZoneScaleY": 20,
+
+  "hasGoblin": true,
+  "goblinNum": 2,
+  "goblinPosX_1": 0.95,
+  "goblinPosY_1": 0.98,
+  "goblinPosX_2": 4,
+  "goblinPosY_2": -1.04,
+
+  "hasBat": true,
+  "batNum": 1,
+  "batPosX_1": -1.93,
+  "batPosY_1": 1.99
+}
