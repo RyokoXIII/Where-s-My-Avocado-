@@ -1,24 +1,32 @@
 {
   "levelID": "96",
 
-  "playerPosX": -3.27,
-  "playerPosY": -0.82,
+  "playerPosX": -6.12,
+  "playerPosY": 2.93,
 
   "bossPosX": 7.78,
   "bossPosY": -2.88,
 
+  "cloud": true,
+  "cloudNum": 1,
+  "cloudPosX_1": -6.2,
+  "cloudPosY_1": 2.77,
+
   "deadZone": true,
-  "deadZonePosX": 0.22,
-  "deadZonePosY": -3.59,
-  "deadZoneScaleX": 25,
-  "deadZoneScaleY": 10,
+  "deadZonePosX": -7.97,
+  "deadZonePosY": -1.42,
+  "deadZoneScaleX": 9,
+  "deadZoneScaleY": 5,
+
+  "hasGoblin": true,
+  "goblinNum": 2,
+  "goblinPosX_1": 1.1,
+  "goblinPosY_1": -2.9,
+  "goblinPosX_2": 3.44,
+  "goblinPosY_2": -2.9,
 
   "hasBat": true,
-  "batNum": 3,
-  "batPosX_1": -0.72,
-  "batPosY_1": -0.19,
-  "batPosX_2": 1.13,
-  "batPosY_2": -1.24,
-  "batPosX_3": 3.46,
-  "batPosY_3": -2.01
+  "batNum": 1,
+  "batPosX_1": -1.53,
+  "batPosY_1": -0.19
 }

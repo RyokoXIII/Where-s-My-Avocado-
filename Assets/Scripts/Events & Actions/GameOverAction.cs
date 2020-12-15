@@ -77,7 +77,15 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     public void OnPlayNext()
     {
         _soundManager.selectFX.Play();
-        PlayerPrefs.SetInt("levelID", _starHandler.levelIndex + 1);
+
+        if (_starHandler.levelIndex == _maxLevels)
+        {
+            PlayerPrefs.SetInt("levelID", 1);
+        }
+        else
+        {
+            PlayerPrefs.SetInt("levelID", _starHandler.levelIndex + 1);
+        }
 
         SceneManager.LoadScene(1);
     }
@@ -89,17 +97,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
         if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {
-            if (_starHandler.levelIndex < _maxLevels)
-            {
-                return;
-            }
-            else if (_starHandler.levelIndex == _maxLevels)
-            {
-                _playButton.SetActive(false);
-
-                _homeButton.anchoredPosition = _newHomeBtnPos;
-                _replayButton.anchoredPosition = _newReplayBtnPos;
-            }
+            return;
         }
         else
         {

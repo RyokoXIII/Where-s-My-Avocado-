@@ -1,0 +1,32 @@
+{
+  "levelID": "98",
+
+  "rotatePlayer": true,
+  "playerPosX": 5.29,
+  "playerPosY": 3.02,
+
+  "rotateBoss": true,
+  "bossPosX": -7.84,
+  "bossPosY": -3.87,
+
+  "cloud": true,
+  "cloudNum": 1,
+  "cloudPosX_1": 5.21,
+  "cloudPosY_1": 2.86,
+
+  "deadZone": true,
+  "deadZonePosX": 0.26,
+  "deadZonePosY": -0.61,
+  "deadZoneScaleX": 25,
+  "deadZoneScaleY": 3.5,
+
+  "rotateBat": true,
+  "hasBat": true,
+  "batNum": 3,
+  "batPosX_1": -4.47,
+  "batPosY_1": -0.82,
+  "batPosX_2": -1.83,
+  "batPosY_2": 0.26,
+  "batPosX_3": 1.06,
+  "batPosY_3": 1.07
+}
