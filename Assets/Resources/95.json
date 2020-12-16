@@ -9,9 +9,9 @@
 
   "deadZone": true,
   "deadZonePosX": 0.22,
-  "deadZonePosY": -3.59,
+  "deadZonePosY": -0.97,
   "deadZoneScaleX": 25,
-  "deadZoneScaleY": 10,
+  "deadZoneScaleY": 4.5,
 
   "hasBat": true,
   "batNum": 3,

@@ -9,7 +9,6 @@ public class BossManager : MonoBehaviour, IAnimatable
 
     [SerializeField]
     PlayerManager _playerManager;
-    [SerializeField] BoxCollider2D _bossColl;
 
     PoolManager _pooler;
     SoundManager _soundManager;
@@ -44,7 +43,7 @@ public class BossManager : MonoBehaviour, IAnimatable
 
     void CheckBossGetKilled()
     {
-        if (_playerManager.touchGround == true && !_checkPlayAnim)
+        if (_playerManager.touchBoss == true && !_checkPlayAnim)
         {
             _checkPlayAnim = true;
             StartCoroutine(AnimationLateCall());

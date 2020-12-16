@@ -1,33 +1,27 @@
 {
   "levelID": "43",
 
-  "playerPosX": -0.46,
-  "playerPosY": 1.03,
+  "playerPosX": -5.36,
+  "playerPosY": -3.01,
 
-  "bossPosX": 4.29,
-  "bossPosY": -3.99,
+  "bossPosX": 8.05,
+  "bossPosY": -3,
 
-  "cloud": true,
-  "cloudNum": 2,
-  "cloudPosX_1": 3.3,
-  "cloudPosY_1": 3.76,
-  "cloudPosX_2": 4.32,
-  "cloudPosY_2": 3.76,
-
-  "bigWood": true,
-  "bigWoodNum": 1,
-  "bigWoodPosX1": 3.78,
-  "bigWoodPosY1": 5.31,
-  "bigWoodScaleX1": 6.5,
-  "bigWoodScaleY1": 1.5,
-  "bigWoodRotateZ1": 90,
+  "seesaw": true,
+  "seesawNum": 2,
+  "seesawPosX1": -0.21,
+  "seesawPosX2": 3.18,
+  "seesawPosY1": -3.52,
+  "seesawPosY2": -3.52,
+  "seesawScaleX": 0.85,
+  "seesawScaleY": 1,
 
   "hasBat": true,
   "batNum": 3,
-  "batPosX_1": 2.07,
-  "batPosY_1": 1.77,
-  "batPosX_2": 2.73,
-  "batPosY_2": 0.32,
-  "batPosX_3": 3.1,
-  "batPosY_3": -1.24
+  "batPosX_1": -1.43,
+  "batPosY_1": -2.04,
+  "batPosX_2": 1.45,
+  "batPosY_2": -2.04,
+  "batPosX_3": 4.26,
+  "batPosY_3": -2.04
 }

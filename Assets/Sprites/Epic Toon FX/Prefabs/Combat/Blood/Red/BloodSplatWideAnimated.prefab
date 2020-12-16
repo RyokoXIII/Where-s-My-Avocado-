@@ -4751,7 +4751,7 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 1101411241
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 3
 --- !u!1 &168136
 GameObject:
   m_ObjectHideFlags: 0
@@ -9513,4 +9513,4 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 1101411241
   m_SortingLayer: 2
-  m_SortingOrder: 2
+  m_SortingOrder: 3

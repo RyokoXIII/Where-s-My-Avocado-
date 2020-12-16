@@ -34,7 +34,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     string _currentAnimation;
 
-    int _starCount = 0;
+    int _enemyCount = 0;
     int _cantCollideLayerIndex;
 
     [HideInInspector]
@@ -42,7 +42,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     [HideInInspector]
     public bool touchBoundary, hasFirstStar;
-    public bool touchGround;
+    public bool touchBoss;
 
     Vector3 _scaleChangeRight, _scaleChangeLeft;
     bool checkFlipPlayer;
@@ -88,7 +88,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
             }
         }
 
-        if (touchGround == false)
+        if (touchBoss == false)
         {
             //Debug.Log(Vector2.Distance(transform.position, _bossPos.position).ToString());
             if ((Vector2.Distance(transform.position, _bossPos.position) < 3f) && transform.position.y < _bossPos.position.y + 2f)
@@ -102,7 +102,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
                     transform.localScale = _scaleChangeLeft;
                 }
 
-                touchGround = true;
+                touchBoss = true;
                 gameObject.layer = _cantCollideLayerIndex; // change layer
 
                 // Rotate smoothly to 0
@@ -122,11 +122,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         {
             if (other.enabled == true)
             {
-                _starCount += 1;
-                finalScore = _starCount;
+                _enemyCount += 1;
+                finalScore = _enemyCount;
 
                 hasFirstStar = true;
-                Debug.Log("Enemy killed: " + _starCount.ToString());
+                Debug.Log("Enemy killed: " + _enemyCount.ToString());
 
                 // Disabled trigger event
                 other.enabled = false;
@@ -142,9 +142,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable
                 _pooler.SpawnFromPool("WaterSplash Particle", Splashpos, Quaternion.Euler(-90, 0, 0));
 
                 _soundManager.waterSplashFX.Play();
+
                 // Game Over menu pop up Action callback
                 StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
                 splash = true;
+                touchBoundary = true;
             }
         }
     }
@@ -170,6 +172,10 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         yield return new WaitForSeconds(0f);
 
         SetCharacterState("finisher");
+
+        yield return new WaitForSeconds(1.45f);
+
+        SetCharacterState("idle");
     }
 
     IEnumerator StartAnimationTransition()
@@ -250,18 +256,23 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     void SaveCollectedStarsNum()
     {
-        //if (finalScore > 3)
-        //{
-        //    finalScore = 3;
-        //}
-        StarHandler.Instance.StarAchieved(finalScore);
-
-        if (finalScore > PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) && touchBoundary == false)
+        // Kill boss without killing enemies
+        if (touchBoss == true && _enemyCount == 0)
         {
-            PlayerPrefs.SetInt("lv" + _starHandler.levelIndex, finalScore);
-            SaveNextLevel();
+            finalScore = 1;
         }
 
+        if (touchBoundary == false)
+        {
+            StarHandler.Instance.StarAchieved(finalScore);
+            SaveNextLevel();
+
+            // Save score if > previous score
+            if (finalScore > PlayerPrefs.GetInt("lv" + _starHandler.levelIndex))
+            {
+                PlayerPrefs.SetInt("lv" + _starHandler.levelIndex, finalScore);
+            }
+        }
         Debug.Log("Collected Stars: " + PlayerPrefs.GetInt("lv" + _starHandler.levelIndex));
     }
 

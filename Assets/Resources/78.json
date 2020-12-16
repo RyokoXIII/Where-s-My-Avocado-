@@ -1,19 +1,23 @@
 {
   "levelID": "78",
 
-  "playerPosX": 2.27,
-  "playerPosY": 2.61,
+  "playerPosX": -4.06,
+  "playerPosY": 2.24,
 
-  "bossPosX": 2.7,
-  "bossPosY": -2.99,
+  "bossPosX": 7.5,
+  "bossPosY": -2.98,
 
-  "rotateBat": true,
+  "cloud": true,
+  "cloudNum": 1,
+  "cloudPosX_1": -4.07,
+  "cloudPosY_1": 2.02,
+
   "hasBat": true,
   "batNum": 3,
-  "batPosX_1": 0.29,
-  "batPosY_1": 1.84,
-  "batPosX_2": -0.78,
-  "batPosY_2": 0.2,
-  "batPosX_3": -1.02,
-  "batPosY_3": -1.58
+  "batPosX_1": -1.77,
+  "batPosY_1": -1.03,
+  "batPosX_2": 0.76,
+  "batPosY_2": -1.03,
+  "batPosX_3": 3.26,
+  "batPosY_3": -1.03
 }

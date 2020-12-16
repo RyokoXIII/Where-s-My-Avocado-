@@ -1,7 +1,7 @@
 {
   "levelID": "97",
 
-  "playerPosX": 2.38,
+  "playerPosX": 1.24,
   "playerPosY": 3.44,
 
   "bossPosX": 7.78,
@@ -9,7 +9,7 @@
 
   "cloud": true,
   "cloudNum": 1,
-  "cloudPosX_1": 2.3,
+  "cloudPosX_1": 1.16,
   "cloudPosY_1": 3.28,
 
   "deadZone": true,

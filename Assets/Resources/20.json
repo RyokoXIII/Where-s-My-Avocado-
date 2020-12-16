@@ -1,18 +1,19 @@
 {
   "levelID": "20",
 
-  "playerPosX": -8.6,
-  "playerPosY": -0.97,
+  "rotatePlayer": true,
+  "playerPosX": -0.53,
+  "playerPosY": 2.03,
 
-  "bossPosX": 7.82,
-  "bossPosY": -2.98,
+  "bossPosX": 5.95,
+  "bossPosY": -4,
 
   "hasBat": true,
   "batNum": 3,
-  "batPosX_1": -2.25,
-  "batPosY_1": -2.1,
-  "batPosX_2": 0.34,
-  "batPosY_2": -2.1,
-  "batPosX_3": 3.08,
-  "batPosY_3": -2.1
+  "batPosX_1": -3.31,
+  "batPosY_1": -2.03,
+  "batPosX_2": -0.64,
+  "batPosY_2": -2.97,
+  "batPosX_3": 2.03,
+  "batPosY_3": -2.97
 }

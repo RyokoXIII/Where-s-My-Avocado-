@@ -17999,12 +17999,12 @@ PrefabInstance:
         type: 3}
       propertyPath: _starList.Array.data[1]
       value: 
-      objectReference: {fileID: 3299372538806369996}
+      objectReference: {fileID: 3299372537869777417}
     - target: {fileID: 3731838292526611535, guid: bee25b61cfdf5ae458eeb003bde9e2a7,
         type: 3}
       propertyPath: _starList.Array.data[2]
       value: 
-      objectReference: {fileID: 3299372537869777417}
+      objectReference: {fileID: 3299372538806369996}
     - target: {fileID: 5849727141336988058, guid: bee25b61cfdf5ae458eeb003bde9e2a7,
         type: 3}
       propertyPath: m_Name
