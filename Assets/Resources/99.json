@@ -18,9 +18,9 @@
   "roundLogScaleZ": 1.2,
 
   "deadZone": true,
-  "deadZonePosX": 0.26,
+  "deadZonePosX": 5,
   "deadZonePosY": -2.34,
-  "deadZoneScaleX": 25,
+  "deadZoneScaleX": 16,
   "deadZoneScaleY": 5.5,
 
   "rotateGoblin": true,

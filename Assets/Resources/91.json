@@ -24,9 +24,9 @@
   "seesawRotateZ1": 90,
 
   "deadZone": true,
-  "deadZonePosX": 0.12,
+  "deadZonePosX": -7.09,
   "deadZonePosY": -1.19,
-  "deadZoneScaleX": 25,
+  "deadZoneScaleX": 10,
   "deadZoneScaleY": 4,
 
   "hasGoblin": true,

@@ -8,9 +8,9 @@
   "bossPosY": -2.98,
 
   "deadZone": true,
-  "deadZonePosX": -0.07,
-  "deadZonePosY": -1.67,
-  "deadZoneScaleX": 30,
+  "deadZonePosX": -9.49,
+  "deadZonePosY": -1.65,
+  "deadZoneScaleX": 11,
   "deadZoneScaleY": 3,
 
   "hasGoblin": true,

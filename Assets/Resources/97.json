@@ -14,9 +14,9 @@
 
   "deadZone": true,
   "deadZonePosX": 0.26,
-  "deadZonePosY": -0.22,
+  "deadZonePosY": 0.29,
   "deadZoneScaleX": 25,
-  "deadZoneScaleY": 4,
+  "deadZoneScaleY": 3,
 
   "hasGoblin": true,
   "goblinNum": 2,

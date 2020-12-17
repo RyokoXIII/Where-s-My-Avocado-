@@ -8,7 +8,6 @@ public class MainMenuAction : MonoBehaviour
 {
     #region Global Variables
 
-    int _scene;
     public GameObject optionMenu, exitMenu, selectMenu;
     public Text starNumText;
 

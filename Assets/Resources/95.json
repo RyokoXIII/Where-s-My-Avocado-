@@ -8,9 +8,9 @@
   "bossPosY": -2.88,
 
   "deadZone": true,
-  "deadZonePosX": 0.22,
-  "deadZonePosY": -0.97,
-  "deadZoneScaleX": 25,
+  "deadZonePosX": -5.97,
+  "deadZonePosY": -0.81,
+  "deadZoneScaleX": 12,
   "deadZoneScaleY": 4.5,
 
   "hasBat": true,
