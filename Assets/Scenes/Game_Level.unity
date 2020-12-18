@@ -3612,6 +3612,11 @@ PrefabInstance:
       propertyPath: m_Pivot.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4959109428312886529, guid: 6061856959f59f447a17796f8e442003,
+        type: 3}
+      propertyPath: m_CullTransparentMesh
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4982909937182148290, guid: 6061856959f59f447a17796f8e442003,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -4495,7 +4500,7 @@ PrefabInstance:
     - target: {fileID: 8540872982107832980, guid: 6061856959f59f447a17796f8e442003,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8687496341547806834, guid: 6061856959f59f447a17796f8e442003,
         type: 3}
