@@ -52,9 +52,11 @@ public class BossManager : MonoBehaviour, IAnimatable
 
     IEnumerator AnimationLateCall()
     {
-        yield return new WaitForSeconds(0.65f);
+        yield return new WaitForSeconds(0.5f);
 
-        SetCharacterState("2-dead");
+        SetCharacterState("3-dead2");
+
+        yield return new WaitForSeconds(0.3f);
         CreateParticleEffect();
         _soundManager.bossSlashFX.Play();
     }
@@ -81,9 +83,9 @@ public class BossManager : MonoBehaviour, IAnimatable
         {
             SetAnimation(_idle, true, 1f);
         }
-        else if (state == "2-dead")
+        else if (state == "3-dead2")
         {
-            SetAnimation(_dead, false, 1.2f);
+            SetAnimation(_dead, false, 1f);
         }
     }
 }

@@ -171,9 +171,9 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     {
         yield return new WaitForSeconds(0f);
 
-        SetCharacterState("finisher");
+        SetCharacterState("finisher2");
 
-        yield return new WaitForSeconds(1.45f);
+        yield return new WaitForSeconds(1.6f);
 
         SetCharacterState("idle");
     }
@@ -240,9 +240,9 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         {
             SetAnimation(_rollout, false, 1.5f);
         }
-        else if (state == "finisher")
+        else if (state == "finisher2")
         {
-            SetAnimation(_finished, false, 1.5f);
+            SetAnimation(_finished, false, 1.3f);
         }
     }
 

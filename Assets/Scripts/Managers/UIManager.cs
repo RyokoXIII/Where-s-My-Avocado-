@@ -24,7 +24,7 @@ public class UIManager : MonoSingleton<UIManager>
     // Time delay before game over menu open
     public IEnumerator GameOverRoutine(Action onCallback = null)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2.5f);
 
         if (onCallback != null)
             onCallback();
