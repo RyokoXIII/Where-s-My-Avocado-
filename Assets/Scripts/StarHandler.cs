@@ -43,7 +43,14 @@ public class StarHandler : MonoBehaviour
         _pooler = PoolManager.Instance;
         _soundManager = SoundManager.Instance;
 
-        levelIndex = PlayerPrefs.GetInt("levelID");
+        if (PlayerPrefs.GetInt("levelID") == 0)
+        {
+            levelIndex = 1;
+        }
+        else
+        {
+            levelIndex = PlayerPrefs.GetInt("levelID");
+        }
     }
 
 

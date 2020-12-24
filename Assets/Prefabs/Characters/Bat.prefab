@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: b1adcb8208877bf4f8dada58ad700cdd, type: 2}
+  - {fileID: 2100000, guid: 37891118001a4fb43acbaadad6aac097, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 5a61a667678e9364881be39371e7249e, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 81fd0a28cd76a9c42af2e7f013f189ae, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -148,9 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c98dde5b5f83db45be0b586e86034c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goblinColl: {fileID: 0}
-  _batColl: {fileID: 3606576876524481555}
   _skeletonAnimation: {fileID: 3606576876524481560}
-  _idle: {fileID: 11400000, guid: 0c085616553c95c4c8a39502f94d5b82, type: 2}
-  _dead: {fileID: 11400000, guid: 540ad3b116046e5478874b54a9afc40f, type: 2}
+  _idle: {fileID: 11400000, guid: 75d4ea128cab4334d9a733afb6692b2e, type: 2}
+  _dead: {fileID: 11400000, guid: efd1c63fe2a878642b524549d86d1f06, type: 2}
   _currentState: 

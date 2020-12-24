@@ -29,8 +29,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     [Space(20f)]
     [SerializeField] SkeletonAnimation _skeletonAnimation;
-    [SerializeField] AnimationReferenceAsset _idle, _circle, _rollout, _finished;
-    [SerializeField] string _currentState;
+    [SerializeField] AnimationReferenceAsset _idle, _circle, _rollout, _finished1, _finished2;
+    [SerializeField] int _playerState;
 
     string _currentAnimation;
 
@@ -65,6 +65,9 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         _scaleChangeRight = new Vector3(0.5f, 0.5f, 0.5f);
         _scaleChangeLeft = new Vector3(-0.5f, 0.5f, 0.5f);
         checkFlipPlayer = true;
+
+        // Random player finished anim
+        _playerState = Random.Range(0, 2);
     }
 
     private void Update()
@@ -171,7 +174,14 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     {
         yield return new WaitForSeconds(0f);
 
-        SetCharacterState("finisher2");
+        if(_playerState == 0)
+        {
+            SetCharacterState("finisher");
+        }
+        else
+        {
+            SetCharacterState("finisher2");
+        }
 
         yield return new WaitForSeconds(1.6f);
 
@@ -242,7 +252,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         }
         else if (state == "finisher2")
         {
-            SetAnimation(_finished, false, 1.3f);
+            SetAnimation(_finished2, false, 1.3f);
+        }
+        else if(state == "finisher")
+        {
+            SetAnimation(_finished1, false, 1.3f);
         }
     }
 

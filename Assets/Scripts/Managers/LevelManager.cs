@@ -82,14 +82,22 @@ public class LevelManager : MonoBehaviour
 
     void LoadDataFile()
     {
-        for (int i = 0; i < dataList.Length; i++)
+        if (PlayerPrefs.GetInt("levelID") > 0)
         {
-            if (dataList[i].Equals(PlayerPrefs.GetInt("levelID")))
+            for (int i = 0; i < dataList.Length; i++)
             {
-                //_path = Application.dataPath + "/Resources/" + dataList[i].ToString() + ".json";
-                _path = dataList[i].ToString();
+                if (dataList[i].Equals(PlayerPrefs.GetInt("levelID")))
+                {
+                    //_path = Application.dataPath + "/Resources/" + dataList[i].ToString() + ".json";
+                    _path = dataList[i].ToString();
+                }
             }
         }
+        else
+        {
+            _path = dataList[0].ToString();
+        }
+
         Debug.Log(_path);
 
         LoadLevelData(_path);

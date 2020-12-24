@@ -40,7 +40,7 @@ public class EnemyManager : MonoBehaviour, IAnimatable
             _pooler.SpawnFromPool("BloodSplatSmall Particle", pos, Quaternion.identity);
 
             _soundManager.enemySlashFX.Play();
-            SetCharacterState("2-dead");
+            SetCharacterState("2-dead2");
 
             //Debug.Log("Enemy killed!");
             // Disable enemy after delay time
@@ -70,9 +70,9 @@ public class EnemyManager : MonoBehaviour, IAnimatable
         {
             SetAnimation(_idle, true, 1f);
         }
-        else if (state == "2-dead")
+        else if (state == "2-dead2")
         {
-            SetAnimation(_dead, false, 1f);
+            SetAnimation(_dead, false, 1.15f);
         }
     }
 }

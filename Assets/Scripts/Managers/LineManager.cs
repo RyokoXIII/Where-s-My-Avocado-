@@ -79,6 +79,8 @@ public class LineManager : MonoBehaviour, IAnimatable
             _handAnim.SetBool("IsDrawing", false);
             _lineAnim.SetBool("IsDrawing", false);
         }
+
+        Input.multiTouchEnabled = false;
     }
 
     void Update()

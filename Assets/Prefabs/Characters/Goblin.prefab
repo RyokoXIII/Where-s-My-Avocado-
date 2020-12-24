@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c478594c7d5f08545b9a13bf093cf9ce, type: 2}
+  - {fileID: 2100000, guid: 263dea49096c57640a1a0b5cffc94be0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 38106fcb0583bdc46809513373645922, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 548af0d77702c5f418facbb503d9512a, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -132,11 +132,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c98dde5b5f83db45be0b586e86034c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _goblinColl: {fileID: 4112579761456601136}
-  _batColl: {fileID: 0}
   _skeletonAnimation: {fileID: 3218426123632125227}
-  _idle: {fileID: 11400000, guid: 04a813d03bd946c478aa838b1f0844c4, type: 2}
-  _dead: {fileID: 11400000, guid: 7472908cb27f5374b875fc5838308319, type: 2}
+  _idle: {fileID: 11400000, guid: f73579876e9dae44ea951953ce11b7c1, type: 2}
+  _dead: {fileID: 11400000, guid: d03adf4305821d047906839151f8d600, type: 2}
   _currentState: 
 --- !u!61 &4112579761456601136
 BoxCollider2D:

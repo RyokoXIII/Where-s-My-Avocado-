@@ -11,6 +11,8 @@ public class MainMenuAction : MonoBehaviour
     public GameObject optionMenu, exitMenu, selectMenu;
     public Text starNumText;
 
+    int _maxLevels = 100;
+
     UIManager _uiManager;
     SoundManager _soundManager;
 
@@ -67,7 +69,8 @@ public class MainMenuAction : MonoBehaviour
     public void OnSelectLevel()
     {
         _soundManager.selectFX.Play();
-        selectMenu.SetActive(true);
+
+        SceneManager.LoadScene(1);
     }
 
     public void OnOption()
