@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 
-public class BossManager : MonoBehaviour, IAnimatable
+public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 {
     #region Global Variables
 
@@ -20,7 +20,13 @@ public class BossManager : MonoBehaviour, IAnimatable
     [SerializeField] string _currentState;
 
     string _currentAnimation;
-    bool _checkPlayAnim;
+    public bool _checkPlayAnim;
+
+    // Player Stats
+    public int maxHealth = 100;
+    public int currentHealth;
+    public HealthBar healthBarscript;
+    public GameObject healthBar;
 
     #endregion
 
@@ -34,19 +40,54 @@ public class BossManager : MonoBehaviour, IAnimatable
         _currentState = "1-idle";
         SetCharacterState(_currentState);
         _checkPlayAnim = false;
+
+        // Boss stats
+        SetHealthStats();
+
+        if (currentHealth > 0)
+        {
+            InvokeRepeating("DecreasedHealth", 0, 1f);
+        }
     }
 
     private void Update()
     {
         CheckBossGetKilled();
+
+        if (currentHealth == 0)
+        {
+            CancelInvoke();
+        }
+    }
+
+    void SetHealthStats()
+    {
+        currentHealth = maxHealth;
+        healthBarscript.SetMaxHealth(maxHealth);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBarscript.SetCurrentHealth(currentHealth);
+    }
+
+    void DecreasedHealth()
+    {
+        TakeDamage(10);
     }
 
     void CheckBossGetKilled()
     {
         if (_playerManager.touchBoss == true && !_checkPlayAnim)
         {
+            healthBar.SetActive(true);
+        }
+        if (!_checkPlayAnim && currentHealth == 0)
+        {
             _checkPlayAnim = true;
             StartCoroutine(AnimationLateCall());
+
         }
     }
 

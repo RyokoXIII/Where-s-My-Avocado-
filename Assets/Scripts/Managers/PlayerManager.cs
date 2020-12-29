@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 
-public class PlayerManager : MonoBehaviour, IAnimatable
+public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
 {
     #region Global Variables
 
+    // Manager
     PoolManager _pooler;
     UIManager _uiManager;
     StarHandler _starHandler;
@@ -27,6 +28,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     [SerializeField]
     BossManager _bossManager;
 
+    // Animation
     [Space(20f)]
     [SerializeField] SkeletonAnimation _skeletonAnimation;
     [SerializeField] AnimationReferenceAsset _idle, _circle, _rollout, _finished1, _finished2;
@@ -48,6 +50,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable
     bool checkFlipPlayer;
     bool bePushed, splash;
 
+    public int maxHealth = 100;
+    public int currentHealth;
+    public HealthBar healthBarscript;
+    public GameObject healthBar;
+
     #endregion
 
     void Start()
@@ -68,11 +75,33 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
         // Random player finished anim
         _playerState = Random.Range(0, 2);
+
+        // Set Player Stats
+        SetHealthStats();
+    }
+
+    void SetHealthStats()
+    {
+        currentHealth = maxHealth;
+        healthBarscript.SetMaxHealth(maxHealth);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBarscript.SetCurrentHealth(currentHealth);
     }
 
     private void Update()
     {
         FlipPlayerSprite();
+
+        //TakeDamage(20);
+    }
+
+    void DecreaseHealth()
+    {
+        TakeDamage(10);
     }
 
     void FlipPlayerSprite()
@@ -108,12 +137,13 @@ public class PlayerManager : MonoBehaviour, IAnimatable
                 touchBoss = true;
                 gameObject.layer = _cantCollideLayerIndex; // change layer
 
+                healthBar.SetActive(true);
+
                 // Rotate smoothly to 0
                 StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
                 StartCoroutine(WinAnimationTransition()); // Kill boss animation
-
-                // Game Over menu pop up Action callback
                 StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
+
             }
         }
     }
@@ -172,19 +202,22 @@ public class PlayerManager : MonoBehaviour, IAnimatable
 
     IEnumerator WinAnimationTransition()
     {
-        yield return new WaitForSeconds(0f);
+        while (_bossManager.currentHealth > 0)
+        {
+            yield return new WaitForSeconds(0);
 
-        if(_playerState == 0)
-        {
-            SetCharacterState("finisher");
-        }
-        else
-        {
-            SetCharacterState("finisher2");
+            if (_playerState == 0)
+            {
+                SetCharacterState("finisher");
+            }
+            else
+            {
+                SetCharacterState("finisher2");
+            }
+
         }
 
         yield return new WaitForSeconds(1.6f);
-
         SetCharacterState("idle");
     }
 
@@ -252,11 +285,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         }
         else if (state == "finisher2")
         {
-            SetAnimation(_finished2, false, 1.3f);
+            SetAnimation(_finished2, true, 1.3f);
         }
-        else if(state == "finisher")
+        else if (state == "finisher")
         {
-            SetAnimation(_finished1, false, 1.3f);
+            SetAnimation(_finished1, true, 1.3f);
         }
     }
 
@@ -302,4 +335,5 @@ public class PlayerManager : MonoBehaviour, IAnimatable
         }
         Debug.Log("Next level: " + PlayerPrefs.GetInt("level"));
     }
+
 }

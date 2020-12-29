@@ -180,9 +180,14 @@ MonoBehaviour:
   _idle: {fileID: 11400000, guid: c5a7380372a3d104697dff524801fa47, type: 2}
   _circle: {fileID: 11400000, guid: bd6bd1b13f8a8df46827c6ef8e8959c0, type: 2}
   _rollout: {fileID: 11400000, guid: 5187afa69c4ba84479819b4198229dbd, type: 2}
-  _finished: {fileID: 11400000, guid: b4fde709f18f66849a37b6bf44a35963, type: 2}
-  _currentState: 
+  _finished1: {fileID: 0}
+  _finished2: {fileID: 0}
+  _playerState: 0
   finalScore: 0
   touchBoundary: 0
   hasFirstStar: 0
-  touchGround: 0
+  touchBoss: 0
+  maxHealth: 100
+  currentHealth: 0
+  healthBarscript: {fileID: 0}
+  healthBar: {fileID: 0}
