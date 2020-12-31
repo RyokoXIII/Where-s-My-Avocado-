@@ -1,0 +1,90 @@
+
+hero.png
+size: 1570,374
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+F_arm
+  rotate: false
+  xy: 1386, 168
+  size: 169, 204
+  orig: 169, 204
+  offset: 0, 0
+  index: -1
+Shield
+  rotate: false
+  xy: 951, 110
+  size: 262, 262
+  orig: 262, 262
+  offset: 0, 0
+  index: -1
+ankle_L
+  rotate: false
+  xy: 940, 24
+  size: 105, 73
+  orig: 105, 73
+  offset: 0, 0
+  index: -1
+ankle_R
+  rotate: false
+  xy: 817, 11
+  size: 121, 86
+  orig: 121, 86
+  offset: 0, 0
+  index: -1
+arm_R
+  rotate: true
+  xy: 1047, 2
+  size: 106, 148
+  orig: 106, 148
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 564, 67
+  size: 251, 305
+  orig: 283, 316
+  offset: 3, 11
+  index: -1
+cloak
+  rotate: false
+  xy: 353, 19
+  size: 209, 353
+  orig: 209, 353
+  offset: 0, 0
+  index: -1
+hand_R
+  rotate: false
+  xy: 817, 99
+  size: 132, 273
+  orig: 132, 273
+  offset: 0, 0
+  index: -1
+head
+  rotate: false
+  xy: 1215, 141
+  size: 169, 231
+  orig: 170, 231
+  offset: 1, 0
+  index: -1
+slash
+  rotate: true
+  xy: 2, 6
+  size: 366, 349
+  orig: 393, 349
+  offset: 27, 0
+  index: -1
+thigh_L
+  rotate: false
+  xy: 1215, 4
+  size: 157, 135
+  orig: 157, 135
+  offset: 0, 0
+  index: -1
+thigh_R
+  rotate: false
+  xy: 1386, 2
+  size: 182, 164
+  orig: 182, 164
+  offset: 0, 0
+  index: -1

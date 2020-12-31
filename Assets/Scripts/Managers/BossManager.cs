@@ -28,6 +28,9 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     public HealthBar healthBarscript;
     public GameObject healthBar;
 
+    private float t = 0.0f;
+    private float threshold = 1.3f;
+
     #endregion
 
 
@@ -43,21 +46,11 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
         // Boss stats
         SetHealthStats();
-
-        if (currentHealth > 0)
-        {
-            InvokeRepeating("DecreasedHealth", 0, 1f);
-        }
     }
 
     private void Update()
     {
         CheckBossGetKilled();
-
-        if (currentHealth == 0)
-        {
-            CancelInvoke();
-        }
     }
 
     void SetHealthStats()
@@ -68,26 +61,28 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        healthBarscript.SetCurrentHealth(currentHealth);
-    }
+        t += Time.deltaTime;
 
-    void DecreasedHealth()
-    {
-        TakeDamage(10);
+        if (t >= threshold)
+        {
+            t = 0.0f;
+            currentHealth -= damage;
+            healthBarscript.SetCurrentHealth(currentHealth);
+        }
     }
 
     void CheckBossGetKilled()
     {
-        if (_playerManager.touchBoss == true && !_checkPlayAnim)
+        if (_playerManager.touchBoss == true && currentHealth > 0)
         {
             healthBar.SetActive(true);
+
+            TakeDamage(20);
         }
-        if (!_checkPlayAnim && currentHealth == 0)
+        else if (!_checkPlayAnim && currentHealth == 0)
         {
             _checkPlayAnim = true;
             StartCoroutine(AnimationLateCall());
-
         }
     }
 

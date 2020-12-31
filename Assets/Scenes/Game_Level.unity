@@ -325,6 +325,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1053032024290005159, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 473
+      objectReference: {fileID: 0}
     - target: {fileID: 1053032025600473632, guid: 8f53e60e690e4c74895fca9bb8774346,
         type: 3}
       propertyPath: m_Name
@@ -440,6 +445,21 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473636, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473636, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473636, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1053032025600473637, guid: 8f53e60e690e4c74895fca9bb8774346,
         type: 3}
       propertyPath: main
@@ -455,6 +475,56 @@ PrefabInstance:
       propertyPath: wantedPos.y
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473638, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473638, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473638, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473638, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473639, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_TargetDisplay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473639, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473639, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473639, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473639, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_RenderMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473639, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 993046059}
     - target: {fileID: 1053032026315543179, guid: 8f53e60e690e4c74895fca9bb8774346,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1436,6 +1506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 8951557393605331990, guid: bd2ccd5b8558201448590ba4c8989ff6,
+        type: 3}
+      propertyPath: m_Depth
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8951557393605332201, guid: bd2ccd5b8558201448590ba4c8989ff6,
         type: 3}
@@ -4382,6 +4457,16 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 993046059}
+    - target: {fileID: 7793664994945079472, guid: 6061856959f59f447a17796f8e442003,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793664994945079472, guid: 6061856959f59f447a17796f8e442003,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7793664994945079473, guid: 6061856959f59f447a17796f8e442003,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5226,10 +5311,45 @@ PrefabInstance:
       propertyPath: targetPos
       value: 
       objectReference: {fileID: 553207590}
+    - target: {fileID: 1053032025600473638, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473638, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 1280
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473638, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 720
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473638, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1053032025600473639, guid: 8f53e60e690e4c74895fca9bb8774346,
         type: 3}
       propertyPath: m_RenderMode
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473639, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_TargetDisplay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1053032025600473639, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 993046059}
+    - target: {fileID: 1053032025600473639, guid: 8f53e60e690e4c74895fca9bb8774346,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1053032026315543179, guid: 8f53e60e690e4c74895fca9bb8774346,
         type: 3}
@@ -5525,17 +5645,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4547475957349720664, guid: c677e6314907862499223707c543be6e,
-        type: 3}
-      propertyPath: skeletonDataAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 2465eefef0929074d9462b653fd1c1c1,
-        type: 2}
     - target: {fileID: 4547475957349720665, guid: c677e6314907862499223707c543be6e,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 4f592d9f184e2924eb4e8e019b01e4f4, type: 2}
+      objectReference: {fileID: 2100000, guid: 2e0cc4d245abeb5468c9fedc84b63dfc, type: 2}
     - target: {fileID: 4547475957349720665, guid: c677e6314907862499223707c543be6e,
         type: 3}
       propertyPath: m_SortingOrder
@@ -7044,7 +7158,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0ee4f5ffa197e6a439921460731ac854, type: 2}
+      objectReference: {fileID: 2100000, guid: 5e5dc43a5b3b60e4b8fad7dc4710553e, type: 2}
     - target: {fileID: 5783493231461236962, guid: 5f54f211149cc5c468ae1143029b1139,
         type: 3}
       propertyPath: m_SortingOrder
@@ -7136,12 +7250,6 @@ PrefabInstance:
       propertyPath: healthBarscript
       value: 
       objectReference: {fileID: 1971321295}
-    - target: {fileID: 5783493231461236965, guid: 5f54f211149cc5c468ae1143029b1139,
-        type: 3}
-      propertyPath: skeletonDataAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: f75564954cf824d4d88c2658aaff0868,
-        type: 2}
     - target: {fileID: 5783493231461236966, guid: 5f54f211149cc5c468ae1143029b1139,
         type: 3}
       propertyPath: m_Material

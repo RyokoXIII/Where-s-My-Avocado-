@@ -55,6 +55,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     public HealthBar healthBarscript;
     public GameObject healthBar;
 
+    bool _gameOver;
+
     #endregion
 
     void Start()
@@ -96,12 +98,12 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     {
         FlipPlayerSprite();
 
+        if(_bossManager.currentHealth == 0 && _gameOver == false)
+        {
+            _gameOver = true;
+            StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
+        }
         //TakeDamage(20);
-    }
-
-    void DecreaseHealth()
-    {
-        TakeDamage(10);
     }
 
     void FlipPlayerSprite()
@@ -142,8 +144,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
                 // Rotate smoothly to 0
                 StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
                 StartCoroutine(WinAnimationTransition()); // Kill boss animation
-                StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
-
+                //StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
             }
         }
     }
