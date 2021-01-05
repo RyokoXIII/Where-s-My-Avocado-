@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     // Animation
     [Space(20f)]
     [SerializeField] SkeletonAnimation _skeletonAnimation;
-    [SerializeField] AnimationReferenceAsset _idle, _circle, _rollout, _finished1, _finished2;
+    [SerializeField] AnimationReferenceAsset _idle, _circle, _rollout, _finished1, _finished2, _finished3, _attack;
     [SerializeField] int _playerState;
 
     string _currentAnimation;
@@ -50,10 +50,14 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     bool checkFlipPlayer;
     bool bePushed, splash;
 
+    public int hitPoint = 20;
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBarscript;
     public GameObject healthBar;
+
+    private float t = 0.0f;
+    private float threshold = 1f;
 
     bool _gameOver;
 
@@ -76,7 +80,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         checkFlipPlayer = true;
 
         // Random player finished anim
-        _playerState = Random.Range(0, 2);
+        _playerState = Random.Range(0, 3);
 
         // Set Player Stats
         SetHealthStats();
@@ -90,20 +94,29 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
-        healthBarscript.SetCurrentHealth(currentHealth);
+        t += Time.deltaTime;
+
+        if (t >= threshold)
+        {
+            t = 0.0f;
+            currentHealth -= damage;
+            healthBarscript.SetCurrentHealth(currentHealth);
+        }
     }
 
     private void Update()
     {
         FlipPlayerSprite();
 
-        if(_bossManager.currentHealth == 0 && _gameOver == false)
+        if (touchBoss == true && _bossManager.currentHealth != 0)
+        {
+            TakeDamage(hitPoint);
+        }
+        else if (_bossManager.currentHealth == 0 && _gameOver == false)
         {
             _gameOver = true;
             StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
-        //TakeDamage(20);
     }
 
     void FlipPlayerSprite()
@@ -124,7 +137,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
 
         if (touchBoss == false)
         {
-            //Debug.Log(Vector2.Distance(transform.position, _bossPos.position).ToString());
             if ((Vector2.Distance(transform.position, _bossPos.position) < 3f) && transform.position.y < _bossPos.position.y + 2f)
             {
                 if (transform.position.x < _bossPos.position.x)
@@ -203,23 +215,33 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
 
     IEnumerator WinAnimationTransition()
     {
+        yield return new WaitForSeconds(0);
+
+        if (_playerState == 0)
+        {
+            SetCharacterState("finisher");
+        }
+        else if (_playerState == 1)
+        {
+            SetCharacterState("finisher2");
+        }
+        else
+        {
+            SetCharacterState("finisher3");
+        }
+
         while (_bossManager.currentHealth > 0)
         {
-            yield return new WaitForSeconds(0);
 
-            if (_playerState == 0)
-            {
-                SetCharacterState("finisher");
-            }
-            else
-            {
-                SetCharacterState("finisher2");
-            }
+            yield return new WaitForSeconds(0.5f);
+            SetCharacterState("atk");
 
         }
 
-        yield return new WaitForSeconds(1.6f);
+        yield return new WaitForSeconds(1f);
         SetCharacterState("idle");
+        yield return new WaitForSeconds(1f);
+        healthBar.SetActive(false);
     }
 
     IEnumerator StartAnimationTransition()
@@ -284,13 +306,21 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         {
             SetAnimation(_rollout, false, 1.5f);
         }
-        else if (state == "finisher2")
-        {
-            SetAnimation(_finished2, true, 1.3f);
-        }
         else if (state == "finisher")
         {
-            SetAnimation(_finished1, true, 1.3f);
+            SetAnimation(_finished1, false, 1.5f);
+        }
+        else if (state == "finisher2")
+        {
+            SetAnimation(_finished2, false, 1.5f);
+        }
+        else if (state == "finisher3")
+        {
+            SetAnimation(_finished3, false, 1.5f);
+        }
+        else if (state == "atk")
+        {
+            SetAnimation(_attack, true, 1f);
         }
     }
 

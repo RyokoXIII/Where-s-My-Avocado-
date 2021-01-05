@@ -16,20 +16,21 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     [Header("Animation")]
     [Space(10f)]
     [SerializeField] SkeletonAnimation _skeletonAnimation;
-    [SerializeField] AnimationReferenceAsset _idle, _dead;
+    [SerializeField] AnimationReferenceAsset _idle, _dead, _attack;
     [SerializeField] string _currentState;
 
     string _currentAnimation;
     public bool _checkPlayAnim;
 
     // Player Stats
+    public int hitPoint = 20;
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBarscript;
     public GameObject healthBar;
 
     private float t = 0.0f;
-    private float threshold = 1.3f;
+    private float threshold = 1f;
 
     #endregion
 
@@ -76,8 +77,8 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         if (_playerManager.touchBoss == true && currentHealth > 0)
         {
             healthBar.SetActive(true);
-
-            TakeDamage(20);
+            SetCharacterState("4-atk");
+            TakeDamage(hitPoint);
         }
         else if (!_checkPlayAnim && currentHealth == 0)
         {
@@ -88,13 +89,16 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
     IEnumerator AnimationLateCall()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0f);
 
         SetCharacterState("3-dead2");
 
-        yield return new WaitForSeconds(0.3f);
+        //yield return new WaitForSeconds(0f);
         CreateParticleEffect();
         _soundManager.bossSlashFX.Play();
+
+        yield return new WaitForSeconds(2f);
+        healthBar.SetActive(false);
     }
 
     void CreateParticleEffect()
@@ -122,6 +126,10 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         else if (state == "3-dead2")
         {
             SetAnimation(_dead, false, 1f);
+        }
+        else if (state == "4-atk")
+        {
+            SetAnimation(_attack, true, 1f);
         }
     }
 }
