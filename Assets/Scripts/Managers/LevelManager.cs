@@ -88,7 +88,6 @@ public class LevelManager : MonoBehaviour
             {
                 if (dataList[i].Equals(PlayerPrefs.GetInt("levelID")))
                 {
-                    //_path = Application.dataPath + "/Resources/" + dataList[i].ToString() + ".json";
                     _path = dataList[i].ToString();
                 }
             }

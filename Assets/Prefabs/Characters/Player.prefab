@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5e5dc43a5b3b60e4b8fad7dc4710553e, type: 2}
+  - {fileID: 2100000, guid: 3754315d9c9df9944a7ddfa683707adf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,7 +82,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1101411241
   m_SortingLayer: 2
-  m_SortingOrder: 1
+  m_SortingOrder: 3
 --- !u!114 &5783493231461236965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: c6f8408ad4845de48a0bb0f9ac21e22a, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: e8d91051f7a16434f8e84a0a8ef9ccc7, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -135,7 +135,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 0.1
   m_LinearDrag: 0
-  m_AngularDrag: 0.02
+  m_AngularDrag: 0
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -151,7 +151,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 5783493231461236953}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3b6bd7fb29c7c7147855b2fd6484155e, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -170,24 +170,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03920eaed5c270e46a3e8368ba443734, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  magnitude: 0.5
+  magnitude: 0.7
   _playerRb: {fileID: 5783493231461236967}
   _playerColl: {fileID: 5783493231461236966}
   _bossPos: {fileID: 0}
   gameOverContainer: {fileID: 0}
   _bossManager: {fileID: 0}
   _skeletonAnimation: {fileID: 5783493231461236965}
-  _idle: {fileID: 11400000, guid: c5a7380372a3d104697dff524801fa47, type: 2}
-  _circle: {fileID: 11400000, guid: bd6bd1b13f8a8df46827c6ef8e8959c0, type: 2}
-  _rollout: {fileID: 11400000, guid: 5187afa69c4ba84479819b4198229dbd, type: 2}
-  _finished1: {fileID: 0}
-  _finished2: {fileID: 0}
+  _idle: {fileID: 11400000, guid: e9759a65b422a9f47ad609692e2d8fe5, type: 2}
+  _circle: {fileID: 11400000, guid: 418f53e34c69c5c43b9c0de4d8845eda, type: 2}
+  _rollout: {fileID: 11400000, guid: 9b82bde931c852649a441c5857709606, type: 2}
+  _finished1: {fileID: 11400000, guid: 5c8dfd0cc775f58428f4f7c2a29f5d90, type: 2}
+  _finished2: {fileID: 11400000, guid: 11aa3b334eda4cc4ba87d72d5e0f5801, type: 2}
+  _finished3: {fileID: 11400000, guid: 53e77dbe69ac0a44da8a5c0be8460348, type: 2}
+  _attack: {fileID: 11400000, guid: e6de62b8a2229134387f83c4355b722e, type: 2}
   _playerState: 0
   finalScore: 0
   touchBoundary: 0
   hasFirstStar: 0
   touchBoss: 0
-  maxHealth: 100
+  hitPoint: 1
+  maxHealth: 3
   currentHealth: 0
   healthBarscript: {fileID: 0}
   healthBar: {fileID: 0}
