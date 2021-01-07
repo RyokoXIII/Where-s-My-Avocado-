@@ -22,9 +22,12 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     string _currentAnimation;
     public bool _checkPlayAnim;
 
-    // Player Stats
-    public int hitPoint = 20;
-    public int maxHealth = 100;
+    [Header("Boss Stats")]
+    [Space(10f)]
+    [SerializeField] BossStats _bossStats;
+    public int bossDamage;
+    public int takeDamagePoint;
+    public int maxHealth;
     public int currentHealth;
     public HealthBar healthBarscript;
     public GameObject healthBar;
@@ -47,6 +50,8 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
         // Boss stats
         SetHealthStats();
+        bossDamage = _bossStats.attack;
+        takeDamagePoint = _playerManager.playerDamage;
     }
 
     private void Update()
@@ -56,6 +61,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
     void SetHealthStats()
     {
+        maxHealth = _bossStats.maxHP;
         currentHealth = maxHealth;
         healthBarscript.SetMaxHealth(maxHealth);
     }
@@ -67,8 +73,18 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         if (t >= threshold)
         {
             t = 0.0f;
-            currentHealth -= damage;
-            healthBarscript.SetCurrentHealth(currentHealth);
+
+            if (currentHealth > damage)
+            {
+                currentHealth -= damage;
+                healthBarscript.SetCurrentHealth(currentHealth);
+            }
+            else if (damage > currentHealth)
+            {
+                currentHealth = 0;
+                healthBarscript.SetCurrentHealth(currentHealth);
+            }
+
         }
     }
 
@@ -78,7 +94,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         {
             healthBar.SetActive(true);
             SetCharacterState("4-atk");
-            TakeDamage(hitPoint);
+            TakeDamage(takeDamagePoint);
         }
         else if (!_checkPlayAnim && currentHealth == 0)
         {

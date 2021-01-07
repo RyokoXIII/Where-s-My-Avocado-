@@ -1882,6 +1882,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5617744623715707320, guid: ec7eba04f39328e4f81c2534b73f479f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5617744623715707322, guid: ec7eba04f39328e4f81c2534b73f479f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6103,23 +6108,6 @@ PrefabInstance:
       objectReference: {fileID: 553207586}
     - target: {fileID: 4547475957349720645, guid: c677e6314907862499223707c543be6e,
         type: 3}
-      propertyPath: _bossColl
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547475957349720645, guid: c677e6314907862499223707c543be6e,
-        type: 3}
-      propertyPath: _idle
-      value: 
-      objectReference: {fileID: 11400000, guid: 58cd8fdaf9dfa114babb5215c35b9afe,
-        type: 2}
-    - target: {fileID: 4547475957349720645, guid: c677e6314907862499223707c543be6e,
-        type: 3}
-      propertyPath: _dead
-      value: 
-      objectReference: {fileID: 11400000, guid: fa1fb08bee176924883df3d7a16c2d20,
-        type: 2}
-    - target: {fileID: 4547475957349720645, guid: c677e6314907862499223707c543be6e,
-        type: 3}
       propertyPath: healthBarscript
       value: 
       objectReference: {fileID: 1053032025774758548}
@@ -6128,22 +6116,6 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1053032025774758545}
-    - target: {fileID: 4547475957349720645, guid: c677e6314907862499223707c543be6e,
-        type: 3}
-      propertyPath: _attack
-      value: 
-      objectReference: {fileID: 11400000, guid: e89042623bfe5cf429a6b654b83413ed,
-        type: 2}
-    - target: {fileID: 4547475957349720645, guid: c677e6314907862499223707c543be6e,
-        type: 3}
-      propertyPath: maxHealth
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547475957349720645, guid: c677e6314907862499223707c543be6e,
-        type: 3}
-      propertyPath: hitPoint
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 4547475957349720646, guid: c677e6314907862499223707c543be6e,
         type: 3}
       propertyPath: m_Mesh
@@ -6203,22 +6175,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547475957349720664, guid: c677e6314907862499223707c543be6e,
-        type: 3}
-      propertyPath: skeletonDataAsset
-      value: 
-      objectReference: {fileID: 11400000, guid: 2399fa3861b12ec46a256343c8ef8f68,
-        type: 2}
-    - target: {fileID: 4547475957349720665, guid: c677e6314907862499223707c543be6e,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: ce7d837cf3ac6014a8e29884672a93c1, type: 2}
-    - target: {fileID: 4547475957349720665, guid: c677e6314907862499223707c543be6e,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4547475957349720667, guid: c677e6314907862499223707c543be6e,
         type: 3}
@@ -6326,13 +6282,8 @@ PrefabInstance:
       objectReference: {fileID: 1971321290}
     - target: {fileID: 5783493231461236964, guid: 5f54f211149cc5c468ae1143029b1139,
         type: 3}
-      propertyPath: maxHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783493231461236964, guid: 5f54f211149cc5c468ae1143029b1139,
-        type: 3}
-      propertyPath: hitPoint
-      value: 100
+      propertyPath: takeDamagePoint
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f54f211149cc5c468ae1143029b1139, type: 3}

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5783493231461236967}
   - component: {fileID: 5783493231461236966}
   - component: {fileID: 5783493231461236964}
+  - component: {fileID: 5783493230937425864}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -189,8 +190,28 @@ MonoBehaviour:
   touchBoundary: 0
   hasFirstStar: 0
   touchBoss: 0
-  hitPoint: 1
-  maxHealth: 3
-  currentHealth: 0
+  _levelSystem: {fileID: 5783493230937425864}
+  playerDamage: 0
+  takeDamagePoint: 0
   healthBarscript: {fileID: 0}
   healthBar: {fileID: 0}
+--- !u!114 &5783493230937425864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783493231461236953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18b754c3fb1825b4d93fb7531875c51c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterLevel: 0
+  characterMaxLevel: 5
+  currentExp: 0
+  nextLevelExp: 150
+  expPoint: 50
+  currentHP: 100
+  maxHP: 100
+  attack: 100

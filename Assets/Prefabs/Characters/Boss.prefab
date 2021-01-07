@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4547475957349720665}
   - component: {fileID: 4547475957349720664}
   - component: {fileID: 4547475957349720645}
+  - component: {fileID: 98663621}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
@@ -60,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2e0cc4d245abeb5468c9fedc84b63dfc, type: 2}
+  - {fileID: 2100000, guid: ce7d837cf3ac6014a8e29884672a93c1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -80,7 +81,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1101411241
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 3
 --- !u!114 &4547475957349720664
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 51b1699c9f7b21a47bced065f11547b8, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 2399fa3861b12ec46a256343c8ef8f68, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -132,8 +133,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerManager: {fileID: 0}
-  _bossColl: {fileID: 0}
   _skeletonAnimation: {fileID: 4547475957349720664}
-  _idle: {fileID: 11400000, guid: cff475f601e2b80419adeaa18a5f0d1a, type: 2}
-  _dead: {fileID: 11400000, guid: 19e6e4844145d0a49b6f688d5c4c0e35, type: 2}
+  _idle: {fileID: 11400000, guid: 58cd8fdaf9dfa114babb5215c35b9afe, type: 2}
+  _dead: {fileID: 11400000, guid: fa1fb08bee176924883df3d7a16c2d20, type: 2}
+  _attack: {fileID: 11400000, guid: e89042623bfe5cf429a6b654b83413ed, type: 2}
   _currentState: 
+  _checkPlayAnim: 0
+  _bossStats: {fileID: 98663621}
+  takeDamagePoint: 0
+  maxHealth: 80
+  currentHealth: 0
+  healthBarscript: {fileID: 0}
+  healthBar: {fileID: 0}
+--- !u!114 &98663621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4547475957349720667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d8ac977653cce8429875b568b3a3af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHP: 0
+  maxHP: 80
+  attack: 50

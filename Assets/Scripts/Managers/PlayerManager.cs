@@ -50,8 +50,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     bool checkFlipPlayer;
     bool bePushed, splash;
 
-    public int hitPoint = 20;
-    public int maxHealth = 100;
+    [Header("Player Stats")]
+    [Space(10f)]
+    [SerializeField] LevelUpSystem _levelSystem;
+    public int playerDamage, takeDamagePoint;
+    public int maxHealth;
     public int currentHealth;
     public HealthBar healthBarscript;
     public GameObject healthBar;
@@ -59,7 +62,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     private float t = 0.0f;
     private float threshold = 1f;
 
-    bool _gameOver;
+    bool _gameOver, _statsUpdate;
 
     #endregion
 
@@ -82,12 +85,23 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         // Random player finished anim
         _playerState = Random.Range(0, 3);
 
-        // Set Player Stats
+        // Set player stats
         SetHealthStats();
+        playerDamage = _levelSystem.attack;
+    }
+
+    void SetTakeDamagePoint()
+    {
+        if (_statsUpdate == false)
+        {
+            takeDamagePoint = _bossManager.bossDamage;
+            _statsUpdate = true;
+        }
     }
 
     void SetHealthStats()
     {
+        maxHealth = _levelSystem.maxHP;
         currentHealth = maxHealth;
         healthBarscript.SetMaxHealth(maxHealth);
     }
@@ -99,18 +113,29 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         if (t >= threshold)
         {
             t = 0.0f;
-            currentHealth -= damage;
-            healthBarscript.SetCurrentHealth(currentHealth);
+
+            if (currentHealth > damage)
+            {
+                currentHealth -= damage;
+                healthBarscript.SetCurrentHealth(currentHealth);
+            }
+            else if (damage > currentHealth)
+            {
+                currentHealth = 0;
+                healthBarscript.SetCurrentHealth(currentHealth);
+            }
         }
     }
 
     private void Update()
     {
+        SetTakeDamagePoint();
+
         FlipPlayerSprite();
 
         if (touchBoss == true && _bossManager.currentHealth != 0)
         {
-            TakeDamage(hitPoint);
+            TakeDamage(takeDamagePoint);
         }
         else if (_bossManager.currentHealth == 0 && _gameOver == false)
         {
@@ -366,5 +391,4 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         }
         Debug.Log("Next level: " + PlayerPrefs.GetInt("level"));
     }
-
 }
