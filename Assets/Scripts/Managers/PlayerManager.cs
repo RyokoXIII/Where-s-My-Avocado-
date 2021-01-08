@@ -31,8 +31,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     // Animation
     [Space(20f)]
     [SerializeField] SkeletonAnimation _skeletonAnimation;
-    [SerializeField] AnimationReferenceAsset _idle, _circle, _rollout, _finished1, _finished2, _finished3, _attack;
+    [SerializeField]
+    AnimationReferenceAsset _idle, _circle, _rollout,
+        _finished1, _finished2, _finished3, _attack, _dead;
     [SerializeField] int _playerState;
+    [SerializeField] GameObject _bloodSplatParticle;
 
     string _currentAnimation;
 
@@ -53,16 +56,17 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     [Header("Player Stats")]
     [Space(10f)]
     [SerializeField] LevelUpSystem _levelSystem;
-    public int playerDamage, takeDamagePoint;
-    public int maxHealth;
+    public int playerDamage;
     public int currentHealth;
+    public int maxHealth;
+    public int takeDamagePoint;
     public HealthBar healthBarscript;
     public GameObject healthBar;
 
     private float t = 0.0f;
     private float threshold = 1f;
 
-    bool _gameOver, _statsUpdate;
+    bool _gameOver;
 
     #endregion
 
@@ -86,22 +90,36 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         _playerState = Random.Range(0, 3);
 
         // Set player stats
-        SetHealthStats();
-        playerDamage = _levelSystem.attack;
+        SetPlayerStats();
+    }
+    private void Update()
+    {
+        SetTakeDamagePoint();
+
+        BossEvent();
+        FightBossEvent();
     }
 
     void SetTakeDamagePoint()
     {
-        if (_statsUpdate == false)
+        if (takeDamagePoint < _bossManager.bossDamage)
         {
             takeDamagePoint = _bossManager.bossDamage;
-            _statsUpdate = true;
         }
     }
 
-    void SetHealthStats()
+    void SetPlayerStats()
     {
-        maxHealth = _levelSystem.maxHP;
+        if (PlayerPrefs.GetInt("damageStats") == 0)
+        {
+            playerDamage = _levelSystem.attack;
+            maxHealth = _levelSystem.maxHP;
+        }
+        else
+        {
+            playerDamage = PlayerPrefs.GetInt("damageStats");
+            maxHealth = PlayerPrefs.GetInt("healthStats");
+        }
         currentHealth = maxHealth;
         healthBarscript.SetMaxHealth(maxHealth);
     }
@@ -127,24 +145,31 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         }
     }
 
-    private void Update()
+    void FightBossEvent()
     {
-        SetTakeDamagePoint();
-
-        FlipPlayerSprite();
-
-        if (touchBoss == true && _bossManager.currentHealth != 0)
+        if (touchBoss == true && _bossManager.currentHealth > 0 && currentHealth > 0)
         {
             TakeDamage(takeDamagePoint);
+
+            Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
+            GameObject obj = _pooler.SpawnFromPool("BloodSplatWide Particle", pos, Quaternion.identity);
+
+            _bloodSplatParticle = obj;
         }
-        else if (_bossManager.currentHealth == 0 && _gameOver == false)
+        if (currentHealth == 0 && _gameOver == false)
+        {
+            _gameOver = true;
+            touchBoundary = true;
+            StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
+        }
+        if (_bossManager.currentHealth == 0 && _gameOver == false)
         {
             _gameOver = true;
             StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
     }
 
-    void FlipPlayerSprite()
+    void BossEvent()
     {
         if (checkFlipPlayer && (Vector2.Distance(transform.position, _bossPos.position) < 10f))
         {
@@ -180,7 +205,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
 
                 // Rotate smoothly to 0
                 StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
-                StartCoroutine(WinAnimationTransition()); // Kill boss animation
+                StartCoroutine(FightAnimationTransition()); // Kill boss animation
                 //StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
             }
         }
@@ -193,6 +218,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         {
             if (other.enabled == true)
             {
+                _levelSystem.currentExp += 25;
                 _enemyCount += 1;
                 finalScore = _enemyCount;
 
@@ -238,7 +264,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         _playerRb.constraints = RigidbodyConstraints2D.FreezePositionX;
     }
 
-    IEnumerator WinAnimationTransition()
+    IEnumerator FightAnimationTransition()
     {
         yield return new WaitForSeconds(0);
 
@@ -255,16 +281,26 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             SetCharacterState("finisher3");
         }
 
-        while (_bossManager.currentHealth > 0)
+        while (_bossManager.currentHealth > 0 && currentHealth > 0)
         {
 
             yield return new WaitForSeconds(0.5f);
             SetCharacterState("atk");
-
         }
 
         yield return new WaitForSeconds(1f);
-        SetCharacterState("idle");
+
+        if (currentHealth == 0)
+        {
+            SetCharacterState("death");
+        }
+        else
+        {
+            _levelSystem.currentExp += 75;
+            SetCharacterState("idle");
+        }
+        _bloodSplatParticle.SetActive(false);
+
         yield return new WaitForSeconds(1f);
         healthBar.SetActive(false);
     }
@@ -346,6 +382,10 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         else if (state == "atk")
         {
             SetAnimation(_attack, true, 1f);
+        }
+        else if (state == "death")
+        {
+            SetAnimation(_dead, false, 1f);
         }
     }
 

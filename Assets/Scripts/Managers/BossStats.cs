@@ -6,8 +6,8 @@ public class BossStats : MonoBehaviour
 {
     #region Global Variables
 
-    public int currentHP;
-    public int maxHP, attack;
+    public int attack;
+    public int currentHP, maxHP;
 
     int _currentLevel;
 

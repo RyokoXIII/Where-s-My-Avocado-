@@ -9,6 +9,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
     [SerializeField]
     PlayerManager _playerManager;
+    [SerializeField] GameObject _bloodSplatParticle;
 
     PoolManager _pooler;
     SoundManager _soundManager;
@@ -26,17 +27,16 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     [Space(10f)]
     [SerializeField] BossStats _bossStats;
     public int bossDamage;
-    public int takeDamagePoint;
-    public int maxHealth;
     public int currentHealth;
+    public int maxHealth;
+    public int takeDamagePoint;
     public HealthBar healthBarscript;
     public GameObject healthBar;
 
-    private float t = 0.0f;
-    private float threshold = 1f;
+    float t = 0.0f;
+    float threshold = 1f;
 
     #endregion
-
 
     private void Start()
     {
@@ -49,21 +49,37 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         _checkPlayAnim = false;
 
         // Boss stats
-        SetHealthStats();
-        bossDamage = _bossStats.attack;
-        takeDamagePoint = _playerManager.playerDamage;
+        SetBossStats();
     }
 
     private void Update()
     {
         CheckBossGetKilled();
+
+        UpdateBossStats();
     }
 
-    void SetHealthStats()
+    void SetBossStats()
     {
+        bossDamage = _bossStats.attack;
+        takeDamagePoint = _playerManager.playerDamage;
+
         maxHealth = _bossStats.maxHP;
         currentHealth = maxHealth;
         healthBarscript.SetMaxHealth(maxHealth);
+    }
+
+    void UpdateBossStats()
+    {
+        if (bossDamage < _bossStats.attack)
+        {
+            bossDamage = _bossStats.attack;
+            takeDamagePoint = _playerManager.playerDamage;
+
+            maxHealth = _bossStats.maxHP;
+            currentHealth = maxHealth;
+            healthBarscript.SetMaxHealth(maxHealth);
+        }
     }
 
     public void TakeDamage(int damage)
@@ -90,30 +106,48 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
     void CheckBossGetKilled()
     {
-        if (_playerManager.touchBoss == true && currentHealth > 0)
+        if (_playerManager.touchBoss == true && currentHealth > 0 && _playerManager.currentHealth > 0)
         {
             healthBar.SetActive(true);
             SetCharacterState("4-atk");
             TakeDamage(takeDamagePoint);
+            CreateParticleEffect();
         }
-        else if (!_checkPlayAnim && currentHealth == 0)
+        if (!_checkPlayAnim && currentHealth == 0)
         {
             _checkPlayAnim = true;
-            StartCoroutine(AnimationLateCall());
+            StartCoroutine(DeadAnimationLateCall());
+        }
+        if(_playerManager.currentHealth == 0)
+        {
+            StartCoroutine(WinAnimationLateCall());
         }
     }
 
-    IEnumerator AnimationLateCall()
+    IEnumerator DeadAnimationLateCall()
     {
         yield return new WaitForSeconds(0f);
 
         SetCharacterState("3-dead2");
 
-        //yield return new WaitForSeconds(0f);
-        CreateParticleEffect();
+        yield return new WaitForSeconds(0.1f);
+        _bloodSplatParticle.SetActive(false);
         _soundManager.bossSlashFX.Play();
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.9f);
+        healthBar.SetActive(false);
+    }
+
+    IEnumerator WinAnimationLateCall()
+    {
+        yield return new WaitForSeconds(0f);
+
+        SetCharacterState("1-idle");
+
+        yield return new WaitForSeconds(0.1f);
+        _bloodSplatParticle.SetActive(false);
+
+        yield return new WaitForSeconds(1.9f);
         healthBar.SetActive(false);
     }
 
@@ -121,7 +155,9 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
         _pooler.SpawnFromPool("Big Slash Particle", pos, Quaternion.identity);
-        _pooler.SpawnFromPool("BloodSplatWide Particle", pos, Quaternion.identity);
+        GameObject obj = _pooler.SpawnFromPool("BloodSplatWide Particle", pos, Quaternion.identity);
+
+        _bloodSplatParticle = obj;
     }
 
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)

@@ -47,7 +47,7 @@ ParticleSystem:
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 0
+  looping: 1
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -4751,4 +4751,4 @@ SortingGroup:
   m_Enabled: 1
   m_SortingLayerID: 1101411241
   m_SortingLayer: 2
-  m_SortingOrder: 3
+  m_SortingOrder: 5

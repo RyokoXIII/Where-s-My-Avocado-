@@ -25,7 +25,6 @@ public class PoolManager : MonoSingleton<PoolManager>
 
     #endregion
 
-
     void Start()
     {
         _starHandler = StarHandler.Instance;

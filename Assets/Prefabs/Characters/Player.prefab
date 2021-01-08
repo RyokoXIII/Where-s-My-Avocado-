@@ -185,13 +185,17 @@ MonoBehaviour:
   _finished2: {fileID: 11400000, guid: 11aa3b334eda4cc4ba87d72d5e0f5801, type: 2}
   _finished3: {fileID: 11400000, guid: 53e77dbe69ac0a44da8a5c0be8460348, type: 2}
   _attack: {fileID: 11400000, guid: e6de62b8a2229134387f83c4355b722e, type: 2}
+  _dead: {fileID: 11400000, guid: ff4d9061b7e2439418d706a37c9e6f0c, type: 2}
   _playerState: 0
+  _bloodSplatParticle: {fileID: 0}
   finalScore: 0
   touchBoundary: 0
   hasFirstStar: 0
   touchBoss: 0
   _levelSystem: {fileID: 5783493230937425864}
   playerDamage: 0
+  currentHealth: 0
+  maxHealth: 0
   takeDamagePoint: 0
   healthBarscript: {fileID: 0}
   healthBar: {fileID: 0}
@@ -208,10 +212,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterLevel: 0
-  characterMaxLevel: 5
+  characterMaxLevel: 10
   currentExp: 0
   nextLevelExp: 150
-  expPoint: 50
+  attack: 100
   currentHP: 100
   maxHP: 100
-  attack: 100

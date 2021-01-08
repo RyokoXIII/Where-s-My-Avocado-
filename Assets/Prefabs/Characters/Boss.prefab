@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerManager: {fileID: 0}
+  _bloodSplatParticle: {fileID: 0}
   _skeletonAnimation: {fileID: 4547475957349720664}
   _idle: {fileID: 11400000, guid: 58cd8fdaf9dfa114babb5215c35b9afe, type: 2}
   _dead: {fileID: 11400000, guid: fa1fb08bee176924883df3d7a16c2d20, type: 2}
@@ -140,11 +141,13 @@ MonoBehaviour:
   _currentState: 
   _checkPlayAnim: 0
   _bossStats: {fileID: 98663621}
+  bossDamage: 0
   takeDamagePoint: 0
-  maxHealth: 80
+  maxHealth: 0
   currentHealth: 0
   healthBarscript: {fileID: 0}
   healthBar: {fileID: 0}
+  _statsUpdate: 0
 --- !u!114 &98663621
 MonoBehaviour:
   m_ObjectHideFlags: 0

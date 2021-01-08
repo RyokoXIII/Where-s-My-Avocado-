@@ -11,34 +11,44 @@ public class LevelUpSystem : MonoBehaviour
     [Header("EXP")]
     [Space(10f)]
     public int currentExp;
-    public int nextLevelExp, expPoint;
+    public int nextLevelExp;
 
     [Header("Character Stats")]
     [Space(10f)]
-    public int currentHP;
-    public int maxHP, attack;
+    public int attack;
+    public int currentHP, maxHP;
 
     private void Start()
     {
         nextLevelExp = 150;
+
+        UpdatePlayerStats();
     }
 
-    private void Update()
+    void UpdatePlayerStats()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (PlayerPrefs.GetInt("damageStats") == 0)
         {
-            AddExp();
+            attack = 100;
+            maxHP = 100;
+            characterLevel = 1;
+        }
+        else
+        {
+            attack = PlayerPrefs.GetInt("damageStats");
+            maxHP = PlayerPrefs.GetInt("healthStats");
+            characterLevel = PlayerPrefs.GetInt("playerLv");
+
+            currentHP = maxHP;
         }
     }
 
     public void AddExp()
     {
-        currentExp += expPoint;
-
-        if (currentExp >= nextLevelExp && characterLevel < characterMaxLevel)
-        {
-            LevelUp();
-        }
+        //if (currentExp >= nextLevelExp && characterLevel < characterMaxLevel)
+        //{
+        LevelUp();
+        //}
     }
 
     void LevelUp()
