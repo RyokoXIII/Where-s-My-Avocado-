@@ -90,7 +90,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         {
             t = 0.0f;
 
-            if (currentHealth > damage)
+            if (currentHealth >= damage)
             {
                 currentHealth -= damage;
                 healthBarscript.SetCurrentHealth(currentHealth);
@@ -118,7 +118,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
             _checkPlayAnim = true;
             StartCoroutine(DeadAnimationLateCall());
         }
-        if(_playerManager.currentHealth == 0)
+        if (_playerManager.currentHealth == 0)
         {
             StartCoroutine(WinAnimationLateCall());
         }
@@ -130,7 +130,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
         SetCharacterState("3-dead2");
 
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(2f);
         _bloodSplatParticle.SetActive(false);
         _soundManager.bossSlashFX.Play();
 

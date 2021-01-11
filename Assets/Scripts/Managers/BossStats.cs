@@ -29,7 +29,7 @@ public class BossStats : MonoBehaviour
     void LevelUp()
     {
         // Health upgrade
-        maxHP += 15;
+        maxHP += 50;
         currentHP = maxHP;
         // Damage upgrade
         attack += 10;

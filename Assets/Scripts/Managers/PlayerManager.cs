@@ -63,8 +63,10 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     public HealthBar healthBarscript;
     public GameObject healthBar;
 
-    private float t = 0.0f;
-    private float threshold = 1f;
+    [SerializeField] int _expPoint;
+
+    float t = 0.0f;
+    float threshold = 1f;
 
     bool _gameOver;
 
@@ -132,7 +134,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         {
             t = 0.0f;
 
-            if (currentHealth > damage)
+            if (currentHealth >= damage)
             {
                 currentHealth -= damage;
                 healthBarscript.SetCurrentHealth(currentHealth);
@@ -218,7 +220,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         {
             if (other.enabled == true)
             {
-                _levelSystem.currentExp += 25;
+                _expPoint += 25;
+                //_levelSystem.currentExp += 25;
                 _enemyCount += 1;
                 finalScore = _enemyCount;
 
@@ -288,7 +291,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             SetCharacterState("atk");
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0);
 
         if (currentHealth == 0)
         {
@@ -296,7 +299,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         }
         else
         {
-            _levelSystem.currentExp += 75;
+            _expPoint += 75;
+            //_levelSystem.currentExp += 75;
             SetCharacterState("idle");
         }
         _bloodSplatParticle.SetActive(false);
@@ -392,6 +396,10 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     // Game over menu popup
     void GameOverPopup()
     {
+        if (touchBoundary == false)
+        {
+            _levelSystem.currentExp += _expPoint;
+        }
         gameOverContainer.SetActive(true);
 
         SaveCollectedStarsNum();

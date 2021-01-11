@@ -20,7 +20,18 @@ public class LevelUpSystem : MonoBehaviour
 
     private void Start()
     {
-        nextLevelExp = 150;
+        characterLevel = PlayerPrefs.GetInt("playerLv");
+
+        if (characterLevel > 1)
+        {
+            nextLevelExp = 300 * characterLevel;
+        }
+        else
+        {
+            nextLevelExp = 300;
+        }
+
+        currentExp = PlayerPrefs.GetInt("expPoint");
 
         UpdatePlayerStats();
     }
@@ -30,7 +41,7 @@ public class LevelUpSystem : MonoBehaviour
         if (PlayerPrefs.GetInt("damageStats") == 0)
         {
             attack = 100;
-            maxHP = 100;
+            maxHP = 500;
             characterLevel = 1;
         }
         else
@@ -45,10 +56,7 @@ public class LevelUpSystem : MonoBehaviour
 
     public void AddExp()
     {
-        //if (currentExp >= nextLevelExp && characterLevel < characterMaxLevel)
-        //{
         LevelUp();
-        //}
     }
 
     void LevelUp()
@@ -57,10 +65,10 @@ public class LevelUpSystem : MonoBehaviour
         currentExp -= nextLevelExp;
         characterLevel++;
 
-        // Health upgrade
-        maxHP += 15;
-        currentHP = maxHP;
         // Damage upgrade
-        attack += 10;
+        attack += 50;
+        // Health upgrade
+        maxHP += 250;
+        currentHP = maxHP;
     }
 }

@@ -212,9 +212,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterLevel: 0
-  characterMaxLevel: 10
+  characterMaxLevel: 100
   currentExp: 0
-  nextLevelExp: 150
+  nextLevelExp: 300
   attack: 100
-  currentHP: 100
-  maxHP: 100
+  currentHP: 500
+  maxHP: 500

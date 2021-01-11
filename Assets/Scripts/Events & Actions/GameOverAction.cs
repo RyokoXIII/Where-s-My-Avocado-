@@ -68,6 +68,12 @@ public class GameOverAction : MonoBehaviour, IAnimatable
         _hasNotUpgrade = true;
 
         GetPlayerCurrentStats();
+
+        // Save exp point
+        if (_playerManager.touchBoundary == false)
+        {
+            PlayerPrefs.SetInt("expPoint", _playerLvUp.currentExp);
+        }
     }
 
     private void Update()
@@ -82,8 +88,8 @@ public class GameOverAction : MonoBehaviour, IAnimatable
         _healthTxt.text = _playerLvUp.maxHP.ToString();
 
         // Stats upgrade point
-        _damagePlusTxt.text = "+ 10";
-        _healthPlusTxt.text = "+ 15";
+        _damagePlusTxt.text = "+ 50";
+        _healthPlusTxt.text = "+ 250";
     }
 
     void UpgradePlayerStats()
@@ -96,6 +102,8 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             _healthTxt.color = Color.green;
 
             _playerLvUp.AddExp();
+
+            PlayerPrefs.SetInt("expPoint", _playerLvUp.currentExp);
 
             // Update player stats
             _damageTxt.text = _playerLvUp.attack.ToString();
