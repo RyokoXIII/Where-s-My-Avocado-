@@ -13,6 +13,9 @@ public class GameUIAction : MonoBehaviour
     UIManager _uiManager;
     SoundManager _soundManager;
 
+    [SerializeField] PlayerManager _playerManager;
+    [SerializeField] Text _goldTxt;
+
     #endregion
 
 
@@ -23,6 +26,11 @@ public class GameUIAction : MonoBehaviour
 
         _uiManager.OnClick += OnReplay;
         _uiManager.OnMenu += OnMenu;
+    }
+
+    private void Update()
+    {
+        _goldTxt.text = _playerManager._expPoint + " pts";
     }
 
     public void Resume()

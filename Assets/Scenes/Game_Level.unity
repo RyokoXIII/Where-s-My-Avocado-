@@ -3952,6 +3952,11 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4304996548361164358, guid: 6061856959f59f447a17796f8e442003,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4454925516924139418, guid: 6061856959f59f447a17796f8e442003,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -4547,6 +4552,11 @@ PrefabInstance:
       propertyPath: m_Pivot.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6304887332106769207, guid: 6061856959f59f447a17796f8e442003,
+        type: 3}
+      propertyPath: _playerManager
+      value: 
+      objectReference: {fileID: 553207586}
     - target: {fileID: 6307354684301229908, guid: 6061856959f59f447a17796f8e442003,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -4760,6 +4770,16 @@ PrefabInstance:
     - target: {fileID: 7711248879224755736, guid: 6061856959f59f447a17796f8e442003,
         type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793664994684189268, guid: 6061856959f59f447a17796f8e442003,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793664994734794082, guid: 6061856959f59f447a17796f8e442003,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7793664994945079472, guid: 6061856959f59f447a17796f8e442003,

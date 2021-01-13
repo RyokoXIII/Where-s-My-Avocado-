@@ -136,6 +136,7 @@ MonoBehaviour:
   _idle: {fileID: 11400000, guid: f73579876e9dae44ea951953ce11b7c1, type: 2}
   _dead: {fileID: 11400000, guid: d03adf4305821d047906839151f8d600, type: 2}
   _currentState: 
+  goldDrop: 5
 --- !u!61 &4112579761456601136
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -40,6 +40,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     string _currentAnimation;
 
     int _enemyCount = 0;
+    int _enemyGold = 5;
     int _cantCollideLayerIndex;
 
     [HideInInspector]
@@ -63,10 +64,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     public HealthBar healthBarscript;
     public GameObject healthBar;
 
-    [SerializeField] int _expPoint;
+    public int _expPoint;
+    int _currentLevel;
 
     float t = 0.0f;
-    float threshold = 1f;
+    float threshold = 1.3f;
 
     bool _gameOver;
 
@@ -79,6 +81,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         _starHandler = StarHandler.Instance;
         _soundManager = SoundManager.Instance;
 
+        _currentLevel = PlayerPrefs.GetInt("levelID");
         _cantCollideLayerIndex = LayerMask.NameToLayer("End");
 
         // Start Animation callback
@@ -160,8 +163,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         }
         if (currentHealth == 0 && _gameOver == false)
         {
+            // Lost
             _gameOver = true;
+            _expPoint = 0;
             touchBoundary = true;
+
             StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
         if (_bossManager.currentHealth == 0 && _gameOver == false)
@@ -220,8 +226,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         {
             if (other.enabled == true)
             {
-                _expPoint += 25;
-                //_levelSystem.currentExp += 25;
+                EnemyGoldDrop();
                 _enemyCount += 1;
                 finalScore = _enemyCount;
 
@@ -299,8 +304,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         }
         else
         {
-            _expPoint += 75;
-            //_levelSystem.currentExp += 75;
+            //_expPoint += 75;
+            BossGoldDrop();
             SetCharacterState("idle");
         }
         _bloodSplatParticle.SetActive(false);
@@ -340,6 +345,9 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             _playerRb.constraints = RigidbodyConstraints2D.FreezeAll;
 
             touchBoundary = true;
+
+            // Lost point
+            _expPoint = 0;
 
             // Game Over menu pop up Action callback
             StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
@@ -403,6 +411,42 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         gameOverContainer.SetActive(true);
 
         SaveCollectedStarsNum();
+    }
+
+    void BossGoldDrop()
+    {
+        int randomDrop = Random.Range(5, 11);
+
+        if (_currentLevel > 1)
+        {
+            for (int i = 0; i < _currentLevel - 1; i++)
+            {
+                _bossManager.goldDrop += 25 + randomDrop;
+            }
+            _expPoint = _bossManager.goldDrop;
+        }
+        else
+        {
+            _expPoint += _bossManager.goldDrop + randomDrop;
+        }
+    }
+
+    void EnemyGoldDrop()
+    {
+        int randomDrop = Random.Range(1, 4);
+
+        if (_currentLevel > 1)
+        {
+            for (int i = 0; i < _currentLevel - 1; i++)
+            {
+                _enemyGold += 5 + randomDrop;
+            }
+            _expPoint = _enemyGold;
+        }
+        else
+        {
+            _expPoint += _enemyGold + randomDrop;
+        }
     }
 
     void SaveCollectedStarsNum()

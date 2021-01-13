@@ -30,6 +30,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     public int currentHealth;
     public int maxHealth;
     public int takeDamagePoint;
+    public int goldDrop;
     public HealthBar healthBarscript;
     public GameObject healthBar;
 
@@ -111,7 +112,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
             healthBar.SetActive(true);
             SetCharacterState("4-atk");
             TakeDamage(takeDamagePoint);
-            CreateParticleEffect();
+            CreateBloodParticleEffect();
         }
         if (!_checkPlayAnim && currentHealth == 0)
         {
@@ -128,13 +129,15 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     {
         yield return new WaitForSeconds(0f);
 
-        SetCharacterState("3-dead2");
+        SetCharacterState("2-dead");
 
-        yield return new WaitForSeconds(2f);
-        _bloodSplatParticle.SetActive(false);
+        CreateSlashParticleEffect();
         _soundManager.bossSlashFX.Play();
 
-        yield return new WaitForSeconds(1.9f);
+        yield return new WaitForSeconds(0.5f);
+        _bloodSplatParticle.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
         healthBar.SetActive(false);
     }
 
@@ -143,20 +146,22 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         yield return new WaitForSeconds(0f);
 
         SetCharacterState("1-idle");
-
-        yield return new WaitForSeconds(0.1f);
         _bloodSplatParticle.SetActive(false);
 
-        yield return new WaitForSeconds(1.9f);
+        yield return new WaitForSeconds(0.5f);
         healthBar.SetActive(false);
     }
 
-    void CreateParticleEffect()
+    void CreateSlashParticleEffect()
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
         _pooler.SpawnFromPool("Big Slash Particle", pos, Quaternion.identity);
-        GameObject obj = _pooler.SpawnFromPool("BloodSplatWide Particle", pos, Quaternion.identity);
+    }
 
+    void CreateBloodParticleEffect()
+    {
+        Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
+        GameObject obj = _pooler.SpawnFromPool("BloodSplatWide Particle", pos, Quaternion.identity);
         _bloodSplatParticle = obj;
     }
 
@@ -175,7 +180,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         {
             SetAnimation(_idle, true, 1f);
         }
-        else if (state == "3-dead2")
+        else if (state == "2-dead")
         {
             SetAnimation(_dead, false, 1f);
         }

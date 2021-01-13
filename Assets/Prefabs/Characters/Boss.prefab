@@ -136,7 +136,7 @@ MonoBehaviour:
   _bloodSplatParticle: {fileID: 0}
   _skeletonAnimation: {fileID: 4547475957349720664}
   _idle: {fileID: 11400000, guid: 58cd8fdaf9dfa114babb5215c35b9afe, type: 2}
-  _dead: {fileID: 11400000, guid: fa1fb08bee176924883df3d7a16c2d20, type: 2}
+  _dead: {fileID: 11400000, guid: 808ba4fb626c7164b9a8903dd72f731b, type: 2}
   _attack: {fileID: 11400000, guid: e89042623bfe5cf429a6b654b83413ed, type: 2}
   _currentState: 
   _checkPlayAnim: 0
@@ -145,6 +145,7 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 0
   takeDamagePoint: 0
+  goldDrop: 25
   healthBarscript: {fileID: 0}
   healthBar: {fileID: 0}
 --- !u!114 &98663621

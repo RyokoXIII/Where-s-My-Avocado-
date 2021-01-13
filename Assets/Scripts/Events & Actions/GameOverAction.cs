@@ -21,8 +21,9 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     [SerializeField]
     PlayerManager _playerManager;
     [SerializeField] LevelUpSystem _playerLvUp;
-    [SerializeField] Text _damageTxt, _healthTxt, _expPointTxt;
+    [SerializeField] Text _damageTxt, _healthTxt, _expPointTxt, _nextExpPointTxt;
     [SerializeField] GameObject _damagePlus, _healthPlus;
+    [SerializeField] Animator _strengthAnim, _healthAnim;
     Text _damagePlusTxt, _healthPlusTxt;
 
     bool _hasNotUpgrade;
@@ -31,6 +32,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     [Space(10f)]
     [SerializeField]
     Text _stageNumText;
+    [SerializeField] GameObject _menu, _menuUpgrade;
     [SerializeField] GameObject _playButton;
     [SerializeField] RectTransform _homeButton, _replayButton;
     [SerializeField] GameObject _beachMusicBackground;
@@ -40,7 +42,6 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     SoundManager _soundManager;
 
     #endregion
-
 
     void Start()
     {
@@ -55,6 +56,8 @@ public class GameOverAction : MonoBehaviour, IAnimatable
         _uiManager.OnClick += OnReplay;
         _uiManager.OnBackToMainMenu += OnBackToMainMenu;
         _uiManager.OnPlayNext += OnPlayNext;
+        _uiManager.OnUpgrade += OnUpgrade;
+        _uiManager.OnSkip += OnSkip;
 
         // Update animation state for characters
         UpdateAnimationState();
@@ -84,6 +87,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
     void GetPlayerCurrentStats()
     {
+        _nextExpPointTxt.text = "/ " + _playerLvUp.nextLevelExp.ToString() + " pts";
         _damageTxt.text = _playerLvUp.attack.ToString();
         _healthTxt.text = _playerLvUp.maxHP.ToString();
 
@@ -98,8 +102,8 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             _playerLvUp.characterLevel < _playerLvUp.characterMaxLevel)
         {
             // Change text color
-            _damageTxt.color = Color.green;
-            _healthTxt.color = Color.green;
+            _damageTxt.color = new Color(0, 0.6509434f, 0.08934521f, 1f);
+            _healthTxt.color = new Color(0, 0.6509434f, 0.08934521f, 1f);
 
             _playerLvUp.AddExp();
 
@@ -118,6 +122,9 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             _healthPlus.SetActive(false);
 
             _hasNotUpgrade = true;
+
+            _strengthAnim.Play("Transform_strength");
+            _healthAnim.Play("Transform_health");
         }
     }
 
@@ -144,11 +151,10 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
     public void OnBackToMainMenu()
     {
-        //_soundManager.selectFX.Play();
-        //PlayerPrefs.SetInt("backtomenu", 1);
+        _soundManager.selectFX.Play();
+        PlayerPrefs.SetInt("backtomenu", 1);
 
-        //SceneManager.LoadScene(1);
-        _hasNotUpgrade = false;
+        SceneManager.LoadScene(1);
     }
 
     public void OnPlayNext()
@@ -167,10 +173,21 @@ public class GameOverAction : MonoBehaviour, IAnimatable
         SceneManager.LoadScene(1);
     }
 
+    public void OnUpgrade()
+    {
+        _hasNotUpgrade = false;
+    }
+
+    public void OnSkip()
+    {
+        _menuUpgrade.SetActive(false);
+        _menu.SetActive(true);
+    }
+
     void UpdateGameOverMenu()
     {
-        Vector2 _newHomeBtnPos = new Vector2(119f, 15f);
-        Vector2 _newReplayBtnPos = new Vector2(-119f, 15f);
+        Vector2 _newHomeBtnPos = new Vector2(-100f, 15f);
+        Vector2 _newReplayBtnPos = new Vector2(100f, 15f);
 
         if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {

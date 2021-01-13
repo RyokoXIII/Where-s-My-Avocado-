@@ -152,3 +152,4 @@ MonoBehaviour:
   _idle: {fileID: 11400000, guid: 75d4ea128cab4334d9a733afb6692b2e, type: 2}
   _dead: {fileID: 11400000, guid: efd1c63fe2a878642b524549d86d1f06, type: 2}
   _currentState: 
+  goldDrop: 5

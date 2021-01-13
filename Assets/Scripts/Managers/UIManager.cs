@@ -18,6 +18,8 @@ public class UIManager : MonoSingleton<UIManager>
     public event Action OnExit;
     public event Action OnExitMenu;
     public event Action OnBackToMainMenu;
+    public event Action OnUpgrade;
+    public event Action OnSkip;
 
     #endregion
 
@@ -93,5 +95,17 @@ public class UIManager : MonoSingleton<UIManager>
     {
         if (OnExitMenu != null)
             OnExitMenu();
+    }
+
+    public void Upgrade()
+    {
+        if (OnUpgrade != null)
+            OnUpgrade();
+    }
+
+    public void Skip()
+    {
+        if (OnSkip != null)
+            OnSkip();
     }
 }
