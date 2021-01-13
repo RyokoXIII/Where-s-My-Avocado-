@@ -68,7 +68,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     int _currentLevel;
 
     float t = 0.0f;
-    float threshold = 1.3f;
+    float threshold = 1.1f;
 
     bool _gameOver;
 
