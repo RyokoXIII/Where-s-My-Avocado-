@@ -20,6 +20,7 @@ public class LevelUpSystem : MonoBehaviour
 
     private void Start()
     {
+        currentExp = PlayerPrefs.GetInt("expPoint");
         characterLevel = PlayerPrefs.GetInt("playerLv");
 
         if (characterLevel > 1)
@@ -28,11 +29,9 @@ public class LevelUpSystem : MonoBehaviour
         }
         else
         {
+            characterLevel = 1;
             nextLevelExp = 300;
         }
-
-        currentExp = PlayerPrefs.GetInt("expPoint");
-
         UpdatePlayerStats();
     }
 
@@ -63,7 +62,9 @@ public class LevelUpSystem : MonoBehaviour
     {
         // Minus exp point after upgrading
         currentExp -= nextLevelExp;
+
         characterLevel++;
+        nextLevelExp = 300 * characterLevel;
 
         // Damage upgrade
         attack += 50;

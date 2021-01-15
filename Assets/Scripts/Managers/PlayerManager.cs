@@ -155,11 +155,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         if (touchBoss == true && _bossManager.currentHealth > 0 && currentHealth > 0)
         {
             TakeDamage(takeDamagePoint);
-
-            Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
-            GameObject obj = _pooler.SpawnFromPool("BloodSplatWide Particle", pos, Quaternion.identity);
-
-            _bloodSplatParticle = obj;
+            CreateBloodParticle();
         }
         if (currentHealth == 0 && _gameOver == false)
         {
@@ -168,11 +164,14 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             _expPoint = 0;
             touchBoundary = true;
 
+            _bloodSplatParticle.SetActive(false);
             StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
         if (_bossManager.currentHealth == 0 && _gameOver == false)
         {
             _gameOver = true;
+            _bloodSplatParticle.SetActive(false);
+
             StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
     }
@@ -292,7 +291,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         while (_bossManager.currentHealth > 0 && currentHealth > 0)
         {
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
             SetCharacterState("atk");
         }
 
@@ -308,9 +307,9 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             BossGoldDrop();
             SetCharacterState("idle");
         }
-        _bloodSplatParticle.SetActive(false);
+        //_bloodSplatParticle.SetActive(false);
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         healthBar.SetActive(false);
     }
 
@@ -354,6 +353,14 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         }
     }
 
+    void CreateBloodParticle()
+    {
+        Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
+        GameObject obj = _pooler.SpawnFromPool("BloodSplatWide Particle", pos, Quaternion.identity);
+
+        _bloodSplatParticle = obj;
+    }
+
     // Set player animation
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
     {
@@ -377,19 +384,19 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         }
         else if (state == "roll out")
         {
-            SetAnimation(_rollout, false, 1.5f);
+            SetAnimation(_rollout, false, 1f);
         }
         else if (state == "finisher")
         {
-            SetAnimation(_finished1, false, 1.5f);
+            SetAnimation(_finished1, false, 1.3f);
         }
         else if (state == "finisher2")
         {
-            SetAnimation(_finished2, false, 1.5f);
+            SetAnimation(_finished2, false, 1.3f);
         }
         else if (state == "finisher3")
         {
-            SetAnimation(_finished3, false, 1.5f);
+            SetAnimation(_finished3, false, 1.3f);
         }
         else if (state == "atk")
         {

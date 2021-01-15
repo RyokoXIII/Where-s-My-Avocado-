@@ -38,6 +38,7 @@ public class EnemyManager : MonoBehaviour, IAnimatable
 
             _pooler.SpawnFromPool("Slash Particle", pos, Quaternion.identity);
             _pooler.SpawnFromPool("BloodSplatSmall Particle", pos, Quaternion.identity);
+            _pooler.SpawnFromPool("EnemyGoldParticle", pos, Quaternion.LookRotation(Vector3.up));
 
             _soundManager.enemySlashFX.Play();
             SetCharacterState("2-dead2");

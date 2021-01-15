@@ -1085,7 +1085,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -367.4, y: 21}
+  m_AnchoredPosition: {x: 319, y: 21}
   m_SizeDelta: {x: 150, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &982766414
@@ -1239,7 +1239,7 @@ PrefabInstance:
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: poolList.Array.size
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
@@ -1321,22 +1321,52 @@ PrefabInstance:
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: poolList.Array.data[6].tag
-      value: WaterSplash Particle
+      value: EnemyGoldParticle
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: poolList.Array.data[6].size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: poolList.Array.data[6].prefab
       value: 
-      objectReference: {fileID: 186206, guid: 6933e03d0b272f54bb5208ae3a2dbffa, type: 3}
+      objectReference: {fileID: 118250, guid: a79f8048fa75d6c449d730e96bb836fa, type: 3}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: poolList.Array.data[3].size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[7].tag
+      value: BossGoldParticle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[7].prefab
+      value: 
+      objectReference: {fileID: 143964, guid: 09d9de58ef3bf5444ac94afa0e6013cb, type: 3}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[7].size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[8].tag
+      value: WaterSplash Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[8].prefab
+      value: 
+      objectReference: {fileID: 186206, guid: 6933e03d0b272f54bb5208ae3a2dbffa, type: 3}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[8].size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835131, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
@@ -5152,6 +5182,11 @@ PrefabInstance:
       propertyPath: m_Pivot.x
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8750183707903071512, guid: 6061856959f59f447a17796f8e442003,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.6500015
+      objectReference: {fileID: 0}
     - target: {fileID: 8963616346625885324, guid: 6061856959f59f447a17796f8e442003,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6152,6 +6187,11 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1053032025774758545}
+    - target: {fileID: 4547475957349720645, guid: c677e6314907862499223707c543be6e,
+        type: 3}
+      propertyPath: _playerPos
+      value: 
+      objectReference: {fileID: 553207590}
     - target: {fileID: 4547475957349720646, guid: c677e6314907862499223707c543be6e,
         type: 3}
       propertyPath: m_Mesh

@@ -199,6 +199,7 @@ MonoBehaviour:
   takeDamagePoint: 0
   healthBarscript: {fileID: 0}
   healthBar: {fileID: 0}
+  _expPoint: 0
 --- !u!114 &5783493230937425864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,8 +212,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b754c3fb1825b4d93fb7531875c51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterLevel: 0
-  characterMaxLevel: 100
+  characterLevel: 1
+  characterMaxLevel: 50
   currentExp: 0
   nextLevelExp: 300
   attack: 100

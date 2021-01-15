@@ -83,11 +83,25 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     {
         UpgradePlayerStats();
         UpdateExpPoint();
+
+        _nextExpPointTxt.text = "/ " + _playerLvUp.nextLevelExp.ToString() + " pts";
+
+        if (_playerLvUp.currentExp < _playerLvUp.nextLevelExp)
+        {
+            // Deactivated point plus
+            _damagePlus.SetActive(false);
+            _healthPlus.SetActive(false);
+        }
+        else if (_playerLvUp.characterLevel == _playerLvUp.characterMaxLevel)
+        {
+            // Deactivated point plus
+            _damagePlus.SetActive(false);
+            _healthPlus.SetActive(false);
+        }
     }
 
     void GetPlayerCurrentStats()
     {
-        _nextExpPointTxt.text = "/ " + _playerLvUp.nextLevelExp.ToString() + " pts";
         _damageTxt.text = _playerLvUp.attack.ToString();
         _healthTxt.text = _playerLvUp.maxHP.ToString();
 
@@ -98,33 +112,32 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
     void UpgradePlayerStats()
     {
-        if (_hasNotUpgrade == false && _playerLvUp.currentExp >= _playerLvUp.nextLevelExp &&
-            _playerLvUp.characterLevel < _playerLvUp.characterMaxLevel)
+        if (_hasNotUpgrade == false)
         {
-            // Change text color
-            _damageTxt.color = new Color(0, 0.6509434f, 0.08934521f, 1f);
-            _healthTxt.color = new Color(0, 0.6509434f, 0.08934521f, 1f);
+            if (_playerLvUp.currentExp >= _playerLvUp.nextLevelExp &&
+            _playerLvUp.characterLevel < _playerLvUp.characterMaxLevel)
+            {
+                // Change text color
+                _damageTxt.color = new Color(0, 0.6509434f, 0.08934521f, 1f);
+                _healthTxt.color = new Color(0, 0.6509434f, 0.08934521f, 1f);
 
-            _playerLvUp.AddExp();
+                _playerLvUp.AddExp();
 
-            PlayerPrefs.SetInt("expPoint", _playerLvUp.currentExp);
+                PlayerPrefs.SetInt("expPoint", _playerLvUp.currentExp);
 
-            // Update player stats
-            _damageTxt.text = _playerLvUp.attack.ToString();
-            _healthTxt.text = _playerLvUp.maxHP.ToString();
+                // Update player stats
+                _damageTxt.text = _playerLvUp.attack.ToString();
+                _healthTxt.text = _playerLvUp.maxHP.ToString();
 
-            PlayerPrefs.SetInt("damageStats", _playerLvUp.attack);
-            PlayerPrefs.SetInt("healthStats", _playerLvUp.maxHP);
-            PlayerPrefs.SetInt("playerLv", _playerLvUp.characterLevel);
+                PlayerPrefs.SetInt("damageStats", _playerLvUp.attack);
+                PlayerPrefs.SetInt("healthStats", _playerLvUp.maxHP);
+                PlayerPrefs.SetInt("playerLv", _playerLvUp.characterLevel);
 
-            // Deactivated point plus
-            _damagePlus.SetActive(false);
-            _healthPlus.SetActive(false);
+                _hasNotUpgrade = true;
 
-            _hasNotUpgrade = true;
-
-            _strengthAnim.Play("Transform_strength");
-            _healthAnim.Play("Transform_health");
+                _strengthAnim.Play("Transform_strength");
+                _healthAnim.Play("Transform_health");
+            }
         }
     }
 
@@ -188,6 +201,12 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     {
         Vector2 _newHomeBtnPos = new Vector2(-100f, 15f);
         Vector2 _newReplayBtnPos = new Vector2(100f, 15f);
+
+        if (_playerLvUp.currentExp < _playerLvUp.nextLevelExp)
+        {
+            _menuUpgrade.SetActive(false);
+            _menu.SetActive(true);
+        }
 
         if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {

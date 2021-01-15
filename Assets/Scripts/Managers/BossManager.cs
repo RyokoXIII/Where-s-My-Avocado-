@@ -9,7 +9,10 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
     [SerializeField]
     PlayerManager _playerManager;
+    [SerializeField] Transform _playerPos;
     [SerializeField] GameObject _bloodSplatParticle;
+
+    Vector3 _scaleChangeRight, _scaleChangeLeft;
 
     PoolManager _pooler;
     SoundManager _soundManager;
@@ -35,7 +38,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     public GameObject healthBar;
 
     float t = 0.0f;
-    float threshold = 1f;
+    float threshold = 0.8f;
 
     #endregion
 
@@ -48,6 +51,9 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         _currentState = "1-idle";
         SetCharacterState(_currentState);
         _checkPlayAnim = false;
+
+        _scaleChangeRight = new Vector3(0.6f, 0.6f, 0.6f);
+        _scaleChangeLeft = new Vector3(-0.6f, 0.6f, 0.6f);
 
         // Boss stats
         SetBossStats();
@@ -107,6 +113,18 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
     void CheckBossGetKilled()
     {
+        if (Vector2.Distance(transform.position, _playerPos.position) < 3f)
+        {
+            if (transform.position.x < _playerPos.position.x)
+            {
+                transform.localScale = _scaleChangeLeft;
+            }
+            else
+            {
+                transform.localScale = _scaleChangeRight;
+            }
+        }
+
         if (_playerManager.touchBoss == true && currentHealth > 0 && _playerManager.currentHealth > 0)
         {
             healthBar.SetActive(true);
@@ -117,10 +135,13 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         if (!_checkPlayAnim && currentHealth == 0)
         {
             _checkPlayAnim = true;
+            _bloodSplatParticle.SetActive(false);
+
             StartCoroutine(DeadAnimationLateCall());
         }
         if (_playerManager.currentHealth == 0)
         {
+            _bloodSplatParticle.SetActive(false);
             StartCoroutine(WinAnimationLateCall());
         }
     }
@@ -135,9 +156,6 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         _soundManager.bossSlashFX.Play();
 
         yield return new WaitForSeconds(0.5f);
-        _bloodSplatParticle.SetActive(false);
-
-        yield return new WaitForSeconds(0.5f);
         healthBar.SetActive(false);
     }
 
@@ -146,7 +164,6 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         yield return new WaitForSeconds(0f);
 
         SetCharacterState("1-idle");
-        _bloodSplatParticle.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
         healthBar.SetActive(false);
@@ -156,6 +173,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
         _pooler.SpawnFromPool("Big Slash Particle", pos, Quaternion.identity);
+        _pooler.SpawnFromPool("BossGoldParticle", pos, Quaternion.LookRotation(Vector3.up));
     }
 
     void CreateBloodParticleEffect()
