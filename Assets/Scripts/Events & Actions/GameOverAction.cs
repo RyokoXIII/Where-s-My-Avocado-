@@ -13,7 +13,12 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     [Header("Animation")]
     [Space(10f)]
     [SerializeField] SkeletonGraphic _skeletonGraphic;
+    [SerializeField] GameObject _heroPos;
     [SerializeField] AnimationReferenceAsset _idle, _circle;
+
+    [Space(10f)]
+    [SerializeField] SkeletonDataAsset _newDataAsset;
+    [SerializeField] AnimationReferenceAsset _idle2, _circle2;
 
     string _currentAnimation;
 
@@ -40,6 +45,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     UIManager _uiManager;
     StarHandler _starHandler;
     SoundManager _soundManager;
+    PoolManager _pooler;
 
     #endregion
 
@@ -48,6 +54,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
         _uiManager = UIManager.Instance;
         _starHandler = StarHandler.Instance;
         _soundManager = SoundManager.Instance;
+        _pooler = PoolManager.Instance;
 
         _damagePlusTxt = _damagePlus.GetComponent<Text>();
         _healthPlusTxt = _healthPlus.GetComponent<Text>();
@@ -58,6 +65,17 @@ public class GameOverAction : MonoBehaviour, IAnimatable
         _uiManager.OnPlayNext += OnPlayNext;
         _uiManager.OnUpgrade += OnUpgrade;
         _uiManager.OnSkip += OnSkip;
+
+        if (PlayerPrefs.GetInt("level") == 21)
+        {
+            Vector3 pos = new Vector3(_heroPos.transform.position.x, _heroPos.transform.position.y + 1, 1f);
+            _pooler.SpawnFromPool("Upgrade Particle", pos, Quaternion.identity);
+            SetAnimationUpgrade();
+        }
+        else if (PlayerPrefs.GetString("upgradeHero") == "upgraded")
+        {
+            SetAnimationUpgrade();
+        }
 
         // Update animation state for characters
         UpdateAnimationState();
@@ -117,6 +135,9 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             if (_playerLvUp.currentExp >= _playerLvUp.nextLevelExp &&
             _playerLvUp.characterLevel < _playerLvUp.characterMaxLevel)
             {
+                Vector3 pos = new Vector3(_heroPos.transform.position.x, _heroPos.transform.position.y + 0.8f, 1f);
+                _pooler.SpawnFromPool("levelup Particle", pos, Quaternion.identity);
+
                 // Change text color
                 _damageTxt.color = new Color(0, 0.6509434f, 0.08934521f, 1f);
                 _healthTxt.color = new Color(0, 0.6509434f, 0.08934521f, 1f);
@@ -255,13 +276,34 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
     public void SetCharacterState(string state)
     {
-        if (state == "idle")
+        if (PlayerPrefs.GetString("upgradeHero") == "upgraded")
         {
-            SetAnimation(_idle, true, 1f);
+            if (state == "idle")
+            {
+                SetAnimation(_idle2, true, 1f);
+            }
+            else if (state == "circle")
+            {
+                SetAnimation(_circle2, false, 1f);
+            }
         }
-        else if (state == "circle")
+        else
         {
-            SetAnimation(_circle, false, 1f);
+            if (state == "idle")
+            {
+                SetAnimation(_idle, true, 1f);
+            }
+            else if (state == "circle")
+            {
+                SetAnimation(_circle, false, 1f);
+            }
         }
+    }
+
+    public void SetAnimationUpgrade()
+    {
+        _skeletonGraphic.Clear();
+        _skeletonGraphic.skeletonDataAsset = _newDataAsset;
+        _skeletonGraphic.Initialize(true);
     }
 }

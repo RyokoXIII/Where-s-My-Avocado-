@@ -1239,7 +1239,7 @@ PrefabInstance:
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
       propertyPath: poolList.Array.size
-      value: 9
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
@@ -1367,6 +1367,36 @@ PrefabInstance:
         type: 3}
       propertyPath: poolList.Array.data[8].size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[9].tag
+      value: Upgrade Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[9].prefab
+      value: 
+      objectReference: {fileID: 108178, guid: e053c479a3add9649af9d847a748547d, type: 3}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[9].size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[10].tag
+      value: levelup Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[10].prefab
+      value: 
+      objectReference: {fileID: 145256, guid: 7b117ab47ae99e74fbb811d488c1eb17, type: 3}
+    - target: {fileID: 8808048155689835130, guid: a3f26b80b90fcd445878995003307095,
+        type: 3}
+      propertyPath: poolList.Array.data[10].size
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8808048155689835131, guid: a3f26b80b90fcd445878995003307095,
         type: 3}
@@ -6356,5 +6386,15 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1971321290}
+    - target: {fileID: 5783493231461236964, guid: 5f54f211149cc5c468ae1143029b1139,
+        type: 3}
+      propertyPath: _newHeroSkin
+      value: 
+      objectReference: {fileID: 2100000, guid: b6868ae2af4a14e42af4c9d69547a845, type: 2}
+    - target: {fileID: 5783493231461236964, guid: 5f54f211149cc5c468ae1143029b1139,
+        type: 3}
+      propertyPath: _newHeroSkin.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: b6868ae2af4a14e42af4c9d69547a845, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f54f211149cc5c468ae1143029b1139, type: 3}

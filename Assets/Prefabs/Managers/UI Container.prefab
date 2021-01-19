@@ -3599,8 +3599,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skeletonGraphic: {fileID: 201801209434697782}
+  _heroPos: {fileID: 7702656892827121262}
   _idle: {fileID: 11400000, guid: 27372103611ebec4489983de118ed244, type: 2}
   _circle: {fileID: 11400000, guid: 2e80bf756e3dbed4ca794e3936a2fb36, type: 2}
+  _newDataAsset: {fileID: 11400000, guid: b7b8038dd32ba974f9a523203299de0a, type: 2}
+  _idle2: {fileID: 11400000, guid: fe50dc19c8778494eb6bdcc045fd701b, type: 2}
+  _circle2: {fileID: 11400000, guid: b6fb4c31f3774ab419661ade587879da, type: 2}
   _playerManager: {fileID: 0}
   _playerLvUp: {fileID: 0}
   _damageTxt: {fileID: 1699856483999475015}

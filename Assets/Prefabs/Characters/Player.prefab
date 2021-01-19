@@ -188,6 +188,16 @@ MonoBehaviour:
   _dead: {fileID: 11400000, guid: ff4d9061b7e2439418d706a37c9e6f0c, type: 2}
   _playerState: 0
   _bloodSplatParticle: {fileID: 0}
+  _newDataAsset: {fileID: 11400000, guid: b7b8038dd32ba974f9a523203299de0a, type: 2}
+  _messRenderer: {fileID: 5783493231461236962}
+  _newHeroSkin:
+  - {fileID: 2100000, guid: b6868ae2af4a14e42af4c9d69547a845, type: 2}
+  _idle2: {fileID: 11400000, guid: fe50dc19c8778494eb6bdcc045fd701b, type: 2}
+  _circle2: {fileID: 11400000, guid: b6fb4c31f3774ab419661ade587879da, type: 2}
+  _rollout2: {fileID: 11400000, guid: 678a4f4040aba1b4e96419c3c2515749, type: 2}
+  _attack2: {fileID: 11400000, guid: 0b2c2c61a9c102a48a9cf7bb60f5f1f2, type: 2}
+  _finishedUpgrade: {fileID: 11400000, guid: f516c549ec1b9604dbd99af3625a74ec, type: 2}
+  _dead2: {fileID: 11400000, guid: 7b53bedf34e227e4380380fbd9689f59, type: 2}
   finalScore: 0
   touchBoundary: 0
   hasFirstStar: 0

@@ -37,6 +37,13 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     [SerializeField] int _playerState;
     [SerializeField] GameObject _bloodSplatParticle;
 
+    [Space(20f)]
+    [SerializeField] SkeletonDataAsset _newDataAsset;
+    [SerializeField] AnimationReferenceAsset _idle2;
+    [SerializeField]
+    AnimationReferenceAsset _circle2, _rollout2, _attack2,
+        _finishedUpgrade, _dead2;
+
     string _currentAnimation;
 
     int _enemyCount = 0;
@@ -84,19 +91,29 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         _currentLevel = PlayerPrefs.GetInt("levelID");
         _cantCollideLayerIndex = LayerMask.NameToLayer("End");
 
-        // Start Animation callback
-        StartCoroutine(StartAnimationTransition());
-
         _scaleChangeRight = new Vector3(0.5f, 0.5f, 0.5f);
         _scaleChangeLeft = new Vector3(-0.5f, 0.5f, 0.5f);
         checkFlipPlayer = true;
 
-        // Random player finished anim
-        _playerState = Random.Range(0, 3);
+        // Check if hero is upgraded
+        if (PlayerPrefs.GetString("upgradeHero") == "upgraded")
+        {
+            SetAnimationUpgrade();
+            _playerState = 0;
+        }
+        else
+        {
+            // Random player finished anim
+            _playerState = Random.Range(0, 3);
+        }
+
+        // Start Animation callback
+        StartCoroutine(StartAnimationTransition());
 
         // Set player stats
         SetPlayerStats();
     }
+
     private void Update()
     {
         SetTakeDamagePoint();
@@ -374,38 +391,76 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     // Check player state and set animation accordingly
     public void SetCharacterState(string state)
     {
-        if (state == "idle")
+        if (PlayerPrefs.GetString("upgradeHero") == "upgraded")
         {
-            SetAnimation(_idle, true, 1f);
+            if (state == "idle")
+            {
+                SetAnimation(_idle2, true, 1f);
+            }
+            else if (state == "circle")
+            {
+                SetAnimation(_circle2, false, 1f);
+            }
+            else if (state == "roll out")
+            {
+                SetAnimation(_rollout2, false, 1f);
+            }
+            else if (state == "finisher")
+            {
+                SetAnimation(_finishedUpgrade, false, 1.3f);
+            }
+            else if (state == "atk")
+            {
+                SetAnimation(_attack2, true, 1.4f);
+            }
+            else if (state == "death")
+            {
+                SetAnimation(_dead2, false, 1f);
+            }
         }
-        else if (state == "circle")
+        else
         {
-            SetAnimation(_circle, false, 1f);
+            if (state == "idle")
+            {
+                SetAnimation(_idle, true, 1f);
+            }
+            else if (state == "circle")
+            {
+                SetAnimation(_circle, false, 1f);
+            }
+            else if (state == "roll out")
+            {
+                SetAnimation(_rollout, false, 1f);
+            }
+            else if (state == "finisher")
+            {
+                SetAnimation(_finished1, false, 1.3f);
+            }
+            else if (state == "finisher2")
+            {
+                SetAnimation(_finished2, false, 1.3f);
+            }
+            else if (state == "finisher3")
+            {
+                SetAnimation(_finished3, false, 1.3f);
+            }
+            else if (state == "atk")
+            {
+                SetAnimation(_attack, true, 1f);
+            }
+            else if (state == "death")
+            {
+                SetAnimation(_dead, false, 1f);
+            }
         }
-        else if (state == "roll out")
-        {
-            SetAnimation(_rollout, false, 1f);
-        }
-        else if (state == "finisher")
-        {
-            SetAnimation(_finished1, false, 1.3f);
-        }
-        else if (state == "finisher2")
-        {
-            SetAnimation(_finished2, false, 1.3f);
-        }
-        else if (state == "finisher3")
-        {
-            SetAnimation(_finished3, false, 1.3f);
-        }
-        else if (state == "atk")
-        {
-            SetAnimation(_attack, true, 1f);
-        }
-        else if (state == "death")
-        {
-            SetAnimation(_dead, false, 1f);
-        }
+    }
+
+    public void SetAnimationUpgrade()
+    {
+        _skeletonAnimation.ClearState();
+        _skeletonAnimation.skeletonDataAsset = _newDataAsset;
+        _skeletonAnimation.Initialize(true);
+
     }
 
     // Game over menu popup
@@ -486,6 +541,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             if (_starHandler.levelIndex < 100)
             {
                 PlayerPrefs.SetInt("level", _starHandler.levelIndex + 1);
+
+                if (_starHandler.levelIndex == 20)
+                {
+                    PlayerPrefs.SetString("upgradeHero", "upgraded");
+                }
             }
         }
         Debug.Log("Next level: " + PlayerPrefs.GetInt("level"));
