@@ -312,7 +312,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             SetCharacterState("atk");
         }
 
-        yield return new WaitForSeconds(0);
+        yield return new WaitForSeconds(0f);
+
 
         if (currentHealth == 0)
         {
@@ -411,7 +412,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             }
             else if (state == "atk")
             {
-                SetAnimation(_attack2, true, 1.4f);
+                SetAnimation(_attack2, true, 1.35f);
             }
             else if (state == "death")
             {
@@ -446,7 +447,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             }
             else if (state == "atk")
             {
-                SetAnimation(_attack, true, 1f);
+                SetAnimation(_attack, true, 0.9f);
             }
             else if (state == "death")
             {
