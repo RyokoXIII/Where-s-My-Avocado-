@@ -38,7 +38,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     public GameObject healthBar;
 
     float t = 0.0f;
-    float threshold = 0.8f;
+    float threshold = 0.85f;
 
     #endregion
 
@@ -68,22 +68,22 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
     void SetBossStats()
     {
-        bossDamage = _bossStats.attack;
+        bossDamage = _bossStats.baseAttack;
         takeDamagePoint = _playerManager.playerDamage;
 
-        maxHealth = _bossStats.maxHP;
+        maxHealth = _bossStats.baseHealth;
         currentHealth = maxHealth;
         healthBarscript.SetMaxHealth(maxHealth);
     }
 
     void UpdateBossStats()
     {
-        if (bossDamage < _bossStats.attack)
+        if (bossDamage < _bossStats.baseAttack)
         {
-            bossDamage = _bossStats.attack;
+            bossDamage = _bossStats.baseAttack;
             takeDamagePoint = _playerManager.playerDamage;
 
-            maxHealth = _bossStats.maxHP;
+            maxHealth = _bossStats.baseHealth;
             currentHealth = maxHealth;
             healthBarscript.SetMaxHealth(maxHealth);
         }

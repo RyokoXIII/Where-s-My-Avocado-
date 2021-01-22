@@ -63,7 +63,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
 
     [Header("Player Stats")]
     [Space(10f)]
-    [SerializeField] LevelUpSystem _levelSystem;
+    [SerializeField] PlayerStats _levelSystem;
     public int playerDamage;
     public int currentHealth;
     public int maxHealth;
@@ -134,8 +134,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     {
         if (PlayerPrefs.GetInt("damageStats") == 0)
         {
-            playerDamage = _levelSystem.attack;
-            maxHealth = _levelSystem.maxHP;
+            playerDamage = _levelSystem.baseAttack;
+            maxHealth = _levelSystem.baseHealth;
         }
         else
         {

@@ -189,9 +189,6 @@ MonoBehaviour:
   _playerState: 0
   _bloodSplatParticle: {fileID: 0}
   _newDataAsset: {fileID: 11400000, guid: b7b8038dd32ba974f9a523203299de0a, type: 2}
-  _messRenderer: {fileID: 5783493231461236962}
-  _newHeroSkin:
-  - {fileID: 2100000, guid: b6868ae2af4a14e42af4c9d69547a845, type: 2}
   _idle2: {fileID: 11400000, guid: fe50dc19c8778494eb6bdcc045fd701b, type: 2}
   _circle2: {fileID: 11400000, guid: b6fb4c31f3774ab419661ade587879da, type: 2}
   _rollout2: {fileID: 11400000, guid: 678a4f4040aba1b4e96419c3c2515749, type: 2}
@@ -224,8 +221,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterLevel: 1
   characterMaxLevel: 50
+  baseNextLevelExp: 300
   currentExp: 0
   nextLevelExp: 300
-  attack: 100
-  currentHP: 500
-  maxHP: 500
+  baseAttack: 100
+  currentHealth: 500
+  baseHealth: 500
+  attackPlus: 50
+  healthPlus: 250

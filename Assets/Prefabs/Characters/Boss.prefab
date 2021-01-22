@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerManager: {fileID: 0}
+  _playerPos: {fileID: 0}
   _bloodSplatParticle: {fileID: 0}
   _skeletonAnimation: {fileID: 4547475957349720664}
   _idle: {fileID: 11400000, guid: 58cd8fdaf9dfa114babb5215c35b9afe, type: 2}
@@ -160,6 +161,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d8ac977653cce8429875b568b3a3af7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attack: 50
-  currentHP: 0
-  maxHP: 250
+  baseAttack: 100
+  currentHealth: 500
+  baseHealth: 500
+  attackPlus: 15
+  maxHealthPlus: 75

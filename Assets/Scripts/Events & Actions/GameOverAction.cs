@@ -25,7 +25,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     [Space(10f)]
     [SerializeField]
     PlayerManager _playerManager;
-    [SerializeField] LevelUpSystem _playerLvUp;
+    [SerializeField] PlayerStats _playerLvUp;
     [SerializeField] Text _damageTxt, _healthTxt, _expPointTxt, _nextExpPointTxt;
     [SerializeField] GameObject _damagePlus, _healthPlus;
     [SerializeField] Animator _strengthAnim, _healthAnim;
@@ -120,8 +120,8 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
     void GetPlayerCurrentStats()
     {
-        _damageTxt.text = _playerLvUp.attack.ToString();
-        _healthTxt.text = _playerLvUp.maxHP.ToString();
+        _damageTxt.text = _playerLvUp.baseAttack.ToString();
+        _healthTxt.text = _playerLvUp.baseHealth.ToString();
 
         // Stats upgrade point
         _damagePlusTxt.text = "+ 50";
@@ -147,11 +147,11 @@ public class GameOverAction : MonoBehaviour, IAnimatable
                 PlayerPrefs.SetInt("expPoint", _playerLvUp.currentExp);
 
                 // Update player stats
-                _damageTxt.text = _playerLvUp.attack.ToString();
-                _healthTxt.text = _playerLvUp.maxHP.ToString();
+                _damageTxt.text = _playerLvUp.baseAttack.ToString();
+                _healthTxt.text = _playerLvUp.baseHealth.ToString();
 
-                PlayerPrefs.SetInt("damageStats", _playerLvUp.attack);
-                PlayerPrefs.SetInt("healthStats", _playerLvUp.maxHP);
+                PlayerPrefs.SetInt("damageStats", _playerLvUp.baseAttack);
+                PlayerPrefs.SetInt("healthStats", _playerLvUp.baseHealth);
                 PlayerPrefs.SetInt("playerLv", _playerLvUp.characterLevel);
 
                 _hasNotUpgrade = true;

@@ -524,7 +524,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4269278091786570947
 Transform:
   m_ObjectHideFlags: 0
@@ -815,14 +815,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ce50c6f6fae1b419a2d10eb11835e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beachMusicBackground: {fileID: 0}
+  beachMusicBackground: {fileID: 4051585573791771938}
   selectFX: {fileID: 4870038876311297056}
   backFX: {fileID: 4870038877290976456}
   enemySlashFX: {fileID: 6060500735314561757}
   bossSlashFX: {fileID: 3452631962014273546}
   victoryFX: {fileID: 4951651660418499471}
   loseFX: {fileID: 8034218862190347434}
-  titleMusic: {fileID: 0}
+  titleMusic: {fileID: 2139212588626242570}
   showStarFX: {fileID: 1608010990429113507}
   waterSplashFX: {fileID: 6245521694072397302}
 --- !u!1 &4870038877290976462
@@ -995,7 +995,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 21c9a367ca41bc04c90d37c2761bfe65, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.591
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelUpSystem : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
     [Header("Character Level")]
     public int characterLevel;
@@ -10,13 +10,19 @@ public class LevelUpSystem : MonoBehaviour
 
     [Header("EXP")]
     [Space(10f)]
+    [SerializeField] int baseNextLevelExp = 300;
     public int currentExp;
     public int nextLevelExp;
 
     [Header("Character Stats")]
     [Space(10f)]
-    public int attack;
-    public int currentHP, maxHP;
+    public int baseAttack;
+    public int currentHealth, baseHealth;
+
+    [Header("Stats increase per Upgrading")]
+    [Space(10f)]
+    [SerializeField] int attackPlus = 50;
+    [SerializeField] int healthPlus = 250;
 
     private void Start()
     {
@@ -25,12 +31,12 @@ public class LevelUpSystem : MonoBehaviour
 
         if (characterLevel > 1)
         {
-            nextLevelExp = 300 * characterLevel;
+            nextLevelExp = baseNextLevelExp * characterLevel;
         }
         else
         {
             characterLevel = 1;
-            nextLevelExp = 300;
+            nextLevelExp = baseNextLevelExp;
         }
         UpdatePlayerStats();
     }
@@ -39,18 +45,18 @@ public class LevelUpSystem : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("damageStats") == 0)
         {
-            attack = 100;
-            maxHP = 500;
+            //attack = 100;
+            //maxHP = 500;
             characterLevel = 1;
         }
         else
         {
-            attack = PlayerPrefs.GetInt("damageStats");
-            maxHP = PlayerPrefs.GetInt("healthStats");
+            baseAttack = PlayerPrefs.GetInt("damageStats");
+            baseHealth = PlayerPrefs.GetInt("healthStats");
             characterLevel = PlayerPrefs.GetInt("playerLv");
 
-            currentHP = maxHP;
         }
+        currentHealth = baseHealth;
     }
 
     public void AddExp()
@@ -64,12 +70,12 @@ public class LevelUpSystem : MonoBehaviour
         currentExp -= nextLevelExp;
 
         characterLevel++;
-        nextLevelExp = 300 * characterLevel;
+        nextLevelExp = baseNextLevelExp * characterLevel;
 
         // Damage upgrade
-        attack += 50;
+        baseAttack += attackPlus;
         // Health upgrade
-        maxHP += 250;
-        currentHP = maxHP;
+        baseHealth += healthPlus;
+        currentHealth = baseHealth;
     }
 }
