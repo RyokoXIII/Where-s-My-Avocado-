@@ -200,7 +200,7 @@ MonoBehaviour:
   hasFirstStar: 0
   touchBoss: 0
   _levelSystem: {fileID: 5783493230937425864}
-  playerDamage: 0
+  playerAttack: 0
   currentHealth: 0
   maxHealth: 0
   takeDamagePoint: 0
@@ -219,13 +219,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b754c3fb1825b4d93fb7531875c51c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterLevel: 1
+  characterLevel: 0
   characterMaxLevel: 50
-  baseNextLevelExp: 300
+  baseNextLevelExp: 200
   currentExp: 0
-  nextLevelExp: 300
+  nextLevelExp: 0
   baseAttack: 100
-  currentHealth: 500
-  baseHealth: 500
+  currentHealth: 400
+  baseHealth: 400
   attackPlus: 50
-  healthPlus: 250
+  healthPlus: 200

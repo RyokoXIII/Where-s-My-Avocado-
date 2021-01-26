@@ -30,7 +30,7 @@ public class GameUIAction : MonoBehaviour
 
     private void Update()
     {
-        _goldTxt.text = _playerManager._expPoint + " pts";
+        _goldTxt.text = _playerManager._expPoint.ToString();
     }
 
     public void Resume()

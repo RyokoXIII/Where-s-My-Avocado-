@@ -10,19 +10,19 @@ public class PlayerStats : MonoBehaviour
 
     [Header("EXP")]
     [Space(10f)]
-    [SerializeField] int baseNextLevelExp = 300;
+    [SerializeField] int baseNextLevelExp = 200;
     public int currentExp;
     public int nextLevelExp;
 
     [Header("Character Stats")]
     [Space(10f)]
-    public int baseAttack;
-    public int currentHealth, baseHealth;
+    public int baseAttack = 100;
+    public int currentHealth = 400, baseHealth = 400;
 
     [Header("Stats increase per Upgrading")]
     [Space(10f)]
     [SerializeField] int attackPlus = 50;
-    [SerializeField] int healthPlus = 250;
+    [SerializeField] int healthPlus = 200;
 
     private void Start()
     {
@@ -31,7 +31,8 @@ public class PlayerStats : MonoBehaviour
 
         if (characterLevel > 1)
         {
-            nextLevelExp = baseNextLevelExp * characterLevel;
+            //nextLevelExp = baseNextLevelExp * characterLevel;
+            nextLevelExp = (int)(baseNextLevelExp * (0.15f * characterLevel * characterLevel + characterLevel + 1));
         }
         else
         {
@@ -45,9 +46,8 @@ public class PlayerStats : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("damageStats") == 0)
         {
-            //attack = 100;
-            //maxHP = 500;
-            characterLevel = 1;
+            baseAttack = 100;
+            baseHealth = 400;
         }
         else
         {
@@ -70,7 +70,8 @@ public class PlayerStats : MonoBehaviour
         currentExp -= nextLevelExp;
 
         characterLevel++;
-        nextLevelExp = baseNextLevelExp * characterLevel;
+        //nextLevelExp = baseNextLevelExp * characterLevel;
+        nextLevelExp = (int)(baseNextLevelExp * (0.15f * characterLevel * characterLevel + characterLevel + 1));
 
         // Damage upgrade
         baseAttack += attackPlus;

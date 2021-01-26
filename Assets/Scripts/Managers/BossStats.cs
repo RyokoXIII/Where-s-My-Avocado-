@@ -6,13 +6,13 @@ public class BossStats : MonoBehaviour
 {
     #region Global Variables
 
-    public int baseAttack;
-    public int currentHealth, baseHealth;
+    public int baseAttack = 100;
+    public int currentHealth = 250, baseHealth = 250;
 
     [Header("Stats increase per level")]
     [Space(10f)]
-    [SerializeField] int attackPlus = 15;
-    [SerializeField] int maxHealthPlus = 75;
+    [SerializeField] int attackPlus = 20;
+    [SerializeField] int maxHealthPlus = 50;
 
     int _currentLevel;
 
@@ -29,13 +29,13 @@ public class BossStats : MonoBehaviour
                 LevelUp();
             }
         }
-        //else
-        //{
-        //    maxHP = 500;
-        //    currentHP = maxHP;
+        else
+        {
+            baseAttack = 100;
 
-        //    attack = 100;
-        //}
+            baseHealth = 250;
+            currentHealth = baseHealth;
+        }
     }
 
     void LevelUp()

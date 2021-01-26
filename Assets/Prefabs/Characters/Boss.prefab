@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseAttack: 100
-  currentHealth: 500
-  baseHealth: 500
-  attackPlus: 15
-  maxHealthPlus: 75
+  currentHealth: 250
+  baseHealth: 250
+  attackPlus: 20
+  maxHealthPlus: 50

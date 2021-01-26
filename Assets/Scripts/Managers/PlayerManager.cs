@@ -64,7 +64,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     [Header("Player Stats")]
     [Space(10f)]
     [SerializeField] PlayerStats _levelSystem;
-    public int playerDamage;
+    public int playerAttack;
     public int currentHealth;
     public int maxHealth;
     public int takeDamagePoint;
@@ -75,7 +75,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     int _currentLevel;
 
     float t = 0.0f;
-    float threshold = 1.1f;
+    float threshold = 1.15f;
 
     bool _gameOver;
 
@@ -124,9 +124,9 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
 
     void SetTakeDamagePoint()
     {
-        if (takeDamagePoint < _bossManager.bossDamage)
+        if (takeDamagePoint < _bossManager.bossAttack)
         {
-            takeDamagePoint = _bossManager.bossDamage;
+            takeDamagePoint = _bossManager.bossAttack;
         }
     }
 
@@ -134,12 +134,12 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     {
         if (PlayerPrefs.GetInt("damageStats") == 0)
         {
-            playerDamage = _levelSystem.baseAttack;
+            playerAttack = _levelSystem.baseAttack;
             maxHealth = _levelSystem.baseHealth;
         }
         else
         {
-            playerDamage = PlayerPrefs.GetInt("damageStats");
+            playerAttack = PlayerPrefs.GetInt("damageStats");
             maxHealth = PlayerPrefs.GetInt("healthStats");
         }
         currentHealth = maxHealth;
@@ -178,7 +178,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         {
             // Lost
             _gameOver = true;
-            _expPoint = 0;
             touchBoundary = true;
 
             _bloodSplatParticle.SetActive(false);
@@ -363,9 +362,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
 
             touchBoundary = true;
 
-            // Lost point
-            _expPoint = 0;
-
             // Game Over menu pop up Action callback
             StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
@@ -467,10 +463,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     // Game over menu popup
     void GameOverPopup()
     {
-        if (touchBoundary == false)
-        {
-            _levelSystem.currentExp += _expPoint;
-        }
+        _levelSystem.currentExp += _expPoint;
+
         gameOverContainer.SetActive(true);
 
         SaveCollectedStarsNum();

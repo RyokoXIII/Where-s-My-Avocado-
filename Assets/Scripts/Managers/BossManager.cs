@@ -29,7 +29,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     [Header("Boss Stats")]
     [Space(10f)]
     [SerializeField] BossStats _bossStats;
-    public int bossDamage;
+    public int bossAttack;
     public int currentHealth;
     public int maxHealth;
     public int takeDamagePoint;
@@ -68,8 +68,8 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
     void SetBossStats()
     {
-        bossDamage = _bossStats.baseAttack;
-        takeDamagePoint = _playerManager.playerDamage;
+        bossAttack = _bossStats.baseAttack;
+        takeDamagePoint = _playerManager.playerAttack;
 
         maxHealth = _bossStats.baseHealth;
         currentHealth = maxHealth;
@@ -78,10 +78,10 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
     void UpdateBossStats()
     {
-        if (bossDamage < _bossStats.baseAttack)
+        if (bossAttack < _bossStats.baseAttack)
         {
-            bossDamage = _bossStats.baseAttack;
-            takeDamagePoint = _playerManager.playerDamage;
+            bossAttack = _bossStats.baseAttack;
+            takeDamagePoint = _playerManager.playerAttack;
 
             maxHealth = _bossStats.baseHealth;
             currentHealth = maxHealth;
@@ -204,7 +204,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         }
         else if (state == "4-atk")
         {
-            SetAnimation(_attack, true, 1f);
+            SetAnimation(_attack, true, 0.7f);
         }
     }
 }

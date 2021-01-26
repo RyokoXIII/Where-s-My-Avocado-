@@ -1,0 +1,41 @@
+
+skeleton.png
+size: 916,916
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+battle_1
+  rotate: false
+  xy: 2, 459
+  size: 455, 455
+  orig: 455, 455
+  offset: 0, 0
+  index: -1
+battle_2
+  rotate: false
+  xy: 2, 2
+  size: 455, 455
+  orig: 455, 455
+  offset: 0, 0
+  index: -1
+battle_3
+  rotate: false
+  xy: 459, 459
+  size: 455, 455
+  orig: 455, 455
+  offset: 0, 0
+  index: -1
+halo-2
+  rotate: false
+  xy: 459, 130
+  size: 214, 97
+  orig: 214, 97
+  offset: 0, 0
+  index: -1
+halo1
+  rotate: false
+  xy: 459, 229
+  size: 214, 228
+  orig: 214, 228
+  offset: 0, 0
+  index: -1
