@@ -19,6 +19,7 @@ public class UIManager : MonoSingleton<UIManager>
     public event Action OnExitMenu;
     public event Action OnBackToMainMenu;
     public event Action OnUpgrade;
+    public event Action OnGetArmor;
 
     #endregion
 
@@ -100,5 +101,11 @@ public class UIManager : MonoSingleton<UIManager>
     {
         if (OnUpgrade != null)
             OnUpgrade();
+    }
+
+    public void GetArmor()
+    {
+        if (OnGetArmor != null)
+            OnGetArmor();
     }
 }

@@ -15,6 +15,7 @@ public class EnemyManager : MonoBehaviour, IAnimatable
     [SerializeField] string _currentState;
 
     string _currentAnimation;
+    GameObject _coinFloatPrefab;
 
     #endregion
 
@@ -28,17 +29,23 @@ public class EnemyManager : MonoBehaviour, IAnimatable
         SetCharacterState(_currentState);
     }
 
+    private void Update()
+    {
+        if (_coinFloatPrefab != null)
+        {
+            Vector3 targetPos = new Vector3(_coinFloatPrefab.transform.position.x, 
+                _coinFloatPrefab.transform.position.y + 15f, _coinFloatPrefab.transform.position.z);
+
+            _coinFloatPrefab.transform.position = Vector3.MoveTowards(_coinFloatPrefab.transform.position, targetPos, Time.deltaTime * 3f);
+        }
+    }
+
     // Check trigger
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            // Partice spawn position
-            Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.5f);
-
-            _pooler.SpawnFromPool("Slash Particle", pos, Quaternion.identity);
-            _pooler.SpawnFromPool("BloodSplatSmall Particle", pos, Quaternion.identity);
-            _pooler.SpawnFromPool("EnemyGoldParticle", pos, Quaternion.LookRotation(Vector3.up));
+            CreateParticles();
 
             _soundManager.enemySlashFX.Play();
             SetCharacterState("2-dead2");
@@ -47,6 +54,17 @@ public class EnemyManager : MonoBehaviour, IAnimatable
             // Disable enemy after delay time
             StartCoroutine(DisabledObjectLateCall());
         }
+    }
+
+    void CreateParticles()
+    {
+        // Partice spawn position
+        Vector2 pos = new Vector2(transform.position.x, transform.position.y + 0.5f);
+
+        _pooler.SpawnFromPool("Slash Particle", pos, Quaternion.identity);
+        _pooler.SpawnFromPool("BloodSplatSmall Particle", pos, Quaternion.identity);
+
+        _coinFloatPrefab = _pooler.SpawnFromPool("CoinFloat Particle", transform.position, Quaternion.identity);
     }
 
     IEnumerator DisabledObjectLateCall()

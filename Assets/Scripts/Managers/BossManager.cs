@@ -40,6 +40,8 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     float t = 0.0f;
     float threshold = 0.85f;
 
+    GameObject _coinFloatPrefab;
+
     #endregion
 
     private void Start()
@@ -62,6 +64,14 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     private void Update()
     {
         CheckBossGetKilled();
+
+        if (_coinFloatPrefab != null)
+        {
+            Vector3 targetPos = new Vector3(_coinFloatPrefab.transform.position.x,
+                _coinFloatPrefab.transform.position.y + 30f, _coinFloatPrefab.transform.position.z);
+
+            _coinFloatPrefab.transform.position = Vector3.MoveTowards(_coinFloatPrefab.transform.position, targetPos, Time.deltaTime * 3f);
+        }
 
         UpdateBossStats();
     }
@@ -173,7 +183,8 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     {
         Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
         _pooler.SpawnFromPool("Big Slash Particle", pos, Quaternion.identity);
-        _pooler.SpawnFromPool("BossGoldParticle", pos, Quaternion.LookRotation(Vector3.up));
+
+        _coinFloatPrefab = _pooler.SpawnFromPool("CoinFloat Particle", transform.position, Quaternion.identity);
     }
 
     void CreateBloodParticleEffect()

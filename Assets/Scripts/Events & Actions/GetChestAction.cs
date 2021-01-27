@@ -16,12 +16,33 @@ public class GetChestAction : MonoBehaviour, IAnimatable
     [SerializeField] AnimationReferenceAsset _armorIdle, _circle, _finished;
     [SerializeField] AnimationReferenceAsset _chestIdle, _fallDown, _open;
 
+    [Header("Game Objects")]
+    [Space(10f)]
+    [SerializeField] GameObject _armor;
+    [SerializeField] GameObject _chest;
+    [SerializeField] GameObject _chestMenu, _continueMenu;
+    [SerializeField] Text _armorTxt;
+
     string _currentAnimation;
+
+    UIManager _uiManager;
 
     #endregion
 
     void Start()
     {
+        _uiManager = UIManager.Instance;
+        _uiManager.OnGetArmor += GetArmor;
+
+        StartCoroutine(StartChestAnimation());
+    }
+
+    public void GetArmor()
+    {
+        SetChestState("open phase2");
+        _chestMenu.SetActive(false);
+
+        StartCoroutine(OpenChest());
         StartCoroutine(StartArmorAnimation());
     }
 
@@ -30,6 +51,9 @@ public class GetChestAction : MonoBehaviour, IAnimatable
         SetCharacterState("idle");
 
         yield return new WaitForSeconds(1f);
+
+        _armorTxt.text = "DARK KNIGHT ARMOR";
+        _continueMenu.SetActive(true);
 
         SetCharacterState("circle");
 
@@ -48,11 +72,15 @@ public class GetChestAction : MonoBehaviour, IAnimatable
 
         yield return new WaitForSeconds(1f);
 
-        SetCharacterState("idle");
+        SetChestState("idle4");
+    }
 
+    IEnumerator OpenChest()
+    {
         yield return new WaitForSeconds(1f);
 
-        SetCharacterState("open phase1");
+        _chest.SetActive(false);
+        _armor.SetActive(true);
     }
 
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
@@ -61,6 +89,16 @@ public class GetChestAction : MonoBehaviour, IAnimatable
             return;
 
         _armorSkeletonGraphic.AnimationState.AddAnimation(0, animation.name, loop, 0).TimeScale = timeScale;
+
+        _currentAnimation = animation.name;
+    }
+
+    public void SetChestAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
+    {
+        if (animation.name.Equals(_currentAnimation))
+            return;
+
+        _chestSkeletonGraphic.AnimationState.AddAnimation(0, animation.name, loop, 0).TimeScale = timeScale;
 
         _currentAnimation = animation.name;
     }
@@ -74,7 +112,8 @@ public class GetChestAction : MonoBehaviour, IAnimatable
         else if (state == "circle")
         {
             SetAnimation(_circle, false, 1f);
-        }else if(state == "finisher")
+        }
+        else if (state == "finisher")
         {
             SetAnimation(_finished, false, 1f);
         }
@@ -82,17 +121,17 @@ public class GetChestAction : MonoBehaviour, IAnimatable
 
     public void SetChestState(string state)
     {
-        if (state == "idle")
+        if (state == "idle4")
         {
-            SetAnimation(_armorIdle, true, 1f);
+            SetChestAnimation(_chestIdle, true, 1f);
         }
         else if (state == "fall down")
         {
-            SetAnimation(_fallDown, false, 1f);
+            SetChestAnimation(_fallDown, false, 1f);
         }
-        else if (state == "open phase1")
+        else if (state == "open phase2")
         {
-            SetAnimation(_open, false, 1f);
+            SetChestAnimation(_open, false, 1f);
         }
     }
 }

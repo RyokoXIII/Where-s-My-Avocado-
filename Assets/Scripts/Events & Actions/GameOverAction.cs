@@ -38,6 +38,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     [SerializeField]
     Text _stageNumText;
     [SerializeField] GameObject _nextExpPoint, _coinIcon;
+    [SerializeField] GameObject _adsIcon;
     [SerializeField] GameObject _menu, _menuUpgrade;
     [SerializeField] GameObject _playButton;
     [SerializeField] RectTransform _homeButton, _replayButton;
@@ -115,6 +116,11 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             _damagePlus.SetActive(false);
             _healthPlus.SetActive(false);
         }
+    }
+
+    void UpdateUpgradeMenu()
+    {
+
     }
 
     void GetPlayerCurrentStats()
