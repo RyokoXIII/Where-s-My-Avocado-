@@ -24,7 +24,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     [SerializeField]
     Transform _bossPos;
     [SerializeField]
-    GameObject gameOverContainer;
+    GameObject gameOverContainer, _getChestContainer;
     [SerializeField]
     BossManager _bossManager;
 
@@ -73,6 +73,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
 
     public int _expPoint;
     int _currentLevel;
+    int _chestLevel = 5;
 
     float t = 0.0f;
     float threshold = 1.15f;
@@ -144,6 +145,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         }
         currentHealth = maxHealth;
         healthBarscript.SetMaxHealth(maxHealth);
+
+        if(PlayerPrefs.GetString("upgradeHero") != "upgraded" && PlayerPrefs.GetInt("levelReceivedChest") > 0)
+        {
+            _chestLevel = PlayerPrefs.GetInt("levelReceivedChest") + 5;
+        }
     }
 
     public void TakeDamage(int damage)
@@ -183,7 +189,15 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             _bloodSplatParticle.SetActive(false);
             StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
         }
-        if (_bossManager.currentHealth == 0 && _gameOver == false)
+        if (_bossManager.currentHealth == 0 && _gameOver == false && _starHandler.levelIndex == _chestLevel
+            && PlayerPrefs.GetString("upgradeHero") != "upgraded")
+        {
+            _gameOver = true;
+            _bloodSplatParticle.SetActive(false);
+
+            StartCoroutine(_uiManager.GameOverRoutine(ChestPopUp));
+        }
+        else if (_bossManager.currentHealth == 0 && _gameOver == false)
         {
             _gameOver = true;
             _bloodSplatParticle.SetActive(false);
@@ -229,7 +243,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
                 // Rotate smoothly to 0
                 StartCoroutine(AnimateRotationTowards(this.transform, Quaternion.identity, .1f));
                 StartCoroutine(FightAnimationTransition()); // Kill boss animation
-                //StartCoroutine(_uiManager.GameOverRoutine(GameOverPopup));
             }
         }
     }
@@ -320,11 +333,9 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         }
         else
         {
-            //_expPoint += 75;
             BossGoldDrop();
             SetCharacterState("idle");
         }
-        //_bloodSplatParticle.SetActive(false);
 
         yield return new WaitForSeconds(0.2f);
         healthBar.SetActive(false);
@@ -461,13 +472,18 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     }
 
     // Game over menu popup
-    void GameOverPopup()
+    public void GameOverPopup()
     {
         _levelSystem.currentExp += _expPoint;
 
         gameOverContainer.SetActive(true);
 
         SaveCollectedStarsNum();
+    }
+
+    void ChestPopUp()
+    {
+        _getChestContainer.SetActive(true);
     }
 
     void BossGoldDrop()
@@ -536,11 +552,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             if (_starHandler.levelIndex < 100)
             {
                 PlayerPrefs.SetInt("level", _starHandler.levelIndex + 1);
-
-                if (_starHandler.levelIndex == 20)
-                {
-                    PlayerPrefs.SetString("upgradeHero", "upgraded");
-                }
             }
         }
         Debug.Log("Next level: " + PlayerPrefs.GetInt("level"));

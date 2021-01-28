@@ -19,7 +19,10 @@ public class UIManager : MonoSingleton<UIManager>
     public event Action OnExitMenu;
     public event Action OnBackToMainMenu;
     public event Action OnUpgrade;
+    public event Action OnGetCoin;
     public event Action OnGetArmor;
+    public event Action OnLooseIt;
+    public event Action OnContinue;
 
     #endregion
 
@@ -103,9 +106,27 @@ public class UIManager : MonoSingleton<UIManager>
             OnUpgrade();
     }
 
+    public void GetCoin()
+    {
+        if (OnGetCoin != null)
+            OnGetCoin();
+    }
+
     public void GetArmor()
     {
         if (OnGetArmor != null)
             OnGetArmor();
+    }
+
+    public void LooseIt()
+    {
+        if (OnLooseIt != null)
+            OnLooseIt();
+    }
+
+    public void Continue()
+    {
+        if (OnContinue != null)
+            OnContinue();
     }
 }

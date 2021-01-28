@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
     [Space(10f)]
     [SerializeField] int baseNextLevelExp = 200;
     public int currentExp;
-    public int nextLevelExp;
+    public int nextLevelExp = 200;
 
     [Header("Character Stats")]
     [Space(10f)]

@@ -18,32 +18,54 @@ public class GetChestAction : MonoBehaviour, IAnimatable
 
     [Header("Game Objects")]
     [Space(10f)]
-    [SerializeField] GameObject _armor;
-    [SerializeField] GameObject _chest;
+    [SerializeField] PlayerManager _playerManager;
+    [SerializeField] GameObject _armor, _chest;
+    [SerializeField] GameObject _chestPanel;
     [SerializeField] GameObject _chestMenu, _continueMenu;
     [SerializeField] Text _armorTxt;
+
+    public bool openChest;
 
     string _currentAnimation;
 
     UIManager _uiManager;
+    StarHandler _starHandler;
 
     #endregion
 
     void Start()
     {
+        _starHandler = StarHandler.Instance;
         _uiManager = UIManager.Instance;
-        _uiManager.OnGetArmor += GetArmor;
+
+        _uiManager.OnGetArmor += OnGetArmor;
+        _uiManager.OnLooseIt += OnLooseIt;
+        _uiManager.OnContinue += OnContinue;
 
         StartCoroutine(StartChestAnimation());
     }
 
-    public void GetArmor()
+    public void OnGetArmor()
     {
+        PlayerPrefs.SetString("upgradeHero", "upgraded");
+        openChest = true;
+
         SetChestState("open phase2");
         _chestMenu.SetActive(false);
 
         StartCoroutine(OpenChest());
         StartCoroutine(StartArmorAnimation());
+    }
+
+    public void OnLooseIt()
+    {
+        PlayerPrefs.SetInt("levelReceivedChest", _starHandler.levelIndex);
+        StartCoroutine(ContinueToGameOverMenu());
+    }
+
+    public void OnContinue()
+    {
+        StartCoroutine(ContinueToGameOverMenu());
     }
 
     IEnumerator StartArmorAnimation()
@@ -81,6 +103,15 @@ public class GetChestAction : MonoBehaviour, IAnimatable
 
         _chest.SetActive(false);
         _armor.SetActive(true);
+    }
+
+    IEnumerator ContinueToGameOverMenu()
+    {
+        _chestPanel.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+
+        _playerManager.GameOverPopup();
     }
 
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)

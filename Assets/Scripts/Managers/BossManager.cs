@@ -70,7 +70,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
             Vector3 targetPos = new Vector3(_coinFloatPrefab.transform.position.x,
                 _coinFloatPrefab.transform.position.y + 30f, _coinFloatPrefab.transform.position.z);
 
-            _coinFloatPrefab.transform.position = Vector3.MoveTowards(_coinFloatPrefab.transform.position, targetPos, Time.deltaTime * 3f);
+            _coinFloatPrefab.transform.position = Vector3.MoveTowards(_coinFloatPrefab.transform.position, targetPos, Time.deltaTime * 2.5f);
         }
 
         UpdateBossStats();
@@ -184,7 +184,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
         _pooler.SpawnFromPool("Big Slash Particle", pos, Quaternion.identity);
 
-        _coinFloatPrefab = _pooler.SpawnFromPool("CoinFloat Particle", transform.position, Quaternion.identity);
+        _coinFloatPrefab = _pooler.SpawnFromPool("CoinFloat Particle", pos, Quaternion.identity);
     }
 
     void CreateBloodParticleEffect()

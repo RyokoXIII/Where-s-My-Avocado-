@@ -30,7 +30,7 @@ public class LineManager : MonoBehaviour, IAnimatable
     [SerializeField]
     GameObject gameOverMenu;
     [SerializeField]
-    GameObject gameMenu, tutorial;
+    GameObject gameMenu, _getChestMenu, tutorial;
     [SerializeField] LevelManager _levelManager;
 
     Line _currentLine;
@@ -85,7 +85,8 @@ public class LineManager : MonoBehaviour, IAnimatable
 
     void Update()
     {
-        if (gameOverMenu.activeInHierarchy == true || gameMenu.activeInHierarchy == true)
+        if (gameOverMenu.activeInHierarchy == true || gameMenu.activeInHierarchy == true
+            || _getChestMenu.activeInHierarchy == true)
         {
             if (_currentLine != null)
             {

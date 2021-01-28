@@ -23,8 +23,8 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     string _currentAnimation;
 
     [Space(10f)]
-    [SerializeField]
-    PlayerManager _playerManager;
+    [SerializeField] PlayerManager _playerManager;
+    [SerializeField] GetChestAction _chestAction;
     [SerializeField] PlayerStats _playerLvUp;
     [SerializeField] Text _damageTxt, _healthTxt, _expPointTxt, _nextExpPointTxt;
     [SerializeField] GameObject _damagePlus, _healthPlus;
@@ -38,7 +38,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     [SerializeField]
     Text _stageNumText;
     [SerializeField] GameObject _nextExpPoint, _coinIcon;
-    [SerializeField] GameObject _adsIcon;
+    [SerializeField] GameObject _getCoinBtn, _upgradeBtn;
     [SerializeField] GameObject _menu, _menuUpgrade;
     [SerializeField] GameObject _playButton;
     [SerializeField] RectTransform _homeButton, _replayButton;
@@ -66,8 +66,9 @@ public class GameOverAction : MonoBehaviour, IAnimatable
         _uiManager.OnBackToMainMenu += OnBackToMainMenu;
         _uiManager.OnPlayNext += OnPlayNext;
         _uiManager.OnUpgrade += OnUpgrade;
+        _uiManager.OnGetCoin += OnGetCoin;
 
-        if (PlayerPrefs.GetInt("level") == 21)
+        if (_chestAction.openChest == true)
         {
             Vector3 pos = new Vector3(_heroPos.transform.position.x, _heroPos.transform.position.y + 1, 1f);
             _pooler.SpawnFromPool("Upgrade Particle", pos, Quaternion.identity);
@@ -86,7 +87,6 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
         // Set Stage Number text
         _stageNumText.text = _starHandler.levelIndex.ToString();
-
         _hasNotUpgrade = true;
 
         GetPlayerCurrentStats();
@@ -97,9 +97,14 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
     private void Update()
     {
-        UpgradePlayerStats();
+        LevelUpPlayerStats();
         UpdateExpPoint();
+        UpdateUpgradeMenu();
 
+    }
+
+    void UpdateUpgradeMenu()
+    {
         _nextExpPointTxt.text = "/ " + _playerLvUp.nextLevelExp.ToString();
         _coinIcon.transform.position = new Vector3(_nextExpPoint.transform.position.x,
             _nextExpPoint.transform.position.y, _nextExpPoint.transform.position.z);
@@ -115,12 +120,20 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             // Deactivated point plus
             _damagePlus.SetActive(false);
             _healthPlus.SetActive(false);
+
+            _getCoinBtn.SetActive(false);
+            _upgradeBtn.SetActive(true);
         }
-    }
 
-    void UpdateUpgradeMenu()
-    {
+        if (_playerLvUp.currentExp >= _playerLvUp.nextLevelExp)
+        {
+            // Activated point plus
+            _damagePlus.SetActive(true);
+            _healthPlus.SetActive(true);
 
+            _getCoinBtn.SetActive(false);
+            _upgradeBtn.SetActive(true);
+        }
     }
 
     void GetPlayerCurrentStats()
@@ -130,40 +143,37 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
         // Stats upgrade point
         _damagePlusTxt.text = "+ 50";
-        _healthPlusTxt.text = "+ 250";
+        _healthPlusTxt.text = "+ 200";
     }
 
-    void UpgradePlayerStats()
+    void LevelUpPlayerStats()
     {
-        if (_hasNotUpgrade == false)
+        if (_playerLvUp.currentExp >= _playerLvUp.nextLevelExp && _playerLvUp.characterLevel < _playerLvUp.characterMaxLevel &&
+        _hasNotUpgrade == false)
         {
-            if (_playerLvUp.currentExp >= _playerLvUp.nextLevelExp &&
-            _playerLvUp.characterLevel < _playerLvUp.characterMaxLevel)
-            {
-                Vector3 pos = new Vector3(_heroPos.transform.position.x, _heroPos.transform.position.y + 0.8f, 1f);
-                _pooler.SpawnFromPool("levelup Particle", pos, Quaternion.identity);
+            Vector3 pos = new Vector3(_heroPos.transform.position.x, _heroPos.transform.position.y + 0.8f, 1f);
+            _pooler.SpawnFromPool("levelup Particle", pos, Quaternion.identity);
 
-                // Change text color
-                _damageTxt.color = new Color(0.01960784f, 1f, 0.1333333f, 1f);
-                _healthTxt.color = new Color(0.01960784f, 1f, 0.1333333f, 1f);
+            // Change text color
+            _damageTxt.color = new Color(0.01960784f, 1f, 0.1333333f, 1f);
+            _healthTxt.color = new Color(0.01960784f, 1f, 0.1333333f, 1f);
 
-                _playerLvUp.AddExp();
+            _playerLvUp.AddExp();
 
-                PlayerPrefs.SetInt("expPoint", _playerLvUp.currentExp);
+            PlayerPrefs.SetInt("expPoint", _playerLvUp.currentExp);
 
-                // Update player stats
-                _damageTxt.text = _playerLvUp.baseAttack.ToString();
-                _healthTxt.text = _playerLvUp.baseHealth.ToString();
+            // Update player stats
+            _damageTxt.text = _playerLvUp.baseAttack.ToString();
+            _healthTxt.text = _playerLvUp.baseHealth.ToString();
 
-                PlayerPrefs.SetInt("damageStats", _playerLvUp.baseAttack);
-                PlayerPrefs.SetInt("healthStats", _playerLvUp.baseHealth);
-                PlayerPrefs.SetInt("playerLv", _playerLvUp.characterLevel);
+            PlayerPrefs.SetInt("damageStats", _playerLvUp.baseAttack);
+            PlayerPrefs.SetInt("healthStats", _playerLvUp.baseHealth);
+            PlayerPrefs.SetInt("playerLv", _playerLvUp.characterLevel);
 
-                _hasNotUpgrade = true;
+            _hasNotUpgrade = true;
 
-                _strengthAnim.Play("Transform_strength");
-                _healthAnim.Play("Transform_health");
-            }
+            _strengthAnim.Play("Transform_strength");
+            _healthAnim.Play("Transform_health");
         }
     }
 
@@ -215,6 +225,16 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     public void OnUpgrade()
     {
         _hasNotUpgrade = false;
+    }
+
+    public void OnGetCoin()
+    {
+        int coinRate = Random.Range(30, 36);
+
+        _playerLvUp.currentExp += Mathf.RoundToInt((coinRate * _playerLvUp.nextLevelExp) / 100);
+        Debug.Log("coin rate: " + coinRate);
+        Debug.Log("coin bonus: " + Mathf.RoundToInt((coinRate * _playerLvUp.nextLevelExp) / 100));
+        PlayerPrefs.SetInt("expPoint", _playerLvUp.currentExp);
     }
 
     void UpdateGameOverMenu()

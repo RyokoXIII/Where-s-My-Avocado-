@@ -76,10 +76,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particles: {fileID: 6672995321540277986}
   poolList:
-  - tag: BeachCloud
-    prefab: {fileID: 3264624762967581280, guid: 7a12e6789ba1c4b4eb26f1049462d237,
-      type: 3}
-    size: 20
   - tag: Slash Particle
     prefab: {fileID: 6849857482500291141, guid: ba6cfeff1aefc314d937944796e140c6,
       type: 3}
@@ -93,10 +89,23 @@ MonoBehaviour:
     size: 1
   - tag: BloodSplatWide Particle
     prefab: {fileID: 121962, guid: 8b859f6ed5d97694fb9e41bab73b55ff, type: 3}
-    size: 1
+    size: 2
   - tag: BloodSplatSmall Particle
     prefab: {fileID: 168136, guid: 47c6eee70f9391f46a710b0592491a63, type: 3}
     size: 3
   - tag: Star Particle
     prefab: {fileID: 164832, guid: cc4edba986607ba48b17927b27d25e4e, type: 3}
     size: 3
+  - tag: WaterSplash Particle
+    prefab: {fileID: 186206, guid: 6933e03d0b272f54bb5208ae3a2dbffa, type: 3}
+    size: 1
+  - tag: Upgrade Particle
+    prefab: {fileID: 108178, guid: e053c479a3add9649af9d847a748547d, type: 3}
+    size: 1
+  - tag: levelup Particle
+    prefab: {fileID: 145256, guid: 7b117ab47ae99e74fbb811d488c1eb17, type: 3}
+    size: 10
+  - tag: CoinFloat Particle
+    prefab: {fileID: 3060826024226378269, guid: f7832890b75999945bc9d7d045215853,
+      type: 3}
+    size: 4

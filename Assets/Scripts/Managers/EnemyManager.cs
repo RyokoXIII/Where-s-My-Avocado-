@@ -34,7 +34,7 @@ public class EnemyManager : MonoBehaviour, IAnimatable
         if (_coinFloatPrefab != null)
         {
             Vector3 targetPos = new Vector3(_coinFloatPrefab.transform.position.x, 
-                _coinFloatPrefab.transform.position.y + 15f, _coinFloatPrefab.transform.position.z);
+                _coinFloatPrefab.transform.position.y + 30f, _coinFloatPrefab.transform.position.z);
 
             _coinFloatPrefab.transform.position = Vector3.MoveTowards(_coinFloatPrefab.transform.position, targetPos, Time.deltaTime * 3f);
         }
