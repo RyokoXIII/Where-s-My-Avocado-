@@ -106,6 +106,6 @@ MonoBehaviour:
     prefab: {fileID: 145256, guid: 7b117ab47ae99e74fbb811d488c1eb17, type: 3}
     size: 10
   - tag: CoinFloat Particle
-    prefab: {fileID: 3060826024226378269, guid: f7832890b75999945bc9d7d045215853,
+    prefab: {fileID: 8036383448797078656, guid: bf59975f796c92b499268dc828f4af95,
       type: 3}
     size: 4

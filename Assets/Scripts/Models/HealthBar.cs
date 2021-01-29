@@ -11,7 +11,7 @@ public class HealthBar : MonoBehaviour
     public Slider slider;
     public Vector3 wantedPos;
     
-    void Update()
+    void LateUpdate()
     {
         slider.transform.position = main.WorldToScreenPoint(targetPos.position + wantedPos);
     }

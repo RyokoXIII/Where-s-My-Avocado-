@@ -6,8 +6,11 @@ using Spine.Unity;
 public class EnemyManager : MonoBehaviour, IAnimatable
 {
     #region Global variables
+
     PoolManager _pooler;
     SoundManager _soundManager;
+    [SerializeField] Camera main;
+    [SerializeField] Coin _coinManager;
 
     [Space(10f)]
     [SerializeField] SkeletonAnimation _skeletonAnimation;
@@ -15,7 +18,7 @@ public class EnemyManager : MonoBehaviour, IAnimatable
     [SerializeField] string _currentState;
 
     string _currentAnimation;
-    GameObject _coinFloatPrefab;
+    [SerializeField] GameObject _coinFloatPrefab;
 
     #endregion
 
@@ -31,10 +34,10 @@ public class EnemyManager : MonoBehaviour, IAnimatable
 
     private void Update()
     {
-        if (_coinFloatPrefab != null)
+        if (_coinFloatPrefab.activeInHierarchy == true)
         {
-            Vector3 targetPos = new Vector3(_coinFloatPrefab.transform.position.x, 
-                _coinFloatPrefab.transform.position.y + 30f, _coinFloatPrefab.transform.position.z);
+            Vector3 targetPos = new Vector3(_coinFloatPrefab.transform.position.x,
+                _coinFloatPrefab.transform.position.y + 10f, _coinFloatPrefab.transform.position.z);
 
             _coinFloatPrefab.transform.position = Vector3.MoveTowards(_coinFloatPrefab.transform.position, targetPos, Time.deltaTime * 3f);
         }
@@ -64,7 +67,9 @@ public class EnemyManager : MonoBehaviour, IAnimatable
         _pooler.SpawnFromPool("Slash Particle", pos, Quaternion.identity);
         _pooler.SpawnFromPool("BloodSplatSmall Particle", pos, Quaternion.identity);
 
-        _coinFloatPrefab = _pooler.SpawnFromPool("CoinFloat Particle", transform.position, Quaternion.identity);
+        //_coinFloatPrefab = _pooler.SpawnFromPool("CoinFloat Particle", transform.position, Quaternion.identity);
+        _coinFloatPrefab.SetActive(true);
+        
     }
 
     IEnumerator DisabledObjectLateCall()

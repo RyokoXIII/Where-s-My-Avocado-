@@ -14,11 +14,11 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     [Space(10f)]
     [SerializeField] SkeletonGraphic _skeletonGraphic;
     [SerializeField] GameObject _heroPos;
-    [SerializeField] AnimationReferenceAsset _idle, _circle;
+    [SerializeField] AnimationReferenceAsset _idle, _dead;
 
     [Space(10f)]
     [SerializeField] SkeletonDataAsset _newDataAsset;
-    [SerializeField] AnimationReferenceAsset _idle2, _circle2;
+    [SerializeField] AnimationReferenceAsset _idle2, _dead2;
 
     string _currentAnimation;
 
@@ -171,6 +171,8 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             PlayerPrefs.SetInt("playerLv", _playerLvUp.characterLevel);
 
             _hasNotUpgrade = true;
+            _upgradeBtn.SetActive(false);
+            _getCoinBtn.SetActive(true);
 
             _strengthAnim.Play("Transform_strength");
             _healthAnim.Play("Transform_health");
@@ -225,10 +227,12 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     public void OnUpgrade()
     {
         _hasNotUpgrade = false;
+        _soundManager.selectFX.Play();
     }
 
     public void OnGetCoin()
     {
+        _soundManager.selectFX.Play();
         int coinRate = Random.Range(30, 36);
 
         _playerLvUp.currentExp += Mathf.RoundToInt((coinRate * _playerLvUp.nextLevelExp) / 100);
@@ -241,12 +245,6 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     {
         Vector2 _newHomeBtnPos = new Vector2(-100f, 15f);
         Vector2 _newReplayBtnPos = new Vector2(100f, 15f);
-
-        //if (_playerLvUp.currentExp < _playerLvUp.nextLevelExp)
-        //{
-        //    _menuUpgrade.SetActive(false);
-        //    _menu.SetActive(true);
-        //}
 
         if (PlayerPrefs.GetInt("lv" + _starHandler.levelIndex) > 0 && _playerManager.touchBoundary == false)
         {
@@ -279,7 +277,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             _soundManager.loseFX.Play();
 
             // Lose state
-            SetCharacterState("circle");
+            SetCharacterState("death");
         }
     }
 
@@ -301,9 +299,9 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             {
                 SetAnimation(_idle2, true, 1f);
             }
-            else if (state == "circle")
+            else if (state == "death")
             {
-                SetAnimation(_circle2, false, 1f);
+                SetAnimation(_dead2, false, 1f);
             }
         }
         else
@@ -312,9 +310,9 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             {
                 SetAnimation(_idle, true, 1f);
             }
-            else if (state == "circle")
+            else if (state == "death")
             {
-                SetAnimation(_circle, false, 1f);
+                SetAnimation(_dead, false, 1f);
             }
         }
     }

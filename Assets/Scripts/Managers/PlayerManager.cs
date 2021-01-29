@@ -73,7 +73,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
 
     public int _expPoint;
     int _currentLevel;
-    int _chestLevel = 5;
+    int _chestLevel = 20;
 
     float t = 0.0f;
     float threshold = 1.15f;

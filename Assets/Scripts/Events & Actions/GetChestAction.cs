@@ -26,10 +26,11 @@ public class GetChestAction : MonoBehaviour, IAnimatable
 
     public bool openChest;
 
-    string _currentAnimation;
+    string _currentAnimation, _armorCurrentAnimation;
 
     UIManager _uiManager;
     StarHandler _starHandler;
+    SoundManager _soundManager;
 
     #endregion
 
@@ -37,6 +38,7 @@ public class GetChestAction : MonoBehaviour, IAnimatable
     {
         _starHandler = StarHandler.Instance;
         _uiManager = UIManager.Instance;
+        _soundManager = SoundManager.Instance;
 
         _uiManager.OnGetArmor += OnGetArmor;
         _uiManager.OnLooseIt += OnLooseIt;
@@ -47,6 +49,7 @@ public class GetChestAction : MonoBehaviour, IAnimatable
 
     public void OnGetArmor()
     {
+        _soundManager.selectFX.Play();
         PlayerPrefs.SetString("upgradeHero", "upgraded");
         openChest = true;
 
@@ -54,17 +57,18 @@ public class GetChestAction : MonoBehaviour, IAnimatable
         _chestMenu.SetActive(false);
 
         StartCoroutine(OpenChest());
-        StartCoroutine(StartArmorAnimation());
     }
 
     public void OnLooseIt()
     {
+        _soundManager.backFX.Play();
         PlayerPrefs.SetInt("levelReceivedChest", _starHandler.levelIndex);
         StartCoroutine(ContinueToGameOverMenu());
     }
 
     public void OnContinue()
     {
+        _soundManager.selectFX.Play();
         StartCoroutine(ContinueToGameOverMenu());
     }
 
@@ -72,14 +76,14 @@ public class GetChestAction : MonoBehaviour, IAnimatable
     {
         SetCharacterState("idle");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         _armorTxt.text = "DARK KNIGHT ARMOR";
         _continueMenu.SetActive(true);
 
         SetCharacterState("circle");
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
 
         SetCharacterState("finisher");
 
@@ -99,10 +103,16 @@ public class GetChestAction : MonoBehaviour, IAnimatable
 
     IEnumerator OpenChest()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
 
         _chest.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+
         _armor.SetActive(true);
+        _armorSkeletonGraphic.Initialize(true);
+
+        StartCoroutine(StartArmorAnimation());
     }
 
     IEnumerator ContinueToGameOverMenu()
@@ -116,12 +126,12 @@ public class GetChestAction : MonoBehaviour, IAnimatable
 
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
     {
-        if (animation.name.Equals(_currentAnimation))
+        if (animation.name.Equals(_armorCurrentAnimation))
             return;
 
         _armorSkeletonGraphic.AnimationState.AddAnimation(0, animation.name, loop, 0).TimeScale = timeScale;
 
-        _currentAnimation = animation.name;
+        _armorCurrentAnimation = animation.name;
     }
 
     public void SetChestAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)

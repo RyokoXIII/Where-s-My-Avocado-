@@ -10,6 +10,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     [SerializeField]
     PlayerManager _playerManager;
     [SerializeField] Transform _playerPos;
+    [SerializeField] GameObject _boundaryY;
     [SerializeField] GameObject _bloodSplatParticle;
 
     Vector3 _scaleChangeRight, _scaleChangeLeft;
@@ -40,7 +41,7 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     float t = 0.0f;
     float threshold = 0.85f;
 
-    GameObject _coinFloatPrefab;
+    [SerializeField] GameObject _coinFloatPrefab;
 
     #endregion
 
@@ -65,12 +66,17 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     {
         CheckBossGetKilled();
 
-        if (_coinFloatPrefab != null)
+        if (_coinFloatPrefab.activeInHierarchy == true)
         {
             Vector3 targetPos = new Vector3(_coinFloatPrefab.transform.position.x,
                 _coinFloatPrefab.transform.position.y + 30f, _coinFloatPrefab.transform.position.z);
 
             _coinFloatPrefab.transform.position = Vector3.MoveTowards(_coinFloatPrefab.transform.position, targetPos, Time.deltaTime * 2.5f);
+
+            if(_coinFloatPrefab.transform.position.y > transform.position.y + 5f)
+            {
+                _coinFloatPrefab.SetActive(false);
+            }
         }
 
         UpdateBossStats();
@@ -184,7 +190,8 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
         Vector2 pos = new Vector2(transform.position.x, transform.position.y + 1f);
         _pooler.SpawnFromPool("Big Slash Particle", pos, Quaternion.identity);
 
-        _coinFloatPrefab = _pooler.SpawnFromPool("CoinFloat Particle", pos, Quaternion.identity);
+        //_coinFloatPrefab = _pooler.SpawnFromPool("CoinFloat Particle", pos, Quaternion.identity);
+        _coinFloatPrefab.SetActive(true);
     }
 
     void CreateBloodParticleEffect()

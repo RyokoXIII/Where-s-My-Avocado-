@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c98dde5b5f83db45be0b586e86034c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  main: {fileID: 0}
   _skeletonAnimation: {fileID: 3606576876524481560}
   _idle: {fileID: 11400000, guid: 75d4ea128cab4334d9a733afb6692b2e, type: 2}
   _dead: {fileID: 11400000, guid: efd1c63fe2a878642b524549d86d1f06, type: 2}
   _currentState: 
-  goldDrop: 5
