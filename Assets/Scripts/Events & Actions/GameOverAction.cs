@@ -85,8 +85,8 @@ public class GameOverAction : MonoBehaviour, IAnimatable
         // Update game over state
         UpdateGameOverMenu();
 
-        // Set Stage Number text
-        _stageNumText.text = _starHandler.levelIndex.ToString();
+        //// Set Stage Number text
+        //_stageNumText.text = _starHandler.levelIndex.ToString();
         _hasNotUpgrade = true;
 
         GetPlayerCurrentStats();
@@ -115,15 +115,6 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             _damagePlus.SetActive(false);
             _healthPlus.SetActive(false);
         }
-        else if (_playerLvUp.characterLevel == _playerLvUp.characterMaxLevel)
-        {
-            // Deactivated point plus
-            _damagePlus.SetActive(false);
-            _healthPlus.SetActive(false);
-
-            _getCoinBtn.SetActive(false);
-            _upgradeBtn.SetActive(true);
-        }
 
         if (_playerLvUp.currentExp >= _playerLvUp.nextLevelExp)
         {
@@ -148,8 +139,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
 
     void LevelUpPlayerStats()
     {
-        if (_playerLvUp.currentExp >= _playerLvUp.nextLevelExp && _playerLvUp.characterLevel < _playerLvUp.characterMaxLevel &&
-        _hasNotUpgrade == false)
+        if (_playerLvUp.currentExp >= _playerLvUp.nextLevelExp && _hasNotUpgrade == false)
         {
             Vector3 pos = new Vector3(_heroPos.transform.position.x, _heroPos.transform.position.y + 0.8f, 1f);
             _pooler.SpawnFromPool("levelup Particle", pos, Quaternion.identity);
@@ -233,7 +223,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     public void OnGetCoin()
     {
         _soundManager.selectFX.Play();
-        int coinRate = Random.Range(30, 36);
+        int coinRate = Random.Range(40, 51);
 
         _playerLvUp.currentExp += Mathf.RoundToInt((coinRate * _playerLvUp.nextLevelExp) / 100);
         Debug.Log("coin rate: " + coinRate);

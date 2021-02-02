@@ -176,6 +176,7 @@ MonoBehaviour:
   _playerColl: {fileID: 5783493231461236966}
   _bossPos: {fileID: 0}
   gameOverContainer: {fileID: 0}
+  _getChestContainer: {fileID: 0}
   _bossManager: {fileID: 0}
   _skeletonAnimation: {fileID: 5783493231461236965}
   _idle: {fileID: 11400000, guid: e9759a65b422a9f47ad609692e2d8fe5, type: 2}
@@ -199,7 +200,7 @@ MonoBehaviour:
   touchBoundary: 0
   hasFirstStar: 0
   touchBoss: 0
-  _levelSystem: {fileID: 5783493230937425864}
+  _playerStats: {fileID: 5783493230937425864}
   playerAttack: 0
   currentHealth: 0
   maxHealth: 0
@@ -221,7 +222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterLevel: 0
   characterMaxLevel: 50
-  baseNextLevelExp: 200
+  baseNextLevelExp: 100
   currentExp: 0
   nextLevelExp: 0
   baseAttack: 100

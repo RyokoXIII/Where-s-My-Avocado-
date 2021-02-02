@@ -11,6 +11,13 @@ public class EnemyManager : MonoBehaviour, IAnimatable
     SoundManager _soundManager;
     [SerializeField] Camera main;
     [SerializeField] Coin _coinManager;
+    [SerializeField] PlayerStats _playerStats;
+
+    public int enemyTotalCoin;
+
+    int _enemyGold = 5;
+    int _currentLevel;
+
 
     [Space(10f)]
     [SerializeField] SkeletonAnimation _skeletonAnimation;
@@ -26,6 +33,8 @@ public class EnemyManager : MonoBehaviour, IAnimatable
     {
         _pooler = PoolManager.Instance;
         _soundManager = SoundManager.Instance;
+
+        _currentLevel = PlayerPrefs.GetInt("levelID");
 
         // Animation
         _currentState = "1-idle";
@@ -49,6 +58,7 @@ public class EnemyManager : MonoBehaviour, IAnimatable
         if (other.CompareTag("Player"))
         {
             CreateParticles();
+            EnemyGoldDrop();
 
             _soundManager.enemySlashFX.Play();
             SetCharacterState("2-dead2");
@@ -57,6 +67,26 @@ public class EnemyManager : MonoBehaviour, IAnimatable
             // Disable enemy after delay time
             StartCoroutine(DisabledObjectLateCall());
         }
+    }
+
+    void EnemyGoldDrop()
+    {
+        int randomDrop = Random.Range(1, 4);
+
+        if (_currentLevel > 1)
+        {
+            for (int i = 0; i < _currentLevel - 1; i++)
+            {
+                _enemyGold += (5 + randomDrop);
+            }
+            enemyTotalCoin += _enemyGold;
+        }
+        else
+        {
+            enemyTotalCoin += (_enemyGold + randomDrop);
+        }
+
+        _playerStats.currentExp += enemyTotalCoin;
     }
 
     void CreateParticles()

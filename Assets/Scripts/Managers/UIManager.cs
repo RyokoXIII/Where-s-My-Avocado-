@@ -23,6 +23,8 @@ public class UIManager : MonoSingleton<UIManager>
     public event Action OnGetArmor;
     public event Action OnLooseIt;
     public event Action OnContinue;
+    public event Action OnGetTriple;
+    public event Action OnNextToPowerUp;
 
     #endregion
 
@@ -128,5 +130,17 @@ public class UIManager : MonoSingleton<UIManager>
     {
         if (OnContinue != null)
             OnContinue();
+    }
+
+    public void TripleCoin()
+    {
+        if (OnGetTriple != null)
+            OnGetTriple();
+    }
+
+    public void NextToPowerUp()
+    {
+        if (OnNextToPowerUp != null)
+            OnNextToPowerUp();
     }
 }

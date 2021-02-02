@@ -1,0 +1,132 @@
+
+hero_skin_2_export.png
+size: 752,404
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ankle_bk
+  rotate: false
+  xy: 498, 8
+  size: 51, 27
+  orig: 51, 27
+  offset: 0, 0
+  index: -1
+ankle_fr
+  rotate: true
+  xy: 704, 237
+  size: 67, 29
+  orig: 67, 29
+  offset: 0, 0
+  index: -1
+body
+  rotate: false
+  xy: 304, 227
+  size: 153, 175
+  orig: 154, 176
+  offset: 1, 1
+  index: -1
+body_thorn_bottom
+  rotate: false
+  xy: 704, 306
+  size: 39, 96
+  orig: 39, 96
+  offset: 0, 0
+  index: -1
+body_thorn_middle
+  rotate: false
+  xy: 399, 14
+  size: 97, 89
+  orig: 97, 91
+  offset: 0, 1
+  index: -1
+body_thorn_upper
+  rotate: false
+  xy: 304, 105
+  size: 196, 120
+  orig: 198, 121
+  offset: 2, 0
+  index: -1
+hand_bk
+  rotate: true
+  xy: 502, 126
+  size: 99, 153
+  orig: 100, 155
+  offset: 1, 1
+  index: -1
+hand_fr
+  rotate: false
+  xy: 605, 227
+  size: 97, 175
+  orig: 98, 176
+  offset: 1, 1
+  index: -1
+head
+  rotate: false
+  xy: 459, 227
+  size: 144, 175
+  orig: 144, 176
+  offset: 0, 1
+  index: -1
+leg_bk
+  rotate: true
+  xy: 201, 17
+  size: 65, 82
+  orig: 66, 82
+  offset: 1, 0
+  index: -1
+leg_fr
+  rotate: false
+  xy: 103, 11
+  size: 96, 71
+  orig: 96, 71
+  offset: 0, 0
+  index: -1
+pelvis
+  rotate: true
+  xy: 657, 110
+  size: 115, 83
+  orig: 115, 87
+  offset: 0, 4
+  index: -1
+pelvis_armor_fr
+  rotate: false
+  xy: 2, 6
+  size: 99, 76
+  orig: 99, 76
+  offset: 0, 0
+  index: -1
+roll_hero
+  rotate: false
+  xy: 2, 84
+  size: 300, 318
+  orig: 301, 318
+  offset: 1, 0
+  index: -1
+shoulder_bk
+  rotate: false
+  xy: 689, 36
+  size: 61, 72
+  orig: 64, 74
+  offset: 1, 1
+  index: -1
+shoulder_fr
+  rotate: true
+  xy: 502, 37
+  size: 87, 94
+  orig: 87, 94
+  offset: 0, 0
+  index: -1
+thigh_bk
+  rotate: false
+  xy: 304, 2
+  size: 93, 101
+  orig: 97, 104
+  offset: 2, 1
+  index: -1
+thigh_fr
+  rotate: false
+  xy: 598, 20
+  size: 89, 88
+  orig: 92, 88
+  offset: 3, 0
+  index: -1

@@ -63,7 +63,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
 
     [Header("Player Stats")]
     [Space(10f)]
-    [SerializeField] PlayerStats _levelSystem;
+    [SerializeField] PlayerStats _playerStats;
     public int playerAttack;
     public int currentHealth;
     public int maxHealth;
@@ -71,8 +71,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     public HealthBar healthBarscript;
     public GameObject healthBar;
 
-    public int _expPoint;
-    int _currentLevel;
     int _chestLevel = 20;
 
     float t = 0.0f;
@@ -89,7 +87,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         _starHandler = StarHandler.Instance;
         _soundManager = SoundManager.Instance;
 
-        _currentLevel = PlayerPrefs.GetInt("levelID");
         _cantCollideLayerIndex = LayerMask.NameToLayer("End");
 
         _scaleChangeRight = new Vector3(0.5f, 0.5f, 0.5f);
@@ -135,8 +132,8 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     {
         if (PlayerPrefs.GetInt("damageStats") == 0)
         {
-            playerAttack = _levelSystem.baseAttack;
-            maxHealth = _levelSystem.baseHealth;
+            playerAttack = _playerStats.baseAttack;
+            maxHealth = _playerStats.baseHealth;
         }
         else
         {
@@ -146,7 +143,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         currentHealth = maxHealth;
         healthBarscript.SetMaxHealth(maxHealth);
 
-        if(PlayerPrefs.GetString("upgradeHero") != "upgraded" && PlayerPrefs.GetInt("levelReceivedChest") > 0)
+        if (PlayerPrefs.GetString("upgradeHero") != "upgraded" && PlayerPrefs.GetInt("levelReceivedChest") > 0)
         {
             _chestLevel = PlayerPrefs.GetInt("levelReceivedChest") + 5;
         }
@@ -254,13 +251,12 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         {
             if (other.enabled == true)
             {
-                EnemyGoldDrop();
+                //EnemyGoldDrop();
                 _enemyCount += 1;
                 finalScore = _enemyCount;
 
                 hasFirstStar = true;
                 Debug.Log("Enemy killed: " + _enemyCount.ToString());
-
                 // Disabled trigger event
                 other.enabled = false;
             }
@@ -333,7 +329,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         }
         else
         {
-            BossGoldDrop();
+            //BossGoldDrop();
             SetCharacterState("idle");
         }
 
@@ -468,14 +464,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         _skeletonAnimation.ClearState();
         _skeletonAnimation.skeletonDataAsset = _newDataAsset;
         _skeletonAnimation.Initialize(true);
-
     }
 
     // Game over menu popup
     public void GameOverPopup()
     {
-        _levelSystem.currentExp += _expPoint;
-
         gameOverContainer.SetActive(true);
 
         SaveCollectedStarsNum();
@@ -484,42 +477,6 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     void ChestPopUp()
     {
         _getChestContainer.SetActive(true);
-    }
-
-    void BossGoldDrop()
-    {
-        int randomDrop = Random.Range(5, 11);
-
-        if (_currentLevel > 1)
-        {
-            for (int i = 0; i < _currentLevel - 1; i++)
-            {
-                _bossManager.goldDrop += 25 + randomDrop;
-            }
-            _expPoint = _bossManager.goldDrop;
-        }
-        else
-        {
-            _expPoint += _bossManager.goldDrop + randomDrop;
-        }
-    }
-
-    void EnemyGoldDrop()
-    {
-        int randomDrop = Random.Range(1, 4);
-
-        if (_currentLevel > 1)
-        {
-            for (int i = 0; i < _currentLevel - 1; i++)
-            {
-                _enemyGold += 5 + randomDrop;
-            }
-            _expPoint = _enemyGold;
-        }
-        else
-        {
-            _expPoint += _enemyGold + randomDrop;
-        }
     }
 
     void SaveCollectedStarsNum()

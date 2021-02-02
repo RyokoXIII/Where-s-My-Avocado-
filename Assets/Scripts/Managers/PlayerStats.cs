@@ -10,9 +10,9 @@ public class PlayerStats : MonoBehaviour
 
     [Header("EXP")]
     [Space(10f)]
-    [SerializeField] int baseNextLevelExp = 200;
+    [SerializeField] int baseNextLevelExp = 100;
     public int currentExp;
-    public int nextLevelExp = 200;
+    public int nextLevelExp = 100;
 
     [Header("Character Stats")]
     [Space(10f)]
@@ -32,7 +32,7 @@ public class PlayerStats : MonoBehaviour
         if (characterLevel > 1)
         {
             //nextLevelExp = baseNextLevelExp * characterLevel;
-            nextLevelExp = (int)(baseNextLevelExp * (0.15f * characterLevel * characterLevel + characterLevel + 1));
+            nextLevelExp = (int)(baseNextLevelExp * (0.3f * characterLevel * characterLevel + characterLevel + 1));
         }
         else
         {
@@ -71,7 +71,7 @@ public class PlayerStats : MonoBehaviour
 
         characterLevel++;
         //nextLevelExp = baseNextLevelExp * characterLevel;
-        nextLevelExp = (int)(baseNextLevelExp * (0.15f * characterLevel * characterLevel + characterLevel + 1));
+        nextLevelExp = (int)(baseNextLevelExp * (0.3f * characterLevel * characterLevel + characterLevel + 1));
 
         // Damage upgrade
         baseAttack += attackPlus;

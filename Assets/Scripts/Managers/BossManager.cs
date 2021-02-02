@@ -34,14 +34,21 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     public int currentHealth;
     public int maxHealth;
     public int takeDamagePoint;
-    public int goldDrop;
     public HealthBar healthBarscript;
     public GameObject healthBar;
+
+    [Header("Boss Coin Setup")]
+    [Space(10f)]
+    [SerializeField] GameObject _coinFloatPrefab;
+    [SerializeField] PlayerStats _playerStats;
+    public int goldDrop = 25;
+    public int bossTotalCoin;
+
+    int _currentLevel;
 
     float t = 0.0f;
     float threshold = 0.85f;
 
-    [SerializeField] GameObject _coinFloatPrefab;
 
     #endregion
 
@@ -49,6 +56,8 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
     {
         _pooler = PoolManager.Instance;
         _soundManager = SoundManager.Instance;
+
+        _currentLevel = PlayerPrefs.GetInt("levelID");
 
         // Animation
         _currentState = "1-idle";
@@ -168,7 +177,9 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
         SetCharacterState("2-dead");
 
+        BossGoldDrop();
         CreateSlashParticleEffect();
+
         _soundManager.bossSlashFX.Play();
 
         yield return new WaitForSeconds(0.5f);
@@ -183,6 +194,26 @@ public class BossManager : MonoBehaviour, IAnimatable, IDamageable
 
         yield return new WaitForSeconds(0.5f);
         healthBar.SetActive(false);
+    }
+
+    void BossGoldDrop()
+    {
+        int randomDrop = Random.Range(5, 11);
+
+        if (_currentLevel > 1)
+        {
+            for (int i = 0; i < _currentLevel - 1; i++)
+            {
+                goldDrop += (25 + randomDrop);
+            }
+            bossTotalCoin += goldDrop;
+        }
+        else
+        {
+            bossTotalCoin += (goldDrop + randomDrop);
+        }
+
+        _playerStats.currentExp += bossTotalCoin;
     }
 
     void CreateSlashParticleEffect()
