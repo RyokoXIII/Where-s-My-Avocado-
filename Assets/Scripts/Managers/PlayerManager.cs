@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     [SerializeField] SkeletonAnimation _skeletonAnimation;
     [SerializeField]
     AnimationReferenceAsset _idle, _circle, _rollout,
-        _finished1, _finished2, _finished3, _attack, _dead;
+        _finished1, _finished2, _finished3, _attack, _dead, _victory;
     [SerializeField] int _playerState;
     [SerializeField] GameObject _bloodSplatParticle;
 
@@ -42,12 +42,11 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
     [SerializeField] AnimationReferenceAsset _idle2;
     [SerializeField]
     AnimationReferenceAsset _circle2, _rollout2, _attack2,
-        _finishedUpgrade, _dead2;
+        _finishedUpgrade, _dead2, _victory2;
 
     string _currentAnimation;
 
     int _enemyCount = 0;
-    int _enemyGold = 5;
     int _cantCollideLayerIndex;
 
     [HideInInspector]
@@ -329,6 +328,9 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
         }
         else
         {
+            SetCharacterState("victory");
+
+            yield return new WaitForSeconds(1f);
             //BossGoldDrop();
             SetCharacterState("idle");
         }
@@ -421,6 +423,10 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             {
                 SetAnimation(_dead2, false, 1f);
             }
+            else if(state == "victory")
+            {
+                SetAnimation(_victory2, false, 1f);
+            }
         }
         else
         {
@@ -455,6 +461,10 @@ public class PlayerManager : MonoBehaviour, IAnimatable, IDamageable
             else if (state == "death")
             {
                 SetAnimation(_dead, false, 1f);
+            }
+            else if (state == "victory")
+            {
+                SetAnimation(_victory, false, 1f);
             }
         }
     }

@@ -14,11 +14,11 @@ public class GameOverAction : MonoBehaviour, IAnimatable
     [Space(10f)]
     [SerializeField] SkeletonGraphic _skeletonGraphic;
     [SerializeField] GameObject _heroPos;
-    [SerializeField] AnimationReferenceAsset _idle, _dead;
+    [SerializeField] AnimationReferenceAsset _idle, _dead, _victory;
 
     [Space(10f)]
     [SerializeField] SkeletonDataAsset _newDataAsset;
-    [SerializeField] AnimationReferenceAsset _idle2, _dead2;
+    [SerializeField] AnimationReferenceAsset _idle2, _dead2, _victory2;
 
     string _currentAnimation;
 
@@ -256,7 +256,7 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             _soundManager.victoryFX.Play();
 
             // Win state
-            SetCharacterState("idle");
+            StartCoroutine(HeroAnimationTransition());
         }
         else
         {
@@ -269,6 +269,15 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             // Lose state
             SetCharacterState("death");
         }
+    }
+
+    IEnumerator HeroAnimationTransition()
+    {
+        SetCharacterState("victory");
+
+        yield return new WaitForSeconds(1f);
+
+        SetCharacterState("idle");
     }
 
     public void SetAnimation(AnimationReferenceAsset animation, bool loop, float timeScale)
@@ -293,6 +302,10 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             {
                 SetAnimation(_dead2, false, 1f);
             }
+            else if(state == "victory")
+            {
+                SetAnimation(_victory2, false, 1f);
+            }
         }
         else
         {
@@ -303,6 +316,10 @@ public class GameOverAction : MonoBehaviour, IAnimatable
             else if (state == "death")
             {
                 SetAnimation(_dead, false, 1f);
+            }
+            else if (state == "victory")
+            {
+                SetAnimation(_victory, false, 1f);
             }
         }
     }

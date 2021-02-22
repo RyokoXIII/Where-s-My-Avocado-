@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: e8d91051f7a16434f8e84a0a8ef9ccc7, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 490d52474e629c549a41b5bf968cec4b, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0
@@ -179,23 +179,25 @@ MonoBehaviour:
   _getChestContainer: {fileID: 0}
   _bossManager: {fileID: 0}
   _skeletonAnimation: {fileID: 5783493231461236965}
-  _idle: {fileID: 11400000, guid: e9759a65b422a9f47ad609692e2d8fe5, type: 2}
-  _circle: {fileID: 11400000, guid: 418f53e34c69c5c43b9c0de4d8845eda, type: 2}
-  _rollout: {fileID: 11400000, guid: 9b82bde931c852649a441c5857709606, type: 2}
-  _finished1: {fileID: 11400000, guid: 5c8dfd0cc775f58428f4f7c2a29f5d90, type: 2}
-  _finished2: {fileID: 11400000, guid: 11aa3b334eda4cc4ba87d72d5e0f5801, type: 2}
-  _finished3: {fileID: 11400000, guid: 53e77dbe69ac0a44da8a5c0be8460348, type: 2}
-  _attack: {fileID: 11400000, guid: e6de62b8a2229134387f83c4355b722e, type: 2}
-  _dead: {fileID: 11400000, guid: ff4d9061b7e2439418d706a37c9e6f0c, type: 2}
+  _idle: {fileID: 11400000, guid: 76e6a29ae575c68468f69ba18e756c08, type: 2}
+  _circle: {fileID: 11400000, guid: 9654a76c0e7594043a222b597c62b26e, type: 2}
+  _rollout: {fileID: 11400000, guid: c1b5f7b3701ec2247b2bedb5c647d014, type: 2}
+  _finished1: {fileID: 11400000, guid: 487fc6154d5cb0e4fbdf62ce6f659178, type: 2}
+  _finished2: {fileID: 11400000, guid: f276c1b61ee4925479c42aa13b934dfe, type: 2}
+  _finished3: {fileID: 11400000, guid: 804bd533620622a468bfd2aa68d32f95, type: 2}
+  _attack: {fileID: 11400000, guid: 8c317b9d2e897684eb4b16b0ffeb380f, type: 2}
+  _dead: {fileID: 11400000, guid: 41430a41e8db19b4f98fd99d5772d252, type: 2}
+  _victory: {fileID: 11400000, guid: ec7d79e868127084aaf11dd8c5edeb3a, type: 2}
   _playerState: 0
   _bloodSplatParticle: {fileID: 0}
-  _newDataAsset: {fileID: 11400000, guid: b7b8038dd32ba974f9a523203299de0a, type: 2}
-  _idle2: {fileID: 11400000, guid: fe50dc19c8778494eb6bdcc045fd701b, type: 2}
-  _circle2: {fileID: 11400000, guid: b6fb4c31f3774ab419661ade587879da, type: 2}
-  _rollout2: {fileID: 11400000, guid: 678a4f4040aba1b4e96419c3c2515749, type: 2}
-  _attack2: {fileID: 11400000, guid: 0b2c2c61a9c102a48a9cf7bb60f5f1f2, type: 2}
-  _finishedUpgrade: {fileID: 11400000, guid: f516c549ec1b9604dbd99af3625a74ec, type: 2}
-  _dead2: {fileID: 11400000, guid: 7b53bedf34e227e4380380fbd9689f59, type: 2}
+  _newDataAsset: {fileID: 11400000, guid: 270ac7eecef226a499fa4f78bb4a41db, type: 2}
+  _idle2: {fileID: 11400000, guid: 1d6b3dd599a3c014a8ca9a95df7fe635, type: 2}
+  _circle2: {fileID: 11400000, guid: d600c27be972b4f45bd3c5e075cc6e82, type: 2}
+  _rollout2: {fileID: 11400000, guid: 35df090df3a6a7c489dc3f8881de4d26, type: 2}
+  _attack2: {fileID: 11400000, guid: 41078911d93616545ad53c07de978af3, type: 2}
+  _finishedUpgrade: {fileID: 11400000, guid: 315c589455ad3ea45bf09aed4d7ac462, type: 2}
+  _dead2: {fileID: 11400000, guid: c52746e05119c3f4789e70f019d9c8f6, type: 2}
+  _victory2: {fileID: 11400000, guid: f8e8e6860986e704597918e3ce838aba, type: 2}
   finalScore: 0
   touchBoundary: 0
   hasFirstStar: 0
@@ -207,7 +209,6 @@ MonoBehaviour:
   takeDamagePoint: 0
   healthBarscript: {fileID: 0}
   healthBar: {fileID: 0}
-  _expPoint: 0
 --- !u!114 &5783493230937425864
 MonoBehaviour:
   m_ObjectHideFlags: 0

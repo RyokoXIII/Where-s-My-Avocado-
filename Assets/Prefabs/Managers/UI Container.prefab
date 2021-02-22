@@ -1178,8 +1178,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -27, y: 3}
-  m_SizeDelta: {x: 160, y: 80}
+  m_AnchoredPosition: {x: 0, y: 4}
+  m_SizeDelta: {x: 400, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7313342051796640352
 CanvasRenderer:
@@ -4419,7 +4419,7 @@ RectTransform:
   m_GameObject: {fileID: 7104984545751072252}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 460193028014092459}
   m_Father: {fileID: 1396480403429268693}
@@ -4427,7 +4427,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -196}
   m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2040330943698396741
@@ -4966,7 +4966,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  skeletonDataAsset: {fileID: 11400000, guid: e8d91051f7a16434f8e84a0a8ef9ccc7, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 490d52474e629c549a41b5bf968cec4b, type: 2}
   initialSkinName: default
   initialFlipX: 0
   initialFlipY: 0
@@ -5721,11 +5721,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skeletonGraphic: {fileID: 201801209434697782}
   _heroPos: {fileID: 7702656892827121262}
-  _idle: {fileID: 11400000, guid: e9759a65b422a9f47ad609692e2d8fe5, type: 2}
-  _dead: {fileID: 11400000, guid: ff4d9061b7e2439418d706a37c9e6f0c, type: 2}
-  _newDataAsset: {fileID: 11400000, guid: b7b8038dd32ba974f9a523203299de0a, type: 2}
-  _idle2: {fileID: 11400000, guid: fe50dc19c8778494eb6bdcc045fd701b, type: 2}
-  _dead2: {fileID: 11400000, guid: 7b53bedf34e227e4380380fbd9689f59, type: 2}
+  _idle: {fileID: 11400000, guid: 76e6a29ae575c68468f69ba18e756c08, type: 2}
+  _dead: {fileID: 11400000, guid: 41430a41e8db19b4f98fd99d5772d252, type: 2}
+  _victory: {fileID: 11400000, guid: ec7d79e868127084aaf11dd8c5edeb3a, type: 2}
+  _newDataAsset: {fileID: 11400000, guid: 270ac7eecef226a499fa4f78bb4a41db, type: 2}
+  _idle2: {fileID: 11400000, guid: 1d6b3dd599a3c014a8ca9a95df7fe635, type: 2}
+  _dead2: {fileID: 11400000, guid: c52746e05119c3f4789e70f019d9c8f6, type: 2}
+  _victory2: {fileID: 11400000, guid: f8e8e6860986e704597918e3ce838aba, type: 2}
   _playerManager: {fileID: 0}
   _chestAction: {fileID: 8942181662899730997}
   _playerLvUp: {fileID: 0}
@@ -5762,8 +5764,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collectedCoinTxt: {fileID: 1829963219091156135}
+  _stageTitleTxt: {fileID: 0}
   _playerStats: {fileID: 0}
   _nextBtnObj: {fileID: 7104984545751072252}
+  _getTripleBtnObj: {fileID: 0}
+  _powerUpContainer: {fileID: 0}
+  _starLabelAnim: {fileID: 0}
+  _heroUiAnim: {fileID: 0}
+  _coinLabelAnim: {fileID: 0}
 --- !u!1 &7793664995274750532
 GameObject:
   m_ObjectHideFlags: 0
