@@ -114,7 +114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   main: {fileID: 0}
   _containerPos: {fileID: 0}
-  _playerManager: {fileID: 0}
+  _bossManager: {fileID: 0}
+  _enemyManager: {fileID: 0}
   _coinText: {fileID: 8036383450100124246}
   _coinObj: {fileID: 8036383450100124244}
 --- !u!1 &8036383449657298681
@@ -151,7 +152,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 26, y: 0}
+  m_AnchoredPosition: {x: 29, y: 0}
   m_SizeDelta: {x: 25, y: 25}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &8036383449657298684
@@ -265,7 +266,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 40
-    m_Alignment: 4
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -308,7 +309,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8036383450597852187
 RectTransform:
   m_ObjectHideFlags: 0
